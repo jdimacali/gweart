@@ -1,12 +1,8 @@
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import Link from "next/link";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { LucideIcon, MenuSquareIcon } from "lucide-react";
+import { Fragment } from "react";
+import { usePathname } from "next/navigation";
 
 interface MobileNavbarProps {
   routes: Array<{
@@ -23,14 +19,22 @@ const MobileNavbar = ({ routes }: MobileNavbarProps) => {
         <SheetTrigger>
           <MenuSquareIcon />
         </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </SheetDescription>
-          </SheetHeader>
+        <SheetContent className="p-0">
+          <section className="flex flex-col text-center items-center gap-y-5 pt-12 bg-white gap-x-10 font-medium h-full w-full m-0">
+            {routes.map((route) => (
+              <Fragment key={route.label}>
+                <Link
+                  href={route.href}
+                  className="hover: text-decoration-line: underline;"
+                >
+                  <div>
+                    <h1 className="text-1xl">{route.label}</h1>
+                  </div>
+                </Link>
+                <div className="h-[1px] bg-gray-950 opacity-20 w-full" />
+              </Fragment>
+            ))}
+          </section>
         </SheetContent>
       </Sheet>
     </div>

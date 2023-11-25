@@ -9,6 +9,7 @@ import {
 import MobileNavbar from "./MobileNavbar";
 import NavbarRoutes from "./NavbarRoutes";
 import Image from "next/image";
+import Link from "next/link";
 
 const routes = [
   { label: "Home", href: "/", icon: HomeIcon },
@@ -21,16 +22,16 @@ const routes = [
 const Navbar = () => {
   return (
     <section className="flex bg-black text-white p-10 gap-x-4 mr-auto justify-between text-center items-center shadow-lg">
-      <div className="relative h-20 w-20 m-[-1rem]">
+      <Link className="relative h-20 w-20 m-[-1rem]" href="/">
         <Image
-          src="/gwe.webp"
+          src="/gwe.png"
           alt="gwe"
           quality="100"
           fill
           className="object-contain"
         />
-      </div>
-      <div className="flex gap-x-4 md:mr-10">
+      </Link>
+      <div className="flex gap-x-10 md:mr-10">
         <div className="hidden sm:block">
           <NavbarRoutes routes={routes} />
         </div>

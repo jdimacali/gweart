@@ -1,5 +1,6 @@
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface NavbarRoutesProps {
   routes: Array<{
@@ -13,11 +14,7 @@ const NavbarRoutes = ({ routes }: NavbarRoutesProps) => {
   return (
     <div className="flex gap-x-10 font-medium">
       {routes.map((route) => (
-        <Link
-          href={route.href}
-          key={route.label}
-          className="hover: text-decoration-line: underline;"
-        >
+        <Link href={route.href} key={route.label} className="hover:underline">
           {route.label}
         </Link>
       ))}
