@@ -8,7 +8,7 @@ const Footer = () => {
         www.gweart.com
       </h1>
       <Image
-        src="/gwe.png"
+        src="/icon/gwe.png"
         alt="gwe"
         quality="100"
         height={100}

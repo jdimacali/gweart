@@ -9,6 +9,25 @@ body,
   color: white;
 }
 
+div.vector {
+  margin: 10px auto;
+  height: 250px;
+  width: 600px;
+  overflow: hidden;
+  position: absolute;
+}
+
+line,
+path {
+  stroke: #ccc;
+  stroke-width: 2px;
+  fill: none;
+}
+#top {
+  stroke-width: 2px;
+}
+/* Just for demo */
+
 @layer base {
   * {
     @apply border-border;

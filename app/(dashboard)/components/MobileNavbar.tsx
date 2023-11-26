@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { LucideIcon, MenuSquareIcon } from "lucide-react";
+import { LucideIcon, MenuIcon } from "lucide-react";
 import { Fragment } from "react";
-import { usePathname } from "next/navigation";
 
 interface MobileNavbarProps {
   routes: Array<{
@@ -17,7 +16,7 @@ const MobileNavbar = ({ routes }: MobileNavbarProps) => {
     <div>
       <Sheet>
         <SheetTrigger>
-          <MenuSquareIcon />
+          <MenuIcon />
         </SheetTrigger>
         <SheetContent className="p-0">
           <section className="flex flex-col text-center items-center gap-y-5 pt-12 bg-white gap-x-10 font-medium h-full w-full m-0">

@@ -14,7 +14,11 @@ const NavbarRoutes = ({ routes }: NavbarRoutesProps) => {
   return (
     <div className="flex gap-x-10 font-medium">
       {routes.map((route) => (
-        <Link href={route.href} key={route.label} className="hover:underline">
+        <Link
+          href={route.href}
+          key={route.label}
+          className="hover:underline last:animate-bounce animate-out"
+        >
           {route.label}
         </Link>
       ))}

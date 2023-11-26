@@ -21,10 +21,10 @@ const routes = [
 
 const Navbar = () => {
   return (
-    <section className="flex bg-black text-white p-10 gap-x-4 mr-auto justify-between text-center items-center shadow-lg">
-      <Link className="relative h-20 w-20 m-[-1rem]" href="/">
+    <section className="flex bg-black text-white p-10 gap-x-4 mr-auto justify-between text-center items-center shadow-lg sticky top-0 z-[10]">
+      <Link className="relative h-[3rem] w-[5rem] m-[-1rem]" href="/">
         <Image
-          src="/gwe.png"
+          src="/icon/gwe.png"
           alt="gwe"
           quality="100"
           fill

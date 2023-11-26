@@ -14,7 +14,7 @@ const socials = [
 const page = () => {
   return (
     <section className="h-[60rem] w-full bg-gray-900 flex flex-col items-center">
-      <div className="bg-[url('../public/background/bg1.jpg')] w-[35rem] h-full bg-right-top bg-repeat-round bg-cover md:rounded-[3rem] md:m-5">
+      <div className="bg-[url('../public/background/bg3.jpg')] w-full h-full bg-cover bg-clip-padding bg-fixed bg-blend-overlay bg-gray-950  bg-opacity-40">
         <div className="flex flex-col justify-center items-center w-full">
           <Avatar className="mt-10 h-[65px] w-[65px]">
             <AvatarImage src="./icon/gweart.jpg" />
@@ -26,7 +26,7 @@ const page = () => {
           {socials.map((social) => (
             <div
               key={social.label}
-              className="border rounded-full bg-white w-[30rem] font-semibold p-4"
+              className="rounded-full bg-white w-[30rem] font-semibold border-[3px] p-4 hover:animate-bounce hover:opacity-95 transition-all"
             >
               <Link href={social.link}>
                 <h1 className="text-md">{social.label}</h1>
