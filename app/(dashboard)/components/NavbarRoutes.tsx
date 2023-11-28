@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -7,16 +8,23 @@ interface NavbarRoutesProps {
     href: string;
     icon: LucideIcon;
   }>;
+  pathname: string;
 }
 
-const NavbarRoutes = ({ routes }: NavbarRoutesProps) => {
+const NavbarRoutes = ({ routes, pathname }: NavbarRoutesProps) => {
+  console.log(pathname);
   return (
     <div className="flex gap-x-10 font-medium">
       {routes.map((route) => (
         <Link
           href={route.href}
           key={route.label}
-          className="last:animate-bounce animate-out link link-underline link-underline-black"
+          className={clsx(
+            "last animate-out link  link-underline link-underline-black",
+            pathname === route.href &&
+              "underline underline-offset-4 decoration-2 transition-colors",
+            pathname !== route.href ? "last:animate-bounce" : ""
+          )}
         >
           {route.label}
         </Link>
