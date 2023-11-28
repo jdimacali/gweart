@@ -11,13 +11,36 @@ import {
 import LinktreeLink from "./components/LinktreeLink";
 
 const socials = [
-  { label: "Upcoming Events", link: "", icon: CalendarSearchIcon },
-  { label: "G.W.E New Item Shop Drop", link: "", icon: LucideShoppingCart },
-  { label: "Tee Public", link: "", icon: ShoppingBagIcon },
-  { label: "Etsy Shop", link: "", icon: ShoppingBasketIcon },
-  { label: "Instagram", link: "", icon: LucideInstagram },
-  { label: "Facebook", link: "", icon: FacebookIcon },
-  { label: "Tik Tok", link: "", icon: PersonStandingIcon },
+  {
+    label: "Upcoming Events",
+    link: "/upcoming_events",
+    icon: CalendarSearchIcon,
+  },
+  {
+    label: "Tee Public",
+    link: "https://www.teepublic.com/t-shirts?query=gweart",
+    icon: ShoppingBagIcon,
+  },
+  {
+    label: "Etsy Shop",
+    link: "https://www.etsy.com/shop/ArtbyGWE?ref=shop_sugg_market",
+    icon: ShoppingBasketIcon,
+  },
+  {
+    label: "Instagram",
+    link: "https://www.instagram.com/gwe_art/?hl=en",
+    icon: LucideInstagram,
+  },
+  {
+    label: "Facebook",
+    link: "https://www.facebook.com/spookygwe/",
+    icon: FacebookIcon,
+  },
+  {
+    label: "Tik Tok",
+    link: "https://www.tiktok.com/@gwe_art?lang=en",
+    icon: PersonStandingIcon,
+  },
 ];
 
 const page = () => {
