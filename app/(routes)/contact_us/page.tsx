@@ -24,10 +24,10 @@ const formSchema = z.object({
   email: z
     .string()
     .min(3, {
-      message: "Username must be at least 2 characters.",
+      message: "email must be at least 2 characters.",
     })
     .email({
-      message: "Username must be a valid email.",
+      message: "email must be a valid email.",
     }),
   message: z
     .string()
@@ -44,6 +44,8 @@ const Page = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      email: "",
+      message: "",
     },
   });
 
@@ -53,7 +55,7 @@ const Page = () => {
     alert(`${values.username} ${values.email}, ${values.message}`);
   }
   return (
-    <section className="h-[55rem] w-full bg-gray-800">
+    <section className="h-full w-full bg-gray-800 pb-40 max-sm:pb-20">
       <div className="flex flex-col items-center text-center justify-center text-white gap-y-20 py-20">
         <Form {...form}>
           <form
@@ -75,7 +77,7 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] ml-1 items-center">
                     <FormControl>
                       <Input
-                        className="py-6 text-lg focus:opacity-100 opacity-80 hover:opacity-100 "
+                        className="py-6 text-lg focus:border-white hover:border-white border-[#adadad] rounded-[0.2rem] transition-colors"
                         placeholder="Full name"
                         {...field}
                       />
@@ -93,7 +95,7 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] items-center ">
                     <FormControl>
                       <Input
-                        className="py-6 text-lg focus:opacity-100 opacity-80 hover:opacity-100 "
+                        className="py-6 text-lg focus:border-white hover:border-white border-[#adadad] rounded-[0.2rem] transition-colors "
                         placeholder="Email"
                         {...field}
                       />
@@ -111,7 +113,7 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] items-center">
                     <FormControl>
                       <Textarea
-                        className="resize-none text-lg pb-10 focus:opacity-100 hover:opacity-100 opacity-80"
+                        className="resize-none text-lg pb-10 focus:border-white hover:border-white border-[#adadad] rounded-[0.2rem] transition-colors"
                         placeholder="Message"
                         {...field}
                       />
@@ -126,6 +128,7 @@ const Page = () => {
               )}
             />
             <Button
+              disabled={form.formState.isValid}
               type="submit"
               className="bg-amber-700 p-6 rounded-xl max-sm:w-[90vw] transition-all hover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
             >

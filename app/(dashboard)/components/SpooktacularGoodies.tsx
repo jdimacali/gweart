@@ -10,10 +10,10 @@ const SpooktacularGoodies = () => {
   return (
     <section
       className={
-        "w-full min-h-[850px] bg-violet-950 shadow-2xl flex max-sm:flex-col justify-center text-center items-center gap-x-20 p-10 relative bg-gradient-to-br from-violet-900 from-15% to-violet-950  to-5% "
+        "w-full h-full pb-40 pt-20 bg-violet-950 flex max-sm:flex-col justify-center text-center items-center gap-x-20 relative bg-gradient-to-br from-violet-900/40 from-15% to-violet-950 to-15% "
       }
     >
-      <div className="vector absolute left-[0px] top-[-10px]">
+      <div className="vector w-[700px] h-full max-sm:w-[830px] max-sm:h-[700px] absolute left-[0px] top-[-10px]">
         <svg viewBox="0 0 600 250" preserveAspectRatio="none">
           <line x1="1" y1="1" x2="700" y2="1" id="top" />
           <line x1="1" y1="1" x2="1" y2="250" />
@@ -24,7 +24,7 @@ const SpooktacularGoodies = () => {
           <path d="M 1,240 a 22,25 45 1,1 113,-78 a 23,26 0 1,1 46,-72 a 35,30 -45 1,1 90,-110" />
         </svg>
       </div>
-      <div>
+      <div className="max-sm:mb-8">
         <motion.h2
           initial={{ opacity: 0, y: -100 }}
           animate={{ opacity: 100, y: 0 }}
@@ -35,7 +35,19 @@ const SpooktacularGoodies = () => {
           style={{ textShadow: "2px 3px  #d4d4d4" }}
           className="text-7xl tracking-[0.35rem] font-bold text-[#8b46c4] font-mania antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font"
         >
-          Spooktacular Goodies
+          Seasons Screamings
+        </motion.h2>
+        <motion.h2
+          initial={{ opacity: 0, y: -100 }}
+          animate={{ opacity: 100, y: 0 }}
+          transition={{
+            ease: "backOut",
+            duration: 1,
+          }}
+          style={{ textShadow: "4px 1px  #8b46c4" }}
+          className="text-3xl tracking-[0.30rem] font-bold text-[#ffffff] font-mania antialiased mt-5"
+        >
+          Stay Spooky 365
         </motion.h2>
         <motion.div
           initial={{ opacity: 0, y: 100 }}
@@ -55,25 +67,6 @@ const SpooktacularGoodies = () => {
         </motion.div>
       </div>
       <div className=" drop-shadow-2xl">
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 100, 0] }}
-          transition={{
-            delay: 0,
-            duration: 5,
-            repeat: Infinity,
-            repeatDelay: 10,
-            ease: "backIn",
-          }}
-        >
-          <Image
-            src="/mex/mex1.png"
-            width={600}
-            height={600}
-            alt="cholagif"
-            className="object-contain absolute"
-          />
-        </motion.div> */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: [0, 100, 0], scale: 1 }}

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "swiper/css";
+
 html,
 body,
 ::root {
@@ -11,8 +13,6 @@ body,
 
 div.vector {
   margin: 10px auto;
-  height: 250px;
-  width: 600px;
   overflow: hidden;
   position: absolute;
 }
@@ -26,7 +26,26 @@ path {
 #top {
   stroke-width: 2px;
 }
-/* Just for demo */
+
+.link-underline {
+  border-bottom-width: 0;
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(#fff, #fff);
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease-in;
+}
+
+.link-underline-black {
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255));
+}
+
+.link-underline:hover {
+  background-size: 100% 2px;
+  background-position: 0 100%;
+}
 
 @layer base {
   * {

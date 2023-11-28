@@ -1,16 +1,19 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const events = [
-  { label: "Upcoming Events", image: "/events/event1.png" },
-  { label: "G.W.E New Item Shop Drop", image: "/events/event2.png" },
-  { label: "G.W.E New Item Shop Drop", image: "/events/event3.png" },
-  { label: "G.W.E New Item Shop Drop", image: "/events/event4.png" },
+  { link: "Upcoming Events", image: "/events/event1.png" },
+  { link: "G.W.E New Item Shop Drop", image: "/events/event2.png" },
+  { link: "G.W.E New Item Shop Drop", image: "/events/event3.png" },
+  { link: "G.W.E New Item Shop Drop", image: "/events/event4.png" },
+  { link: "Upcoming Events", image: "/events/event1.png" },
+
 ];
 
 const page = () => {
   return (
-    <section className="h-full w-full bg-gray-900 flex flex-col items-center">
-      <div className="bg-[url('../public/background/bg1.jpg')] w-full h-full bg-cover bg-clip-padding bg-blend-overlay bg-black bg-opacity-40 pb-40 bg-fixed">
+    <section className="h-full w-full bg-gray-800 flex flex-col items-center">
+      <div className="bg-[url('../public/background/bg4.png')] w-full h-full bg-cover pb-40">
         <div className="flex flex-col items-center justify-center w-full my-10 gap-y-4 pb-4">
           <h1
             className="text-7xl font-bold text-white text-center"
@@ -24,17 +27,18 @@ const page = () => {
         </div>
         <div className="flex flex-wrap mt-10 items-center justify-center gap-10">
           {events.map((event) => (
-            <div
-              key={event.label}
+            <Link
+              key={event.link}
+              href={event.link}
               className="relative max-sm:h-[30rem] h-[40rem] max-sm:w-[30rem] w-[40rem] "
             >
               <Image
                 src={event.image}
-                alt={event.label}
+                alt={event.image}
                 fill
                 className="object-contain hover:scale-110 transition-transform animate-in"
               />
-            </div>
+            </Link>
           ))}
         </div>
       </div>

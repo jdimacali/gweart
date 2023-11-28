@@ -1,6 +1,5 @@
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 interface NavbarRoutesProps {
   routes: Array<{
@@ -17,7 +16,7 @@ const NavbarRoutes = ({ routes }: NavbarRoutesProps) => {
         <Link
           href={route.href}
           key={route.label}
-          className="hover:underline last:animate-bounce animate-out"
+          className="last:animate-bounce animate-out link link-underline link-underline-black"
         >
           {route.label}
         </Link>
