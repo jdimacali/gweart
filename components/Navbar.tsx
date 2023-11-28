@@ -8,7 +8,7 @@ import {
   ShoppingCartIcon,
   Trees,
 } from "lucide-react";
-import MobileNavbar from "./MobileNavbar";
+import MobileNavbar from "../app/(dashboard)/components/MobileNavbar";
 import NavbarRoutes from "./NavbarRoutes";
 import Image from "next/image";
 import Link from "next/link";
