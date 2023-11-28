@@ -7,7 +7,6 @@ const events = [
   { link: "G.W.E New Item Shop Drop", image: "/events/event3.png" },
   { link: "G.W.E New Item Shop Drop", image: "/events/event4.png" },
   { link: "Upcoming Events", image: "/events/event1.png" },
-
 ];
 
 const page = () => {
@@ -21,7 +20,7 @@ const page = () => {
           >
             Upcoming Events
           </h1>
-          <h1 className="text-3xl font-bold text-white text-center">
+          <h1 className="text-3xl font-bold opacity-80 text-white text-center">
             You can find me at these events!
           </h1>
         </div>

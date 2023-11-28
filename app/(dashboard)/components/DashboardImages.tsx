@@ -18,7 +18,7 @@ const DashboardImages = () => {
         }}
       >
         <Image
-          src="/mex/mex4.png"
+          src="/mex/mex3.png"
           width={600}
           height={600}
           alt="cholagif"
@@ -37,7 +37,7 @@ const DashboardImages = () => {
         }}
       >
         <Image
-          src="/mex/mex3.png"
+          src="/mex/mex1.png"
           width={600}
           height={600}
           alt="cholagif"

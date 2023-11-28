@@ -25,7 +25,7 @@ const routes = [
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <section className="flex bg-black text-white p-10 gap-x-4 mr-auto justify-between text-center items-center shadow-2xl sticky top-0 z-[10]">
+    <section className="flex bg-black text-white p-10 gap-x-4 mr-auto justify-between text-center items-center sticky top-0 z-[10]">
       <Link className="relative h-[3rem] w-[5rem] m-[-1rem]" href="/">
         <Image
           src="/icon/gwe.png"

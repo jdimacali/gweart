@@ -46,7 +46,7 @@ const socials = [
 const page = () => {
   return (
     <section className="h-full w-full flex flex-col items-center">
-      <div className="bg-[url('../public/background/bg3.jpg')] w-full h-full bg-cover bg-clip-padding bg-fixed bg-blend-overlay bg-gray-950  bg-opacity-50 pb-[7rem]">
+      <div className="bg-[url('../public/background/bg3.png')] w-full h-full bg-cover bg-clip-padding bg-fixed bg-blend-overlay bg-gray-950  bg-opacity-50 pb-[7rem]">
         <div className="flex flex-col justify-center items-center w-full">
           <Avatar className="mt-10 h-[65px] w-[65px]">
             <AvatarImage src="./icon/gweart.jpg" />
