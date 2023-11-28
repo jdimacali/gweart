@@ -15,7 +15,7 @@ const MobileNavbar = ({ routes }: MobileNavbarProps) => {
   return (
     <div>
       <Sheet>
-        <SheetTrigger>
+        <SheetTrigger className="pt-2">
           <MenuIcon />
         </SheetTrigger>
         <SheetContent className="p-0">
@@ -27,7 +27,7 @@ const MobileNavbar = ({ routes }: MobileNavbarProps) => {
                   className="hover: text-decoration-line: underline;"
                 >
                   <div>
-                    <h1 className="text-1xl">{route.label}</h1>
+                    <h1 className="text-1xl text-black">{route.label}</h1>
                   </div>
                 </Link>
                 <div className="h-[1px] bg-gray-950 opacity-20 w-full" />

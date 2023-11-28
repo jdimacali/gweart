@@ -4,15 +4,15 @@ import {
   CalendarHeart,
   Contact2Icon,
   HomeIcon,
-  Search,
   ShoppingCartIcon,
   Trees,
 } from "lucide-react";
-import MobileNavbar from "../app/(dashboard)/components/MobileNavbar";
+import MobileNavbar from "./MobileNavbar";
 import NavbarRoutes from "./NavbarRoutes";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import NavUtil from "./NavUtil";
 
 const routes = [
   { label: "Home", href: "/", icon: HomeIcon },
@@ -25,7 +25,7 @@ const routes = [
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <section className="flex bg-black text-white p-10 gap-x-4 mr-auto justify-between text-center items-center sticky top-0 z-[10]">
+    <section className="flex max-sm:py-5 bg-black text-white p-10 gap-x-4 mr-auto justify-between text-center items-center sticky top-0 z-[10]">
       <Link className="relative h-[3rem] w-[5rem] m-[-1rem]" href="/">
         <Image
           src="/icon/gwe.png"
@@ -35,11 +35,11 @@ const Navbar = () => {
           className="object-contain"
         />
       </Link>
-      <div className="flex gap-x-10 md:mr-10">
+      <div className="flex gap-x-8 md:mr-10">
         <div className="hidden sm:block">
           <NavbarRoutes routes={routes} pathname={pathname} />
         </div>
-        <Search />
+        <NavUtil />
         <div className="sm:hidden">
           <MobileNavbar routes={routes} />
         </div>
