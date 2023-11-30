@@ -5,6 +5,7 @@ import LinktreeLink from "./components/LinktreeLink";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import Spin from "@/components/Spin";
 
 interface SocialLink {
   id: number;
@@ -47,7 +48,7 @@ const Page = () => {
         </div>
         <div className="flex flex-col items-center text-center justify-center text-black gap-y-10 mt-8">
           {loading ? (
-            <div>Loading</div>
+            <Spin />
           ) : (
             socials.map((social) => (
               <LinktreeLink key={social.id} social={social} />

@@ -111,7 +111,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[70%] left-[50%] max-sm:hidden"
+        className="absolute top-[60%] left-[50%] max-sm:hidden"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
