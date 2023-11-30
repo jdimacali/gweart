@@ -28,7 +28,7 @@ const Title = () => {
           duration: 1,
         }}
         style={{ textShadow: "4px 1px  #8b46c4" }}
-        className="text-3xl tracking-[0.30rem] font-bold text-[#ffffff] font-mania antialiased mt-5"
+        className="text-3xl tracking-[0.30rem] font-bold text-[#ffffff] font-mania antialiased mt-5 "
       >
         Stay Spooky 365
       </motion.h2>

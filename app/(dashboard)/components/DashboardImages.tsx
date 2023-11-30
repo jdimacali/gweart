@@ -1,49 +1,45 @@
-"use client";
+import { Swiper, SwiperSlide } from "swiper/react";
 
+import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
 import Image from "next/image";
-import { motion } from "framer-motion";
+
+import "swiper/css/effect-fade";
+
+const images = ["/mex/mex1.png", "/mex/mex3.png", "/mex/mex4.png"];
 
 const DashboardImages = () => {
   return (
-    <div className=" drop-shadow-2xl">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: [0, 100, 0], scale: 1 }}
-        transition={{
-          delay: 5,
-          duration: 5,
-          repeat: Infinity,
-          repeatDelay: 5,
-          ease: "easeOut",
+    <div className="h-full w-auto max-sm:w-full flex justify-center items-center m-6 max-sm:pl-13 max-md:pl-30">
+      <Swiper
+        loop={true}
+        autoplay={{
+          delay: 4000,
         }}
-      >
-        <Image
-          src="/mex/mex3.png"
-          width={600}
-          height={600}
-          alt="cholagif"
-          className="object-contain absolute"
-        />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: [0, 100, 0], scale: 1 }}
-        transition={{
-          delay: 0,
-          duration: 5,
-          repeat: Infinity,
-          repeatDelay: 5,
-          ease: "easeOut",
+        navigation={true}
+        pagination={{
+          clickable: true,
         }}
+        slidesPerView={1}
+        modules={[Autoplay, Pagination, Navigation, EffectFade]}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
+        className="w-[25vw] max-sm:w-full h-full flex justify-center items-center"
       >
-        <Image
-          src="/mex/mex1.png"
-          width={600}
-          height={600}
-          alt="cholagif"
-          className="object-contain"
-        />
-      </motion.div>
+        {images.map((slide) => (
+          <SwiperSlide
+            key={slide}
+            className="h-[30rem] w-auto flex justify-center items-center"
+          >
+            <Image
+              src={slide}
+              fill
+              quality={100}
+              alt="slide"
+              className="block object-contain"
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

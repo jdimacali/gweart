@@ -29,7 +29,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${metalMania.variable}`}>
+      <body
+        className={`${inter.variable} ${metalMania.variable}`}
+        suppressHydrationWarning={true}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

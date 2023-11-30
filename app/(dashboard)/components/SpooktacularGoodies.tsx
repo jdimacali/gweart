@@ -1,7 +1,8 @@
+"use client";
+
 import Web from "./Web";
 import Title from "./Title";
 import DashboardImages from "./DashboardImages";
-import Image from "next/image";
 import DashboardGhost from "./DashboardGhost";
 
 const SpooktacularGoodies = () => {
