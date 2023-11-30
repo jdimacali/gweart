@@ -72,7 +72,7 @@ const SignIn = () => {
         setUser(data.user);
 
         toast({ title: `Welcome back ${data.user.username}!` });
-        router.push("/profile");
+        router.push("/");
       }
     } catch (error: any) {
       console.error(error);

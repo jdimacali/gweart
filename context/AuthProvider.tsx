@@ -27,6 +27,7 @@ interface AuthContextType {
   user: User | undefined;
   isLoading: boolean;
   setUser: (user: User) => void;
+  logout: () => void; // Add the logout function
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -68,6 +69,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
     setUserData(user);
   };
 
+  const logout = () => {
+    setUserData(undefined);
+  };
+
   useEffect(() => {
     if (authToken) {
       fetchLoggedInUser(authToken);
@@ -76,7 +81,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
 
   return (
     <AuthContext.Provider
-      value={{ user: userData, setUser: handleUser, isLoading }}
+      value={{ user: userData, setUser: handleUser, isLoading, logout }}
     >
       {children}
     </AuthContext.Provider>

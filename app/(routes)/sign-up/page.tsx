@@ -85,7 +85,7 @@ const SignUp = () => {
           title: "Sign up successful",
           description: `Welcome ${data.user.username}!`,
         });
-        router.push("/profile");
+        router.push("/");
       }
     } catch (error: any) {
       console.error(error);
