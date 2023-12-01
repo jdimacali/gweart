@@ -1,6 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-
+interface SocialLink {
+  id: number;
+  attributes: {
+    name: string;
+    url: string;
+    // Add other attributes as needed
+  };
+}
 const events = [
   { link: "Upcoming Events", image: "/events/event1.png" },
   { link: "G.W.E New Item Shop Drop", image: "/events/event2.png" },
@@ -24,7 +31,7 @@ const page = () => {
             You can find me at these events!
           </h1>
         </div>
-        <div className="flex flex-wrap mt-10 items-center justify-center gap-10">
+        <div className="flex flex-wrap mt-10 items-center justify-center gap-10 mx-16">
           {events.map((event) => (
             <Link
               key={event.link}

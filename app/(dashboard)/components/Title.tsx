@@ -4,10 +4,15 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-const Title = () => {
+interface TitleProps {
+  title: string;
+  subtitle: string;
+}
+
+const Title = ({ title, subtitle }: TitleProps) => {
   const router = useRouter();
   return (
-    <div className="max-sm:mb-8">
+    <div className="max-sm:mb-8 ">
       <motion.h2
         initial={{ opacity: 0, y: -100 }}
         animate={{ opacity: 100, y: 0 }}
@@ -18,7 +23,7 @@ const Title = () => {
         style={{ textShadow: "2px 3px  #d4d4d4" }}
         className="text-7xl tracking-[0.35rem] font-bold text-[#8b46c4] font-mania antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font"
       >
-        Seasons Screamings
+        {title}
       </motion.h2>
       <motion.h2
         initial={{ opacity: 0, y: -100 }}
@@ -30,7 +35,7 @@ const Title = () => {
         style={{ textShadow: "4px 1px  #8b46c4" }}
         className="text-3xl tracking-[0.30rem] font-bold text-[#ffffff] font-mania antialiased mt-5 "
       >
-        Stay Spooky 365
+        {subtitle}
       </motion.h2>
       <motion.div
         initial={{ opacity: 0, y: 100 }}

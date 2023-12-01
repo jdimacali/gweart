@@ -14,8 +14,8 @@ const slides = [
   "/slideshow/slide3.jpg",
   "/slideshow/slide4.jpg",
   "/slideshow/slide1.jpg",
-  "/slideshow/slide3.jpg",
   "/slideshow/slide2.jpg",
+  "/slideshow/slide3.jpg",
   "/slideshow/slide4.jpg",
 ];
 
@@ -50,9 +50,9 @@ const Slides = () => {
           800: { slidesPerView: 4 },
         }}
       >
-        {slides.map((slide) => (
+        {slides.map((slide, index) => (
           <SwiperSlide
-            key={slide}
+            key={index}
             className="h-full w-full flex justify-center items-center"
           >
             <Image

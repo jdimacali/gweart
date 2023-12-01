@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const response = await axios.get(`${API_URL}/linktrees`);
+    const response = await axios.get(`${API_URL}/api/linktrees`);
     return NextResponse.json(response.data);
   } catch (error: any) {
     console.error("Linktree", error);
