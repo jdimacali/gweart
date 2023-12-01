@@ -8,7 +8,6 @@ interface DashboardImagesProps {
 }
 
 const DashboardImages = ({ images }: DashboardImagesProps) => {
-  console.log(images);
   return (
     <div className="h-full w-auto max-sm:w-full flex justify-center items-center m-6 sm:pt-40 max-sm:pl-13 max-md:pl-30">
       <Swiper
@@ -36,7 +35,8 @@ const DashboardImages = ({ images }: DashboardImagesProps) => {
               fill
               quality={100}
               alt="slide"
-              className="block object-contain"
+              sizes="100vh"
+              className="block object-contain w-full h-auto"
             />
           </SwiperSlide>
         ))}

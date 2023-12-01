@@ -11,9 +11,9 @@ const Footer = () => {
         src="/icon/gwe.png"
         alt="gwe"
         quality="100"
-        height={100}
-        width={100}
-        className="object-contain"
+        height={80}
+        width={80}
+        className="object-contain h-full w-auto"
       />
     </section>
   );

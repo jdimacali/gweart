@@ -13,28 +13,28 @@ const Auth: React.FC = () => {
   const { user, logout } = useAuthContext();
   const router = useRouter();
 
-const handleLogout = async () => {
-  removeToken();
+  const handleLogout = async () => {
+    removeToken();
 
-  try {
-    logout();
-    router.refresh();
-    toast({ title: `Successfully signed out` });
-  } catch (error) {
-    console.error("Logout failed", error);
-    // Handle logout failure if necessary
-  }
-};
+    try {
+      logout();
+      router.refresh();
+      toast({ title: `Successfully signed out` });
+    } catch (error) {
+      console.error("Logout failed", error);
+      // Handle logout failure if necessary
+    }
+  };
 
   return (
-    <div className="flex gap-x-4 mx-2">
+    <div className="flex gap-x-4 mx-2 font-medium">
       {user ? (
         <div className="flex w-full h-full items-center">
           <div>{user.username}</div>
           <Button onClick={handleLogout}>Logout</Button>
         </div>
       ) : (
-        <div className="flex gap-x-4 w-full h-full items-center font-medium">
+        <div className="flex gap-x-4 w-full h-full items-center">
           <Link href="/sign-in" type="link">
             Login
           </Link>

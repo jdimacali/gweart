@@ -1,22 +1,47 @@
+"use client";
+
+import Spin from "@/components/Spin";
+import { API_URL } from "@/lib/utils";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-interface SocialLink {
+import { useEffect, useState } from "react";
+
+interface Events {
   id: number;
   attributes: {
-    name: string;
     url: string;
     // Add other attributes as needed
+    image: {
+      data: {
+        id: number;
+        attributes: {
+          url: string;
+        };
+      };
+    };
   };
 }
-const events = [
-  { link: "Upcoming Events", image: "/events/event1.png" },
-  { link: "G.W.E New Item Shop Drop", image: "/events/event2.png" },
-  { link: "G.W.E New Item Shop Drop", image: "/events/event3.png" },
-  { link: "G.W.E New Item Shop Drop", image: "/events/event4.png" },
-  { link: "Upcoming Events", image: "/events/event1.png" },
-];
 
-const page = () => {
+const Page = () => {
+  const [events, setEvents] = useState<Events[] | undefined>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const getDashboard = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get("/api/events");
+        setEvents(response.data);
+      } catch (error) {
+        console.error("Error fetching dashboard:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getDashboard();
+  }, []);
+
   return (
     <section className="h-full w-full bg-gray-800 flex flex-col items-center">
       <div className="bg-[url('../public/background/bg4.png')] w-full h-full bg-cover pb-40">
@@ -30,25 +55,30 @@ const page = () => {
           <h1 className="text-3xl font-bold opacity-80 text-white text-center">
             You can find me at these events!
           </h1>
-        </div>
-        <div className="flex flex-wrap mt-10 items-center justify-center gap-10 mx-16">
-          {events.map((event) => (
-            <Link
-              key={event.link}
-              href={event.link}
-              className="relative max-sm:h-[30rem] h-[40rem] max-sm:w-[30rem] w-[40rem] "
-            >
-              <Image
-                src={event.image}
-                alt={event.image}
-                fill
-                className="object-contain hover:scale-110 transition-transform animate-in"
-              />
-            </Link>
-          ))}
-        </div>
+        </div>{" "}
+        {loading && !events && <Spin />}
+        {!loading && events && (
+          <div className="flex flex-wrap mt-10 items-center justify-center gap-10 mx-16">
+            {events.map((event) => (
+              <Link
+                target="_blank"
+                key={event.attributes.url}
+                href={event.attributes.url}
+                className="relative max-sm:h-[30rem] h-[40rem] max-sm:w-[30rem] w-[40rem] "
+              >
+                <Image
+                  src={`${API_URL}${event.attributes.image.data.attributes.url}`}
+                  alt={`${API_URL}${event.attributes.image.data.attributes.url}`}
+                  fill
+                  className="object-contain hover:scale-110 transition-transform animate-in"
+                />
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
 };
-export default page;
+
+export default Page;
