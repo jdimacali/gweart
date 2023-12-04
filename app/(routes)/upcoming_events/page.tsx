@@ -44,7 +44,7 @@ const Page = () => {
 
   return (
     <section className="h-full w-full bg-gray-800 flex flex-col items-center">
-      <div className="bg-[url('../public/background/bg4.png')] w-full h-full bg-cover pb-40">
+      <div className="w-full h-full bg-cover pb-40">
         <div className="flex flex-col items-center justify-center w-full my-10 gap-y-4 pb-4">
           <h1
             className="text-7xl font-bold text-white text-center"

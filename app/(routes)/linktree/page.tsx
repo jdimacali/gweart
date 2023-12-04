@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import LinktreeLink from "./components/LinktreeLink";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
 import Spin from "@/components/Spin";
 
 interface SocialLink {
@@ -37,8 +36,8 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="h-full w-full flex flex-col items-center">
-      <div className="bg-[url('../public/background/bg3.png')] w-full h-full bg-cover bg-clip-padding bg-fixed bg-blend-overlay bg-gray-950  bg-opacity-50 pb-[7rem]">
+    <section className="h-full w-full flex flex-col items-center pb-">
+      <div className="bg-[url('../public/background/bg3.png')] w-full h-full bg-cover bg-clip-padding bg-fixed bg-blend-overlay bg-gray-950  bg-opacity-50 pb-[20rem]">
         <div className="flex flex-col justify-center items-center w-full">
           <Avatar className="mt-10 h-[65px] w-[65px]">
             <AvatarImage src="./icon/gweart.jpg" />

@@ -55,12 +55,12 @@ const Page = () => {
     alert(`${values.username} ${values.email}, ${values.message}`);
   }
   return (
-    <section className="h-full w-full bg-gray-800 pb-40 max-sm:pb-20">
+    <section className="h-[80vh] w-full bg-gray-800 pb-40 max-sm:pb-20">
       <div className="flex flex-col items-center text-center justify-center text-white gap-y-20 py-20">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6 space-x-1"
+            className="space-y-6 space-x-1 max-w-[80vw] md:max-w-[50vw] lg:max-w-[40vw] xl:max-w-[30vw]"
           >
             <FormField
               control={form.control}
@@ -130,7 +130,7 @@ const Page = () => {
             <Button
               disabled={form.formState.isValid}
               type="submit"
-              className="bg-amber-700 p-6 rounded-xl max-sm:w-[90vw] transition-all hover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
+              className="bg-amber-700 p-6 rounded-xl max-sm:w-full transition-all hover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
             >
               <h3 className="text-lg m-3 drop-shadow-2xl">Submit</h3>
             </Button>
