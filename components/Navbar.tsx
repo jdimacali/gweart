@@ -50,7 +50,8 @@ const Navbar = () => {
   return (
     <section
       className={clsx(
-        "flex max-sm:py-5 bg-black text-white p-8 gap-x-4 mr-auto justify-between text-center items-center sticky z-[10] transition-all delay-100 duration-1000 ease-in-out",
+        `flex max-sm:py-5 bg-white text-black p-8 gap-x-4 mr-auto justify-between text-center items-center sticky z-[10] transition-all 
+        delay-100 duration-1000 ease-in-out dark:text-white dark:bg-black border-b dark:border-opacity-10`,
         visible ? "top-0 translate-y-0" : "-translate-y-full"
       )}
     >

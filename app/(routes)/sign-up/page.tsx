@@ -95,7 +95,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="h-[85vh] w-full bg-gray-800 flex justify-center">
+    <div className="h-[85vh] w-full dark:bg-gray-800 flex justify-center">
       <div>
         <div className="flex-1 max-sm:h-full flex flex-col items-start justify-center sm:pt-20 p-4">
           <div>
@@ -113,7 +113,11 @@ const SignUp = () => {
                   <FormItem>
                     <FormLabel className="text-md"> Username </FormLabel>
                     <FormControl>
-                      <Input placeholder="Username" {...field} />
+                      <Input
+                        placeholder="Username"
+                        {...field}
+                        className=" dark:focus:border-white focus:border-black dark:hover:border-white hover:border-black border-[#adadad] bg-gray-100/20 dark:bg-inherit rounded-[0.2rem] transition-colors"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -126,7 +130,11 @@ const SignUp = () => {
                   <FormItem>
                     <FormLabel className="text-md">Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="Email" {...field} />
+                      <Input
+                        placeholder="Email"
+                        {...field}
+                        className=" dark:focus:border-white focus:border-black dark:hover:border-white hover:border-black border-[#adadad] bg-gray-100/20 dark:bg-inherit rounded-[0.2rem] transition-colors"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -143,6 +151,7 @@ const SignUp = () => {
                         placeholder="Password"
                         type="password"
                         {...field}
+                        className=" dark:focus:border-white focus:border-black dark:hover:border-white hover:border-black border-[#adadad] bg-gray-100/20 dark:bg-inherit rounded-[0.2rem] transition-colors"
                       />
                     </FormControl>
                     <FormMessage />
@@ -160,6 +169,7 @@ const SignUp = () => {
                         placeholder="Confirm Password"
                         type="password"
                         {...field}
+                        className=" dark:focus:border-white focus:border-black dark:hover:border-white hover:border-black border-[#adadad] bg-gray-100/20 dark:bg-inherit rounded-[0.2rem] transition-colors"
                       />
                     </FormControl>
                     <FormMessage />
@@ -169,13 +179,13 @@ const SignUp = () => {
               <Button
                 disabled={!form.formState.isValid || isLoading}
                 type="submit"
-                className="bg-amber-700 w-full rounded-[0.2rem] max-sm:w-[90vw] transition-all hover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
+                className="w-full rounded-[0.2rem] transition-all dark:hover:bg-amber-800 hover:opacity-90 shadow-2xl dark:bg-amber-700 bg-purple-500 hover:bg-purple-600"
               >
-                <h3 className="text-lg">Sign Up</h3>
+                <h3 className="text-lg text-white">Sign Up</h3>
               </Button>
               <div>
                 Already have an account?{" "}
-                <span className="text-orange-500">
+                <span className="dark:text-orange-500 text-purple-500 hover:text-purple-800ml-1">
                   <Link href="sign-in">Sign In</Link>
                 </span>
               </div>

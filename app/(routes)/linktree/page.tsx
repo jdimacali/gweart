@@ -5,6 +5,7 @@ import LinktreeLink from "./components/LinktreeLink";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Spin from "@/components/Spin";
+import clsx from "clsx";
 
 interface SocialLink {
   id: number;
@@ -37,13 +38,21 @@ const Page = () => {
 
   return (
     <section className="h-full w-full flex flex-col items-center pb-">
-      <div className="bg-[url('../public/background/bg3.png')] w-full h-full bg-cover bg-clip-padding bg-fixed bg-blend-overlay bg-gray-950  bg-opacity-50 pb-[20rem]">
+      <div
+        className={clsx(
+          "bg-[url('../public/background/bg3.png')] w-full h-full bg-cover bg-clip-padding bg-fixed bg-blend-overlay bg-gray-950 bg-opacity-10 dark:bg-opacity-50 pb-[20rem]",
+          socials.length > 5 && "pb-[10rem]"
+        )}
+      >
         <div className="flex flex-col justify-center items-center w-full">
           <Avatar className="mt-10 h-[65px] w-[65px]">
             <AvatarImage src="./icon/gweart.jpg" />
             <AvatarFallback className="text-white"> Gwe </AvatarFallback>
           </Avatar>
           <h1 className="text-white font-semibold text-3xl">GweArt</h1>
+          <h1 className="text-white font-semibold text-xl opacity-60">
+            Girl Wonder Extraordinaire
+          </h1>
         </div>
         <div className="flex flex-col items-center text-center justify-center text-black gap-y-10 mt-8">
           {loading ? (

@@ -55,3 +55,19 @@ path {
     @apply bg-background text-foreground;
   }
 }
+
+.text-shadow-purple {
+  text-shadow: 4px 1px #8b46c4;
+}
+
+.text-shadow-black {
+  text-shadow: 4px 1px #000000;
+}
+
+.text-shadow-gray {
+  text-shadow: 4px 1px #808080;
+}
+
+.text-shadow-white {
+  text-shadow: 4px 1px #FFFFFF;
+}

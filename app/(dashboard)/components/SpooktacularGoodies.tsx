@@ -34,12 +34,13 @@ const SpooktacularGoodies = () => {
 
   return (
     <section
-      className={
-        "w-full h-[900px]  bg-violet-950 flex max-sm:flex-col justify-center text-center items-center max-sm:pt-20 gap-x-20 relative bg-gradient-to-br from-violet-900/40 from-15% to-violet-950 to-15% "
-      }
+      className={`w-full h-[900px] bg-orange-600 dark:bg-violet-950  flex max-sm:flex-col justify-center text-center items-center 
+      max-sm:pt-20 gap-x-20 relative bg-gradient-to-br dark:from-violet-900/40 from-amber-600 from-15% dark:to-violet-950 to-bg-amber-600 to-15%`}
     >
       <DashboardGhost />
-      <Web />
+      <div className="shadow-2xl shadow-black">
+        <Web />
+      </div>
       {loading && !data && <Spin />}
       {!loading && data && (
         <>

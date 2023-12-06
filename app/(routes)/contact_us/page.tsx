@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 const formSchema = z.object({
   username: z.string().min(1, {
@@ -40,6 +41,7 @@ const formSchema = z.object({
 });
 
 const Page = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,32 +54,38 @@ const Page = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    alert(`${values.username} ${values.email}, ${values.message}`);
+    try {
+      setIsLoading(true);
+      alert(`${values.username} ${values.email}, ${values.message}`);
+    } catch (error: any) {
+    } finally {
+      setIsLoading(false);
+    }
   }
   return (
-    <section className="h-[80vh] w-full bg-gray-800 pb-40 max-sm:pb-20">
-      <div className="flex flex-col items-center text-center justify-center text-white gap-y-20 py-20">
+    <section className="h-[80vh] w-full dark:bg-gray-800 pb-40 max-sm:pb-20">
+      <div className="flex flex-col items-center text-center justify-center text-black dark:text-white  py-20">
+        <div className="p-4 mb-6 flex flex-col gap-y-5">
+          <h1 className="text-3xl font-[600]">Contact Us</h1>
+          <h2 className="opacity-90 text-xl">
+            Reach out to us and let us know if there is anything we can do for
+            you
+          </h2>
+        </div>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6 space-x-1 max-w-[80vw] md:max-w-[50vw] lg:max-w-[40vw] xl:max-w-[30vw]"
+            className="space-y-6 space-x-1 max-w-[80vw] md:max-w-[50vw] lg:max-w-[40vw] xl:max-w-[30vw] text-black/60 font-semibold dark:text-white"
           >
             <FormField
               control={form.control}
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <div className="p-4 mb-6 flex flex-col gap-y-5">
-                    <FormLabel className="text-3xl">Contact Us</FormLabel>
-                    <FormDescription className="opacity-75 text-lg">
-                      Reach out to us and let us know if there is anything we
-                      can do for you
-                    </FormDescription>
-                  </div>
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] ml-1 items-center">
                     <FormControl>
                       <Input
-                        className="py-6 text-lg focus:border-white hover:border-white border-[#adadad] rounded-[0.2rem] transition-colors"
+                        className="py-7 text-lg dark:focus:border-white focus:border-black dark:hover:border-white hover:border-black border-[#adadad] bg-gray-100/20 dark:bg-inherit rounded-[0.2rem] transition-colors"
                         placeholder="Full name"
                         {...field}
                       />
@@ -95,7 +103,7 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] items-center ">
                     <FormControl>
                       <Input
-                        className="py-6 text-lg focus:border-white hover:border-white border-[#adadad] rounded-[0.2rem] transition-colors "
+                        className="py-7 text-lg dark:focus:border-white focus:border-black dark:hover:border-white border-[#adadad] hover:border-black bg-gray-100/20 dark:bg-inherit  rounded-[0.2rem] transition-colors "
                         placeholder="Email"
                         {...field}
                       />
@@ -113,13 +121,13 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] items-center">
                     <FormControl>
                       <Textarea
-                        className="resize-none text-lg pb-10 focus:border-white hover:border-white border-[#adadad] rounded-[0.2rem] transition-colors"
+                        className="resize-none text-lg pb-10 dark:focus:border-white focus:border-black dark:hover:border-white hover:border-black border-[#adadad] bg-gray-100/20 dark:bg-inherit  rounded-[0.2rem] transition-colors"
                         placeholder="Message"
                         {...field}
                       />
                     </FormControl>
                     <FormMessage />
-                    <FormDescription className="opacity-30 text-sm">
+                    <FormDescription className="opacity-60 dark:opacity-30 text-sm">
                       This form is protected by reCAPTCHA and the Google Privacy
                       Policy and Terms of Service apply.
                     </FormDescription>
@@ -128,11 +136,13 @@ const Page = () => {
               )}
             />
             <Button
-              disabled={form.formState.isValid}
+              disabled={!form.formState.isValid || isLoading}
               type="submit"
-              className="bg-amber-700 p-6 rounded-xl max-sm:w-full transition-all hover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
+              className="dark:bg-amber-700 bg-purple-500 p-6 rounded-xl max-sm:w-full transition-all hover:bg-purple-600 dark:hover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
             >
-              <h3 className="text-lg m-3 drop-shadow-2xl">Submit</h3>
+              <h3 className="text-lg m-3 dark:text-black text-white drop-shadow-2xl">
+                Submit
+              </h3>
             </Button>
           </form>
         </Form>

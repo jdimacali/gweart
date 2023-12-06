@@ -27,7 +27,7 @@ const Auth: React.FC = () => {
   };
 
   return (
-    <div className="flex gap-x-4 mx-2 font-medium">
+    <div className="flex gap-x-4 mx-8 font-medium">
       {user ? (
         <div className="flex w-full h-full items-center">
           <div>{user.username}</div>

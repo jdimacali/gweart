@@ -43,16 +43,13 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="h-full w-full bg-gray-800 flex flex-col items-center">
-      <div className="w-full h-full bg-cover pb-40">
+    <section className="h-full w-full text-black dark:text-white bg-orange-400 dark:bg-gray-800 flex flex-col items-center">
+      <div className="w-full h-full bg-cover pb-40 z-[1]">
         <div className="flex flex-col items-center justify-center w-full my-10 gap-y-4 pb-4">
-          <h1
-            className="text-7xl font-bold text-white text-center"
-            style={{ textShadow: "3px 3px  #a5a4a4" }}
-          >
+          <h1 className="text-7xl font-bold text-center text-shadow-white max-sm:text-5xl">
             Upcoming Events
           </h1>
-          <h1 className="text-3xl font-bold opacity-80 text-white text-center">
+          <h1 className="text-3xl font-bold opacity-80 text-center">
             You can find me at these events!
           </h1>
         </div>{" "}
