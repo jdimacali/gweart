@@ -83,7 +83,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="h-[85vh] max-sm:mt-[-4rem] w-full dark:bg-gray-800 flex justify-center">
+    <div className="h-[85vh] max-sm:mt-[-4rem] w-full bg-zinc-200 dark:bg-gray-800 flex justify-center">
       <div>
         <div className="flex-1 max-sm:h-full flex flex-col items-start justify-center sm:pt-20 p-4">
           <div>
