@@ -7,7 +7,7 @@ import Slides from "./Slides";
 
 const SlideShow = () => {
   return (
-    <section className="w-full h-full dark:bg-black flex flex-col items-center pt-12 pb-20 gap-y-5">
+    <section className="w-full h-full bg-zinc-200 dark:bg-black flex flex-col items-center pt-12 pb-20 gap-y-5">
       <motion.div
         initial={{ opacity: 0, x: 200 }}
         animate={{ opacity: 100, x: 0 }}

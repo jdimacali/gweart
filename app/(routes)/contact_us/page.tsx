@@ -63,7 +63,7 @@ const Page = () => {
     }
   }
   return (
-    <section className="h-[80vh] w-full dark:bg-gray-800 pb-40 max-sm:pb-20">
+    <section className="h-[80vh] w-full bg-zinc-200 dark:bg-gray-800 pb-40 max-sm:pb-20">
       <div className="flex flex-col items-center text-center justify-center text-black dark:text-white  py-20">
         <div className="p-4 mb-6 flex flex-col gap-y-5">
           <h1 className="text-3xl font-[600]">Contact Us</h1>

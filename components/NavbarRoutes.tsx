@@ -13,7 +13,7 @@ interface NavbarRoutesProps {
 
 const NavbarRoutes = ({ routes, pathname }: NavbarRoutesProps) => {
   return (
-    <div className="flex gap-x-10 font-medium h-full justify-center items-center">
+    <div className="flex gap-x-10 font-[600] h-full justify-center items-center">
       {routes.map((route) => (
         <Link
           href={route.href}

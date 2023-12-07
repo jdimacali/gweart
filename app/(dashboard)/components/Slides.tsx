@@ -90,7 +90,7 @@ const Slides = () => {
                 height={400}
                 width={400}
                 quality={100}
-                className="block object-contain"
+                className="block object-contain shadow"
               />
             </SwiperSlide>
           ))}
