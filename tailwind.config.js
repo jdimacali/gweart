@@ -18,6 +18,8 @@ module.exports = {
     extend: {
       fontFamily: {
         mania: ["var(--font-metal-mania)"],
+        creep: ["var(--font-creepster)"],
+        dokdo: ["var(--font-dokdo)"],
       },
       colors: {
         border: "hsl(var(--border))",

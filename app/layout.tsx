@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato, Metal_Mania } from "next/font/google";
+import { Lato, Metal_Mania, Creepster, Dokdo } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -19,6 +19,18 @@ const metalMania = Metal_Mania({
   variable: "--font-metal-mania",
 });
 
+const creepster = Creepster({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-creepster",
+});
+
+const dokdo = Dokdo({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-dokdo",
+});
+
 export const metadata: Metadata = {
   title: "Gweart",
   description: "Art by G.W.E",
@@ -32,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${lato.variable} ${metalMania.variable} ${lato.className}`}
+        className={` ${creepster.variable} ${dokdo.variable} ${lato.variable} ${metalMania.variable} ${lato.className}`}
         suppressHydrationWarning
       >
         <AuthProvider>
