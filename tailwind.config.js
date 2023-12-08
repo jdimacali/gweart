@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        "3xl": "1800px",
+      },
       fontFamily: {
         mania: ["var(--font-metal-mania)"],
         creep: ["var(--font-creepster)"],

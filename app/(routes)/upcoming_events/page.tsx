@@ -52,10 +52,9 @@ const Page = () => {
       <Slime />
       <div className="w-full h-full pb-20 sm:pb-40 mt-10">
         <Header />
-
         {loading && !events && <Spin />}
         {!loading && events && (
-          <div className="mt-20 h-full w-full mb-20 grid sm:grid-cols-1 lg:grid-cols-1 2xl:grid-cols-3 max-sm:gap-y-[10rem] max-lg:gap-y-[10rem] lg:gap-y-[10rem] items-center justify-items-center">
+          <div className="mt-[8rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[10rem] max-lg:gap-y-[10rem] lg:gap-y-[10rem] items-center justify-items-center">
             {events.map((event) => (
               <div key={event.id} className="h-[25rem] w-[35rem]">
                 <Link target="_blank" href={event.attributes.url}>
