@@ -7,7 +7,7 @@ const DashboardGhost = () => {
   return (
     <>
       <motion.div
-        className="absolute top-[10%] max-sm:top-[5%] left-[80%] max-sm:left-[72%]"
+        className="absolute top-[10%] max-sm:top-[5%] left-[80%] max-sm:left-[65%] max-md:hidden"
         initial={{ opacity: 0, scale: 0 }}
         animate={{
           opacity: [0, 10, 0],
@@ -25,9 +25,9 @@ const DashboardGhost = () => {
         }}
       >
         <Image
-          src="/mex/mex4.png"
-          width={100}
-          height={100}
+          src="/ghost.png"
+          width={150}
+          height={150}
           alt="cholagif"
           className="object-contain opacity-30 transform -scale-x-100"
         />
@@ -51,9 +51,9 @@ const DashboardGhost = () => {
         }}
       >
         <Image
-          src="/mex/mex4.png"
-          width={100}
-          height={100}
+          src="/ghost.png"
+          width={150}
+          height={150}
           alt="cholagif"
           className="object-contain opacity-30"
         />
@@ -77,15 +77,15 @@ const DashboardGhost = () => {
         }}
       >
         <Image
-          src="/mex/mex4.png"
-          width={100}
-          height={100}
+          src="/ghost.png"
+          width={150}
+          height={150}
           alt="cholagif"
           className="object-contain opacity-30"
         />
       </motion.div>
       <motion.div
-        className="absolute top-[80%] left-[90%] max-sm:hidden"
+        className="absolute top-[80%] left-[90%] max-sm:hidden max-md:hidden"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
@@ -103,21 +103,21 @@ const DashboardGhost = () => {
         }}
       >
         <Image
-          src="/mex/mex4.png"
-          width={100}
-          height={100}
+          src="/ghost.png"
+          width={150}
+          height={150}
           alt="cholagif"
           className="object-contain opacity-30 "
         />
       </motion.div>
       <motion.div
-        className="absolute top-[60%] left-[50%] max-sm:hidden"
+        className="absolute top-[60%] left-[50%] max-sm:hidden sm:hidden lg:block"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
           x: [0, 25, 0, -25, 0],
           y: [0, -25, 0],
-          scale: [0.5, 1.05, 1, 1.05, 0.95],
+          scale: [0.5, 1.25, 1, 1.25, 0.95],
           rotate: [0, -5, 0, 5, 0],
         }}
         transition={{
@@ -129,9 +129,9 @@ const DashboardGhost = () => {
         }}
       >
         <Image
-          src="/mex/mex4.png"
-          width={100}
-          height={100}
+          src="/ghost.png"
+          width={150}
+          height={150}
           alt="cholagif"
           className="object-contain opacity-30 transform -scale-x-100"
         />

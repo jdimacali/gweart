@@ -73,7 +73,7 @@ const Slides = () => {
           650: {
             slidesPerView: 1,
           },
-          800: { slidesPerView: 4 },
+          900: { slidesPerView: 4 },
         }}
       >
         {loading && !slides && <Spin />}

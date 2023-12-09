@@ -48,7 +48,7 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="h-full w-full bg-zinc-200 text-black dark:text-white dark:bg-gray-800 flex flex-col items-center justify-center">
+    <section className="h-full w-full bg-zinc-200 text-black dark:text-white dark:bg-zinc-800 flex flex-col items-center justify-center">
       <Slime />
       <div className="w-full h-full pb-20 sm:pb-40 mt-10">
         <Header />

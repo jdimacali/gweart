@@ -23,6 +23,8 @@ module.exports = {
         mania: ["var(--font-metal-mania)"],
         creep: ["var(--font-creepster)"],
         dokdo: ["var(--font-dokdo)"],
+        nosifer: ["var(--font-nosifer)"],
+        butcherman: ["var(--font-butcherman)"],
       },
       colors: {
         border: "hsl(var(--border))",
