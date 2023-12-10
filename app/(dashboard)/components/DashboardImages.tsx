@@ -9,7 +9,7 @@ interface DashboardImagesProps {
 
 const DashboardImages = ({ images }: DashboardImagesProps) => {
   return (
-    <div className="h-full w-auto max-sm:w-full flex justify-center items-center m-6 sm:pt-40 max-sm:pl-13 max-md:pl-30">
+    <div className="h-full w-auto max-sm:w-full flex justify-center items-center m-6 md:pt-[12.5rem]">
       <Swiper
         loop={true}
         autoplay={{

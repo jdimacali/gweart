@@ -1,6 +1,6 @@
 const Web = () => {
   return (
-    <div className="vector w-[800px] h-full max-sm:w-full overflow-hidden absolute left-[0px] top-[-10px]">
+    <div className="vector w-[800px] max-lg:w-full h-full  overflow-hidden absolute left-[0px] top-[-10px]">
       <svg viewBox="0 0 550 250" preserveAspectRatio="true">
         <line x1="1" y1="1" x2="300" y2="1" id="top" />
         <line x1="1" y1="1" x2="1" y2="250" />

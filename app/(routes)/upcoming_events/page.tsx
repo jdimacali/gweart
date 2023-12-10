@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Slime from "./components/Slime";
+import { ArrowBigRightDashIcon, ArrowUpRight } from "lucide-react";
 
 interface Events {
   id: number;
@@ -54,11 +55,11 @@ const Page = () => {
         <Header />
         {loading && !events && <Spin />}
         {!loading && events && (
-          <div className="mt-[8rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[10rem] max-lg:gap-y-[10rem] lg:gap-y-[10rem] items-center justify-items-center">
+          <div className="mt-[8rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] max-lg:gap-y-[10rem] lg:gap-y-[10rem] items-center justify-items-center">
             {events.map((event) => (
-              <div key={event.id} className="h-[25rem] w-[35rem]">
+              <div key={event.id} className="h-[25rem] w-[35rem] rounded-b ">
                 <Link target="_blank" href={event.attributes.url}>
-                  <div className="w-full h-full relative overflow-hidden">
+                  <div className="w-full h-full relative overflow-hidden ">
                     <Image
                       src={`${API_URL}${event.attributes.image.data.attributes.url}`}
                       alt={`${API_URL}${event.attributes.name}`}
@@ -67,7 +68,7 @@ const Page = () => {
                       className="object-cover object-top rounded-t-xl hover:scale-110 transition-all duration-500 ease-in-out transform"
                     />
                   </div>
-                  <div className="flex flex-col h-auto w-full gap-y-1 p-2 sm:p-4 ">
+                  <div className="shadow-2xl flex flex-col h-auto w-full gap-y-1 p-4 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-300 dark:border-gray-600">
                     <h1 className="text-3xl font-[600] opacity-90 mt-2 ">
                       {event.attributes.name}
                     </h1>
@@ -84,6 +85,11 @@ const Page = () => {
                     <h1 className=" md:text-lg sm:text-md  font-semibold opacity-60">
                       {event.attributes.address}
                     </h1>
+                    <ArrowUpRight
+                      height={80}
+                      width={80}
+                      className="absolute bottom-0 right-0 p-4"
+                    />
                   </div>
                 </Link>
               </div>

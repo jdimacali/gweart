@@ -1,15 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Event = () => {
   return (
-    <section className="w-full h-full bg-zinc-300 dark:bg-black flex flex-col items-center pt-12 pb-20 gap-y-5">
-      <div className="w-full max-sm:h-[40rem] sm:h-[40rem] h-[60rem] flex flex-col items-center pt-12 pb-20 gap-y-5 relative">
-        <Image
-          src={"/event2.png"}
-          alt="event"
-          fill
-          className="object-contain"
-        />
+    <section className="w-full h-full justify-center bg-orange-600 dark:bg-violet-950 flex flex-col items-center gap-y-5 py-20">
+      <div className="flex items-center justify-center w-full h-[40rem] relative ">
+        <Link href={"/upcoming_events"}>
+          <Image
+            src={"/event2.png"}
+            alt="event"
+            fill
+            className="object-contain z-[2]"
+          />
+        </Link>
+      </div>
+      <div className="flex flex-col items-center justify-center text-center">
+        <h1 className="font-butcherman text-7xl">My Latest Events</h1>
       </div>
     </section>
   );

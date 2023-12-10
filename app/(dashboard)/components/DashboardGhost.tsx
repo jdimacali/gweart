@@ -7,7 +7,7 @@ const DashboardGhost = () => {
   return (
     <>
       <motion.div
-        className="absolute top-[10%] max-sm:top-[5%] left-[80%] max-sm:left-[65%] max-md:hidden"
+        className="absolute top-[10%] max-sm:top-[5%] left-[80%] max-sm:left-[65%] max-lg:hidden"
         initial={{ opacity: 0, scale: 0 }}
         animate={{
           opacity: [0, 10, 0],
@@ -33,7 +33,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[70%] left-[20%] max-sm:hidden"
+        className="absolute top-[70%] left-[20%] max-sm:hidden "
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
@@ -59,7 +59,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[15%] left-[40%] max-sm:hidden"
+        className="absolute top-[15%] left-[40%] max-sm:hidden "
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
@@ -85,7 +85,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[80%] left-[90%] max-sm:hidden max-md:hidden"
+        className="absolute top-[80%] left-[90%] max-lg:hidden"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
