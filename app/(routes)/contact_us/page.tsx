@@ -17,9 +17,12 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { title } from "process";
+import axios from "axios";
 
 const formSchema = z.object({
-  username: z.string().min(1, {
+  name: z.string().min(1, {
     message: "full name must be at least 1 characters.",
   }),
   email: z
@@ -41,23 +44,28 @@ const formSchema = z.object({
 });
 
 const Page = () => {
+  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      name: "",
       email: "",
       message: "",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     try {
       setIsLoading(true);
-      alert(`${values.username} ${values.email}, ${values.message}`);
+      axios.post("/api/contact", {
+        name: values.name,
+        email: values.email,
+        message: values.message,
+      });
+      toast({ title: "Message Sent!" });
     } catch (error: any) {
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -79,7 +87,7 @@ const Page = () => {
           >
             <FormField
               control={form.control}
-              name="username"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] ml-1 items-center">
