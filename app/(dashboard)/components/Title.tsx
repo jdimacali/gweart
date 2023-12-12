@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation";
 interface TitleProps {
   title: string;
   subtitle: string;
+  button: string;
 }
 
-const Title = ({ title, subtitle }: TitleProps) => {
+const Title = ({ title, subtitle, button }: TitleProps) => {
   const router = useRouter();
   return (
     <div className="max-sm:mb-4">
@@ -49,7 +50,7 @@ const Title = ({ title, subtitle }: TitleProps) => {
           onClick={() => router.push("/shop")}
           className="bg-gray-950 p-6 rounded-xl max-sm:w-[90vw] transition-all hover:bg-gray-900 hover:opacity-80 mt-8"
         >
-          <h3 className="text-lg text-white m-3"> Shop Now </h3>
+          <h3 className="text-lg text-white m-3"> {button} </h3>
         </Button>
       </motion.div>
     </div>

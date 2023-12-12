@@ -51,7 +51,7 @@ const SignIn = () => {
         password: values.password,
       };
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/local`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/local`,
         {
           method: "POST",
           headers: {

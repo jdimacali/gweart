@@ -10,7 +10,7 @@ const NavUtil = () => {
   const { toast } = useToast();
   return (
     <div className="flex items-center justify-center ">
-      <Button
+      {/* <Button
         onClick={() => {
           toast({
             description: "Searching ",
@@ -18,9 +18,9 @@ const NavUtil = () => {
         }}
       >
         <Search />
-      </Button>
+      </Button> */}
       <ModeToggle />
-      <Auth />
+      {/* <Auth /> */}
     </div>
   );
 };

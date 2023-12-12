@@ -12,6 +12,7 @@ interface Data {
   title: string;
   subtitle: string;
   imageUrls: string[];
+  button: string;
 }
 const SpooktacularGoodies = () => {
   const [data, setData] = useState<Data | undefined>();
@@ -34,8 +35,8 @@ const SpooktacularGoodies = () => {
 
   return (
     <section
-      className={`w-full h-[900px] bg-orange-600 dark:bg-violet-950  flex max-md:flex-col justify-center text-center items-center 
-      max-md:pt-20 gap-x-20 relative bg-gradient-to-br dark:from-violet-900/40 from-amber-600 from-15% dark:to-violet-950 to-bg-amber-600 to-15%`}
+      className={`w-full h-[900px] bg-[#F6F1EE] dark:bg-violet-950  flex max-md:flex-col justify-center text-center items-center 
+      max-md:pt-20 gap-x-20 relative bg-gradient-to-br dark:from-violet-900/40 from-[#a8704b] from-15% dark:to-violet-950 to-[#ED7D31] to-15%`}
     >
       <DashboardGhost />
       <div className="shadow-2xl shadow-black">
@@ -44,7 +45,11 @@ const SpooktacularGoodies = () => {
       {loading && !data && <Spin />}
       {!loading && data && (
         <>
-          <Title title={data?.title} subtitle={data?.subtitle} />
+          <Title
+            title={data?.title}
+            subtitle={data?.subtitle}
+            button={data?.button}
+          />
           <DashboardImages images={data?.imageUrls} />
         </>
       )}

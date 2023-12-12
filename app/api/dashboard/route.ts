@@ -47,6 +47,7 @@ interface DashboardResponse {
     attributes: {
       Title: string;
       Subtitle: string;
+      Button: string;
       Images: {
         data: ImageData[];
       };
@@ -65,7 +66,7 @@ export async function GET() {
     const response = await axios.get(`${API_URL}/api/dashboard?populate=*`);
 
     // Extract relevant data from the API response
-    const { Title, Subtitle, Images } = response.data.data.attributes;
+    const { Title, Subtitle, Images, Button } = response.data.data.attributes;
 
     // Extract image URLs into an array
     const imageUrls: string[] = Images.data.map((image: ImageData) => {
@@ -76,6 +77,7 @@ export async function GET() {
     const responseData = {
       title: Title,
       subtitle: Subtitle,
+      button: Button,
       imageUrls,
     };
 

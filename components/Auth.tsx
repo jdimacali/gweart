@@ -27,11 +27,13 @@ const Auth: React.FC = () => {
   };
 
   return (
-    <div className="flex gap-x-4 mx-8 font-bold">
+    <div className="flex gap-x-4 mx-8 text-md font-semibold ">
       {user ? (
         <div className="flex w-full h-full items-center">
           <div>{user.username}</div>
-          <Button onClick={handleLogout}>Logout</Button>
+          <Button onClick={handleLogout}>
+            <h1 className="text-[1rem] font-semibold"> Logout </h1>
+          </Button>
         </div>
       ) : (
         <div className="flex gap-x-4 w-full h-full items-center">
