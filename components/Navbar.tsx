@@ -50,12 +50,12 @@ const Navbar = () => {
   return (
     <section
       className={clsx(
-        `flex max-sm:py-5 text-black p-8 gap-x-4 mr-auto justify-between text-center items-center sticky z-[10] transition-all 
-        delay-100 duration-1000 ease-in-out dark:text-white dark:bg-black dark:border-opacity-10 bg-[#F6F1EE] md:px-20 `,
+        `flex max-sm:py-5 text-black p-6 gap-x-4 mr-auto justify-between text-center items-center sticky z-[10] transition-all 
+        delay-100 duration-1000 ease-in-out dark:text-white dark:bg-black dark:border-opacity-10 bg-[#F6F1EE] md:px-10`,
         visible ? "top-0 translate-y-0" : "-translate-y-full"
       )}
     >
-      <Link className="relative h-[3rem] w-[5rem] m-[-1rem]" href="/">
+      <Link className="relative h-[2.5rem] w-[5rem]" href="/">
         <Image
           src="/icon/gwe.png"
           alt="gwe"
@@ -65,7 +65,7 @@ const Navbar = () => {
           className="object-contain"
         />
       </Link>
-      <div className="flex gap-x-8 md:mr-10">
+      <div className="flex gap-x-8 ">
         <div className="hidden md:block">
           <NavbarRoutes routes={routes} pathname={pathname} />
         </div>
