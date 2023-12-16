@@ -7,8 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
+import { ArrowUpRight } from "lucide-react";
 import Slime from "./components/Slime";
-import { ArrowBigRightDashIcon, ArrowUpRight } from "lucide-react";
 
 interface Events {
   id: number;
