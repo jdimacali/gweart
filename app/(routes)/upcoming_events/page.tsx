@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import { ArrowUpRight } from "lucide-react";
-import Slime from "./components/slime";
+import Slime from "./components/Slime";
 
 interface Events {
   id: number;
