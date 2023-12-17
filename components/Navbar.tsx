@@ -20,7 +20,7 @@ const routes = [
   { label: "Home", href: "/", icon: HomeIcon },
   { label: "Upcoming Events", href: "/upcoming_events", icon: CalendarHeart },
   { label: "Contact Us", href: "/contact_us", icon: Contact2Icon },
-  { label: "Shop All", href: "/shop", icon: ShoppingCartIcon },
+  { label: "Shop All", href: "https://gweart.square.site/", icon: ShoppingCartIcon },
   { label: "Linktree", href: "/linktree", icon: Trees },
 ];
 
