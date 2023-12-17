@@ -49,15 +49,18 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="h-full w-full bg-zinc-200 text-black dark:text-white dark:bg-zinc-800 flex flex-col items-center justify-center">
+    <section className="h-full w-full bg-zinc-200 text-black dark:text-white dark:bg-zinc-800 flex flex-col items-center justify-center pb-20">
       <Slime />
-      <div className="w-full h-full pb-20 sm:pb-40 mt-10">
+      <div className="w-full h-full pb-20 mt-10">
         <Header />
         {loading && !events && <Spin />}
         {!loading && events && (
-          <div className="mt-[8rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] max-lg:gap-y-[10rem] lg:gap-y-[10rem] items-center justify-items-center">
+          <div className=" mt-[5rem] md:mt-[7rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] max-lg:gap-y-[10rem] lg:gap-y-[10rem] items-center justify-items-center">
             {events.map((event) => (
-              <div key={event.id} className="h-[25rem] w-[35rem] rounded-b ">
+              <div
+                key={event.id}
+                className="h-[15rem] w-[25rem] md:h-[22rem] md:w-[32rem] rounded-b "
+              >
                 <Link target="_blank" href={event.attributes.url}>
                   <div className="w-full h-full relative overflow-hidden  shadow-lg">
                     <Image
@@ -69,11 +72,11 @@ const Page = () => {
                     />
                   </div>
                   <div className="shadow-2xl flex flex-col h-auto w-full gap-y-1 p-4 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-300 dark:border-gray-600">
-                    <h1 className="text-3xl font-[600] opacity-90 mt-2 ">
+                    <h1 className="text-xl md:text-3xl font-[600] opacity-90 mt-2 ">
                       {event.attributes.name}
                     </h1>
 
-                    <div className="md:text-lg sm:text-md font-semibold text-gray-500">
+                    <div className="md:text-lg text-md font-semibold text-gray-500">
                       <span className="mr-2">
                         {formatDateFromString(event.attributes.start_date)}
                       </span>
@@ -82,7 +85,7 @@ const Page = () => {
                         {formatDateFromString(event.attributes.end_date)}
                       </span>
                     </div>
-                    <h1 className=" md:text-lg sm:text-md  font-semibold opacity-60">
+                    <h1 className="text-sm md:text-lg font-semibold opacity-60">
                       {event.attributes.address}
                     </h1>
                     <ArrowUpRight

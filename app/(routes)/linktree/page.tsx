@@ -35,17 +35,17 @@ const Page = () => {
     <section className="h-full w-full flex flex-col items-center pb-">
       <div
         className={clsx(
-          "bg-[url('../public/background/bg3.png')] w-full h-full bg-cover bg-clip-padding bg-fixed bg-blend-overlay bg-gray-950 bg-opacity-10 dark:bg-opacity-50 pb-[20rem]"
+          "bg-[url('../public/background/bg3.png')] w-full h-full bg-cover bg-clip-padding bg-fixed bg-blend-overlay bg-gray-950 bg-opacity-10 dark:bg-opacity-50 pb-[8rem]"
         )}
       >
         <div className="flex flex-col justify-center items-center w-full">
-          <Avatar className="mt-10 h-[65px] w-[65px]">
+          <Avatar className="mt-10 h-[60px] w-[60px]">
             <AvatarImage src="./icon/gweart.jpg" />
             {socials?.Title}
             <AvatarFallback>GweArt</AvatarFallback>
           </Avatar>
-          <h1 className="text-white font-semibold text-3xl">GweArt</h1>
-          <h1 className="text-white font-semibold text-xl opacity-60">
+          <h1 className="text-white font-semibold text-2xl mt-4">GweArt</h1>
+          <h1 className="text-white font-semibold text-md opacity-60">
             {socials?.Subtitle}
           </h1>
         </div>

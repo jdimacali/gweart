@@ -55,13 +55,13 @@ const Slides = () => {
           delay: 2500,
         }}
         navigation={true}
-        spaceBetween={30}
+        spaceBetween={-200}
         pagination={{
           clickable: true,
         }}
         coverflowEffect={{
-          rotate: 20,
-          stretch: 10,
+          rotate: 15,
+          stretch: 0,
           depth: 100,
           modifier: 1,
           slideShadows: true,
@@ -87,8 +87,8 @@ const Slides = () => {
               <Image
                 src={`${slide.attributes.image.data.attributes.url}`}
                 alt={`${slide.attributes.image.data.attributes.url}`}
-                height={400}
-                width={400}
+                height={300}
+                width={300}
                 quality={100}
                 className="block object-contain shadow"
               />

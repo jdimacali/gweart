@@ -35,7 +35,7 @@ const SpooktacularGoodies = () => {
 
   return (
     <section
-      className={`w-full h-[900px] bg-[#F6F1EE] dark:bg-violet-950  flex max-md:flex-col justify-center text-center items-center 
+      className={`w-full h-full bg-[#F6F1EE] dark:bg-violet-950  
       max-md:pt-20 gap-x-20 relative bg-gradient-to-br dark:from-violet-900/40 from-[#a8704b] from-15% dark:to-violet-950 to-[#ED7D31] to-15%`}
     >
       <DashboardGhost />
@@ -44,14 +44,14 @@ const SpooktacularGoodies = () => {
       </div>
       {loading && !data && <Spin />}
       {!loading && data && (
-        <>
+        <div className=" flex max-md:flex-col justify-center text-center items-center lg:py-[8rem] gap-x-20">
           <Title
             title={data?.title}
             subtitle={data?.subtitle}
             button={data?.button}
           />
           <DashboardImages images={data?.imageUrls} />
-        </>
+        </div>
       )}
     </section>
   );
