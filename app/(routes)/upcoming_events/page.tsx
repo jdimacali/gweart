@@ -61,7 +61,7 @@ const Page = () => {
                 <Link target="_blank" href={event.attributes.url}>
                   <div className="w-full h-full relative overflow-hidden  shadow-lg">
                     <Image
-                      src={`${API_URL}${event.attributes.image.data.attributes.url}`}
+                      src={`${event.attributes.image.data.attributes.url}`}
                       alt={`${API_URL}${event.attributes.name}`}
                       fill
                       quality={100}

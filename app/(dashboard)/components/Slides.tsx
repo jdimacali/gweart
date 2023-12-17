@@ -85,8 +85,8 @@ const Slides = () => {
               className="h-full w-full flex justify-center items-center"
             >
               <Image
-                src={`${API_URL}${slide.attributes.image.data.attributes.url}`}
-                alt={`${API_URL}${slide.attributes.image.data.attributes.url}`}
+                src={`${slide.attributes.image.data.attributes.url}`}
+                alt={`${slide.attributes.image.data.attributes.url}`}
                 height={400}
                 width={400}
                 quality={100}

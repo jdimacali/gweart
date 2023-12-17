@@ -11,7 +11,7 @@ export async function GET() {
     // Return the image data as a JSON response
     return NextResponse.json(response.data.data, { status: 200 });
   } catch (error: any) {
-    console.error("Dashboard", error);
+    console.error("Slides", error);
     return new NextResponse("Error fetching image data", { status: 500 });
   }
 }

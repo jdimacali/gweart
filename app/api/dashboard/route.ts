@@ -70,7 +70,7 @@ export async function GET() {
 
     // Extract image URLs into an array
     const imageUrls: string[] = Images.data.map((image: ImageData) => {
-      const imageUrl: string = `${API_URL}${image.attributes.formats.large.url}`;
+      const imageUrl: string = `${image.attributes.formats.large.url}`;
       return imageUrl;
     });
 
