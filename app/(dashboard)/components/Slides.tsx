@@ -55,7 +55,7 @@ const Slides = () => {
           delay: 2500,
         }}
         navigation={true}
-        spaceBetween={-150}
+        spaceBetween={-50}
         pagination={{
           clickable: true,
         }}
