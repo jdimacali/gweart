@@ -49,17 +49,17 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="h-full w-full text-white bg-zinc-800 flex flex-col items-center justify-center pb-20">
+    <section className="h-full w-full text-white bg-zinc-800 flex flex-col items-center justify-center pb-20 mt-10 lg:mt-1">
       <Slime />
       <div className="w-full h-full pb-20 mt-10">
         <Header />
         {loading && !events && <Spin />}
         {!loading && events && (
-          <div className=" mt-[5rem] md:mt-[7rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] max-lg:gap-y-[10rem] lg:gap-y-[10rem] items-center justify-items-center">
+          <div className=" mt-[5rem] md:mt-[7rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] lg:gap-y-[10rem] items-center justify-items-center">
             {events.map((event) => (
               <div
                 key={event.id}
-                className="h-[15rem] w-[25rem] md:h-[21rem] md:w-[33rem] rounded-b m-4"
+                className="h-[15rem] w-[25rem] md:h-[20rem] md:w-[30rem] rounded-b m-4"
               >
                 <Link target="_blank" href={event.attributes.url}>
                   <div className="w-full h-full relative overflow-hidden  shadow-lg">
