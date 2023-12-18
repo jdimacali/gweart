@@ -71,7 +71,7 @@ const Page = () => {
     }
   }
   return (
-    <section className="h-[80vh] w-full bg-gray-800 pb-40 max-sm:pb-20">
+    <section className="h-full w-full bg-gray-800 pb-40 max-sm:pb-20">
       <div className="flex flex-col items-center text-center justify-center text-white  py-20">
         <div className="p-4 mb-6 flex flex-col gap-y-5">
           <h1 className="text-2xl font-[600]">Contact Us</h1>
