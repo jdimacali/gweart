@@ -3,7 +3,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <section className="w-full h-full px-8 text-white bg-black flex flex-col items-center text-center border-t border-black/10 shadow-inner shadow-black">
-      <h1 className="opacity-50 font-semibold pt-4 absolute z-[1] sm:w-[50vh] max-sm:w-[40vh] mt-20 tracking-wider text-sm">
+      <h1 className="opacity-50 font-semibold pt-4 absolute z-[1] sm:w-[40%] max-sm:w-[90%] mt-20 tracking-wider text-sm">
         © 2023 Gweart All rights reserved. | Los Angeles, CA 90042 | Art by Girl
         Wonder Extraordinaire | Specializing in the UnOrdinary | www.gweart.com
       </h1>
