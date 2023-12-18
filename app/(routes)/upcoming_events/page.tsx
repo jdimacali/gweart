@@ -49,7 +49,7 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="h-full w-full bg-zinc-200 text-black dark:text-white dark:bg-zinc-800 flex flex-col items-center justify-center pb-20">
+    <section className="h-full w-full text-white bg-zinc-800 flex flex-col items-center justify-center pb-20">
       <Slime />
       <div className="w-full h-full pb-20 mt-10">
         <Header />
@@ -59,7 +59,7 @@ const Page = () => {
             {events.map((event) => (
               <div
                 key={event.id}
-                className="h-[15rem] w-[25rem] md:h-[22rem] md:w-[32rem] rounded-b "
+                className="h-[15rem] w-[25rem] md:h-[21rem] md:w-[33rem] rounded-b m-4"
               >
                 <Link target="_blank" href={event.attributes.url}>
                   <div className="w-full h-full relative overflow-hidden  shadow-lg">
@@ -71,7 +71,7 @@ const Page = () => {
                       className="object-cover object-top rounded-t-xl hover:scale-110 transition-all duration-500 ease-in-out transform"
                     />
                   </div>
-                  <div className="shadow-2xl flex flex-col h-auto w-full gap-y-1 p-4 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-300 dark:border-gray-600">
+                  <div className="shadow-2xl flex flex-col h-auto w-full gap-y-1 p-4 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-600">
                     <h1 className="text-xl md:text-3xl font-[600] opacity-90 mt-2 ">
                       {event.attributes.name}
                     </h1>

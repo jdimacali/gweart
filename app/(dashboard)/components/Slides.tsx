@@ -55,7 +55,7 @@ const Slides = () => {
           delay: 2500,
         }}
         navigation={true}
-        spaceBetween={-200}
+        spaceBetween={-150}
         pagination={{
           clickable: true,
         }}
@@ -70,7 +70,7 @@ const Slides = () => {
         effect="coverflow"
         className="w-[1500px] max-sm:w-full h-full flex justify-center items-center"
         breakpoints={{
-          650: {
+          100: {
             slidesPerView: 1,
           },
           900: { slidesPerView: 4 },

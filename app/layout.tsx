@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "@/context/AuthProvider";
 import {
@@ -28,16 +27,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={` ${butcherman.variable} ${creepster.variable} ${dokdo.variable} ${nosifer.variable} ${lato.variable} ${metalMania.variable} ${lato.className}`}
+        className={` bg-black ${butcherman.variable} ${creepster.variable} ${dokdo.variable} ${nosifer.variable} ${lato.variable} ${metalMania.variable} ${lato.className}`}
         suppressHydrationWarning
       >
         <AuthProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <Toaster />
-            <Navbar />
-            {children}
-            <Footer />
-          </ThemeProvider>
+          <Toaster />
+          <Navbar />
+          {children}
+          <Footer />
         </AuthProvider>
       </body>
     </html>

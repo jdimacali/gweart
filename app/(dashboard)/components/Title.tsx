@@ -21,8 +21,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           ease: "backOut",
           duration: 1,
         }}
-        style={{ textShadow: "2px 3px  #d4d4d4" }}
-        className=" break-words text-6xl tracking-[0.35rem] font-bold dark:text-[#8b46c4] font-mania antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font"
+        className=" break-words text-6xl tracking-[0.35rem] font-bold text-[#8b46c4] font-mania antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font text-shadow-white"
       >
         {title}
       </motion.h2>
@@ -33,7 +32,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           ease: "backOut",
           duration: 1,
         }}
-        className="text-2xl tracking-[0.30rem] font-bold text-[#ffffff] font-mania antialiased mt-5 text-shadow-black dark:text-shadow-purple"
+        className="text-2xl tracking-[0.30rem] font-bold text-[#ffffff] font-mania antialiased mt-5  text-shadow-purple"
       >
         {subtitle}
       </motion.h2>

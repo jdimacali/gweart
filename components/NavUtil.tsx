@@ -1,7 +1,6 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { ModeToggle } from "./ui/toggle";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
 import Auth from "./Auth";
@@ -19,7 +18,6 @@ const NavUtil = () => {
       >
         <Search />
       </Button> */}
-      <ModeToggle />
       {/* <Auth /> */}
     </div>
   );

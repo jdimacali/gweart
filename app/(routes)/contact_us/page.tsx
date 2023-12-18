@@ -71,8 +71,8 @@ const Page = () => {
     }
   }
   return (
-    <section className="h-[80vh] w-full bg-zinc-200 dark:bg-gray-800 pb-40 max-sm:pb-20">
-      <div className="flex flex-col items-center text-center justify-center text-black dark:text-white  py-20">
+    <section className="h-[80vh] w-full bg-gray-800 pb-40 max-sm:pb-20">
+      <div className="flex flex-col items-center text-center justify-center text-white  py-20">
         <div className="p-4 mb-6 flex flex-col gap-y-5">
           <h1 className="text-2xl font-[600]">Contact Us</h1>
           <h2 className="opacity-90 text-lg">
@@ -83,7 +83,7 @@ const Page = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6 space-x-1 max-w-[90vw] md:max-w-[60vw] xl:max-w-[40vw] text-black/60 font-semibold dark:text-white"
+            className="space-y-6 space-x-1 max-w-[90vw] md:max-w-[60vw] xl:max-w-[40vw] text-black/60 font-semibold text-white"
           >
             <FormField
               control={form.control}
@@ -93,7 +93,7 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] ml-1 items-center">
                     <FormControl>
                       <Input
-                        className="py-6 text-md dark:focus:border-white focus:border-black dark:hover:border-white hover:border-black border-[#adadad] bg-gray-100/20 dark:bg-inherit rounded-[0.2rem] transition-colors"
+                        className="py-6 text-md focus:border-white hover:border-white border-[#adadad] bg-inherit rounded-[0.2rem] transition-colors"
                         placeholder="Full name"
                         {...field}
                       />
@@ -111,7 +111,7 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] items-center ">
                     <FormControl>
                       <Input
-                        className="py-6 text-md dark:focus:border-white focus:border-black dark:hover:border-white border-[#adadad] hover:border-black bg-gray-100/20 dark:bg-inherit  rounded-[0.2rem] transition-colors "
+                        className="py-6 text-md focus:border-white hover:border-white border-[#adadad] bg-inherit rounded-[0.2rem] transition-colors"
                         placeholder="Email"
                         {...field}
                       />
@@ -129,7 +129,7 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] items-center">
                     <FormControl>
                       <Textarea
-                        className="resize-none text-md pb-8 dark:focus:border-white focus:border-black dark:hover:border-white hover:border-black border-[#adadad] bg-gray-100/20 dark:bg-inherit  rounded-[0.2rem] transition-colors"
+                        className="resize-none text-md pb-8 focus:border-white hover:border-white border-[#adadad] bg-inherit  rounded-[0.2rem] transition-colors"
                         placeholder="Message"
                         {...field}
                       />

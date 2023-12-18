@@ -20,7 +20,11 @@ const routes = [
   { label: "Home", href: "/", icon: HomeIcon },
   { label: "Upcoming Events", href: "/upcoming_events", icon: CalendarHeart },
   { label: "Contact Us", href: "/contact_us", icon: Contact2Icon },
-  { label: "Shop All", href: "https://gweart.square.site/", icon: ShoppingCartIcon },
+  {
+    label: "Shop All",
+    href: "https://gweart.square.site/",
+    icon: ShoppingCartIcon,
+  },
   { label: "Linktree", href: "/linktree", icon: Trees },
 ];
 
@@ -50,8 +54,8 @@ const Navbar = () => {
   return (
     <section
       className={clsx(
-        `flex max-sm:py-5 text-black p-6 gap-x-4 mr-auto justify-between text-center items-center sticky z-[10] transition-all 
-        delay-100 duration-1000 ease-in-out dark:text-white dark:bg-black dark:border-opacity-10 bg-[#F6F1EE] md:px-10`,
+        `flex max-sm:py-4 p-6 gap-x-4 mr-auto justify-between text-center items-center sticky z-[10] transition-all 
+        delay-100 duration-1000 ease-in-out text-white bg-black border-opacity-10 md:px-10 max-sm:top-0 max-sm:translate-y-0`,
         visible ? "top-0 translate-y-0" : "-translate-y-full"
       )}
     >
