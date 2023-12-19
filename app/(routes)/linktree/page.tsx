@@ -35,7 +35,7 @@ const Page = () => {
     <section className="h-full w-full flex flex-col items-center pb-">
       <div
         className={clsx(
-          "bg-[url('../public/background/bg3.png')] w-full h-full bg-cover bg-origin-content bg-clip-border max-sm:bg-contain max-sm:bg-center bg-inherit bg-fixed pb-[8rem]"
+          "bg-[url('../public/background/bg3.png')] w-full h-full bg-cover bg-origin-content bg-clip-border max-sm:bg-contain max-sm:bg-bottom bg-inherit bg-fixed pb-[8rem]"
         )}
       >
         <div className="flex flex-col justify-center items-center w-full">
