@@ -54,19 +54,18 @@ const Navbar = () => {
   return (
     <section
       className={clsx(
-        `flex max-sm:py-3 max-sm:px-3 p-4 gap-x-4 mr-auto justify-between text-center items-center sticky z-[10] transition-all 
+        `flex max-sm:py-2 max-sm:px-6 p-4 gap-x-4 mr-auto justify-between text-center items-center sticky z-[10] transition-all 
         delay-100 duration-1000 ease-in-out text-white bg-black border-opacity-10 md:px-10 max-sm:top-0 max-sm:translate-y-0`,
         visible ? "top-0 translate-y-0" : "-translate-y-full"
       )}
     >
-      <Link href="/">
+      <Link href="/" className="relative sm:h-16 sm:w-16 w-14 h-14 ">
         <Image
           src="/icon/gwe.png"
           alt="gwe"
           quality="100"
           sizes="100vh"
-          height={60}
-          width={60}
+          fill
           className="object-contain"
         />
       </Link>
