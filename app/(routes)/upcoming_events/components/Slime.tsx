@@ -1,9 +1,10 @@
 import Image from "next/image";
 
-const Slime = () => {
+const Slime = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="absolute w-full top-0 h-[100vh] overflow-hidden">
-      <Image src="/slime3.svg" alt="slime" fill className="object-cover" />
+    <div className="absolute w-full h-[50rem] sm:h-[60rem] top-0 mt-[-200px]  flex items-center text-center justify-center">
+      <Image src="/slime4.svg" alt="slime" fill className="object-cover" />
+      {children}
     </div>
   );
 };

@@ -93,7 +93,7 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] ml-1 items-center">
                     <FormControl>
                       <Input
-                        className="py-6 text-md focus:border-white hover:border-white border-[#adadad] bg-inherit rounded-[0.2rem] transition-colors"
+                        className="py-6 text-sm focus:border-white hover:border-white border-[#adadad] bg-inherit rounded-[0.2rem] transition-colors"
                         placeholder="Full name"
                         {...field}
                       />
@@ -111,7 +111,7 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] items-center ">
                     <FormControl>
                       <Input
-                        className="py-6 text-md focus:border-white hover:border-white border-[#adadad] bg-inherit rounded-[0.2rem] transition-colors"
+                        className="py-6 text-sm focus:border-white hover:border-white border-[#adadad] bg-inherit rounded-[0.2rem] transition-colors"
                         placeholder="Email"
                         {...field}
                       />
@@ -129,7 +129,7 @@ const Page = () => {
                   <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] items-center">
                     <FormControl>
                       <Textarea
-                        className="resize-none text-md pb-8 focus:border-white hover:border-white border-[#adadad] bg-inherit  rounded-[0.2rem] transition-colors"
+                        className="resize-none text-sm pb-8 focus:border-white hover:border-white border-[#adadad] bg-inherit  rounded-[0.2rem] transition-colors"
                         placeholder="Message"
                         {...field}
                       />
@@ -146,9 +146,9 @@ const Page = () => {
             <Button
               disabled={!form.formState.isValid || isLoading}
               type="submit"
-              className="dark:bg-amber-700 bg-purple-500 p-6 rounded-xl max-sm:w-full transition-all hover:bg-purple-600 dark:hover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
+              className="bg-amber-700 p-6 rounded-xl max-sm:w-full transition-allhover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
             >
-              <h3 className="text-md  m-2 font-semibold dark:text-black text-white drop-shadow-2xl">
+              <h3 className="m-2 font-semibold dark:text-black text-white drop-shadow-2xl">
                 Submit
               </h3>
             </Button>

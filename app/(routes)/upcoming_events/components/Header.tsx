@@ -1,7 +1,7 @@
 const Header = () => {
   return (
-    <div className="flex flex-col text-center items-center justify-center relative space-y-8">
-      <h3 className="flex gap-x-6 md:text-[4rem] sm:text-[4rem] max-sm:text-[2rem] font-dokdo">
+    <div className="flex flex-col text-center items-center justify-center relative space-y-8 z-1">
+      <h3 className="flex gap-x-6 lg:text-[4rem] sm:text-[3rem] max-sm:text-[2.4rem] font-dokdo">
         <div>
           <span className="inline-block -rotate-[12deg]  -translate-y-1">
             F
@@ -27,7 +27,7 @@ const Header = () => {
         </div>
       </h3>
       <h1
-        className={`flex xl:md:text-[6rem] md:text-[5rem] sm:text-[4rem] text-[2rem] font-creep text-amber-100`}
+        className={`flex xl:text-[6rem] md:text-[4rem] sm:text-[3.5rem] text-[2.8rem] font-creep text-amber-100`}
       >
         <div className="flex gap-x-2">
           <span className="inline-block -rotate-[23deg] max-sm:-translate-y-6 -translate-y-2">
