@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <div className="flex flex-col text-center items-center justify-center relative space-y-8 z-1">
-      <h3 className="flex gap-x-6 lg:text-[4rem] sm:text-[3rem] max-sm:text-sm font-dokdo">
+      <h3 className="flex gap-x-6 lg:text-[4rem] sm:text-[3rem] max-sm:text-md font-dokdo">
         <div>
           <span className="inline-block -rotate-[12deg]  -translate-y-1">
             F
@@ -27,13 +27,13 @@ const Header = () => {
         </div>
       </h3>
       <h1
-        className={`flex xl:text-[6rem] md:text-[4rem] sm:text-[3.5rem] text-sm font-creep text-amber-100`}
+        className={`flex xl:text-[6rem] md:text-[4rem] sm:text-[3.5rem] text-md font-creep text-amber-100`}
       >
         <div className="flex gap-x-2">
-          <span className="inline-block -rotate-[23deg] max-sm:-translate-y-6 -translate-y-2">
+          <span className="inline-block -rotate-[23deg] max-sm:-translate-y-11 -translate-y-2">
             U
           </span>
-          <span className="inline-block -rotate-[20deg] max-sm:-translate-y-10 -translate-y-8">
+          <span className="inline-block -rotate-[20deg] max-sm:-translate-y-11 -translate-y-8">
             P
           </span>
           <span className="inline-block -rotate-[16deg] -translate-y-12">
@@ -56,10 +56,10 @@ const Header = () => {
           <span className="inline-block rotate-[4deg] -translate-y-14">V</span>
           <span className="inline-block rotate-[8deg] -translate-y-12">E</span>
           <span className="inline-block rotate-[19deg] -translate-y-10">N</span>
-          <span className="inline-block rotate-[20deg] max-sm:-translate-y-8 -translate-y-6">
+          <span className="inline-block rotate-[20deg] max-sm:-translate-y-9 -translate-y-6">
             T
           </span>
-          <span className="inline-block rotate-[23deg] max-sm:-translate-y-6 -translate-y-2">
+          <span className="inline-block rotate-[23deg] max-sm:-translate-y-9 -translate-y-2">
             S
           </span>
         </div>
