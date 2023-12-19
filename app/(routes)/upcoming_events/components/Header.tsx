@@ -59,7 +59,7 @@ const Header = () => {
           <span className="inline-block rotate-[20deg] max-sm:-translate-y-9 -translate-y-6">
             T
           </span>
-          <span className="inline-block rotate-[23deg] max-sm:-translate-y-8 -translate-y-2">
+          <span className="inline-block rotate-[23deg] max-sm:-translate-y-7 -translate-y-2">
             S
           </span>
         </div>

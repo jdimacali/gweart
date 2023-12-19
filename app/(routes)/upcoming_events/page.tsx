@@ -56,7 +56,7 @@ const Page = () => {
       <div className="w-full h-full pb-20 mt-40 md:mt-[15rem]">
         {loading && !events && <Spin />}
         {!loading && events && (
-          <div className=" mt-[5rem] md:mt-[7rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] lg:gap-y-[10rem] items-center justify-center justify-items-center">
+          <div className=" mt-[5rem] md:mt-[7rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] md:gap-y-[10rem] items-center justify-center justify-items-center">
             {events.map((event) => (
               <div
                 key={event.id}
@@ -89,11 +89,13 @@ const Page = () => {
                     <h1 className="text-sm opacity-60">
                       {event.attributes.address}
                     </h1>
-                    <ArrowUpRight
-                      height={60}
-                      width={60}
-                      className="absolute bottom-0 right-0 p-4"
-                    />
+                    <div className="hidden sm:block">
+                      <ArrowUpRight
+                        height={60}
+                        width={60}
+                        className="absolute bottom-0 right-0 p-4"
+                      />
+                    </div>
                   </div>
                 </Link>
               </div>
