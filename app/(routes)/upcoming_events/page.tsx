@@ -56,11 +56,11 @@ const Page = () => {
       <div className="w-full h-full pb-20 mt-40 md:mt-[15rem]">
         {loading && !events && <Spin />}
         {!loading && events && (
-          <div className=" mt-[5rem] md:mt-[7rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] lg:gap-y-[10rem] items-center justify-items-center">
+          <div className=" mt-[5rem] md:mt-[7rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] lg:gap-y-[10rem] items-center justify-center justify-items-center">
             {events.map((event) => (
               <div
                 key={event.id}
-                className="h-[15rem] w-[25rem] md:h-[20rem] md:w-[30rem] rounded-b m-4"
+                className="h-[10rem] w-[20rem] md:h-[20rem] md:w-[30rem] rounded-b m-4"
               >
                 <Link target="_blank" href={event.attributes.url}>
                   <div className="w-full h-full relative overflow-hidden shadow-lg">
