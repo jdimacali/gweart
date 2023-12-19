@@ -60,7 +60,7 @@ const Page = () => {
             {events.map((event) => (
               <div
                 key={event.id}
-                className="h-[10rem] w-[20rem] md:h-[20rem] md:w-[30rem] rounded-b m-4"
+                className="h-[12.5rem] w-[22.5rem] md:h-[20rem] md:w-[30rem] rounded-b m-4"
               >
                 <Link target="_blank" href={event.attributes.url}>
                   <div className="w-full h-full relative overflow-hidden shadow-lg">
