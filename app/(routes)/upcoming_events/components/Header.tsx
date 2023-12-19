@@ -30,7 +30,7 @@ const Header = () => {
         className={`flex xl:text-[6rem] md:text-[4rem] sm:text-[3.5rem] text-[2rem] font-creep text-amber-100`}
       >
         <div className="flex gap-x-2">
-          <span className="inline-block -rotate-[23deg] max-sm:-translate-y-11 -translate-y-2">
+          <span className="inline-block -rotate-[23deg] max-sm:-translate-y-9 -translate-y-2">
             U
           </span>
           <span className="inline-block -rotate-[20deg] max-sm:-translate-y-11 -translate-y-8">
@@ -59,7 +59,7 @@ const Header = () => {
           <span className="inline-block rotate-[20deg] max-sm:-translate-y-9 -translate-y-6">
             T
           </span>
-          <span className="inline-block rotate-[23deg] max-sm:-translate-y-9 -translate-y-2">
+          <span className="inline-block rotate-[23deg] max-sm:-translate-y-8 -translate-y-2">
             S
           </span>
         </div>
