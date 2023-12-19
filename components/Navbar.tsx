@@ -21,7 +21,7 @@ const routes = [
   { label: "Upcoming Events", href: "/upcoming_events", icon: CalendarHeart },
   { label: "Contact Us", href: "/contact_us", icon: Contact2Icon },
   {
-    label: "Shop All",
+    label: "Shop",
     href: "https://gweart.square.site/",
     icon: ShoppingCartIcon,
   },
