@@ -7,6 +7,7 @@ import DashboardGhost from "./DashboardGhost";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spin from "@/components/Spin";
+import Image from "next/image";
 
 interface Data {
   title: string;
@@ -42,9 +43,13 @@ const SpooktacularGoodies = () => {
       max-md:pt-20 gap-x-20 relative bg-gradient-to-br from-violet-900/40 from-15% to-violet-950 to-15%`}
     >
       <DashboardGhost />
-      <div className="shadow-2xl shadow-black">
-        <Web />
-      </div>
+      <Image
+        src="/web.png"
+        width={900}
+        height={900}
+        className="absolute top-0 -left-3"
+        alt="web"
+      />
       {loading && !data && <Spin />}
       {!loading && data && (
         <div className=" flex max-md:flex-col justify-center text-center items-center lg:py-[8rem] gap-x-20">

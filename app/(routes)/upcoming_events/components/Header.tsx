@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div className="flex flex-col text-center items-center justify-center relative space-y-8 z-1">
+    <div className="flex flex-col text-center items-center justify-center relative space-y-8 z-1 mt-40">
       <h3 className="flex gap-x-6 lg:text-[4rem] sm:text-[3rem] max-sm:text-[2rem] font-dokdo">
         <div>
           <span className="inline-block -rotate-[12deg]  -translate-y-1">

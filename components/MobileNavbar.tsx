@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { LucideIcon, MenuIcon } from "lucide-react";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 interface MobileNavbarProps {
   routes: Array<{
@@ -12,9 +12,10 @@ interface MobileNavbarProps {
 }
 
 const MobileNavbar = ({ routes }: MobileNavbarProps) => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
-      <Sheet>
+      <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger className="pt-2">
           <MenuIcon />
         </SheetTrigger>
@@ -25,6 +26,7 @@ const MobileNavbar = ({ routes }: MobileNavbarProps) => {
                 <Link
                   href={route.href}
                   className="hover: text-decoration-line: underline;"
+                  onClick={() => setOpen(false)}
                 >
                   <div>
                     <h1 className="text-1xl text-black">{route.label}</h1>

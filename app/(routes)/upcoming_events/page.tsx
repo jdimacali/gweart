@@ -51,7 +51,7 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="h-full w-full text-white bg-zinc-800 flex flex-col items-center justify-center pb-20 mt-10">
+    <section className="h-full w-full text-white bg-zinc-800 flex flex-col items-center justify-center pb-20 mt-0">
       <Slime>
         <Header />
       </Slime>
