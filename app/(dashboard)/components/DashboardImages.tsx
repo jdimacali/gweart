@@ -37,6 +37,9 @@ const DashboardImages = ({ images }: DashboardImagesProps) => {
               alt="slide"
               sizes="100vh"
               className="block object-contain w-full h-auto"
+              onContextMenu={(e) => {
+                e.preventDefault();
+              }}
             />
           </SwiperSlide>
         ))}

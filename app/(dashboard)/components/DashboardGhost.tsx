@@ -3,6 +3,12 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+const ghosts = [
+  {
+    
+  }
+]
+
 const DashboardGhost = () => {
   return (
     <>

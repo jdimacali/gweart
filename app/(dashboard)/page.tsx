@@ -1,3 +1,5 @@
+"use client";
+
 import SpooktacularGoodies from "./components/SpooktacularGoodies";
 import SlideShow from "./components/Slideshow";
 
