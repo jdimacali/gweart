@@ -26,7 +26,7 @@ interface Events {
   };
 }
 
-export const revalidate = 1000;
+ export const revalidate = 0;
 
 const Slides = () => {
   const [slides, setSlides] = useState<Events[] | undefined>([]);

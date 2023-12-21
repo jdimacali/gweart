@@ -59,6 +59,8 @@ interface DashboardResponse {
   meta: {};
 }
 
+export const dynamic = "force-dynamic";
+
 // Define the Next.js API route handler
 export async function GET() {
   try {

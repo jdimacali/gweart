@@ -29,7 +29,7 @@ interface Events {
   };
 }
 
-export const revalidate = 1000;
+export const revalidate = 0;
 
 const Page = () => {
   const [events, setEvents] = useState<Events[] | undefined>([]);

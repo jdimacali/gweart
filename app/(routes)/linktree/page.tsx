@@ -13,7 +13,7 @@ interface SocialLink {
   Links: { id: number; name: string; url: string; icon?: string }[];
 }
 
-export const revalidate = 1000;
+export const revalidate = 0;
 
 const Page = () => {
   const [socials, setSocialLinks] = useState<SocialLink>();

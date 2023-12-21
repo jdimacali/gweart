@@ -2,6 +2,8 @@ import { API_URL } from "@/lib/utils";
 import axios from "axios";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 // Define the Next.js API route handler
 export async function GET() {
   try {
