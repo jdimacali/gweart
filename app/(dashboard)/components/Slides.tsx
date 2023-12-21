@@ -10,11 +10,13 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spin from "@/components/Spin";
+import Link from "next/link";
 
 interface Events {
   id: number;
   attributes: {
     // Add other attributes as needed
+    url: string;
     image: {
       data: {
         id: number;
@@ -26,7 +28,7 @@ interface Events {
   };
 }
 
- export const revalidate = 0;
+export const revalidate = 0;
 
 const Slides = () => {
   const [slides, setSlides] = useState<Events[] | undefined>([]);
@@ -46,6 +48,8 @@ const Slides = () => {
     };
     getDashboard();
   }, []);
+
+  console.log(slides);
 
   return (
     <div className="h-full w-full flex justify-center items-center m-6 max-sm:pl-13 max-md:pl-30">
@@ -85,14 +89,16 @@ const Slides = () => {
               key={index}
               className="h-full w-full flex justify-center items-center"
             >
-              <Image
-                src={`${slide.attributes.image.data.attributes.url}`}
-                alt={`${slide.attributes.image.data.attributes.url}`}
-                height={300}
-                width={300}
-                quality={100}
-                className="block object-contain shadow"
-              />
+              <Link href={slide.attributes.url ? slide.attributes.url : "/"}>
+                <Image
+                  src={`${slide.attributes.image.data.attributes.url}`}
+                  alt={`${slide.attributes.image.data.attributes.url}`}
+                  height={300}
+                  width={300}
+                  quality={100}
+                  className="block object-contain shadow"
+                />
+              </Link>
             </SwiperSlide>
           ))}
       </Swiper>
