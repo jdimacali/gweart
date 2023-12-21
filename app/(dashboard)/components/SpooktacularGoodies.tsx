@@ -14,6 +14,9 @@ interface Data {
   imageUrls: string[];
   button: string;
 }
+
+export const revalidate = 3600;
+
 const SpooktacularGoodies = () => {
   const [data, setData] = useState<Data | undefined>();
   const [loading, setLoading] = useState(false);

@@ -29,6 +29,8 @@ interface Events {
   };
 }
 
+export const revalidate = 3600;
+
 const Page = () => {
   const [events, setEvents] = useState<Events[] | undefined>([]);
   const [loading, setLoading] = useState(false);
