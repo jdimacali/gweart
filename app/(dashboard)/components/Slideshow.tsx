@@ -13,7 +13,7 @@ const SlideShow = () => {
         className="flex justify-center text-center items-center gap-x-8"
       >
         <h1 className="sm:text-3xl text-xl font-semibold dark:text-white">
-          Check out our <span className="font-nosifer"> spooky </span> designs
+          Check out our <span className="font-nosifer"> spooky </span> originals available for purchase
         </h1>
       </motion.div>
       <Slides />
