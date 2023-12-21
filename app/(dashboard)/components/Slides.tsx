@@ -10,7 +10,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spin from "@/components/Spin";
-import { API_URL } from "@/lib/utils";
 
 interface Events {
   id: number;
