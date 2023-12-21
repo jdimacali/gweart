@@ -66,7 +66,10 @@ const Navbar = () => {
           quality="100"
           sizes="100vh"
           fill
-          className="object-contain"
+          className="object-contain pointer-events-none"
+          onContextMenu={(e) => {
+            e.preventDefault();
+          }}
         />
       </Link>
       <div className="flex gap-x-8">

@@ -5,9 +5,10 @@ const Footer = () => {
     <section className="w-full h-full px-8 text-white bg-black flex flex-col items-center text-center border-t border-black/10 shadow-inner shadow-black">
       <h1 className="opacity-50 font-semibold pt-4 absolute z-[1] sm:w-[40%] max-sm:w-[90%] mt-20 tracking-wider text-sm">
         © 2023 Gweart All rights reserved. | Los Angeles, CA 90042 | Art by Girl
-        Wonder Extraordinaire | Specializing in the UnOrdinary | www.artbygwe.com
+        Wonder Extraordinaire | Specializing in the UnOrdinary |
+        www.artbygwe.com
       </h1>
-      <div className="bg-[url('/graveyard.png')] w-full h-[31rem] bg-center bg-no-repeat absolute overflow-hidden bg-inherit dark:brightness-110" />
+      <div className="bg-[url('/graveyard.png')] w-full h-[31rem] bg-center bg-no-repeat absolute overflow-hidden bg-inherit dark:brightness-110 pointer-events-none" />
     </section>
   );
 };

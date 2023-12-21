@@ -85,13 +85,17 @@ const Slides = () => {
               className="h-full w-full flex justify-center items-center"
             >
               <Link href={slide.url ? slide.url : "/"}>
+                <div className="w-full h-auto bg-transparent z-2"></div>
                 <Image
                   src={`${slide.image.data.attributes.url}`}
                   alt={`${slide.image.data.attributes.url}`}
                   height={300}
                   width={300}
                   quality={100}
-                  className="block object-contain shadow"
+                  className="block object-contain shadow pointer-events-none"
+                  onContextMenu={(e) => {
+                    e.preventDefault();
+                  }}
                 />
               </Link>
             </SwiperSlide>

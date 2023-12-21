@@ -42,7 +42,13 @@ const Page = () => {
       >
         <div className="flex flex-col justify-center items-center w-full">
           <Avatar className="mt-10 h-[60px] w-[60px]">
-            <AvatarImage src="./icon/gweart.jpg" />
+            <AvatarImage
+              src="./icon/gweart.jpg"
+              onContextMenu={(e) => {
+                e.preventDefault();
+              }}
+              className="pointer-events-none"
+            />
             {socials?.Title}
             <AvatarFallback>GweArt</AvatarFallback>
           </Avatar>

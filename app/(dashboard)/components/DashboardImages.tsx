@@ -30,13 +30,14 @@ const DashboardImages = ({ images }: DashboardImagesProps) => {
             key={index}
             className="h-[30rem] w-auto flex justify-center items-center"
           >
+            <div className="w-full h-full bg-transparent z-2"></div>
             <Image
               src={image}
               fill
               quality={100}
               alt="slide"
               sizes="100vh"
-              className="block object-contain w-full h-auto"
+              className="block object-contain w-full h-auto pointer-events-none"
               onContextMenu={(e) => {
                 e.preventDefault();
               }}
