@@ -12,17 +12,14 @@ import axios from "axios";
 import Spin from "@/components/Spin";
 import Link from "next/link";
 
-interface Events {
-  id: number;
-  attributes: {
-    // Add other attributes as needed
-    url: string;
-    image: {
-      data: {
-        id: number;
-        attributes: {
-          url: string;
-        };
+interface Slides {
+  // Add other attributes as needed
+  url: string;
+  image: {
+    data: {
+      id: number;
+      attributes: {
+        url: string;
       };
     };
   };
@@ -31,7 +28,7 @@ interface Events {
 export const revalidate = 0;
 
 const Slides = () => {
-  const [slides, setSlides] = useState<Events[] | undefined>([]);
+  const [slides, setSlides] = useState<Slides[] | undefined>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -39,7 +36,7 @@ const Slides = () => {
       try {
         setLoading(true);
         const response = await axios.get("/api/slides");
-        setSlides(response.data);
+        setSlides(response.data.attributes.slides);
       } catch (error) {
         console.error("Error fetching dashboard:", error);
       } finally {
@@ -48,8 +45,6 @@ const Slides = () => {
     };
     getDashboard();
   }, []);
-
-  console.log(slides);
 
   return (
     <div className="h-full w-full flex justify-center items-center m-6 max-sm:pl-13 max-md:pl-30">
@@ -89,10 +84,10 @@ const Slides = () => {
               key={index}
               className="h-full w-full flex justify-center items-center"
             >
-              <Link href={slide.attributes.url ? slide.attributes.url : "/"}>
+              <Link href={slide.url ? slide.url : "/"}>
                 <Image
-                  src={`${slide.attributes.image.data.attributes.url}`}
-                  alt={`${slide.attributes.image.data.attributes.url}`}
+                  src={`${slide.image.data.attributes.url}`}
+                  alt={`${slide.image.data.attributes.url}`}
                   height={300}
                   width={300}
                   quality={100}

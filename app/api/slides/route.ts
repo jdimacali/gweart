@@ -8,7 +8,9 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     // Make the API call to get information about the events
-    const response = await axios.get(`${API_URL}/api/slides?populate=image`);
+    const response = await axios.get(
+      `${API_URL}/api/slideshow?populate[slides][populate]=*`
+    );
 
     // Return the image data as a JSON response
     return NextResponse.json(response.data.data, { status: 200 });
