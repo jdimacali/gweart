@@ -15,7 +15,7 @@ interface Data {
   button: string;
 }
 
-export const revalidate = 100;
+export const revalidate = 1000;
 
 const SpooktacularGoodies = () => {
   const [data, setData] = useState<Data | undefined>();
