@@ -2,43 +2,18 @@ import { API_URL } from "@/lib/utils";
 import axios from "axios";
 import { NextResponse } from "next/server";
 
-// Define the types for image data
 interface ImageFormat {
-  name: string;
-  hash: string;
   ext: string;
   mime: string;
-  path: null;
-  width: number;
-  height: number;
-  size: number;
   url: string;
 }
 
 interface ImageData {
-  id: number;
   attributes: {
     name: string;
-    alternativeText: null;
-    caption: null;
-    width: number;
-    height: number;
     formats: {
-      thumbnail: ImageFormat;
-      small: ImageFormat;
-      medium: ImageFormat;
       large: ImageFormat;
     };
-    hash: string;
-    ext: string;
-    mime: string;
-    size: number;
-    url: string;
-    previewUrl: null;
-    provider: string;
-    provider_metadata: null;
-    createdAt: string;
-    updatedAt: string;
   };
 }
 
@@ -51,12 +26,8 @@ interface DashboardResponse {
       Images: {
         data: ImageData[];
       };
-      createdAt: string;
-      updatedAt: string;
     };
-    id: number;
   };
-  meta: {};
 }
 
 export const dynamic = "force-dynamic";

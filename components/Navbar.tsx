@@ -12,7 +12,6 @@ import NavbarRoutes from "./NavbarRoutes";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import NavUtil from "./NavUtil";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 
@@ -76,7 +75,6 @@ const Navbar = () => {
         <div className="hidden md:block">
           <NavbarRoutes routes={routes} pathname={pathname} />
         </div>
-        <NavUtil />
         <div className="md:hidden">
           <MobileNavbar routes={routes} />
         </div>

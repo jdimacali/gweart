@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import {
   Autoplay,
   Pagination,
@@ -91,7 +90,7 @@ const Slides = () => {
                   height={300}
                   width={300}
                   quality={100}
-                  className="block object-contain shadow pointer-events-none"
+                  className="block object-contain shadow hover:scale-110 transition-all"
                   onContextMenu={(e) => {
                     e.preventDefault();
                   }}
