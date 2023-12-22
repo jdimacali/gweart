@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import Spin from "./Spin";
 
 const routes = [
   { label: "Home", href: "/" },
@@ -42,6 +43,8 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   });
 
+  const imageLoader = <Spin />;
+
   return (
     <section
       className={clsx(
@@ -61,6 +64,7 @@ const Navbar = () => {
           onContextMenu={(e) => {
             e.preventDefault();
           }}
+          loading="lazy"
         />
       </Link>
       <div className="flex gap-x-8">
