@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 const DashboardGhost = () => {
   return (
-    <>
+    <div className="hidden md:block">
       <motion.div
-        className="absolute top-[10%] max-sm:top-[5%] left-[80%] max-sm:left-[65%] max-lg:hidden"
+        className="absolute top-[10%] max-sm:top-[5%] left-[80%] max-sm:left-[65%]"
         initial={{ opacity: 0, scale: 0 }}
         animate={{
           opacity: [0, 10, 0],
@@ -33,7 +33,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[70%] left-[20%] max-sm:hidden "
+        className="absolute top-[70%] left-[20%]"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
@@ -59,7 +59,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[15%] left-[40%] max-sm:hidden "
+        className="absolute top-[15%] left-[40%]"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
@@ -85,7 +85,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[80%] left-[90%] max-lg:hidden"
+        className="absolute top-[80%] left-[90%]"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
@@ -111,7 +111,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[60%] left-[50%] max-sm:hidden sm:hidden lg:block"
+        className="absolute top-[60%] left-[50%]"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
@@ -136,7 +136,7 @@ const DashboardGhost = () => {
           className="object-contain opacity-30 transform -scale-x-100"
         />
       </motion.div>
-    </>
+    </div>
   );
 };
 export default DashboardGhost;
