@@ -1,12 +1,10 @@
 import clsx from "clsx";
-import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 interface NavbarRoutesProps {
   routes: Array<{
     label: string;
     href: string;
-    icon: LucideIcon;
   }>;
   pathname: string;
 }

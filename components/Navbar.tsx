@@ -1,12 +1,5 @@
 "use client";
 
-import {
-  CalendarHeart,
-  Contact2Icon,
-  HomeIcon,
-  ShoppingCartIcon,
-  Trees,
-} from "lucide-react";
 import MobileNavbar from "./MobileNavbar";
 import NavbarRoutes from "./NavbarRoutes";
 import Image from "next/image";
@@ -16,15 +9,14 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 
 const routes = [
-  { label: "Home", href: "/", icon: HomeIcon },
-  { label: "Upcoming Events", href: "/upcoming_events", icon: CalendarHeart },
-  { label: "Contact Us", href: "/contact_us", icon: Contact2Icon },
+  { label: "Home", href: "/" },
+  { label: "Upcoming Events", href: "/upcoming_events" },
+  { label: "Contact Us", href: "/contact_us" },
   {
     label: "Shop",
     href: "https://gweart.square.site/",
-    icon: ShoppingCartIcon,
   },
-  { label: "Linktree", href: "/linktree", icon: Trees },
+  { label: "Linktree", href: "/linktree" },
 ];
 
 const Navbar = () => {
@@ -58,7 +50,7 @@ const Navbar = () => {
         visible ? "top-0 translate-y-0" : "-translate-y-full"
       )}
     >
-      <Link href="/" className="relative sm:h-16 sm:w-16 w-14 h-14 ">
+      <Link href="/" className="relative sm:h-16 sm:w-16 w-14 h-14 border-none">
         <Image
           src="/icon/gwe.png"
           alt="gwe"

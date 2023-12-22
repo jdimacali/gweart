@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { LucideIcon, MenuIcon } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import { Fragment, useState } from "react";
 
 interface MobileNavbarProps {
   routes: Array<{
     label: string;
     href: string;
-    icon: LucideIcon;
   }>;
 }
 
