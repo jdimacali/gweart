@@ -53,7 +53,7 @@ const Navbar = () => {
         visible ? "top-0 translate-y-0" : "-translate-y-full"
       )}
     >
-      <Link href="/" className="relative sm:h-16 sm:w-16 w-14 h-14 border-none">
+      <div className="relative sm:h-16 sm:w-16 w-14 h-14 border-none">
         <Image
           src="/icon/gwe.png"
           alt="gwe"
@@ -66,7 +66,7 @@ const Navbar = () => {
           }}
           loading="lazy"
         />
-      </Link>
+      </div>
       <div className="flex gap-x-8">
         <div className="hidden md:block">
           <NavbarRoutes routes={routes} pathname={pathname} />
