@@ -12,7 +12,7 @@ const SlideShow = () => {
         transition={{ ease: "easeInOut", duration: 0.7 }}
         className="flex justify-center text-center items-center gap-x-8"
       >
-        <h1 className="md:text-2xl text-xl font-semibold dark:text-white text-center px-20 sm:px-4">
+        <h1 className="md:text-2xl text-xl font-semibold dark:text-white text-center px-10 sm:px-4">
           Check out our <span className="font-nosifer"> spooky </span> originals
           available for purchase
         </h1>
