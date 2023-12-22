@@ -51,6 +51,7 @@ const SpooktacularGoodies = () => {
         width={900}
         height={900}
         className="absolute top-0 -left-3"
+        priority
         alt="web"
       />
       {loading && !data && (
