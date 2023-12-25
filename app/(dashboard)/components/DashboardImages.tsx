@@ -37,9 +37,13 @@ const DashboardImages = ({ images }: DashboardImagesProps) => {
             <Image
               src={image}
               fill
-              quality={100}
+              priority
+              quality={95}
               alt="slide"
-              sizes="100vh"
+              sizes="(max-width: 320px) 280px,
+         (max-width: 768px) 720px,
+         (max-width: 1280px) 1200px,
+         1400px"
               className="block object-contain w-full h-auto pointer-events-none"
               onContextMenu={(e) => {
                 e.preventDefault();
