@@ -18,7 +18,11 @@ interface Slides {
     data: {
       id: number;
       attributes: {
-        url: string;
+        formats: {
+          small: {
+            url: string;
+          };
+        };
       };
     };
   };
@@ -85,8 +89,8 @@ const Slides = () => {
             >
               <Link href={slide.url ? slide.url : "/"}>
                 <Image
-                  src={`${slide.image.data.attributes.url}`}
-                  alt={`${slide.image.data.attributes.url}`}
+                  src={`${slide.image.data.attributes.formats.small.url}`}
+                  alt={`${slide.image.data.attributes.formats.small.url}`}
                   height={300}
                   width={300}
                   quality={100}
