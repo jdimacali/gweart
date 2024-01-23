@@ -43,7 +43,7 @@ const Page = () => {
         <div className="flex flex-col justify-center items-center w-full">
           <Avatar className="mt-10 h-[60px] w-[60px]">
             <AvatarImage
-              src="./icon/gweart.jpg"
+              src="./icon/gwe.png"
               onContextMenu={(e) => {
                 e.preventDefault();
               }}
