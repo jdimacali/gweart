@@ -17,7 +17,7 @@ interface Events {
     name: string;
     address: string;
     start_date: string;
-    end_date: string;
+    end_date?: string;
     image: {
       data: {
         id: number;
@@ -49,6 +49,7 @@ const Page = () => {
     };
     getDashboard();
   }, []);
+
   return (
     <section className="h-full w-full text-white bg-zinc-800 flex flex-col items-center justify-center pb-20 mt-0">
       <Slime>
@@ -88,10 +89,11 @@ const Page = () => {
                         <span className="mr-2">
                           {formatDateFromString(event.attributes.start_date)}
                         </span>
-                        -
-                        <span className="ml-2">
-                          {formatDateFromString(event.attributes.end_date)}
-                        </span>
+                        {event.attributes?.end_date && (
+                          <span>
+                            - {formatDateFromString(event.attributes?.end_date)}
+                          </span>
+                        )}
                       </div>
                       <h1 className="text-sm opacity-60">
                         {event.attributes.address}
