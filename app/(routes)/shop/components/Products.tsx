@@ -35,8 +35,15 @@ interface Products {
 }
 
 const ProductList = ({ products, loading }: Products) => {
+  console.log(products);
   return (
-    <div>
+    <div className="flex flex-col gap-y-10">
+      <div className="text-3xl font-bold ">
+        {products.length == 1
+          ? products[0].attributes.categories.data[0].attributes.name
+          : "All Items"}
+      </div>
+
       {products!.length === 0 && !loading ? (
         <div className="text-center text-sm text-muted-foreground mt-10">
           No products were found
