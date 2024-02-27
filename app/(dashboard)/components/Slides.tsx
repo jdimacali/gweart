@@ -85,7 +85,7 @@ const Slides = () => {
           slides.map((slide, index) => (
             <SwiperSlide
               key={index}
-              className="h-full w-full flex justify-center items-center"
+              className="h-full w-full flex justify-center items-center place-self-center"
             >
               <Link href={slide.url ? slide.url : "/"}>
                 <Image

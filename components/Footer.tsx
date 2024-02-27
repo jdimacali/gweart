@@ -8,7 +8,7 @@ const Footer = () => {
         Wonder Extraordinaire | Specializing in the UnOrdinary |
         www.artbygwe.com
       </h1>
-      <div className="bg-[url('/graveyard.png')] w-full h-[31rem] bg-center bg-no-repeat absolute overflow-hidden bg-inherit dark:brightness-110 pointer-events-none" />
+      <div className="bg-[url('/graveyard.png')] w-full h-[31rem] bg-center bg-no-repeat absolute overflow-hidden bg-inherit brightness-150 pointer-events-none" />
     </section>
   );
 };

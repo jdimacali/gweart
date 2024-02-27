@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import Spin from "./Spin";
+import NavUtil from "./NavUtil";
 
 const routes = [
   { label: "Home", href: "/" },
@@ -15,7 +16,7 @@ const routes = [
   { label: "Contact Us", href: "/contact_us" },
   {
     label: "Shop",
-    href: "https://gweart.square.site/",
+    href: "/shop/search",
   },
   { label: "Linktree", href: "/linktree" },
 ];
@@ -73,6 +74,7 @@ const Navbar = () => {
         <div className="md:hidden">
           <MobileNavbar routes={routes} />
         </div>
+        <NavUtil />
       </div>
     </section>
   );
