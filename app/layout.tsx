@@ -13,6 +13,7 @@ import {
   nosifer,
 } from "@/lib/fonts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Gweart",
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <SpeedInsights />
+          <Analytics />
           <Toaster />
           <Navbar />
           {children}
