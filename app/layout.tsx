@@ -12,6 +12,7 @@ import {
   metalMania,
   nosifer,
 } from "@/lib/fonts";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Gweart",
@@ -30,6 +31,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <AuthProvider>
+          <SpeedInsights />
           <Toaster />
           <Navbar />
           {children}

@@ -17,12 +17,6 @@ div.vector {
   position: absolute;
 }
 
-line,
-path {
-  stroke: #ccc;
-  stroke-width: 2px;
-  fill: none;
-}
 #top {
   stroke-width: 2px;
 }

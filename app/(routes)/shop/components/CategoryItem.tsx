@@ -38,7 +38,10 @@ const CategoryItem = ({ name, id }: CategoryItemProps) => {
   return (
     <button
       onClick={onClick}
-      className={cn("text-left hover:opacity-80", isSelected && "font-bold")}
+      className={cn(
+        "text-left hover:opacity-80 animate-in-[opacity-10]",
+        isSelected && "font-bold"
+      )}
       type="button"
     >
       <div className="truncate">{name}</div>

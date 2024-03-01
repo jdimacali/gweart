@@ -51,6 +51,7 @@ export const revalidate = 0;
 const Page = () => {
   const [categories, setCategories] = useState<Categories[] | undefined>([]);
   const [products, setProducts] = useState<Products[] | undefined>([]);
+  const [metadata, setMetadata] = useState({} as any);
   const [loading, setLoading] = useState(false);
 
   const searchParams = useSearchParams();
@@ -59,6 +60,7 @@ const Page = () => {
 
   const currentCategoryId = searchParams.get("categoryId");
   const currentName = searchParams.get("name");
+  const currentPage = searchParams.get("page");
 
   useEffect(() => {
     const getProductsCategories = async () => {
@@ -69,10 +71,12 @@ const Page = () => {
           params: {
             categoryId: currentCategoryId,
             name: currentName,
+            page: currentPage,
           },
         });
         setCategories(categoryResponse.data);
-        setProducts(productResponse.data);
+        setProducts(productResponse.data.response);
+        setMetadata(productResponse.data.metadata);
       } catch (error) {
         console.error("Error fetching dashboard:", error);
       } finally {
@@ -80,7 +84,7 @@ const Page = () => {
       }
     };
     getProductsCategories();
-  }, [currentCategoryId, currentName]);
+  }, [currentCategoryId, currentName, currentPage]);
 
   const onClick = () => {
     const url = qs.stringifyUrl(
@@ -114,7 +118,9 @@ const Page = () => {
           {categories && <Categories categories={categories} />}
         </div>
         <CategoriesMobileSidebar categories={categories} />
-        {products && <Products products={products} loading />}
+        {products && (
+          <Products products={products} loading={loading} metadata={metadata} />
+        )}
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "next/navigation";
-import ProductPage from "../components/ProductPage";
+import ProductPage from "./components/ProductPage";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
