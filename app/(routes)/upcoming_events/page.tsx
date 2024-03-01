@@ -4,8 +4,7 @@ import Spin from "@/components/Spin";
 import { API_URL, formatDateFromString } from "@/lib/utils";
 import axios from "axios";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Header from "./components/Header";
 import { ArrowUpRight } from "lucide-react";
 import Slime from "./components/Slime";
@@ -35,7 +34,7 @@ const Page = () => {
   const [events, setEvents] = useState<Events[] | undefined>([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const getDashboard = async () => {
       try {
         setLoading(true);
@@ -51,14 +50,17 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="h-full w-full text-white bg-zinc-800 flex flex-col items-center justify-center pb-20 mt-0">
+    <section className="h-full w-full text-white bg-zinc-800 flex flex-col items-center justify-center pb-40 mt-0">
       <Slime>
         <Header />
       </Slime>
       <div className="w-full h-full pb-20 mt-40 md:mt-[15rem]">
-        {loading && !events && <Spin />}
-        {!loading && events && (
-          <div className=" mt-[5rem] md:mt-[7rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] md:gap-y-[10rem] items-center justify-center justify-items-center">
+        {loading ? (
+          <div className="flex pt-80 items-center justify-center">
+            <Spin />
+          </div>
+        ) : events && events.length > 0 ? (
+          <div className="mt-[5rem] md:mt-[7rem] h-full w-full mb-20 grid sm:grid-cols-1 2xl:grid-cols-2 3xl:grid-cols-3 max-sm:gap-y-[12rem] md:gap-y-[10rem] items-center justify-center justify-items-center">
             {events
               .sort((a, b) => {
                 let da = new Date(a.attributes.start_date).getTime(); // Convert to milliseconds
@@ -70,10 +72,14 @@ const Page = () => {
                   key={event.id}
                   className="h-[15rem] w-[22.5rem] md:h-[20rem] md:w-[30rem] rounded-b m-4"
                 >
-                  <Link target="_blank" href={event.attributes.url}>
+                  <a
+                    href={event.attributes.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <div className="w-full h-full relative overflow-hidden shadow-lg">
                       <Image
-                        src={`${event.attributes.image.data.attributes.url}`}
+                        src={event.attributes.image.data.attributes.url}
                         alt={`${API_URL}${event.attributes.name}`}
                         fill
                         quality={100}
@@ -84,7 +90,6 @@ const Page = () => {
                       <h1 className="text-xl md:text-2xl font-[600] opacity-90 mt-2 ">
                         {event.attributes.name}
                       </h1>
-
                       <div className="text-md font-semibold text-gray-300">
                         <span className="mr-2">
                           {formatDateFromString(event.attributes.start_date)}
@@ -106,9 +111,13 @@ const Page = () => {
                         />
                       </div>
                     </div>
-                  </Link>
+                  </a>
                 </div>
               ))}
+          </div>
+        ) : (
+          <div className="flex pt-80 items-center justify-center">
+            There are no events at this time. Check back soon!
           </div>
         )}
       </div>
