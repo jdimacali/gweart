@@ -36,8 +36,11 @@ const ProdcutCard = ({
             src={`${image}`}
             alt={name}
             fill
+            priority
             className="object-cover group-hover:scale-105 transition"
             quality={100}
+            placeholder="blur"
+            blurDataURL="/background/blur.png"
           />
         </div>
         <div className="flex flex-col pt-2 w-80 p-4 bg-amber-50/10">

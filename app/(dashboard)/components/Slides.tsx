@@ -91,14 +91,16 @@ const Slides = () => {
                 <Image
                   src={`${slide.image.data.attributes.formats.small.url}`}
                   alt={`${slide.image.data.attributes.formats.small.url}`}
-                  priority
                   height={300}
                   width={300}
-                  quality={100}
+                  quality={90}
+                  loading="lazy"
                   className="block object-contain shadow hover:scale-110 transition-all"
                   onContextMenu={(e) => {
                     e.preventDefault();
                   }}
+                  placeholder="blur"
+                  blurDataURL="/background/blur.png"
                 />
               </Link>
             </SwiperSlide>

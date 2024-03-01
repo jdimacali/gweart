@@ -82,8 +82,13 @@ const Page = () => {
                         src={event.attributes.image.data.attributes.url}
                         alt={`${API_URL}${event.attributes.name}`}
                         fill
+                        priority
+                        loader={({ src }) => src}
                         quality={100}
                         className="object-cover object-top rounded-t-xl hover:scale-110 transition-all duration-500 ease-in-out transform"
+                        placeholder="blur"
+                        blurDataURL="/background/blur.png
+"
                       />
                     </div>
                     <div className="shadow-2xl flex flex-col h-auto w-full gap-y-1 p-4 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-600">
