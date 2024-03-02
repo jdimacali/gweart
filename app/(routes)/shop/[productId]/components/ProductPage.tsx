@@ -7,8 +7,10 @@ import { useState } from "react";
 import CategoryItems from "./CategoryItems";
 import HelpfulInformation from "../../components/HelpfulInformation";
 import { ShoppingCartIcon } from "lucide-react";
+import useCart from "@/hooks/use-cart";
 
 interface ProductProps {
+  id: number;
   name: string;
   price: number;
   description: string;
@@ -36,6 +38,7 @@ interface ProductProps {
 }
 
 const ProductPage = ({
+  id,
   name,
   price,
   description,
@@ -48,12 +51,26 @@ const ProductPage = ({
   const addQuantity = () => setQuantity((prev) => (prev += 1));
   const subtractQuantity = () => setQuantity((prev) => (prev -= 1));
 
-  const handleAddToCart = () => {
+  const cart = useCart();
+
+  const onAddToCart = () => {
+    cart.addItem({
+      product: {
+        id: String(id),
+        name,
+        price,
+        image: image.data[0].attributes.url,
+        categories,
+      },
+      quantity: quantity,
+    });
     toast({
       title: "Item added to cart!",
       description: `${quantity} ${name}`,
     });
   };
+
+  console.log(id);
   return (
     <>
       <div className="flex md:flex-row flex-col gap-x-14">
@@ -113,10 +130,11 @@ const ProductPage = ({
           </div>
           <Button
             className={clsx(
-              "border bg-lime-500 hover:bg-lime-400 transition-colors",
+              "border bg-black hover:bg-neutral-800 transition-colors text-white",
               !availability && "bg-gray-100"
             )}
-            onClick={handleAddToCart}
+            onClick={onAddToCart}
+            disabled={!availability}
           >
             {availability ? (
               <div className="flex items-center justify-center gap-x-2 scale-110 transition">

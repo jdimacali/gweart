@@ -10,29 +10,32 @@ import { ArrowLeft } from "lucide-react";
 export const revalidate = 0;
 
 interface Product {
-  name: string;
-  price: number;
-  description: string;
-  availability: boolean;
-  image: {
-    data: [
-      {
-        id: number;
-        attributes: {
-          url: string;
-        };
-      }
-    ];
-  };
-  categories: {
-    data: [
-      {
-        id: number;
-        attributes: {
-          name: string;
-        };
-      }
-    ];
+  id: number;
+  attributes: {
+    name: string;
+    price: number;
+    description: string;
+    availability: boolean;
+    image: {
+      data: [
+        {
+          id: number;
+          attributes: {
+            url: string;
+          };
+        }
+      ];
+    };
+    categories: {
+      data: [
+        {
+          id: number;
+          attributes: {
+            name: string;
+          };
+        }
+      ];
+    };
   };
 }
 
@@ -73,12 +76,13 @@ const Page = () => {
       <div className="w-full h-full">
         {product && (
           <ProductPage
-            name={product.name}
-            price={product.price}
-            description={product.description}
-            image={product.image}
-            availability={product.availability}
-            categories={product.categories}
+            id={product.id}
+            name={product.attributes.name}
+            price={product.attributes.price}
+            description={product.attributes.description}
+            image={product.attributes.image}
+            availability={product.attributes.availability}
+            categories={product.attributes.categories}
           />
         )}
       </div>

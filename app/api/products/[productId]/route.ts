@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     );
 
     // Return the image data as a JSON response
-    return NextResponse.json(response.data.data[0].attributes, { status: 200 });
+    return NextResponse.json(response.data.data[0], { status: 200 });
   } catch (error: any) {
     console.error("Products", error);
     return new NextResponse("Error fetching image data", { status: 500 });

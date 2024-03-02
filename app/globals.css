@@ -17,10 +17,6 @@ div.vector {
   position: absolute;
 }
 
-#top {
-  stroke-width: 2px;
-}
-
 .link-underline {
   border-bottom-width: 0;
   background-image: linear-gradient(transparent, transparent),

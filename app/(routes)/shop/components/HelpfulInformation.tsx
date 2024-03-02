@@ -19,7 +19,7 @@ const HelpfulInformation = () => {
     <div className="text-sm mt-20">
       <div className="mb-10 text-base flex flex-col items-center justify-center">
         <Image src="/icon/stripe.png" alt="Stripe" width={100} height={100} />
-        Checkout powered by stripe{" "}
+        Checkout powered by Stripe
       </div>
       <div className="text-sm">
         <div className="mb-4">Helpful Information</div>

@@ -84,7 +84,7 @@ const ProductList = ({ products, metadata, loading }: Products) => {
         </div>
       )}
       {!loading && products.length > 0 && (
-        <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid sm:grid-cols-2 md:grid-cols-2 2xl:grid-cols-3 gap-16">
           {products.map((product) => (
             <ProductCard
               key={product.id}
