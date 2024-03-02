@@ -4,6 +4,7 @@ import { formatPrice } from "@/lib/format";
 import { toast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import clsx from "clsx";
+import { X } from "lucide-react";
 
 interface Product {
   id: string;
@@ -44,7 +45,9 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
       </div>
       <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
         <div className="absolute z-10 right-0 top-0">
-          <button onClick={onRemove}> X </button>
+          <button onClick={onRemove} className="hover:opacity-70">
+            <X />
+          </button>
         </div>
         <div className="relative pr-9  sm:gap-x-6">
           <div className="flex justify-between">
