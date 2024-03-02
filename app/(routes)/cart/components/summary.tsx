@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import useCart from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/format";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 
 const Summary = () => {
   const searchParams = useSearchParams();
@@ -28,16 +29,20 @@ const Summary = () => {
     return total + item.quantity * Number(item.product.price);
   }, 0);
 
-  // const onCheckout = async () => {
-  //   const response = await axios.post(
-  //     `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
-  //     {
-  //       productIds: items.map((item) => item.product.id),
-  //     }
-  //   );
+  const onCheckout = async () => {
+    // const response = await axios.post(
+    //   `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+    //   {
+    //     productIds: items.map((item) => item.product.id),
+    //   }
+    // );
 
-  //   window.location = response.data.url;
-  // };
+    // window.location = response.data.url;
+    toast({
+      title: "Checkout completed!",
+      description: "You will now be redirected",
+    });
+  };
 
   return (
     <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
@@ -64,6 +69,7 @@ const Summary = () => {
       <Button
         disabled={items.length === 0}
         className="w-full mt-6 bg-black text-white hover:bg-black hover:opacity-[85%] transition"
+        onClick={onCheckout}
       >
         Checkout
       </Button>

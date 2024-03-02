@@ -98,6 +98,7 @@ const ProductPage = ({
           <div className="text-xl text-blue-500">{formatPrice(price)}</div>
           <div>
             <div className="font-bold mb-1">About this item</div>
+            {/* TODO: Add bullet points to backend and retrieve them from the frontend */}
             <div className="flex flex-col gap-y-1">
               <li> Ultrices mi tempus </li>
               <li> Lorem ipsum dolor </li>

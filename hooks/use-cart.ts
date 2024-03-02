@@ -23,6 +23,8 @@ interface CartStore {
   addItem: (data: CartItem) => void;
   removeItem: (id: string) => void;
   removeAll: () => void;
+  addItemQuantity: (data: CartItem) => void;
+  removeItemQuantity: (data: CartItem) => void;
 }
 
 const useCart = create(
@@ -38,6 +40,36 @@ const useCart = create(
         if (existingItemIndex !== -1) {
           const updatedItems = [...currentItems];
           updatedItems[existingItemIndex].quantity += data.quantity;
+          set({ items: updatedItems });
+        } else {
+          set({ items: [...currentItems, data] });
+        }
+        // toast({ title: "Item added to cart." });
+      },
+      addItemQuantity: (data: CartItem) => {
+        const currentItems = get().items;
+        const existingItemIndex = currentItems.findIndex(
+          (item) => item.product.id === data.product.id
+        );
+
+        if (existingItemIndex !== -1) {
+          const updatedItems = [...currentItems];
+          updatedItems[existingItemIndex].quantity += 1;
+          set({ items: updatedItems });
+        } else {
+          set({ items: [...currentItems, data] });
+        }
+        // toast({ title: "Item added to cart." });
+      },
+      removeItemQuantity: (data: CartItem) => {
+        const currentItems = get().items;
+        const existingItemIndex = currentItems.findIndex(
+          (item) => item.product.id === data.product.id
+        );
+
+        if (existingItemIndex !== -1) {
+          const updatedItems = [...currentItems];
+          updatedItems[existingItemIndex].quantity -= 1;
           set({ items: updatedItems });
         } else {
           set({ items: [...currentItems, data] });

@@ -29,7 +29,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
       </h2>
       <div>
         <Button
-          onClick={() => router.push("https://gweart.square.site/")}
+          onClick={() => router.push("/shop/search")}
           className="bg-gray-950 p-6 rounded-xl max-sm:w-[90vw] transition-all hover:bg-gray-900 hover:opacity-80 mt-8"
         >
           <h3 className="text-md font-bold text-white m-3">{button}</h3>
