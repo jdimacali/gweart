@@ -22,7 +22,7 @@ const CategoriesMobileSidebar = ({ categories }: Categories) => {
         <SheetTrigger className="pt-2 border w-full text-center pb-2 bg-amber-400/10">
           Categories
         </SheetTrigger>
-        <SheetContent className="p-0">
+        <SheetContent className="p-0" side={"top"}>
           <section className="flex flex-col text-center items-center gap-y-5 pt-12 bg-white gap-x-10 font-medium h-full w-full m-0">
             {categories!.map((category) => (
               <div
