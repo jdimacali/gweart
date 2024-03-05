@@ -5,8 +5,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 import CategoryItems from "./CategoryItems";
-import HelpfulInformation from "../../components/HelpfulInformation";
-import { ShoppingCartIcon } from "lucide-react";
+import HelpfulInformation from "../../../../../components/HelpfulInformation";
+import { Minus, Plus, ShoppingCartIcon } from "lucide-react";
 import useCart from "@/hooks/use-cart";
 
 interface ProductProps {
@@ -73,7 +73,7 @@ const ProductPage = ({
   console.log(id);
   return (
     <>
-      <div className="flex md:flex-row flex-col gap-x-14">
+      <div className="flex md:flex-row flex-col gap-x-40">
         <div className="flex flex-col gap-y-4 md:gap-y-10 mb-4">
           <div className="relative md:w-[25rem] xl:w-[30rem] h-[20rem] md:h-[35rem]">
             <Image
@@ -95,7 +95,7 @@ const ProductPage = ({
               {categories.data[0].attributes.name}
             </div>
           </div>
-          <div className="text-xl text-blue-500">{formatPrice(price)}</div>
+          <div className="text-xl">{formatPrice(price)}</div>
           <div>
             <div className="font-bold mb-1">About this item</div>
             {/* TODO: Add bullet points to backend and retrieve them from the frontend */}
@@ -117,7 +117,9 @@ const ProductPage = ({
                 onClick={subtractQuantity}
                 disabled={quantity <= 1}
               >
-                <span className="text-2xl opacity-80">-</span>
+                <span className="text-2xl opacity-80">
+                  <Minus size={20} />
+                </span>
               </button>
               <div>{quantity}</div>
 
@@ -125,13 +127,15 @@ const ProductPage = ({
                 className=" bg-amber-100/30 w-10 h-10 flex items-center justify-center hover:bg-amber-100 transition-colors"
                 onClick={addQuantity}
               >
-                <span className="text-2xl opacity-80">+</span>
+                <span className="text-2xl opacity-80">
+                  <Plus size={20} />
+                </span>
               </button>
             </div>
           </div>
           <Button
             className={clsx(
-              "border bg-black hover:bg-neutral-800 transition-colors text-white",
+              "border bg-black hover:bg-neutral-800 transition-colors h-14 text-white",
               !availability && "bg-gray-100"
             )}
             onClick={onAddToCart}

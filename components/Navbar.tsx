@@ -49,8 +49,8 @@ const Navbar = () => {
   return (
     <section
       className={clsx(
-        `flex max-sm:py-2 max-sm:px-6 p-4 gap-x-4 mr-auto justify-between text-center items-center sticky z-50 transition-all 
-        delay-100 duration-1000 ease-in-out text-white bg-black border-opacity-10 md:px-10 max-sm:top-0 max-sm:translate-y-0 `,
+        `flex py-2 sm:py-4 gap-x-4 mr-auto justify-between text-center items-center sticky z-50 transition-all 
+        delay-100 duration-1000 ease-in-out text-white bg-black border-opacity-10 px-6 md:px-8 max-sm:top-0 max-sm:translate-y-0 `,
         visible ? "top-0 translate-y-0" : "-translate-y-full"
       )}
     >
@@ -67,11 +67,11 @@ const Navbar = () => {
           }}
         />
       </Link>
-      <div className="flex gap-x-8">
+      <div className="flex md:gap-x-8">
         <div className="hidden md:block">
           <NavbarRoutes routes={routes} pathname={pathname} />
         </div>
-        <div className="md:hidden">
+        <div className="md:hidden mr-2">
           <MobileNavbar routes={routes} />
         </div>
         <NavUtil />

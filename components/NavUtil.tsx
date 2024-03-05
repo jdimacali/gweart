@@ -7,15 +7,20 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import Image from "next/image";
 import { formatPrice } from "@/lib/format";
-import { toast } from "./ui/use-toast";
-import { MouseEventHandler } from "react";
 import CartItemInfo from "./CartItemInfo";
 
 const NavUtil = () => {
   const cart = useCart();
   const router = useRouter();
+
+  const totalPrice = cart.items.reduce((total, item) => {
+    return total + item.quantity * Number(item.product.price);
+  }, 0);
+
+  const handleClick = () => {
+    router.push("/cart");
+  };
 
   return (
     <div className="flex items-center justify-center">
@@ -24,7 +29,7 @@ const NavUtil = () => {
           {" "}
           <Button
             onClick={() => router.push("/cart")}
-            className="flex items-center rounded-full border-white border bg-black py-2 px-4"
+            className="flex items-center bg-black py-2 px-4"
           >
             <ShoppingCartIcon size={20} color="white" />
             <span className="ml-2 text-sm font-medium text-white">
@@ -34,13 +39,13 @@ const NavUtil = () => {
         </HoverCardTrigger>
         <HoverCardContent
           sideOffset={30}
-          className="bg-white overflow-y-auto h-96 w-80 text-black"
+          className="bg-black overflow-y-auto h-full w-96 border-neutral-500 text-white rounded-[0.35rem]"
         >
-          <h1 className="text-xl font-bold py-5 pl-4 text-left border-b">
+          <h1 className="text-xl font-bold py-5 pl-4 text-left Sst">
             {" "}
             Your Cart{" "}
           </h1>
-          <div className="flex flex-col bg-white ">
+          <div className="flex flex-col">
             {cart.items.length > 0 &&
               cart.items.map((item) => (
                 <CartItemInfo
@@ -50,9 +55,17 @@ const NavUtil = () => {
                 />
               ))}
             {cart.items.length == 0 && (
-              <h1 className="text-md text-neutral-700 py-5 pl-4 text-left">
+              <h1 className="text-md py-5 pl-4 text-left">
                 You have no items in your cart
               </h1>
+            )}
+            {cart.items.length > 0 && (
+              <Button
+                className="text-md font-semibold h-12 p-4 hover:bg-purple-700/95 bg-purple-700 text-left m-4"
+                onClick={handleClick}
+              >
+                Continue to cart {formatPrice(totalPrice)}
+              </Button>
             )}
           </div>
         </HoverCardContent>

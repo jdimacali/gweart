@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import ProductPage from "./components/ProductPage";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import BackToShop from "@/components/BackToShop";
 
 export const revalidate = 0;
 
@@ -66,13 +67,7 @@ const Page = () => {
 
   return (
     <section className="h-full w-full text-black bg-white items-center justify-center md:px-10 xl:px-80 px-10">
-      <Link
-        href="/shop/search"
-        className="flex gap-x-2 mb-8 md:mb-10 text-gray-500 hover:text-black group h-10 w-40"
-      >
-        <ArrowLeft className="group-hover:translate-x-[-5px] transition ease-in-out" />
-        Back to shop
-      </Link>
+      <BackToShop title="Back to Shop"/>
       <div className="w-full h-full">
         {product && (
           <ProductPage

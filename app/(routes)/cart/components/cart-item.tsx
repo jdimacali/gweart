@@ -42,27 +42,28 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
         />
       </div>
       <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-        <div className="absolute z-10 right-0 top-0">
-          <button onClick={onRemove} className="hover:opacity-70">
-            <X />
-          </button>
-        </div>
-        <div className="relative pr-9  sm:gap-x-6">
+        <div className=" sm:gap-x-6">
           <div className="flex justify-between">
-            <p className=" text-lg font-semibold text-black">
-              {data.product.name}
-            </p>
-            <p> x{data.quantity}</p>
+            <div className="flex flex-col">
+              <p className=" text-lg font-semibold text-black">
+                {data.product.name}
+              </p>
+              <div className="mt-1 flex text-sm">
+                <p className="text-gray-500">
+                  {data.product.categories.data.map(
+                    (category: { attributes: { name: string } }) =>
+                      category.attributes.name
+                  )}
+                </p>
+              </div>
+              {formatPrice(data.product.price)}
+            </div>
+            <div className="">
+              <button onClick={onRemove} className="hover:opacity-70">
+                <X />
+              </button>
+            </div>
           </div>
-          <div className="mt-1 flex text-sm">
-            <p className="text-gray-500">
-              {data.product.categories.data.map(
-                (category: { attributes: { name: string } }) =>
-                  category.attributes.name
-              )}
-            </p>
-          </div>
-          {formatPrice(data.product.price)}
           <div className="flex gap-x-4 items-center place-content-end md:mt-20">
             <button
               className={clsx(

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 // Define the type for product
-interface Product {
+export interface Product {
   id: string;
   name: string;
   price: number;

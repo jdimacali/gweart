@@ -3,8 +3,11 @@
 import { useEffect, useState } from "react";
 import Summary from "./components/summary";
 import CartItem from "./components/cart-item";
-import HelpfulInformation from "../shop/components/HelpfulInformation";
+import HelpfulInformation from "../../../components/HelpfulInformation";
 import useCart from "@/hooks/use-cart";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import BackToShop from "@/components/BackToShop";
 
 export const revalidate = 0;
 
@@ -23,6 +26,7 @@ const CartPage = () => {
   return (
     <div className="bg-white">
       <div className="px-4 py-16 sm:px-6 lg:px-8">
+        <BackToShop title="Continue Shopping" />
         <div className="text-center text-3xl font-bold text-neutral-800 mb-10">
           Art by G.W.E.
         </div>
