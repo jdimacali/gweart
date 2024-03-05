@@ -2,7 +2,6 @@ import Image from "next/image";
 import useCart from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/format";
 import { toast } from "@/components/ui/use-toast";
-import { useState } from "react";
 import clsx from "clsx";
 import { X } from "lucide-react";
 
@@ -32,7 +31,6 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
     toast({ title: "Item removed from cart", description: data.product.name });
   };
 
-  console.log(data.product.id);
   return (
     <li className="flex py-6 border-b">
       <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">

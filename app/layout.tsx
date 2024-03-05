@@ -3,7 +3,6 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import { AuthProvider } from "@/context/AuthProvider";
 import {
   butcherman,
   creepster,
@@ -31,14 +30,12 @@ export default function RootLayout({
         className={` bg-black ${butcherman.variable} ${creepster.variable} ${dokdo.variable} ${nosifer.variable} ${lato.variable} ${metalMania.variable} ${lato.className}`}
         suppressHydrationWarning
       >
-        <AuthProvider>
-          <SpeedInsights />
-          <Analytics />
-          <Toaster />
-          <Navbar />
-          {children}
-          <Footer />
-        </AuthProvider>
+        <SpeedInsights />
+        <Analytics />
+        <Toaster />
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );

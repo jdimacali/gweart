@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
@@ -8,20 +7,31 @@ import useCart from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
+import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Summary = () => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
 
+  const stripePromise = loadStripe(
+    "pk_live_51OqS0fJ3V5zq7YYD0jL4wa93pg2HiBy9p28mZhPiAaku1W13e7tqVN88v0N3r60i158CyNss2q1SjT88m8umxT3g00g9kA1XU2"
+  );
+
   useEffect(() => {
     if (searchParams.get("success")) {
-      // toast.success("Payment completed.");
+      toast({
+        title: "Payment completed",
+        description: "Your order is being processed",
+      });
       removeAll();
     }
 
     if (searchParams.get("canceled")) {
-      // toast.error("Something went wrong.");
+      toast({
+        title: "Checkout was not completed",
+      });
     }
   }, [searchParams, removeAll]);
 
@@ -30,18 +40,18 @@ const Summary = () => {
   }, 0);
 
   const onCheckout = async () => {
-    // const response = await axios.post(
-    //   `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
-    //   {
-    //     productIds: items.map((item) => item.product.id),
-    //   }
-    // );
+    try {
+      const res = await axios.post(`/api/orders`, {
+        items,
+      });
 
-    // window.location = response.data.url;
-    toast({
-      title: "Checkout completed!",
-      description: "You will now be redirected",
-    });
+      window.location = res.data.stripeSession.url;
+    } catch (error) {
+      console.error("Error during checkout", error);
+      toast({
+        title: "Error during checkout",
+      });
+    }
   };
 
   return (

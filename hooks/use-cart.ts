@@ -1,4 +1,3 @@
-import { Toast } from "@radix-ui/react-toast";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
@@ -44,7 +43,6 @@ const useCart = create(
         } else {
           set({ items: [...currentItems, data] });
         }
-        // toast({ title: "Item added to cart." });
       },
       addItemQuantity: (data: CartItem) => {
         const currentItems = get().items;
@@ -59,7 +57,6 @@ const useCart = create(
         } else {
           set({ items: [...currentItems, data] });
         }
-        // toast({ title: "Item added to cart." });
       },
       removeItemQuantity: (data: CartItem) => {
         const currentItems = get().items;
@@ -74,13 +71,11 @@ const useCart = create(
         } else {
           set({ items: [...currentItems, data] });
         }
-        // toast({ title: "Item added to cart." });
       },
       removeItem: (id: string) => {
         set({
           items: get().items.filter((item) => item.product.id !== id),
         });
-        // toast({ title: "Item removed from cart." });
       },
       removeAll: () => set({ items: [] }),
     }),
