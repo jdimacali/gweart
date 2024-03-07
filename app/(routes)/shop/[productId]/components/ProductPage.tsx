@@ -31,6 +31,12 @@ interface ProductProps {
         id: number;
         attributes: {
           name: string;
+          point: [
+            {
+              id: number;
+              point: string;
+            }
+          ];
         };
       }
     ];
@@ -70,11 +76,11 @@ const ProductPage = ({
     });
   };
 
-  console.log(id);
+  console.log(categories);
   return (
     <>
-      <div className="flex md:flex-row flex-col gap-x-40">
-        <div className="flex flex-col gap-y-4 md:gap-y-10 mb-4">
+      <div className="flex md:flex-row flex-col gap-y-10 gap-x-40 w-full">
+        <div className="flex flex-col gap-y-4 md:gap-y-10 mb-4 w-full">
           <div className="relative md:w-[25rem] xl:w-[30rem] h-[20rem] md:h-[35rem]">
             <Image
               src={image.data[0].attributes.url}
@@ -88,7 +94,7 @@ const ProductPage = ({
             <CategoryItems categoryId={categories.data[0].id} />
           </div>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-full">
           <div>
             <div className="text-2xl md:text-3xl font-bold">{name}</div>
             <div className="text-md opacity-80 italic">
@@ -96,16 +102,19 @@ const ProductPage = ({
             </div>
           </div>
           <div className="text-xl">{formatPrice(price)}</div>
-          <div>
-            <div className="font-bold mb-1">About this item</div>
-            {/* TODO: Add bullet points to backend and retrieve them from the frontend */}
-            <div className="flex flex-col gap-y-1">
-              <li> Ultrices mi tempus </li>
-              <li> Lorem ipsum dolor </li>
-              <li> Dignissim enim sit amet </li>
+          {categories.data[0].attributes.point.length > 0 && (
+            <div>
+              <div className="font-bold mb-1">About this item</div>
+              {/* TODO: Add bullet points to backend and retrieve them from the frontend */}
+              <div className="flex flex-col gap-y-1">
+                {categories.data[0].attributes.point.map((point) => (
+                  <li key={point.id}> {point.point} </li>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="text-lg text-gray-600 my-4">{description}</div>
+          )}
+
+          <div className="md:text-lg text-gray-600 my-4">{description}</div>
           <div className="flex flex-col mb-4">
             <div className="opacity-70 mb-3">Quantity</div>
             <div className="flex gap-x-4 items-center">

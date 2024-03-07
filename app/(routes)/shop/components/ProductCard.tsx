@@ -58,8 +58,6 @@ const ProdcutCard = ({
             priority
             className="object-cover group-hover:scale-105 transition"
             quality={100}
-            placeholder="blur"
-            blurDataURL="/background/blur.png"
           />
         </div>
         <div className="flex justify-between pt-2 w-full p-4 bg-amber-50/10">

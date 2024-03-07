@@ -5,7 +5,11 @@ import "swiper/css/effect-fade";
 import React from "react"; // No longer necessary in newer React versions
 import { useLongPress } from "use-long-press";
 interface DashboardImagesProps {
-  images: string[];
+  images: {
+    attributes: {
+      url: string;
+    };
+  }[];
 }
 
 const DashboardImages = ({ images }: DashboardImagesProps) => {
@@ -35,7 +39,7 @@ const DashboardImages = ({ images }: DashboardImagesProps) => {
             className="h-[30rem] w-auto flex justify-center items-center"
           >
             <Image
-              src={image}
+              src={image.attributes.url}
               fill
               priority
               quality={95}

@@ -6,49 +6,15 @@ import {
   EffectCoverflow,
 } from "swiper/modules";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Spin from "@/components/Spin";
 import Link from "next/link";
+import getSlides from "@/actions/getSlides";
 
 interface Slides {
   // Add other attributes as needed
-  url: string;
-  image: {
-    data: {
-      id: number;
-      attributes: {
-        formats: {
-          small: {
-            url: string;
-          };
-        };
-      };
-    };
-  };
 }
 
-export const revalidate = 0;
-
-const Slides = () => {
-  const [slides, setSlides] = useState<Slides[] | undefined>([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const getDashboard = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get("/api/slides");
-        setSlides(response.data.attributes.slides);
-      } catch (error) {
-        console.error("Error fetching dashboard:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getDashboard();
-  }, []);
-
+const Slides = async () => {
+  const slides = await getSlides();
   return (
     <div className="h-full w-full flex justify-center items-center m-6 max-sm:pl-13 max-md:pl-30">
       <Swiper
@@ -79,9 +45,7 @@ const Slides = () => {
           900: { slidesPerView: 4 },
         }}
       >
-        {loading && !slides && <Spin />}
-        {!loading &&
-          slides &&
+        {slides &&
           slides.map((slide, index) => (
             <SwiperSlide
               key={index}
@@ -99,8 +63,6 @@ const Slides = () => {
                   onContextMenu={(e) => {
                     e.preventDefault();
                   }}
-                  placeholder="blur"
-                  blurDataURL="/background/blur.png"
                 />
               </Link>
             </SwiperSlide>

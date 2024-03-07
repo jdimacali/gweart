@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const Footer = () => {
   return (
     <section className="w-full h-full px-8 text-white bg-black flex flex-col items-center text-center border-t border-black/10 shadow-inner shadow-black">
@@ -8,7 +6,7 @@ const Footer = () => {
         Wonder Extraordinaire | Specializing in the UnOrdinary |
         www.artbygwe.com
       </h1>
-      <div className="bg-[url('/graveyard.png')] w-full h-[31rem] bg-center bg-no-repeat absolute overflow-hidden bg-inherit brightness-150 pointer-events-none" />
+      <div className="bg-[url('/assets/graveyard.png')] w-full h-[31rem] bg-center bg-no-repeat absolute overflow-hidden bg-inherit brightness-150 pointer-events-none" />
     </section>
   );
 };

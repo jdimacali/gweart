@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
   try {
     // Make the API call to get information about product with a specific Id
     const response = await axios.get(
-      `${API_URL}/api/products?populate[image][fields][0]=url&populate[categories][sort][0]=name%3Aasc&[filters][id][$in]=${productId}`,
+      `${API_URL}/api/products?[filters][id][$in]=${productId}&populate[image][fields][0]=url&populate[categories][populate]=point`,
       {
         params: {
           productId,

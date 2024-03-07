@@ -1,4 +1,3 @@
-import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Policy from "../app/(routes)/shop/components/Policy";
 import Link from "next/link";
@@ -19,69 +18,70 @@ const HelpfulInformation = () => {
   const icons = [
     {
       name: "apple pay",
-      image: "/apple-pay.svg",
+      image: "/icon/apple-pay.svg",
     },
     {
       name: "google pay",
-      image: "/google-pay.svg",
+      image: "/icon/google-pay.svg",
     },
 
     {
       name: "visa",
-      image: "/visa.svg",
+      image: "/icon/visa.svg",
     },
 
     {
       name: "american express",
-      image: "/american-express.png",
+      image: "/icon/american-express.png",
     },
     {
       name: "master card",
-      image: "/master-card.svg",
+      image: "/icon/master-card.svg",
     },
     {
       name: "discover",
-      image: "/discover.png",
+      image: "/icon/discover.png",
     },
     {
       name: "diners club",
-      image: "/diners-club.png",
+      image: "/icon/diners-club.png",
     },
     {
       name: "JCB",
-      image: "/jcb.jpg",
+      image: "/icon/jcb.jpg",
     },
     {
       name: "China UnionPay",
-      image: "/union-pay.png",
+      image: "/icon/union-pay.png",
     },
     {
       name: "afterpay",
-      image: "/after-pay.svg",
+      image: "/icon/after-pay.svg",
     },
     {
       name: "cash app",
-      image: "/cash-app.svg",
+      image: "/icon/cash-app.svg",
     },
   ];
   return (
     <div className="text-sm mt-20">
-      <div className="mb-10 text-base flex flex-col items-center justify-center gap-y-2">
+      <div className="mb-10 text-base flex flex-col items-center justify-center">
         <Image src="/icon/stripe.png" alt="Stripe" width={100} height={100} />
-        Checkout powered by Stripe
-        <div className="flex items-center justify-center gap-x-2">
+        <div>Checkout powered by Stripe</div>
+
+        <div className="flex items-center justify-center gap-x-2 mt-4">
           {icons.map((icon) => (
             <Image
               key={icon.name}
               src={icon.image}
               alt={icon.name}
-              height={40}
-              width={40}
+              height={35}
+              width={35}
               className="object-contain aspect-square"
             />
           ))}
         </div>
-        <div className="flex gap-x-2 text-sm text-neutral-500 mt-1">
+        <div className="flex gap-x-2 text-sm text-neutral-500 mt-4">
           <Link
             href={"https://stripe.com/legal/consumer"}
             className="hover:text-neutral-600 border-r pr-2"

@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import ProductPage from "./components/ProductPage";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import BackToShop from "@/components/BackToShop";
 
 export const revalidate = 0;
@@ -33,6 +31,12 @@ interface Product {
           id: number;
           attributes: {
             name: string;
+            point: [
+              {
+                id: number;
+                point: string;
+              }
+            ];
           };
         }
       ];
@@ -67,7 +71,7 @@ const Page = () => {
 
   return (
     <section className="h-full w-full text-black bg-white items-center justify-center md:px-10 xl:px-80 px-10">
-      <BackToShop title="Back to Shop"/>
+      <BackToShop title="Back to Shop" />
       <div className="w-full h-full">
         {product && (
           <ProductPage

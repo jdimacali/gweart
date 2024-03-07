@@ -67,7 +67,7 @@ const Navbar = () => {
           }}
         />
       </Link>
-      <div className="flex md:gap-x-8">
+      <div className="flex md:gap-x-4">
         <div className="hidden md:block">
           <NavbarRoutes routes={routes} pathname={pathname} />
         </div>

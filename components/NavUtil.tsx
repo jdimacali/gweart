@@ -61,7 +61,7 @@ const NavUtil = () => {
             )}
             {cart.items.length > 0 && (
               <Button
-                className="text-md font-semibold h-12 p-4 hover:bg-purple-700/95 bg-purple-700 text-left m-4"
+                className="text-md font-semibold h-12 p-4 hover:bg-purple-700/90 bg-[#8b46c4] text-left m-4"
                 onClick={handleClick}
               >
                 Continue to cart {formatPrice(totalPrice)}

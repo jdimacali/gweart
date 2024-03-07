@@ -25,6 +25,7 @@ const Summary = () => {
         title: "Payment completed",
         description: "Your order is being processed",
       });
+      // make stripe webhook post request to fulfill the order
       removeAll();
     }
 
@@ -55,7 +56,7 @@ const Summary = () => {
   };
 
   return (
-    <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
+    <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8 sticky top-32">
       <h2 className="text-xl font-semibold text-gray-900 mb-4">
         Order summary
       </h2>
