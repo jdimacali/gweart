@@ -1,9 +1,8 @@
-import Link from "next/link";
+"use client";
+
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { MenuIcon } from "lucide-react";
 import { useState } from "react";
 import CategoryItem from "./CategoryItem";
-import { Separator } from "@/components/ui/separator";
 
 interface Categories {
   categories?: {
@@ -24,7 +23,7 @@ const CategoriesMobileSidebar = ({ categories }: Categories) => {
         </SheetTrigger>
         <SheetContent className="p-0" side={"top"}>
           <section className="flex flex-col text-center items-center gap-y-5 pt-12 bg-white gap-x-10 font-medium h-full w-full m-0">
-            {categories!.map((category) => (
+            {categories?.map((category) => (
               <div
                 className="w-full text-center"
                 key={category.id}

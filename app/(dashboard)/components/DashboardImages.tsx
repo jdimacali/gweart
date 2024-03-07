@@ -6,10 +6,13 @@ import React from "react"; // No longer necessary in newer React versions
 import { useLongPress } from "use-long-press";
 interface DashboardImagesProps {
   images: {
-    attributes: {
-      url: string;
-    };
-  }[];
+    id: number;
+    data: {
+      attributes: {
+        url: string;
+      };
+    }[];
+  };
 }
 
 const DashboardImages = ({ images }: DashboardImagesProps) => {
@@ -33,7 +36,7 @@ const DashboardImages = ({ images }: DashboardImagesProps) => {
         fadeEffect={{ crossFade: true }}
         className="w-[25vw] max-sm:w-full h-full flex justify-center items-center"
       >
-        {images.map((image, index) => (
+        {images.data.map((image, index) => (
           <SwiperSlide
             key={index}
             className="h-[30rem] w-auto flex justify-center items-center"

@@ -1,4 +1,16 @@
-export interface Dashboard {}
+export interface Dashboard {
+  Title: string;
+  Subtitle: string;
+  Images: {
+    id: number;
+    data: {
+      attributes: {
+        url: string;
+      };
+    }[];
+  };
+  Button: string;
+}
 
 export interface Slide {
   id: number;
@@ -42,6 +54,39 @@ export interface Linktree {
   Links: { id: number; name: string; url: string; icon?: string }[];
 }
 
-export interface Product {}
+export interface Product {
+  id: number;
+  attributes: {
+    name: string;
+    price: number;
+    description: string;
+    availablitiy: boolean;
+    image: {
+      data: [
+        {
+          id: number;
+          attributes: {
+            url: string;
+          };
+        }
+      ];
+    };
+    categories: {
+      data: [
+        {
+          id: number;
+          attributes: {
+            name: string;
+          };
+        }
+      ];
+    };
+  };
+}
 
-export interface Category {}
+export interface Category {
+  id: number;
+  attributes: {
+    name: string;
+  };
+}

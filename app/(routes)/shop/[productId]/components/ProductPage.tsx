@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { formatPrice } from "@/lib/format";
@@ -76,7 +78,6 @@ const ProductPage = ({
     });
   };
 
-  console.log(categories);
   return (
     <>
       <div className="flex md:flex-row flex-col gap-y-10 gap-x-40 w-full">

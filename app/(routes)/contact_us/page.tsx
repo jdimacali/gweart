@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import Clown from "./components/Clown";
+import { API_URL } from "@/lib/utils";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -45,6 +46,7 @@ const formSchema = z.object({
 const Page = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,10 +59,12 @@ const Page = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsLoading(true);
-      axios.post("/api/contact", {
-        name: values.name,
-        email: values.email,
-        message: values.message,
+      axios.post(`${API_URL}/api/contact-emails`, {
+        data: {
+          name: values.name,
+          email: values.email,
+          message: values.message,
+        },
       });
       toast({ title: "Message Sent!" });
       form.reset();

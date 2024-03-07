@@ -1,13 +1,6 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useParams } from "next/navigation";
 import ProductPage from "./components/ProductPage";
 import BackToShop from "@/components/BackToShop";
-
-export const revalidate = 0;
-
+import getProduct from "@/actions/getProduct";
 interface Product {
   id: number;
   attributes: {
@@ -44,30 +37,8 @@ interface Product {
   };
 }
 
-const Page = () => {
-  const [loading, setLoading] = useState(false);
-  const [product, setProduct] = useState<Product | undefined>();
-  const params = useParams();
-  const productId = params.productId;
-
-  useEffect(() => {
-    const getProductsCategories = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(`/api/products/${productId}`, {
-          params: {
-            productId,
-          },
-        });
-        setProduct(response.data);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getProductsCategories();
-  }, [productId]);
+const Page = async ({ params }: { params: { productId: string } }) => {
+  const product = await getProduct(params.productId);
 
   return (
     <section className="h-full w-full text-black bg-white items-center justify-center md:px-10 xl:px-80 px-10">
@@ -76,12 +47,12 @@ const Page = () => {
         {product && (
           <ProductPage
             id={product.id}
-            name={product.attributes.name}
-            price={product.attributes.price}
-            description={product.attributes.description}
-            image={product.attributes.image}
-            availability={product.attributes.availability}
-            categories={product.attributes.categories}
+            name={product.name}
+            price={product.price}
+            description={product.description}
+            image={product.image}
+            availability={product.availability}
+            categories={product.categories}
           />
         )}
       </div>

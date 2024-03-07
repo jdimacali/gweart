@@ -5,16 +5,8 @@ import Image from "next/image";
 import clsx from "clsx";
 import getDashboard from "@/actions/getDashboard";
 
-interface Data {
-  title: string;
-  subtitle: string;
-  imageUrls: string[];
-  button: string;
-}
-
 async function SpooktacularGoodies() {
   const dashboard = await getDashboard();
-
   return (
     <section
       className={clsx(
@@ -25,7 +17,7 @@ async function SpooktacularGoodies() {
     >
       <DashboardGhost />
       <Image
-        src="/web.png"
+        src="/assets/web.png"
         width={900}
         height={900}
         className="absolute top-0 -left-3"
@@ -39,7 +31,7 @@ async function SpooktacularGoodies() {
             subtitle={dashboard?.Subtitle}
             button={dashboard?.Button}
           />
-          <DashboardImages images={dashboard?.Images.data} />
+          <DashboardImages images={dashboard.Images} />
         </div>
       </>
     </section>

@@ -1,9 +1,9 @@
+"use client";
+
 import queryString from "query-string";
 import ProductCard from "./ProductCard";
 import { usePathname, useSearchParams } from "next/navigation";
 import PaginationBar from "./PaginationBar";
-import Spin from "@/components/Spin";
-
 interface Products {
   products: {
     id: number;
@@ -34,14 +34,13 @@ interface Products {
       };
     };
   }[];
-  loading: boolean;
   metadata: any;
 }
 
-const ProductList = ({ products, metadata, loading }: Products) => {
+const ProductList = ({ products, metadata }: Products) => {
   const searchParams = useSearchParams();
   const categoryId = searchParams.get("categoryId");
-  let page = searchParams.get("page");
+  const page = searchParams.get("page");
   const pathname = usePathname();
 
   const nextUrl = queryString.stringifyUrl(
@@ -73,17 +72,12 @@ const ProductList = ({ products, metadata, loading }: Products) => {
           ? products[0].attributes.categories.data[0].attributes.name
           : "All Items"}
       </div>
-      {loading && (
-        <div className="flex justify-center items-center">
-          <Spin />
-        </div>
-      )}
-      {!loading && products.length === 0 && (
+      {products.length === 0 && (
         <div className="text-center text-sm text-muted-foreground mt-10">
           No products were found
         </div>
       )}
-      {!loading && products.length > 0 && (
+      {products.length > 0 && (
         <div className="grid sm:grid-cols-2 md:grid-cols-2 2xl:grid-cols-3 gap-16">
           {products.map((product) => (
             <ProductCard
@@ -98,14 +92,12 @@ const ProductList = ({ products, metadata, loading }: Products) => {
           ))}
         </div>
       )}
-      {!loading && (
-        <PaginationBar
-          metadata={metadata}
-          nextUrl={nextUrl}
-          prevUrl={prevUrl}
-          categoryId={categoryId}
-        />
-      )}
+      <PaginationBar
+        metadata={metadata}
+        nextUrl={nextUrl}
+        prevUrl={prevUrl}
+        categoryId={categoryId}
+      />
     </div>
   );
 };

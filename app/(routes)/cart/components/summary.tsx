@@ -8,16 +8,12 @@ import { formatPrice } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
-import { loadStripe } from "@stripe/stripe-js";
+import { API_URL } from "@/lib/utils";
 
 const Summary = () => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
-
-  const stripePromise = loadStripe(
-    "pk_live_51OqS0fJ3V5zq7YYD0jL4wa93pg2HiBy9p28mZhPiAaku1W13e7tqVN88v0N3r60i158CyNss2q1SjT88m8umxT3g00g9kA1XU2"
-  );
 
   useEffect(() => {
     if (searchParams.get("success")) {
@@ -42,10 +38,7 @@ const Summary = () => {
 
   const onCheckout = async () => {
     try {
-      const res = await axios.post(`/api/orders`, {
-        items,
-      });
-
+      const res = await axios.post(`${API_URL}/api/orders`, items);
       window.location = res.data.stripeSession.url;
     } catch (error) {
       console.error("Error during checkout", error);
