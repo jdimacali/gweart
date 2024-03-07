@@ -85,12 +85,14 @@ const HelpfulInformation = () => {
           <Link
             href={"https://stripe.com/legal/consumer"}
             className="hover:text-neutral-600 border-r pr-2"
+            target="_blank"
           >
             Terms
           </Link>
           <Link
             href={"https://stripe.com/privacy"}
             className="hover:text-neutral-600"
+            target="_blank"
           >
             Privacy
           </Link>
