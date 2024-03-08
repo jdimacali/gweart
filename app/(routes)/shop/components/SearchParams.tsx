@@ -14,7 +14,8 @@ interface searchParamProps {
 const SearchParams = ({ categories }: searchParamProps) => {
   const pathname = usePathname();
   const router = useRouter();
-  const categoryId = useSearchParams().get("categoryId");
+  const searchParams = useSearchParams();
+  const categoryId = searchParams.get("categoryId");
 
   const onClick = () => {
     const url = qs.stringifyUrl(
@@ -31,17 +32,24 @@ const SearchParams = ({ categories }: searchParamProps) => {
   };
 
   return (
-    <div className="md:block hidden md:mr-20 lg:mr-40">
-      <div className="border-b text-lg">Browse by category</div>
-      <button
-        onClick={onClick}
-        className={clsx("text-left", !categoryId ? "font-bold" : "font-normal")}
-      >
-        All Items
-      </button>
-      {categories && <Categories categories={categories} />}
+    <>
+      <div className="md:block hidden md:mr-20 lg:mr-40 mt-16">
+        <div className="underline decoration-2 underline-offset-8 mb-2 t tracking-tight">
+          Browse by category
+        </div>
+        <button
+          onClick={onClick}
+          className={clsx(
+            "text-left tracking-tight",
+            !categoryId ? "font-semibold" : "font-medium"
+          )}
+        >
+          All Items
+        </button>
+        {categories && <Categories categories={categories} />}
+      </div>
       <CategoriesMobileSidebar categories={categories} />
-    </div>
+    </>
   );
 };
 export default SearchParams;

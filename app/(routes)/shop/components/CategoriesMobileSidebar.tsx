@@ -3,6 +3,10 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import CategoryItem from "./CategoryItem";
+import queryString from "query-string";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import clsx from "clsx";
 
 interface Categories {
   categories?: {
@@ -15,6 +19,25 @@ interface Categories {
 
 const CategoriesMobileSidebar = ({ categories }: Categories) => {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const categoryId = searchParams.get("categoryId");
+
+  const onClick = () => {
+    const url = queryString.stringifyUrl(
+      {
+        url: pathname,
+        query: {
+          categoryId: null,
+        },
+      },
+      { skipNull: true, skipEmptyString: true }
+    );
+
+    router.push(url);
+  };
+
   return (
     <div className="md:hidden block mb-10">
       <Sheet open={open} onOpenChange={setOpen}>
@@ -23,6 +46,18 @@ const CategoriesMobileSidebar = ({ categories }: Categories) => {
         </SheetTrigger>
         <SheetContent className="p-0" side={"top"}>
           <section className="flex flex-col text-center items-center gap-y-5 pt-12 bg-white gap-x-10 font-medium h-full w-full m-0">
+            <div className=" w-full">
+              <button
+                onClick={onClick}
+                className={clsx(
+                  "text-left tracking-tight",
+                  !categoryId ? "font-semibold" : "font-medium"
+                )}
+              >
+                All Items
+              </button>
+              <div className="h-[1px] bg-gray-950 opacity-20 w-full mt-4" />
+            </div>
             {categories?.map((category) => (
               <div
                 className="w-full text-center"

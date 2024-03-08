@@ -40,11 +40,11 @@ const CategoryItem = ({ name, id }: CategoryItemProps) => {
       onClick={onClick}
       className={cn(
         "text-left hover:opacity-80 animate-in-[opacity-10]",
-        isSelected && "font-bold"
+        isSelected && "font-semibold"
       )}
       type="button"
     >
-      <div className="truncate">{name}</div>
+      <div className="tracking-tight">{name}</div>
     </button>
   );
 };

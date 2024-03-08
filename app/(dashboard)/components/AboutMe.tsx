@@ -10,7 +10,7 @@ const AboutMe = () => {
             alt="Picture of the author"
             width={400}
             height={400}
-            className="object-cover"
+            className="object-cover shadow-2xl drop-shadow-2xl"
           />
         </div>
         <div className="h-full flex flex-col justify-center text-white gap-y-4">
@@ -18,11 +18,14 @@ const AboutMe = () => {
             {" "}
             Specializing in the UnOrdinary
           </p>
-          <p className="text-2xl md:text-3xl font-bold">
+          <p className="text-2xl md:text-3xl font-bold text-shadow-black">
             {" "}
             I am Girl Wonder Extraordinaire
           </p>
-          <p className="text-md"> Los Angeles based Mixed Media Artist</p>
+          <p className="text-md opacity-90">
+            {" "}
+            Los Angeles based Mixed Media Artist
+          </p>
         </div>
       </div>
     </div>

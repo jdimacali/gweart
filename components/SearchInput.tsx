@@ -16,6 +16,7 @@ const SearchInput = () => {
   const pathname = usePathname();
 
   const currentCategoryId = searchParams.get("categoryId");
+  const currentPage = searchParams.get("page");
 
   useEffect(() => {
     const url = qs.stringifyUrl(
@@ -23,7 +24,8 @@ const SearchInput = () => {
         url: pathname,
         query: {
           categoryId: currentCategoryId,
-          title: debouncedValue,
+          name: debouncedValue,
+          page: currentPage,
         },
       },
       { skipEmptyString: true, skipNull: true }
@@ -40,8 +42,8 @@ const SearchInput = () => {
         onChange={(e) => {
           setValue(e.target.value);
         }}
-        className="w-full md:w-[300px] pl-9 rounded-full bg-slate-100 focus-visible ring-slate-200 "
-        placeholder="Search for a course"
+        className="w-full md:w-[320px] pl-9 rounded-full bg-slate-100 focus-visible ring-slate-200 "
+        placeholder="Search for a product..."
       />
     </div>
   );

@@ -69,35 +69,37 @@ const ProductList = ({ products, metadata }: Products) => {
     <div className="flex flex-col gap-y-10">
       <div className="text-3xl font-bold ">
         {categoryId
-          ? products[0].attributes.categories.data[0].attributes.name
+          ? products[0]?.attributes.categories.data[0].attributes.name
           : "All Items"}
       </div>
       {products.length === 0 && (
-        <div className="text-center text-sm text-muted-foreground mt-10">
+        <div className=" text-sm font-semibold text-neutral-600 mt-10 w-[57vw] h-full">
           No products were found
         </div>
       )}
       {products.length > 0 && (
-        <div className="grid sm:grid-cols-2 md:grid-cols-2 2xl:grid-cols-3 gap-16">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              image={product.attributes.image.data[0].attributes.url}
-              id={product.id}
-              name={product.attributes.name}
-              price={product.attributes.price}
-              description={product.attributes.description}
-              categories={product.attributes.categories}
-            />
-          ))}
-        </div>
+        <>
+          <div className="grid sm:grid-cols-2 md:grid-cols-2 2xl:grid-cols-3 gap-16">
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                image={product.attributes.image.data[0].attributes.url}
+                id={product.id}
+                name={product.attributes.name}
+                price={product.attributes.price}
+                description={product.attributes.description}
+                categories={product.attributes.categories}
+              />
+            ))}
+          </div>
+          <PaginationBar
+            metadata={metadata}
+            nextUrl={nextUrl}
+            prevUrl={prevUrl}
+            categoryId={categoryId}
+          />
+        </>
       )}
-      <PaginationBar
-        metadata={metadata}
-        nextUrl={nextUrl}
-        prevUrl={prevUrl}
-        categoryId={categoryId}
-      />
     </div>
   );
 };
