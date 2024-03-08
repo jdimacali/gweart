@@ -7,7 +7,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import Spin from "./Spin";
 import NavUtil from "./NavUtil";
 
 const routes = [
@@ -44,17 +43,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   });
 
-  const imageLoader = <Spin />;
-
   return (
     <section
       className={clsx(
-        `flex py-2 sm:py-4 gap-x-4 mr-auto justify-between text-center items-center sticky z-50 transition-all 
-        delay-100 duration-1000 ease-in-out text-white bg-black border-opacity-10 px-6 md:px-8 max-sm:top-0 max-sm:translate-y-0 `,
+        `flex md:py-4 py-2 justify-between text-center items-center sticky z-50 transition-all 
+        delay-100 duration-1000 ease-in-out text-white bg-black border-opacity-10 px-6 md:px-12 max-sm:top-0 max-sm:translate-y-0 `,
         visible ? "top-0 translate-y-0" : "-translate-y-full"
       )}
     >
-      <Link href="/" className="relative sm:h-16 sm:w-16 w-14 h-14">
+      <Link href="/" className="relative sm:h-20 sm:w-20 w-14 h-14">
         <Image
           src="/icon/gwe.png"
           alt="gwe"

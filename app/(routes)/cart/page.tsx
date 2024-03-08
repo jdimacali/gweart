@@ -5,8 +5,6 @@ import Summary from "./components/summary";
 import CartItem from "./components/cart-item";
 import HelpfulInformation from "../../../components/HelpfulInformation";
 import useCart from "@/hooks/use-cart";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import BackToShop from "@/components/BackToShop";
 
 export const revalidate = 0;

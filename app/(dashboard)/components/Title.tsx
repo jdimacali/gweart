@@ -20,11 +20,11 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           ease: "backOut",
           duration: 1,
         }}
-        className="break-words md:text-6xl text-5xl tracking-[0.35rem] font-bold text-[#8b46c4] font-mania antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font text-shadow-white"
+        className="break-words xl:text-7xl text-5xl tracking-[0.4rem] font-bold text-[#8b46c4] font-mania antialiased drop-shadow-2xl underline-offset-[16px] underline decoration-from-font text-shadow-white"
       >
         {title}
       </motion.h2>
-      <h2 className="text-2xl tracking-[0.30rem] font-bold text-[#ffffff] font-mania antialiased mt-5 text-shadow-purple">
+      <h2 className="text-4xl tracking-[0.30rem] font-bold text-white font-mania antialiased mt-5 text-shadow-purple">
         {subtitle}
       </h2>
       <div>

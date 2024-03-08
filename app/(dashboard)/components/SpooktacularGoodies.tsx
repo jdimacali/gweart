@@ -11,8 +11,7 @@ async function SpooktacularGoodies() {
     <section
       className={clsx(
         `w-full  bg-violet-950  
-      max-md:pt-20 gap-x-20 relative bg-gradient-to-br from-violet-900/40 from-15% to-violet-950 to-15%`
-        // !loading && data ? "h-full" : "h-[800px]"
+      max-md:pt-20 gap-x-20 relative bg-gradient-to-br from-violet-900/40 from-15% to-violet-950 to-15% h-full `
       )}
     >
       <DashboardGhost />

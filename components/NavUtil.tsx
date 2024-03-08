@@ -33,7 +33,7 @@ const NavUtil = () => {
           >
             <ShoppingCartIcon size={20} color="white" />
             <span className="ml-2 text-sm font-medium text-white">
-              {cart.items.length}
+              {cart.items.length > 0 && cart.items.length}
             </span>
           </Button>
         </HoverCardTrigger>

@@ -1,16 +1,16 @@
 import {
-  Lato,
   Metal_Mania,
   Creepster,
   Dokdo,
   Nosifer,
   Butcherman,
+  Open_Sans,
 } from "next/font/google";
 
-export const lato = Lato({
+export const openSans = Open_Sans({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-lato",
+  variable: "--font-open-sans",
 });
 
 export const metalMania = Metal_Mania({

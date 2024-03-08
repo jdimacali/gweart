@@ -1,11 +1,6 @@
-import Spin from "@/components/Spin";
-import { API_URL, formatDateFromString } from "@/lib/utils";
-import Image from "next/image";
 import Header from "./components/Header";
-import { ArrowUpRight } from "lucide-react";
 import Slime from "./components/Slime";
 import getEvents from "@/actions/getEvents";
-import { Event as EventType } from "@/types";
 import Event from "./components/Event";
 
 const Page = async () => {

@@ -7,8 +7,8 @@ import {
   butcherman,
   creepster,
   dokdo,
-  lato,
   metalMania,
+  openSans,
   nosifer,
 } from "@/lib/fonts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={` bg-black ${butcherman.variable} ${creepster.variable} ${dokdo.variable} ${nosifer.variable} ${lato.variable} ${metalMania.variable} ${lato.className}`}
+        className={` bg-black ${butcherman.variable} ${creepster.variable} ${dokdo.variable} ${nosifer.variable} ${openSans.variable} ${metalMania.variable} ${openSans.className}`}
         suppressHydrationWarning
       >
         <SpeedInsights />
