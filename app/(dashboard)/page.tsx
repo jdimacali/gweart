@@ -1,20 +1,20 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import SpooktacularGoodies from "./components/SpooktacularGoodies";
 import AboutMe from "./components/AboutMe";
+import SlideShow from "./components/Slideshow";
+import getSlides from "@/actions/getSlides";
+import getDashboard from "@/actions/getDashboard";
 
-// Lazy load the SlideShow component
-const SlideShow = dynamic(() => import("./components/Slideshow"), {
-  ssr: false,
-});
+const Home = async () => {
+  const slides = await getSlides();
+  const dashboard = await getDashboard();
 
-export default function Home() {
   return (
     <main>
-      <SpooktacularGoodies />
-      <SlideShow />
+      <SpooktacularGoodies dashboard={dashboard} />
+      <SlideShow slides={slides} />
       <AboutMe />
     </main>
   );
-}
+};
+
+export default Home;

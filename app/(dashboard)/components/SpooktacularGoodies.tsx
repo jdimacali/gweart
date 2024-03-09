@@ -3,10 +3,13 @@ import DashboardImages from "./DashboardImages";
 import DashboardGhost from "./DashboardGhost";
 import Image from "next/image";
 import clsx from "clsx";
-import getDashboard from "@/actions/getDashboard";
+import { Dashboard } from "@/types";
 
-async function SpooktacularGoodies() {
-  const dashboard = await getDashboard();
+interface SpooktacularGoodiesProps {
+  dashboard: Dashboard;
+}
+
+const SpooktacularGoodies = ({ dashboard }: SpooktacularGoodiesProps) => {
   return (
     <section
       className={clsx(
@@ -35,5 +38,6 @@ async function SpooktacularGoodies() {
       </>
     </section>
   );
-}
+};
+
 export default SpooktacularGoodies;

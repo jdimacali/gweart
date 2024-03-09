@@ -7,14 +7,13 @@ import {
 } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
-import getSlides from "@/actions/getSlides";
+import { Slide } from "@/types";
 
-interface Slides {
-  // Add other attributes as needed
+interface SlidesProps {
+  slides: Slide[];
 }
 
-const Slides = async () => {
-  const slides = await getSlides();
+const Slides = ({ slides }: SlidesProps) => {
   return (
     <div className="h-full w-full flex justify-center items-center m-6 max-sm:pl-13 max-md:pl-30">
       <Swiper

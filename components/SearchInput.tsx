@@ -32,7 +32,7 @@ const SearchInput = () => {
     );
 
     router.push(url);
-  }, [debouncedValue, currentCategoryId, router, pathname]);
+  }, [debouncedValue, currentCategoryId, router, pathname, currentPage]);
 
   return (
     <div className="relative">
@@ -42,7 +42,7 @@ const SearchInput = () => {
         onChange={(e) => {
           setValue(e.target.value);
         }}
-        className="w-full md:w-[320px] pl-9 rounded-full bg-slate-100 focus-visible ring-slate-200 "
+        className="w-full md:w-[320px] pl-9 rounded-2xl bg-slate-100 focus-visible ring-slate-200 "
         placeholder="Search for a product..."
       />
     </div>

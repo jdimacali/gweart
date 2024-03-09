@@ -1,7 +1,14 @@
+"use client";
+
 import { motion } from "framer-motion";
 import Slides from "./Slides";
+import { Slide } from "@/types";
 
-const SlideShow = () => {
+interface SlideShowProps {
+  slides: Slide[];
+}
+
+const SlideShow = ({ slides }: SlideShowProps) => {
   return (
     <section className="w-full h-full text-white bg-zinc-950 flex flex-col items-center pt-12 pb-20 gap-y-5 bg-[url('/background/pumpkin.png')] bg-cover bg-no-repeat overflow-hidden">
       <motion.div
@@ -15,7 +22,7 @@ const SlideShow = () => {
           available for purchase
         </h1>
       </motion.div>
-      <Slides />
+      <Slides slides={slides} />
     </section>
   );
 };
