@@ -11,15 +11,14 @@ const SearchInput = () => {
   const router = useRouter();
   const pathname = usePathname();
 
+  // Get query parameters
   const currentCategoryId = searchParams.get("categoryId");
   const currentName = searchParams.get("name");
+
+  // Initialize state with query parameter values
   const [value, setValue] = useState(currentName || "");
 
-  // Debounce delay in milliseconds
-  const debounceDelay = 300;
-
-  let timeoutId: NodeJS.Timeout;
-
+  // Update input value when query parameters change
   useEffect(() => {
     setValue(currentName || "");
   }, [currentName]);
@@ -28,24 +27,18 @@ const SearchInput = () => {
     const newValue = e.target.value;
     setValue(newValue);
 
-    // Clear previous timeout
-    clearTimeout(timeoutId);
-
-    // Set new timeout for debouncing
-    timeoutId = setTimeout(() => {
-      const url = qs.stringifyUrl(
-        {
-          url: pathname,
-          query: {
-            categoryId: currentCategoryId,
-            name: newValue,
-            page: 1,
-          },
+    const url = qs.stringifyUrl(
+      {
+        url: pathname,
+        query: {
+          categoryId: currentCategoryId,
+          name: newValue,
+          page: 1,
         },
-        { skipEmptyString: true, skipNull: true }
-      );
-      router.push(url);
-    }, debounceDelay);
+      },
+      { skipEmptyString: true, skipNull: true }
+    );
+    router.push(url);
   };
 
   return (
