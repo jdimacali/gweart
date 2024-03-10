@@ -8,13 +8,18 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import getProducts from "@/actions/getProducts";
+import { Product } from "@/types";
 
-const CategoryItems = async ({ categoryId }: any) => {
-  const products = await getProducts(categoryId);
+interface CategoryItemsProps {
+  categoryId: string;
+}
+
+const CategoryItems = async ({ categoryId }: CategoryItemsProps) => {
+  const products = await getProducts({ categoryId });
   return (
     <Carousel className="w-full mx-12">
       <CarouselContent>
-        {products.response?.map((product: any) => (
+        {products.response?.map((product: Product) => (
           <CarouselItem key={product.id} className="basis-1/3">
             <Link href={`/shop/${product.id}`}>
               <Image

@@ -13,7 +13,7 @@ const Event = ({ event }: EventProps) => {
       <a href={event.attributes.url} target="_blank" rel="noopener noreferrer">
         <div className="w-full h-full relative overflow-hidden shadow-lg">
           <Image
-            src={event.attributes.image.data.attributes.url}
+            src={event.attributes.image.data.attributes.formats.large.url}
             alt={`${API_URL}${event.attributes.name}`}
             fill
             priority
@@ -21,7 +21,7 @@ const Event = ({ event }: EventProps) => {
             className="object-cover object-top rounded-t-xl hover:scale-110 transition-all duration-500 ease-in-out transform"
           />
         </div>
-        <div className="shadow-2xl flex flex-col h-auto w-full gap-y-1 p-4 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-600">
+        <div className="shadow-2xl flex flex-col h-auto w-full gap-y-1 p-4 bg-gray-400 rounded-md bg-clip-padding backdrop-filter bg-opacity-10 border border-gray-600 backdrop-blur-3xl">
           <h1 className="text-xl md:text-2xl font-[600] opacity-90 mt-2 ">
             {event.attributes.name}
           </h1>

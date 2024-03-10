@@ -1,9 +1,10 @@
 "use client";
 
-import queryString from "query-string";
+import qs from "query-string";
 import ProductCard from "./ProductCard";
 import { usePathname, useSearchParams } from "next/navigation";
 import PaginationBar from "./PaginationBar";
+import { Metadata } from "@/types";
 interface Products {
   products: {
     id: number;
@@ -34,32 +35,35 @@ interface Products {
       };
     };
   }[];
-  metadata: any;
+  metadata: Metadata;
 }
 
 const ProductList = ({ products, metadata }: Products) => {
   const searchParams = useSearchParams();
   const categoryId = searchParams.get("categoryId");
   const page = searchParams.get("page");
+  const name = searchParams.get("name");
   const pathname = usePathname();
 
-  const nextUrl = queryString.stringifyUrl(
+  const nextUrl = qs.stringifyUrl(
     {
       url: pathname,
       query: {
         categoryId: categoryId,
         page: page ? parseInt(page) + 1 : 2,
+        name: name,
       },
     },
     { skipNull: true, skipEmptyString: true }
   );
 
-  const prevUrl = queryString.stringifyUrl(
+  const prevUrl = qs.stringifyUrl(
     {
       url: pathname,
       query: {
         categoryId: categoryId,
         page: page ? parseInt(page) - 1 : 2,
+        name: name,
       },
     },
     { skipNull: true, skipEmptyString: true }

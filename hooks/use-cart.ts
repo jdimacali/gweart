@@ -1,18 +1,10 @@
+import { CartItemProduct } from "@/types";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-// Define the type for product
-export interface Product {
-  id: string;
-  name: string;
-  price: number;
-  image: any;
-  categories: any;
-}
-
 // Define the type for the item in the cart
 interface CartItem {
-  product: Product;
+  product: CartItemProduct;
   quantity: number;
 }
 

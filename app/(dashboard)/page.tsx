@@ -1,6 +1,8 @@
+import dynamic from "next/dynamic";
+
 import SpooktacularGoodies from "./components/SpooktacularGoodies";
-import AboutMe from "./components/AboutMe";
-import SlideShow from "./components/Slideshow";
+const AboutMe = dynamic(() => import("./components/AboutMe"));
+const SlideShow = dynamic(() => import("./components/Slideshow"));
 import getSlides from "@/actions/getSlides";
 import getDashboard from "@/actions/getDashboard";
 

@@ -11,6 +11,11 @@ interface DashboardImagesProps {
     id: number;
     data: {
       attributes: {
+        formats: {
+          small: {
+            url: string;
+          };
+        };
         url: string;
       };
     }[];
@@ -21,8 +26,9 @@ const DashboardImages = ({ images }: DashboardImagesProps) => {
   const bind = useLongPress(() => {
     return false;
   });
+
   return (
-    <div className="h-full w-auto max-sm:w-full flex justify-center items-center m-6 ">
+    <div className="h-[100%] w-auto max-sm:w-full flex justify-center items-center mb-20 mt-10 my-8 ">
       <Swiper
         loop={true}
         autoplay={{
@@ -41,13 +47,12 @@ const DashboardImages = ({ images }: DashboardImagesProps) => {
         {images.data.map((image, index) => (
           <SwiperSlide
             key={index}
-            className="h-[30rem] w-auto flex justify-center items-center"
+            className="h-[30rem] flex justify-center items-center"
           >
             <Image
-              src={image.attributes.url}
+              src={image.attributes.formats.small.url}
               fill
               priority
-              quality={95}
               alt="slide"
               sizes="(max-width: 320px) 280px,
          (max-width: 768px) 720px,

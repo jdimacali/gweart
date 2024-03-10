@@ -33,7 +33,7 @@ const ProdcutCard = ({
 }: ProdcutCardProps) => {
   const cart = useCart();
 
-  const onAddToCart = (event: any) => {
+  const onAddToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     cart.addItem({
@@ -43,7 +43,7 @@ const ProdcutCard = ({
 
     toast({
       title: "Item added to cart!",
-      description: `${1} ${name}`,
+      description: `1 ${name}`,
     });
   };
 

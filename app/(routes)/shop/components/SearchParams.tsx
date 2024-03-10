@@ -16,7 +16,7 @@ const SearchParams = ({ categories }: searchParamProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const categoryId = searchParams.get("categoryId");
-
+  
   const onClick = () => {
     const url = qs.stringifyUrl(
       {

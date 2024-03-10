@@ -5,6 +5,11 @@ export interface Dashboard {
     id: number;
     data: {
       attributes: {
+        formats: {
+          small: {
+            url: string;
+          };
+        };
         url: string;
       };
     }[];
@@ -41,6 +46,11 @@ export interface Event {
       data: {
         id: number;
         attributes: {
+          formats: {
+            large: {
+              url: string;
+            };
+          };
           url: string;
         };
       };
@@ -88,5 +98,22 @@ export interface Category {
   id: number;
   attributes: {
     name: string;
+  };
+}
+
+export interface CartItemProduct {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  categories: { data: { attributes: { name: string } }[] };
+}
+
+export interface Metadata {
+  pagination: {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
   };
 }

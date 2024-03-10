@@ -25,7 +25,7 @@ const DashboardGhost = () => {
         }}
       >
         <Image
-          src="/assets/ghost.png"
+          src="/assets/ghost.webp"
           width={150}
           height={150}
           alt="cholagif"
@@ -51,7 +51,7 @@ const DashboardGhost = () => {
         }}
       >
         <Image
-          src="/assets/ghost.png"
+          src="/assets/ghost.webp"
           width={150}
           height={150}
           alt="cholagif"
@@ -77,7 +77,7 @@ const DashboardGhost = () => {
         }}
       >
         <Image
-          src="/assets/ghost.png"
+          src="/assets/ghost.webp"
           width={150}
           height={150}
           alt="cholagif"
@@ -103,7 +103,7 @@ const DashboardGhost = () => {
         }}
       >
         <Image
-          src="/assets/ghost.png"
+          src="/assets/ghost.webp"
           width={150}
           height={150}
           alt="cholagif"
@@ -129,7 +129,7 @@ const DashboardGhost = () => {
         }}
       >
         <Image
-          src="/assets/ghost.png"
+          src="/assets/ghost.webp"
           width={150}
           height={150}
           alt="cholagif"

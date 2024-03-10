@@ -1,41 +1,6 @@
 import ProductPage from "./components/ProductPage";
 import BackToShop from "@/components/BackToShop";
 import getProduct from "@/actions/getProduct";
-interface Product {
-  id: number;
-  attributes: {
-    name: string;
-    price: number;
-    description: string;
-    availability: boolean;
-    image: {
-      data: [
-        {
-          id: number;
-          attributes: {
-            url: string;
-          };
-        }
-      ];
-    };
-    categories: {
-      data: [
-        {
-          id: number;
-          attributes: {
-            name: string;
-            point: [
-              {
-                id: number;
-                point: string;
-              }
-            ];
-          };
-        }
-      ];
-    };
-  };
-}
 
 const Page = async ({ params }: { params: { productId: string } }) => {
   const product = await getProduct(params.productId);

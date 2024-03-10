@@ -5,6 +5,7 @@ import {
   Navigation,
   EffectCoverflow,
 } from "swiper/modules";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Slide } from "@/types";
@@ -15,7 +16,7 @@ interface SlidesProps {
 
 const Slides = ({ slides }: SlidesProps) => {
   return (
-    <div className="h-full w-full flex justify-center items-center m-6 max-sm:pl-13 max-md:pl-30">
+    <div className="h-full w-full flex justify-center items-center mt-10 max-sm:pl-13 max-md:pl-30">
       <Swiper
         centeredSlides={true}
         loop={true}
@@ -23,7 +24,7 @@ const Slides = ({ slides }: SlidesProps) => {
           delay: 2500,
         }}
         navigation={true}
-        spaceBetween={-75}
+        spaceBetween={0}
         pagination={{
           clickable: true,
         }}
@@ -45,20 +46,19 @@ const Slides = ({ slides }: SlidesProps) => {
         }}
       >
         {slides &&
-          slides.map((slide, index) => (
+          slides.map((slide) => (
             <SwiperSlide
-              key={index}
+              key={slide.id}
               className="h-full w-full flex justify-center items-center place-self-center"
             >
               <Link href={slide.url ? slide.url : "/"}>
                 <Image
-                  src={`${slide.image.data.attributes.formats.small.url}`}
-                  alt={`${slide.image.data.attributes.formats.small.url}`}
-                  height={300}
-                  width={300}
-                  quality={90}
+                  src={slide.image.data.attributes.formats.small.url}
+                  alt={slide.image.data.attributes.formats.small.url}
+                  height={350}
+                  width={350}
                   loading="lazy"
-                  className="block object-contain shadow hover:scale-110 transition-all"
+                  className="block object-contain shadow hover:scale-110 transition-all aspect-square"
                   onContextMenu={(e) => {
                     e.preventDefault();
                   }}
@@ -70,4 +70,5 @@ const Slides = ({ slides }: SlidesProps) => {
     </div>
   );
 };
+
 export default Slides;

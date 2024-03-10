@@ -69,7 +69,7 @@ const Page = () => {
       toast({ title: "Message Sent!" });
       form.reset();
     } catch (error: any) {
-      console.log(error);
+      toast({ title: "Error sending message", description: error.message });
     } finally {
       setIsLoading(false);
     }
@@ -150,7 +150,7 @@ const Page = () => {
               <Button
                 disabled={!form.formState.isValid || isLoading}
                 type="submit"
-                className="bg-amber-700 p-6 rounded-xl max-sm:w-full transition-allhover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
+                className="bg-amber-700 p-6 rounded-xl max-sm:w-full transition-all hover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
               >
                 <h3 className="m-2 font-semibold dark:text-black text-white drop-shadow-2xl">
                   Submit

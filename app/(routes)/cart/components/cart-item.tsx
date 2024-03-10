@@ -4,16 +4,10 @@ import { formatPrice } from "@/lib/format";
 import { toast } from "@/components/ui/use-toast";
 import clsx from "clsx";
 import { X } from "lucide-react";
+import { CartItemProduct } from "@/types";
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  image: any;
-  categories: any;
-}
 interface CartItemProps {
-  data: { product: Product; quantity: number };
+  data: { product: CartItemProduct; quantity: number };
 }
 
 const CartItem: React.FC<CartItemProps> = ({ data }) => {

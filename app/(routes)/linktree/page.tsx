@@ -15,7 +15,11 @@ const Page = async () => {
       >
         <div className="flex flex-col justify-center items-center w-full">
           <Avatar className="mt-10 h-[60px] w-[60px]">
-            <AvatarImage src="./icon/gwe.png" className="pointer-events-none" />
+            <AvatarImage
+              src="./icon/gwe.png"
+              className="pointer-events-none"
+              alt="gwe icon"
+            />
             {linktree?.Title}
             <AvatarFallback>GweArt</AvatarFallback>
           </Avatar>
