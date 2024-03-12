@@ -75,7 +75,7 @@ const Page = () => {
     }
   }
   return (
-    <section className="flex flex-col items-center justify-center h-full w-full bg-zinc-800 pb-10">
+    <section className="flex flex-col items-center justify-center h-full w-full bg-zinc-700 pb-10">
       <div className="p-4 mb-6 flex flex-col gap-y-5 text-white text-center mt-8">
         <h1 className="text-3xl font-[600]">Contact Us</h1>
         <h2 className="opacity-90 text-lg">

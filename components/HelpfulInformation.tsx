@@ -75,8 +75,8 @@ const HelpfulInformation = () => {
               key={icon.name}
               src={icon.image}
               alt={icon.name}
-              height={35}
-              width={35}
+              height={30}
+              width={30}
               className="object-contain aspect-square"
             />
           ))}

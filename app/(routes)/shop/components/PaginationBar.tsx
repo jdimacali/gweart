@@ -33,20 +33,17 @@ const PaginationBar = ({
           )}
           {metadata.pagination.page > 1 && (
             <>
-              {metadata.pagination.page !== 0 ||
-                (1 && (
-                  <PaginationItem>
-                    <PaginationLink
-                      href={`/shop/search?page=${
-                        metadata.pagination.page - 2
-                      }&${categoryId && `categoryId=${categoryId}`}&${
-                        name && `name=${name}`
-                      }`}
-                    >
-                      {metadata.pagination.page - 2}
-                    </PaginationLink>
-                  </PaginationItem>
-                ))}
+              {metadata.pagination.page > 2 && (
+                <PaginationItem>
+                  <PaginationLink
+                    href={`/shop/search?page=${metadata.pagination.page - 2}&${
+                      categoryId && `categoryId=${categoryId}`
+                    }&${name && `name=${name}`}`}
+                  >
+                    {metadata.pagination.page - 2}
+                  </PaginationLink>
+                </PaginationItem>
+              )}
 
               <PaginationItem>
                 <PaginationLink

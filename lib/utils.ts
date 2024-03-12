@@ -41,5 +41,5 @@ export function formatDateFromString(dateString: string) {
   // Construct the final formatted date string
   const formattedDate = `${monthName} ${formattedDay}, ${formattedYear}`;
 
-  return formattedDate;
+  return { monthName, formattedDay, formattedYear };
 }
