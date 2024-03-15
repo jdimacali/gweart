@@ -9,9 +9,9 @@ interface EventProps {
 
 const Event = ({ event }: EventProps) => {
   return (
-    <div className="h-full w-[25rem] md:w-[28rem] 2xl:w-[30rem] m-4">
+    <div className="w-[22rem] xl:w-[30rem] h-full">
       <a href={event.attributes.url} target="_blank" rel="noopener noreferrer">
-        <div className="w-full relative overflow-hidden shadow-lg aspect-video ">
+        <div className="w-full relative overflow-hidden shadow-lg aspect-video">
           <Image
             src={event.attributes.image.data.attributes.formats.large.url}
             alt={`${API_URL}${event.attributes.name}`}
@@ -23,9 +23,9 @@ const Event = ({ event }: EventProps) => {
           />
         </div>
         <div className="shadow-2xl rounded-b-lg flex flex-col h-auto w-full gap-y-2 p-4 bg-zinc-700/10 rounded-md bg-clip-padding backdrop-filter backdrop-blur-3xl border border-zinc-800/20 ">
-          <div className="text-md flex gap-x-2 items-center">
+          <div className="flex text-xs md:text-md xl:text-base gap-x-2 items-center">
             <Calendar size={20} />
-            <div className="flex text-sm opacity-80">
+            <div className="flex opacity-70">
               <span>
                 {formatDateFromString(event.attributes.start_date).monthName}
               </span>
@@ -50,10 +50,12 @@ const Event = ({ event }: EventProps) => {
           </div>
           <div className="flex gap-x-2 items-center ">
             <MapPinIcon size={20} />
-            <h1 className="text-sm opacity-80">{event.attributes.address}</h1>
+            <h1 className="text-xs md:text-md xl:text-base opacity-70">
+              {event.attributes.address}
+            </h1>
           </div>
 
-          <h1 className="h-full w-[90%] text-xl md:text-2xl font-[600] opacity-90 mt-2">
+          <h1 className="h-full w-[90%] text-md md:text-xl lg:text-2xl font-[600] opacity-90 mt-2">
             {event.attributes.name}
           </h1>
           <div className="hidden sm:block">

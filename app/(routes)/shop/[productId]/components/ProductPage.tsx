@@ -81,24 +81,24 @@ const ProductPage = ({
   const stringId = String(categories.data[0].id);
   return (
     <>
-      <div className="flex md:flex-row flex-col gap-y-2 md:gap-x-20 lg:gap-x-20 xl:gap-x-40 w-full justify-center lg:items-start">
-        <div className="flex flex-col gap-y-4 mb-4 h-auto w-auto items-center">
-          <div className="flex relative w-full md:w-72 xl:w-96 h-72 lg:h-96">
+      <div className="flex md:flex-row flex-col md:gap-x-10 lg:gap-x-20 xl:gap-x-20 w-full justify-center lg:items-start">
+        <div className="flex flex-col md:gap-y-4 mb-4 h-auto w-auto items-center">
+          <div className="flex relative w-80 md:w-60 lg:w-96 h-96 md:h-80 lg:h-[28rem]">
             <Image
               src={image.data[0].attributes.url}
               alt={name}
               fill
               quality={100}
-              className="object-cover aspect-square shadow-2xl"
+              className="object-cover shadow-lg"
               priority
             />
           </div>
-          <div className="flex items-center justify-center w-[80%] md:w-full h-32">
+          <div className="flex items-center justify-center w-[14rem] md:w-72 h-32">
             <CategoryItems categoryId={stringId} />
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 h-full w-auto">
+        <div className="flex flex-col gap-4 h-full w-full xl:w-[50%]">
           <div>
             <div className="text-2xl md:text-3xl font-bold">{name}</div>
             <div className="text-md opacity-80 italic">
@@ -116,7 +116,7 @@ const ProductPage = ({
               </div>
             </div>
           )}
-          <div className=" md:text-md lg:text-lg text-gray-600 my-4">
+          <div className=" md:text-sm lg:text-md xl:text-lg text-gray-600 my-4">
             {description}
           </div>
           <div className="flex flex-col mb-4">
