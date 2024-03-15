@@ -17,7 +17,7 @@ interface CategoryItemsProps {
 const CategoryItems = async ({ categoryId }: CategoryItemsProps) => {
   const products = await getProducts({ categoryId });
   return (
-    <Carousel className="w-full mx-12">
+    <Carousel className="w-full">
       <CarouselContent>
         {products.response?.map((product: Product) => (
           <CarouselItem key={product.id} className="basis-1/3">

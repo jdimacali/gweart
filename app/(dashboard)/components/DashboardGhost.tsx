@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 const DashboardGhost = () => {
   return (
-    <div className="hidden md:block">
+    <div className="hidden lg:block">
       <motion.div
-        className="absolute top-[10%] max-sm:top-[5%] left-[80%] max-sm:left-[65%]"
+        className="absolute md:top-[10%] top-[5%] md:left-[80%] left-[65%] blur-sm"
         initial={{ opacity: 0, scale: 0 }}
         animate={{
           opacity: [0, 10, 0],
@@ -33,7 +33,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[70%] left-[20%]"
+        className="absolute top-[70%] left-[20%] blur-sm"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
@@ -59,7 +59,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[15%] left-[40%]"
+        className="absolute top-[15%] left-[40%] blur-sm"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
@@ -85,7 +85,7 @@ const DashboardGhost = () => {
         />
       </motion.div>
       <motion.div
-        className="absolute top-[80%] left-[90%]"
+        className="absolute top-[70%] left-[80%] blur-sm"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],
@@ -107,11 +107,11 @@ const DashboardGhost = () => {
           width={150}
           height={150}
           alt="cholagif"
-          className="object-contain opacity-30 "
+          className="object-contain opacity-30"
         />
       </motion.div>
       <motion.div
-        className="absolute top-[60%] left-[50%]"
+        className="absolute top-[60%] left-[50%] blur-sm"
         initial={{ opacity: 0 }}
         animate={{
           opacity: [0, 50, 80, 50, 0],

@@ -16,7 +16,7 @@ interface SlidesProps {
 
 const Slides = ({ slides }: SlidesProps) => {
   return (
-    <div className="h-full w-full flex justify-center items-center mt-10 max-sm:pl-13 max-md:pl-30">
+    <div className="py-10 flex h-full w-[80%] items-center justify-center">
       <Swiper
         centeredSlides={true}
         loop={true}
@@ -37,31 +37,33 @@ const Slides = ({ slides }: SlidesProps) => {
         }}
         modules={[Autoplay, Pagination, Navigation, EffectCoverflow]}
         effect="coverflow"
-        className="w-[1500px] max-sm:w-full h-full flex justify-center items-center"
         breakpoints={{
           100: {
             slidesPerView: 1,
           },
-          900: { slidesPerView: 4 },
+          700: { slidesPerView: 2 },
+          1000: { slidesPerView: 3 },
+          1400: { slidesPerView: 4 },
         }}
+        className="w-[100vw] flex items-center justify-center place-content-center "
       >
         {slides &&
           slides.map((slide) => (
             <SwiperSlide
               key={slide.id}
-              className="h-full w-full flex justify-center items-center place-self-center"
+              className="place-content-center w-full h-full"
             >
               <Link href={slide.url ? slide.url : "/"}>
                 <Image
                   src={slide.image.data.attributes.formats.small.url}
                   alt={slide.image.data.attributes.formats.small.url}
-                  height={350}
-                  width={350}
+                  height={300}
+                  width={300}
                   loading="lazy"
-                  className="block object-contain shadow hover:scale-110 transition-all aspect-square"
                   onContextMenu={(e) => {
                     e.preventDefault();
                   }}
+                  className="w-full h-full flex items-center justify-center aspect-square object-contain cursor-pointer hover:scale-105 transition-transform duration-300 ease-in-out "
                 />
               </Link>
             </SwiperSlide>

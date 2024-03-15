@@ -59,6 +59,7 @@ const Navbar = () => {
           sizes="100vh"
           fill
           className="object-contain pointer-events-none"
+          priority
           onContextMenu={(e) => {
             e.preventDefault();
           }}

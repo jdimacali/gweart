@@ -2,8 +2,8 @@ import Image from "next/image";
 
 const Clown = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex flex-col justify-center items-center lg:overflow-visible overflow-clip">
-      <div className="relative h-80 max-sm:w-[135%] w-[120%] z-2 ">
+    <div className="flex flex-col justify-center items-center md:overflow-visible overflow-clip">
+      <div className="relative h-80 w-[135%] md:w-[120%] z-2 ">
         <Image
           src="/clown/top.png"
           fill
@@ -12,7 +12,7 @@ const Clown = ({ children }: { children: React.ReactNode }) => {
         />
       </div>
       <div className="flex justify-center items-center w-full">{children}</div>
-      <div className="relative h-60 max-sm:w-[125%] w-[100%] z-2">
+      <div className="relative h-60 w-[125%] md:w-[100%] z-2">
         <Image
           src="/clown/bottom.png"
           fill

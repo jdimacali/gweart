@@ -78,24 +78,27 @@ const ProductPage = ({
     });
   };
 
+  const stringId = String(categories.data[0].id);
   return (
     <>
-      <div className="flex md:flex-row flex-col gap-y-10 gap-x-40 w-full">
-        <div className="flex flex-col gap-y-4 md:gap-y-10 mb-4 w-full">
-          <div className="relative md:w-[25rem] xl:w-[30rem] h-[20rem] md:h-[35rem]">
+      <div className="flex md:flex-row flex-col gap-y-2 md:gap-x-20 lg:gap-x-20 xl:gap-x-40 w-full justify-center lg:items-start">
+        <div className="flex flex-col gap-y-4 mb-4 h-auto w-auto items-center">
+          <div className="flex relative w-full md:w-72 xl:w-96 h-72 lg:h-96">
             <Image
               src={image.data[0].attributes.url}
               alt={name}
               fill
               quality={100}
-              className="object-cover"
+              className="object-cover aspect-square shadow-2xl"
+              priority
             />
           </div>
-          <div className="flex w-full">
-            <CategoryItems categoryId={categories.data[0].id} />
+          <div className="flex items-center justify-center w-[80%] md:w-full h-32">
+            <CategoryItems categoryId={stringId} />
           </div>
         </div>
-        <div className="flex flex-col gap-4 w-full">
+
+        <div className="flex flex-col gap-4 h-full w-auto">
           <div>
             <div className="text-2xl md:text-3xl font-bold">{name}</div>
             <div className="text-md opacity-80 italic">
@@ -106,7 +109,6 @@ const ProductPage = ({
           {categories.data[0].attributes.point.length > 0 && (
             <div>
               <div className="font-bold mb-1">About this item</div>
-              {/* TODO: Add bullet points to backend and retrieve them from the frontend */}
               <div className="flex flex-col gap-y-1">
                 {categories.data[0].attributes.point.map((point) => (
                   <li key={point.id}> {point.point} </li>
@@ -114,33 +116,36 @@ const ProductPage = ({
               </div>
             </div>
           )}
-
-          <div className="md:text-lg text-gray-600 my-4">{description}</div>
+          <div className=" md:text-md lg:text-lg text-gray-600 my-4">
+            {description}
+          </div>
           <div className="flex flex-col mb-4">
             <div className="opacity-70 mb-3">Quantity</div>
             <div className="flex gap-x-4 items-center">
-              <button
+              <Button
                 className={clsx(
                   " bg-amber-100/30 w-10 h-10 flex items-center justify-center hover:bg-amber-100 transition-colors",
                   quantity <= 1 && "cursor-not-allowed opacity-50"
                 )}
                 onClick={subtractQuantity}
                 disabled={quantity <= 1}
+                type="button"
               >
                 <span className="text-2xl opacity-80">
                   <Minus size={20} />
                 </span>
-              </button>
+              </Button>
               <div>{quantity}</div>
 
-              <button
+              <Button
                 className=" bg-amber-100/30 w-10 h-10 flex items-center justify-center hover:bg-amber-100 transition-colors"
                 onClick={addQuantity}
+                type="button"
               >
                 <span className="text-2xl opacity-80">
                   <Plus size={20} />
                 </span>
-              </button>
+              </Button>
             </div>
           </div>
           <Button
@@ -150,6 +155,7 @@ const ProductPage = ({
             )}
             onClick={onAddToCart}
             disabled={!availability}
+            type="button"
           >
             {availability ? (
               <div className="flex items-center justify-center gap-x-2 scale-110 transition">

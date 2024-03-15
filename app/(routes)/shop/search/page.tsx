@@ -18,7 +18,7 @@ const Page = async ({ searchParams }: SearchPageProps) => {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <div className="flex flex-col md:flex-row md:pl-20 xl:px-40">
+      <div className="flex flex-col md:flex-row xl:px-20">
         <SearchParams categories={categories} />
         <div className="flex flex-col gap-y-6">
           <div>

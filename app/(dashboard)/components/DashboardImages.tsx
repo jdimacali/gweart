@@ -28,7 +28,7 @@ const DashboardImages = ({ images }: DashboardImagesProps) => {
   });
 
   return (
-    <div className="h-[100%] w-auto max-sm:w-full flex justify-center items-center mb-20 mt-10 my-8 ">
+    <div className="w-96 h-96 p-8 md:p-4 xl:p-0">
       <Swiper
         loop={true}
         autoplay={{
@@ -42,23 +42,21 @@ const DashboardImages = ({ images }: DashboardImagesProps) => {
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
         fadeEffect={{ crossFade: true }}
-        className="w-[25vw] max-sm:w-full h-full flex justify-center items-center"
+        className="w-full h-full"
       >
         {images.data.map((image, index) => (
-          <SwiperSlide
-            key={index}
-            className="h-[30rem] flex justify-center items-center"
-          >
+          <SwiperSlide key={index}>
             <Image
               src={image.attributes.formats.small.url}
-              fill
+              width={700}
+              height={700}
               priority
               alt="slide"
               sizes="(max-width: 320px) 280px,
          (max-width: 768px) 720px,
          (max-width: 1280px) 1200px,
          1400px"
-              className="block object-contain w-full h-auto pointer-events-none"
+              className="block object-contain w-full h-full pointer-events-none"
               onContextMenu={(e) => {
                 e.preventDefault();
               }}

@@ -69,7 +69,7 @@ const HelpfulInformation = () => {
         <Image src="/icon/stripe.png" alt="Stripe" width={100} height={100} />
         <div>Checkout powered by Stripe</div>
 
-        <div className="flex items-center justify-center gap-x-2 mt-4">
+        <div className="flex items-center justify-center md:gap-x-2 mt-4 w-full">
           {icons.map((icon) => (
             <Image
               key={icon.name}

@@ -16,7 +16,7 @@ const SearchParams = ({ categories }: searchParamProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const categoryId = searchParams.get("categoryId");
-  
+
   const onClick = () => {
     const url = qs.stringifyUrl(
       {
@@ -33,8 +33,8 @@ const SearchParams = ({ categories }: searchParamProps) => {
 
   return (
     <>
-      <div className="md:block hidden md:mr-20 lg:mr-40 mt-16">
-        <div className="underline decoration-2 underline-offset-8 mb-2 t tracking-tight">
+      <div className="md:block hidden mr-10 lg:mr-20 xl:mr-40 mt-16">
+        <div className="underline decoration-2 underline-offset-8 mb-2 t tracking-tight whitespace-nowrap">
           Browse by category
         </div>
         <button

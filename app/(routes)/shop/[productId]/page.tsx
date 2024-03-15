@@ -6,7 +6,7 @@ const Page = async ({ params }: { params: { productId: string } }) => {
   const product = await getProduct(params.productId);
 
   return (
-    <section className="h-full w-full text-black bg-white items-center justify-center md:px-10 xl:px-80 px-10">
+    <section className="h-full w-full text-black bg-white items-center justify-center md:px-10 xl:px-20 2xl:px-40 3xl:px-80">
       <BackToShop title="Back to Shop" />
       <div className="w-full h-full">
         {product && (
