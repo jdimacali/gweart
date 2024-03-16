@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -14,12 +15,26 @@ interface CategoryItemsProps {
   categoryId: string;
 }
 
-const CategoryItems = async ({ categoryId }: CategoryItemsProps) => {
-  const products = await getProducts({ categoryId });
+const CategoryItems = ({ categoryId }: CategoryItemsProps) => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const productsData = await getProducts({ categoryId });
+        setProducts(productsData.response || []);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [categoryId]);
+
   return (
     <Carousel className="w-full md:mx-12">
       <CarouselContent>
-        {products.response?.map((product: Product) => (
+        {products.map((product: Product) => (
           <CarouselItem key={product.id} className="basis-1/3">
             <Link href={`/shop/${product.id}`}>
               <Image
@@ -38,4 +53,5 @@ const CategoryItems = async ({ categoryId }: CategoryItemsProps) => {
     </Carousel>
   );
 };
+
 export default CategoryItems;
