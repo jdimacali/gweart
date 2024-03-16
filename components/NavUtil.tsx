@@ -7,7 +7,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { formatPrice } from "@/lib/format";
+import { formatPrice } from "@/lib/utils";
 import CartItemInfo from "./CartItemInfo";
 
 const NavUtil = () => {

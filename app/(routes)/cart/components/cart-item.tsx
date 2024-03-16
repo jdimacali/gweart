@@ -1,6 +1,6 @@
 import Image from "next/image";
 import useCart from "@/hooks/use-cart";
-import { formatPrice } from "@/lib/format";
+import { formatPrice } from "@/lib/utils";
 import { toast } from "@/components/ui/use-toast";
 import clsx from "clsx";
 import { X } from "lucide-react";

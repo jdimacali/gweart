@@ -70,7 +70,7 @@ export interface Product {
     name: string;
     price: number;
     description: string;
-    availablitiy: boolean;
+    availability: boolean;
     image: {
       data: [
         {
@@ -82,14 +82,7 @@ export interface Product {
       ];
     };
     categories: {
-      data: [
-        {
-          id: number;
-          attributes: {
-            name: string;
-          };
-        }
-      ];
+      data: Category[];
     };
   };
 }
@@ -98,6 +91,12 @@ export interface Category {
   id: number;
   attributes: {
     name: string;
+    point: [
+      {
+        id: number;
+        point: string;
+      }
+    ];
   };
 }
 

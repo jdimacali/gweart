@@ -7,6 +7,13 @@ export function cn(...inputs: ClassValue[]) {
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:1337";
 
+export const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(price);
+};
+
 export function formatDateFromString(dateString: string) {
   // Split the input string into an array of year, month, and day
   const [year, month, day] = dateString.split("-");

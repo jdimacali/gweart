@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatPrice } from "@/lib/format";
+import { formatPrice } from "@/lib/utils";
 import Image from "next/image";
 import { ShoppingBasketIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";

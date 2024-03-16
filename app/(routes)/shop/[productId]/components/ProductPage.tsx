@@ -1,8 +1,6 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { formatPrice } from "@/lib/format";
+import { formatPrice } from "@/lib/utils";
 import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
@@ -10,6 +8,7 @@ import CategoryItems from "./CategoryItems";
 import HelpfulInformation from "../../../../../components/HelpfulInformation";
 import { Minus, Plus, ShoppingCartIcon } from "lucide-react";
 import useCart from "@/hooks/use-cart";
+import { Category } from "@/types";
 
 interface ProductProps {
   id: number;
@@ -28,20 +27,7 @@ interface ProductProps {
     ];
   };
   categories: {
-    data: [
-      {
-        id: number;
-        attributes: {
-          name: string;
-          point: [
-            {
-              id: number;
-              point: string;
-            }
-          ];
-        };
-      }
-    ];
+    data: Category[];
   };
 }
 

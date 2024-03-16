@@ -24,6 +24,10 @@ const SearchInput = () => {
   }, [currentName]);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === " ") {
+      return;
+    }
+
     const newValue = e.target.value;
     setValue(newValue);
 
@@ -38,6 +42,7 @@ const SearchInput = () => {
       },
       { skipEmptyString: true, skipNull: true }
     );
+
     router.push(url);
   };
 

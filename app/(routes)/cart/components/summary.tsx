@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 import useCart from "@/hooks/use-cart";
-import { formatPrice } from "@/lib/format";
+import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
@@ -66,7 +66,7 @@ const Summary = () => {
       </div>
       <div className="mt-6 space-y-4">
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <div className="text-base font-medium text-gray-900">Order total</div>
+          <div className="text-base font-[600] text-gray-900">Order total</div>
           {formatPrice(totalPrice)}
         </div>
       </div>

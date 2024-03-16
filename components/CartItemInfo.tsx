@@ -1,13 +1,14 @@
-import useCart, { Product } from "@/hooks/use-cart";
-import { formatPrice } from "@/lib/format";
+import useCart from "@/hooks/use-cart";
+import { formatPrice } from "@/lib/utils";
 import Image from "next/image";
 import { MouseEventHandler } from "react";
 import { toast } from "./ui/use-toast";
 import { X } from "lucide-react";
 import clsx from "clsx";
+import { CartItemProduct } from "@/types";
 
 interface CartItemInfoProps {
-  product: Product;
+  product: CartItemProduct;
   quantity: number;
 }
 
