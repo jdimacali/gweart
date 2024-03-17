@@ -21,19 +21,19 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           ease: "backOut",
           duration: 1,
         }}
-        className={`break-words md:text-6xl text-5xl tracking-[0.35rem] font-bold text-[#8b46c4] ${title.Font.options} antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font text-shadow-white`}
+        className={`break-words md:text-6xl text-5xl tracking-[0.35rem] font-bold text-[#8b46c4] antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font text-shadow-white`}
       >
         {title.text}
       </motion.h2>
       <h2
-        className={`text-2xl tracking-[0.30rem] font-bold text-[#ffffff] ${subtitle.Font.options} antialiased mt-5 text-shadow-purple`}
+        className={`text-2xl tracking-[0.30rem] font-bold text-[#ffffff]  antialiased mt-5 text-shadow-purple`}
       >
         {subtitle.text}
       </h2>
       <div>
         <Button
           onClick={() => router.push("https://gweart.square.site/")}
-          className={`bg-gray-950 p-6 rounded-xl max-sm:w-[90vw] transition-all hover:bg-gray-900 hover:opacity-80 mt-8 ${button.Font.options}`}
+          className={`bg-gray-950 p-6 rounded-xl max-sm:w-[90vw] transition-all hover:bg-gray-900 hover:opacity-80 mt-8`}
         >
           <h3 className="text-md font-bold text-white m-3">{button.text}</h3>
         </Button>

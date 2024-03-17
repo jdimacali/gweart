@@ -8,12 +8,13 @@ import axios from "axios";
 import Spin from "@/components/Spin";
 import Image from "next/image";
 import clsx from "clsx";
+import { DisplayText } from "@/types";
 
 interface Data {
-  title: string;
-  subtitle: string;
+  title: DisplayText;
+  subtitle: DisplayText;
   imageUrls: string[];
-  button: string;
+  button: DisplayText;
 }
 
 export const revalidate = 0;

@@ -14,7 +14,7 @@ export interface Dashboard {
       };
     }[];
   };
-  Button: DisplayText;
+  Button_Text: DisplayText;
 }
 
 export interface Slide {
