@@ -22,7 +22,7 @@ export const getFonts = (font: string) => {
     default:
       return "";
   }
-};
+}
 
 export const formatPrice = (price: number) => {
   return new Intl.NumberFormat("en-US", {

@@ -51,6 +51,6 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default Title;
