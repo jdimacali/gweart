@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { DisplayText } from "@/types";
+import clsx from "clsx";
 
 interface TitleProps {
   title: DisplayText;
@@ -21,12 +22,18 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           ease: "backOut",
           duration: 1,
         }}
-        className={`break-words md:text-6xl text-5xl tracking-[0.35rem] font-bold text-[#8b46c4] antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font text-shadow-white`}
+        className={clsx(
+          `break-words md:text-6xl text-5xl tracking-[0.35rem] font-bold text-[#8b46c4] antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font text-shadow-white`,
+          title.Font.options && title.Font.options
+        )}
       >
         {title.text}
       </motion.h2>
       <h2
-        className={`text-2xl tracking-[0.30rem] font-bold text-[#ffffff]  antialiased mt-5 text-shadow-purple`}
+        className={clsx(
+          `text-2xl tracking-[0.30rem] font-bold text-[#ffffff]  antialiased mt-5 text-shadow-purple`,
+          subtitle.Font.options && subtitle.Font.options
+        )}
       >
         {subtitle.text}
       </h2>

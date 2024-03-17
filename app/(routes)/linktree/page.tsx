@@ -53,9 +53,19 @@ const Page = () => {
             {socials?.Title.text}
             <AvatarFallback>GweArt</AvatarFallback>
           </Avatar>
-          <h1 className="text-white font-semibold text-2xl mt-4">GweArt</h1>
           <h1
-            className={`text-white font-semibold text-md opacity-60 `}
+            className={clsx(
+              `text-white font-semibold text-2xl mt-4`,
+              socials?.Title.Font.options && socials?.Title.Font.options
+            )}
+          >
+            {socials?.Title.text}
+          </h1>
+          <h1
+            className={clsx(
+              `text-white font-semibold text-md opacity-60 `,
+              socials?.Subtitle.Font.options && socials?.Subtitle.Font.options
+            )}
           >
             {socials?.Subtitle.text}
           </h1>
