@@ -26,7 +26,8 @@ const Page = async () => {
           <h1
             className={clsx(
               `text-white font-semibold text-2xl mt-4 `,
-              linktree.Title.Font && linktree.Title.Font
+              linktree.Title.Font && linktree.Title.Font.options.trim(),
+              linktree.Title.Font.options == "font-mania" && "font-mania"
             )}
           >
             {linktree?.Title.text}
@@ -34,7 +35,8 @@ const Page = async () => {
           <h1
             className={clsx(
               `text-white font-semibold text-md opacity-60`,
-              linktree.Subtitle.Font && linktree.Subtitle.Font
+              linktree.Subtitle.Font && linktree.Subtitle.Font.options.trim(),
+              linktree.Title.Font.options == "font-mania" && "font-mania"
             )}
           >
             {linktree?.Subtitle.text}

@@ -25,7 +25,8 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
         }}
         className={clsx(
           `xl:text-7xl md:text-5xl text-4xl tracking-[0.4rem] font-bold text-[#954bd1] antialiased drop-shadow-2xl underline-offset-[16px] underline decoration-from-font text-shadow-white`,
-          title.Font.options && title.Font.options
+          title.Font.options ? title.Font.options.trim() : "font-mania",
+          subtitle.Font.options.trim() == "font-mania" && "font-mania"
         )}
       >
         {title.text}
@@ -33,7 +34,8 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
       <h2
         className={clsx(
           `md:text-3xl text-xl tracking-[0.30rem] font-bold text-white antialiased mt-5 text-shadow-purple`,
-          subtitle.Font.options && subtitle.Font.options
+          subtitle.Font.options ? subtitle.Font.options.trim() : "font-mania",
+          subtitle.Font.options.trim() == "font-mania" && "font-mania"
         )}
       >
         {subtitle.text}
@@ -41,7 +43,11 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
       <div>
         <Button
           onClick={() => router.push("/shop/search")}
-          className="bg-gray-950 p-6 rounded-xl w-full md:w-40 transition-all hover:bg-gray-900 hover:opacity-80 mt-8"
+          className={clsx(
+            "bg-gray-950 p-6 rounded-xl w-full md:w-40 transition-all hover:bg-gray-900 hover:opacity-80 mt-8",
+            button.Font?.options ? button.Font.options?.trim() : "font-mania",
+            button.Font.options?.trim() == "font-mania" && "font-mania"
+          )}
         >
           <h3 className="text-md font-bold text-white m-3">{button.text}</h3>
         </Button>
