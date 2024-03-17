@@ -34,6 +34,7 @@ const Page = () => {
     social();
   }, []);
 
+  console.log(socials);
   return (
     <section className="h-full w-full flex flex-col items-center pb-">
       <div
@@ -56,7 +57,7 @@ const Page = () => {
           <h1
             className={clsx(
               `text-white font-semibold text-2xl mt-4`,
-              socials?.Title.Font.options && socials?.Title.Font.options
+              socials?.Title.Font?.options && socials?.Title.Font?.options
             )}
           >
             {socials?.Title.text}

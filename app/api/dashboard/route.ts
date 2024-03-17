@@ -28,7 +28,8 @@ export async function GET() {
     );
 
     // Extract relevant data from the API response
-    const { Title, Subtitle, Images, Button } = response.data.data.attributes;
+    const { Title, Subtitle, Images, Button_Text } =
+      response.data.data.attributes;
 
     // Extract image URLs into an array
     const imageUrls: string[] = Images.data.map((image: ImageData) => {
@@ -39,7 +40,7 @@ export async function GET() {
     const responseData = {
       title: Title,
       subtitle: Subtitle,
-      button: Button,
+      button: Button_Text,
       imageUrls,
     };
 

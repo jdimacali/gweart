@@ -13,6 +13,7 @@ interface TitleProps {
 
 const Title = ({ title, subtitle, button }: TitleProps) => {
   const router = useRouter();
+  console.log(title.Font.options, subtitle, button);
   return (
     <div className="max-sm:mb-4">
       <motion.h2
