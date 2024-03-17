@@ -20,12 +20,12 @@ const Page = async () => {
               className="pointer-events-none"
               alt="gwe icon"
             />
-            {linktree?.Title}
+            {linktree?.Title.text}
             <AvatarFallback>GweArt</AvatarFallback>
           </Avatar>
           <h1 className="text-white font-semibold text-2xl mt-4">GweArt</h1>
           <h1 className="text-white font-semibold text-md opacity-60">
-            {linktree?.Subtitle}
+            {linktree?.Subtitle.text}
           </h1>
         </div>
         <div className="flex flex-col items-center text-center justify-center text-black gap-y-10 mt-8">

@@ -30,7 +30,7 @@ const SpooktacularGoodies = ({ dashboard }: SpooktacularGoodiesProps) => {
           <Title
             title={dashboard.Title}
             subtitle={dashboard.Subtitle}
-            button={dashboard.Button}
+            button={dashboard.Button_Text}
           />
           <DashboardImages images={dashboard.Images} />
         </div>
