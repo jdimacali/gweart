@@ -7,23 +7,6 @@ export function cn(...inputs: ClassValue[]) {
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:1337";
 
-export const getFonts = (font: string) => {
-  switch (font.trim().toLowerCase()) {
-    case "font-mania":
-      return "font-mania";
-    case "font-butcherman":
-      return "font-butcherman";
-    case "font-creep":
-      return "font-creep";
-    case "font-nosifer":
-      return "font-nosifer";
-    case "font-dokdo":
-      return "font-dokdo";
-    default:
-      return "";
-  }
-};
-
 export const formatPrice = (price: number) => {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
