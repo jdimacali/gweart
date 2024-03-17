@@ -2,10 +2,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import clsx from "clsx";
 import LinktreeLink from "./components/LinktreeLink";
 import getLinktree from "@/actions/getLinktree";
+import { getFonts } from "@/lib/utils";
 
 const Page = async () => {
   const linktree = await getLinktree();
-
+  console.log(getFonts(linktree.Title.Font.options));
   return (
     <section className="h-full w-full flex flex-col items-center pb-">
       <div
@@ -26,8 +27,8 @@ const Page = async () => {
           <h1
             className={clsx(
               `text-white font-semibold text-2xl mt-4 `,
-              linktree.Title.Font && linktree.Title.Font.options.trim(),
-              linktree.Title.Font.options == "font-mania" && "font-mania"
+              linktree.Title.Font &&
+                getFonts(linktree.Title.Font.options.trim())
             )}
           >
             {linktree?.Title.text}
@@ -35,8 +36,8 @@ const Page = async () => {
           <h1
             className={clsx(
               `text-white font-semibold text-md opacity-60`,
-              linktree.Subtitle.Font && linktree.Subtitle.Font.options.trim(),
-              linktree.Title.Font.options == "font-mania" && "font-mania"
+              linktree.Subtitle.Font &&
+                getFonts(linktree.Subtitle.Font.options.trim())
             )}
           >
             {linktree?.Subtitle.text}
