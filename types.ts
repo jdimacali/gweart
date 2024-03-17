@@ -1,6 +1,6 @@
 export interface Dashboard {
-  Title: string;
-  Subtitle: string;
+  Title: DisplayText;
+  Subtitle: DisplayText;
   Images: {
     id: number;
     data: {
@@ -14,7 +14,7 @@ export interface Dashboard {
       };
     }[];
   };
-  Button: string;
+  Button: DisplayText;
 }
 
 export interface Slide {
@@ -59,8 +59,8 @@ export interface Event {
 }
 
 export interface Linktree {
-  Title: string;
-  Subtitle: string;
+  Title: DisplayText;
+  Subtitle: DisplayText;
   Links: { id: number; name: string; url: string; icon?: string }[];
 }
 
@@ -115,4 +115,15 @@ export interface Metadata {
     pageCount: number;
     total: number;
   };
+}
+
+export interface Font {
+  id: number;
+  options: string;
+}
+
+export interface DisplayText {
+  id: number;
+  text: string;
+  Font: Font;
 }
