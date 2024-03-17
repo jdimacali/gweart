@@ -17,26 +17,15 @@ interface ImageData {
   };
 }
 
-interface DashboardResponse {
-  data: {
-    attributes: {
-      Title: string;
-      Subtitle: string;
-      Button: string;
-      Images: {
-        data: ImageData[];
-      };
-    };
-  };
-}
-
 export const dynamic = "force-dynamic";
 
 // Define the Next.js API route handler
 export async function GET() {
   try {
     // Make the API call to get information about the images
-    const response = await axios.get(`${API_URL}/api/dashboard?populate=*`);
+    const response = await axios.get(
+      `${API_URL}/api/dashboard?populate=Images&populate[0]=Title.Font&populate[1]=Subtitle.Font&populate[2]=Button_Text.Font`
+    );
 
     // Extract relevant data from the API response
     const { Title, Subtitle, Images, Button } = response.data.data.attributes;
