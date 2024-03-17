@@ -42,9 +42,8 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           onClick={() => router.push("https://gweart.square.site/")}
           className={clsx(
             `bg-gray-950 p-6 rounded-xl max-sm:w-[90vw] transition-all hover:bg-gray-900 hover:opacity-80 mt-8`,
-            button?.Font?.options
-              ? subtitle?.Font?.options?.trim()
-              : "metal-mania"
+            button?.Font?.options && subtitle?.Font?.options?.trim(),
+            subtitle?.Font?.options?.trim() == "font-mania" && "font-mania"
           )}
         >
           <h3 className="text-md font-bold text-white m-3">{button.text}</h3>
