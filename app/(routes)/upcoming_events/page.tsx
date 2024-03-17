@@ -92,11 +92,20 @@ const Page = () => {
                       </h1>
                       <div className="text-md font-semibold text-gray-300">
                         <span className="mr-2">
-                          {formatDateFromString(event.attributes.start_date)}
+                          {
+                            formatDateFromString(event.attributes.start_date)
+                              .formattedDate
+                          }
                         </span>
                         {event.attributes?.end_date && (
                           <span>
-                            - {formatDateFromString(event.attributes?.end_date)}
+                            -{"  "}
+                            <span className="ml-1">
+                              {
+                                formatDateFromString(event.attributes?.end_date)
+                                  .formattedDate
+                              }
+                            </span>
                           </span>
                         )}
                       </div>

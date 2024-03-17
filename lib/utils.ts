@@ -22,7 +22,7 @@ export const getFonts = (font: string) => {
     default:
       return "";
   }
-}
+};
 
 export const formatPrice = (price: number) => {
   return new Intl.NumberFormat("en-US", {
@@ -65,5 +65,5 @@ export function formatDateFromString(dateString: string) {
   // Construct the final formatted date string
   const formattedDate = `${monthName} ${formattedDay}, ${formattedYear}`;
 
-  return { monthName, formattedDay, formattedYear };
+  return { monthName, formattedDay, formattedYear, formattedDate };
 }
