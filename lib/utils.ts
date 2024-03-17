@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:1337";
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:1337"
 
 export function formatDateFromString(dateString: any) {
   // Split the input string into an array of year, month, and day
