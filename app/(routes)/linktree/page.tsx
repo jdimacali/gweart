@@ -48,13 +48,15 @@ const Page = () => {
               onContextMenu={(e) => {
                 e.preventDefault();
               }}
-              className="pointer-events-none"
+              className={`pointer-events-none ${socials?.Title.Font.options}`}
             />
             {socials?.Title.text}
             <AvatarFallback>GweArt</AvatarFallback>
           </Avatar>
           <h1 className="text-white font-semibold text-2xl mt-4">GweArt</h1>
-          <h1 className="text-white font-semibold text-md opacity-60">
+          <h1
+            className={`text-white font-semibold text-md opacity-60 ${socials?.Subtitle.Font.options}`}
+          >
             {socials?.Subtitle.text}
           </h1>
         </div>
