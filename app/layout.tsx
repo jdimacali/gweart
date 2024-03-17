@@ -18,7 +18,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata: Metadata = {
   title: "Gweart",
   description: "Art by G.W.E",
-};
+}
 
 export default function RootLayout({
   children,
