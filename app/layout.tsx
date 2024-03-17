@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={` bg-black ${butcherman.variable} ${creepster.variable} ${dokdo.variable} ${nosifer.variable} ${lato.variable} ${metalMania.variable} ${lato.className}`}
+        className={`bg-black ${butcherman.variable} ${creepster.variable} ${dokdo.variable} ${nosifer.variable} ${lato.variable} ${metalMania.variable} ${lato.className}`}
         suppressHydrationWarning
       >
         <AuthProvider>

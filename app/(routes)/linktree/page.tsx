@@ -44,6 +44,8 @@ const Page = () => {
         )}
       >
         <div className="flex flex-col justify-center items-center w-full">
+          <h1 className="hidden font-mania">Test </h1>
+          <h1 className="hidden font-butcherman">Test </h1>
           <Avatar className="mt-10 h-[60px] w-[60px]">
             <AvatarImage
               src="./icon/gwe.png"
@@ -52,7 +54,7 @@ const Page = () => {
               }}
               className={`pointer-events-none `}
             />
-            {socials!.Title.text}
+            {socials?.Title?.text}
             <AvatarFallback>GweArt</AvatarFallback>
           </Avatar>
           <h1
@@ -62,16 +64,16 @@ const Page = () => {
                 getFonts(socials?.Title.Font.options)
             )}
           >
-            {socials!.Title.text}
+            {socials?.Title.text}
           </h1>
           <h1
             className={clsx(
               `text-white font-semibold text-md opacity-60 `,
-              socials!.Subtitle.Font.options &&
-                getFonts(socials!.Subtitle.Font.options)
+              socials?.Subtitle.Font.options &&
+                getFonts(socials?.Subtitle.Font.options)
             )}
           >
-            {socials!.Subtitle.text}
+            {socials?.Subtitle.text}
           </h1>
         </div>
         <div className="flex flex-col items-center text-center justify-center text-black gap-y-10 mt-8">
@@ -92,6 +94,6 @@ const Page = () => {
         </div>
       </div>
     </section>
-  )
+  );
 };
 export default Page;

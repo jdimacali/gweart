@@ -16,6 +16,8 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
   const router = useRouter();
   return (
     <div className="max-sm:mb-4">
+      <h1 className="hidden font-mania">Test </h1>
+      <h1 className="hidden font-butcherman">Test </h1>
       <motion.h2
         initial={{ opacity: 0, y: -100 }}
         animate={{ opacity: 1, y: 0 }}
@@ -51,6 +53,6 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
       </div>
     </div>
   );
-}
+};
 
 export default Title;
