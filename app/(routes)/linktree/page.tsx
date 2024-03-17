@@ -5,7 +5,6 @@ import getLinktree from "@/actions/getLinktree";
 
 const Page = async () => {
   const linktree = await getLinktree();
-
   return (
     <section className="h-full w-full flex flex-col items-center pb-">
       <div
@@ -23,10 +22,20 @@ const Page = async () => {
             {linktree?.Title.text}
             <AvatarFallback>GweArt</AvatarFallback>
           </Avatar>
-          <h1 className="text-white font-semibold text-2xl mt-4">GweArt</h1>
-          <h1 className="text-white font-semibold text-md opacity-60">
-            {linktree?.Subtitle.text}
+          <h1
+            className={clsx(
+              `text-white font-semibold text-2xl mt-4 `,
+              linktree.Title.Font && linktree.Title.Font
+            )}
+          >
+            {linktree?.Title.text}
           </h1>
+          <h1
+            className={clsx(
+              `text-white font-semibold text-md opacity-60`,
+              linktree.Title.Font && linktree.Subtitle.Font
+            )}
+          ></h1>
         </div>
         <div className="flex flex-col items-center text-center justify-center text-black gap-y-10 mt-8">
           {!linktree && <div> There are no links currently </div>}
