@@ -119,11 +119,11 @@ export interface Metadata {
 
 export interface Font {
   id: number;
-  options: string;
+  options?: string;
 }
 
 export interface DisplayText {
   id: number;
   text: string;
-  Font: Font;
+  Font?: Font;
 }

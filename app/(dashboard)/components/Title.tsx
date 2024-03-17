@@ -13,7 +13,6 @@ interface TitleProps {
 
 const Title = ({ title, subtitle, button }: TitleProps) => {
   const router = useRouter();
-  console.log(title.Font.options.trim());
   return (
     <div className="max-sm:mb-4">
       <motion.h2
@@ -24,16 +23,16 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           duration: 1,
         }}
         className={clsx(
-          `break-words md:text-6xl text-5xl tracking-[0.35rem] font-bold text-[#8b46c4] antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font text-shadow-white`,
-          title?.Font.options ? title.Font.options.trim() : "metal-mania"
+          `break-words md:text-6xl text-5xl tracking-[0.35rem] font-bold text-[#8b46c4] antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font text-shadow-white metal-mania`
+          // title?.Font?.options ? title.Font?.options.trim() : "metal-mania"
         )}
       >
         {title.text}
       </motion.h2>
       <h2
         className={clsx(
-          `text-2xl tracking-[0.30rem] font-bold text-[#ffffff]  antialiased mt-5 text-shadow-purple`,
-          subtitle?.Font.options ? subtitle.Font.options.trim() : "metal-mania"
+          `text-2xl tracking-[0.30rem] font-bold text-[#ffffff]  antialiased mt-5 text-shadow-purple metal-mania`
+          // subtitle?.Font?.options ? subtitle.Font.options.trim() : "metal-mania"
         )}
       >
         {subtitle.text}
@@ -43,7 +42,9 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           onClick={() => router.push("https://gweart.square.site/")}
           className={clsx(
             `bg-gray-950 p-6 rounded-xl max-sm:w-[90vw] transition-all hover:bg-gray-900 hover:opacity-80 mt-8`,
-            button?.Font.options ? subtitle.Font.options.trim() : "metal-mania"
+            button?.Font?.options
+              ? subtitle?.Font?.options?.trim()
+              : "metal-mania"
           )}
         >
           <h3 className="text-md font-bold text-white m-3">{button.text}</h3>

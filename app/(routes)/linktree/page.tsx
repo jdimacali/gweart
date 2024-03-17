@@ -57,8 +57,8 @@ const Page = () => {
           <h1
             className={clsx(
               `text-white font-semibold text-2xl mt-4`,
-              socials?.Title.Font?.options &&
-                socials?.Title.Font?.options.trim()
+              socials?.Title?.Font?.options &&
+                socials?.Title?.Font?.options.trim()
             )}
           >
             {socials?.Title.text}
@@ -66,8 +66,8 @@ const Page = () => {
           <h1
             className={clsx(
               `text-white font-semibold text-md opacity-60 `,
-              socials?.Subtitle.Font.options &&
-                socials?.Subtitle.Font.options.trim()
+              socials?.Subtitle?.Font?.options &&
+                socials?.Subtitle?.Font?.options.trim()
             )}
           >
             {socials?.Subtitle.text}
