@@ -5,6 +5,7 @@ import getLinktree from "@/actions/getLinktree";
 
 const Page = async () => {
   const linktree = await getLinktree();
+
   return (
     <section className="h-full w-full flex flex-col items-center pb-">
       <div
@@ -33,9 +34,11 @@ const Page = async () => {
           <h1
             className={clsx(
               `text-white font-semibold text-md opacity-60`,
-              linktree.Title.Font && linktree.Subtitle.Font
+              linktree.Subtitle.Font && linktree.Subtitle.Font
             )}
-          ></h1>
+          >
+            {linktree?.Subtitle.text}
+          </h1>
         </div>
         <div className="flex flex-col items-center text-center justify-center text-black gap-y-10 mt-8">
           {!linktree && <div> There are no links currently </div>}
