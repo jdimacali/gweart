@@ -6,10 +6,11 @@ import { useState, useEffect } from "react";
 import Spin from "@/components/Spin";
 import clsx from "clsx";
 import LinktreeLink from "./components/LinktreeLink";
+import { DisplayText } from "@/types";
 
 interface SocialLink {
-  Title: string;
-  Subtitle: string;
+  Title: DisplayText;
+  Subtitle: DisplayText;
   Links: { id: number; name: string; url: string; icon?: string }[];
 }
 
@@ -49,12 +50,12 @@ const Page = () => {
               }}
               className="pointer-events-none"
             />
-            {socials?.Title}
+            {socials?.Title.text}
             <AvatarFallback>GweArt</AvatarFallback>
           </Avatar>
           <h1 className="text-white font-semibold text-2xl mt-4">GweArt</h1>
           <h1 className="text-white font-semibold text-md opacity-60">
-            {socials?.Subtitle}
+            {socials?.Subtitle.text}
           </h1>
         </div>
         <div className="flex flex-col items-center text-center justify-center text-black gap-y-10 mt-8">
