@@ -25,7 +25,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
         }}
         className={clsx(
           `break-words md:text-6xl text-5xl tracking-[0.35rem] font-bold text-[#8b46c4] antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font text-shadow-white`,
-          title?.Font?.options && getFonts(title.Font?.options)
+          title.Font.options && getFonts(title.Font.options)
         )}
       >
         {title.text}
@@ -33,7 +33,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
       <h2
         className={clsx(
           `text-2xl tracking-[0.30rem] font-bold text-[#ffffff]  antialiased mt-5 text-shadow-purple`,
-          subtitle?.Font?.options && getFonts(subtitle.Font?.options)
+          subtitle.Font.options && getFonts(subtitle.Font.options)
         )}
       >
         {subtitle.text}
@@ -43,7 +43,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           onClick={() => router.push("https://gweart.square.site/")}
           className={clsx(
             `bg-gray-950 p-6 rounded-xl max-sm:w-[90vw] transition-all hover:bg-gray-900 hover:opacity-80 mt-8`,
-            button?.Font?.options && getFonts(button?.Font?.options)
+            button.Font.options && getFonts(button.Font.options)
           )}
         >
           <h3 className="text-md font-bold text-white m-3">{button.text}</h3>
