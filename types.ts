@@ -125,5 +125,5 @@ export interface Font {
 export interface DisplayText {
   id: number;
   text: string;
-  Font?: Font;
+  Font: Font;
 }
