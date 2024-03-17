@@ -62,7 +62,7 @@ const SpooktacularGoodies = () => {
       )}
       {!loading && data && (
         <>
-          <div className=" flex max-md:flex-col justify-center text-center items-center lg:py-[8rem] pt-4 gap-x-20">
+          <div className="flex max-md:flex-col justify-center text-center items-center lg:py-[8rem] pt-4 gap-x-20">
             <Title
               title={data?.title}
               subtitle={data?.subtitle}
