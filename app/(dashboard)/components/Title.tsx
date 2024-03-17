@@ -13,7 +13,7 @@ interface TitleProps {
 
 const Title = ({ title, subtitle, button }: TitleProps) => {
   const router = useRouter();
-
+  console.log(title, subtitle, button);
   return (
     <div className="max-sm:mb-4">
       <motion.h2
@@ -25,7 +25,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
         }}
         className={clsx(
           `break-words md:text-6xl text-5xl tracking-[0.35rem] font-bold text-[#8b46c4] antialiased drop-shadow-2xl underline-offset-[13px] underline decoration-from-font text-shadow-white`,
-          title.Font.options && title.Font.options.trim()
+          title?.Font.options && title.Font.options.trim()
         )}
       >
         {title.text}
@@ -33,7 +33,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
       <h2
         className={clsx(
           `text-2xl tracking-[0.30rem] font-bold text-[#ffffff]  antialiased mt-5 text-shadow-purple`,
-          subtitle.Font.options && subtitle.Font.options.trim()
+          subtitle?.Font.options && subtitle.Font.options.trim()
         )}
       >
         {subtitle.text}
