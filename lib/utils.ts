@@ -5,9 +5,33 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:1337"
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:1337";
 
-export function formatDateFromString(dateString: any) {
+export const getFonts = (font: string) => {
+  switch (font.trim().toLowerCase()) {
+    case "font-mania":
+      return "font-mania";
+    case "font-butcherman":
+      return "font-butcherman";
+    case "font-creep":
+      return "font-creep";
+    case "font-nosifer":
+      return "font-nosifer";
+    case "font-dokdo":
+      return "font-dokdo";
+    default:
+      return "";
+  }
+};
+
+export const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(price);
+};
+
+export function formatDateFromString(dateString: string) {
   // Split the input string into an array of year, month, and day
   const [year, month, day] = dateString.split("-");
   // Convert month to a number and subtract 1 since months in JavaScript are zero-indexed
@@ -41,5 +65,5 @@ export function formatDateFromString(dateString: any) {
   // Construct the final formatted date string
   const formattedDate = `${monthName} ${formattedDay}, ${formattedYear}`;
 
-  return formattedDate;
+  return { monthName, formattedDay, formattedYear };
 }

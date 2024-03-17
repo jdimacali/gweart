@@ -7,6 +7,7 @@ import Spin from "@/components/Spin";
 import clsx from "clsx";
 import LinktreeLink from "./components/LinktreeLink";
 import { DisplayText } from "@/types";
+import { getFonts } from "@/lib/utils";
 
 interface SocialLink {
   Title: DisplayText;
@@ -58,8 +59,7 @@ const Page = () => {
             className={clsx(
               `text-white font-semibold text-2xl mt-4`,
               socials?.Title?.Font?.options &&
-                socials?.Title?.Font?.options.trim(),
-              socials?.Title?.Font?.options == "font-mania" && "font-mania"
+                getFonts(socials?.Title?.Font?.options)
             )}
           >
             {socials?.Title.text}
@@ -68,8 +68,7 @@ const Page = () => {
             className={clsx(
               `text-white font-semibold text-md opacity-60 `,
               socials?.Subtitle?.Font?.options &&
-                socials?.Subtitle?.Font?.options.trim(),
-              socials?.Subtitle?.Font?.options == "font-mania" && "font-mania"
+                getFonts(socials?.Subtitle?.Font?.options)
             )}
           >
             {socials?.Subtitle.text}
