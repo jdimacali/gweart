@@ -66,8 +66,14 @@ const HelpfulInformation = () => {
   return (
     <div className="text-sm mt-20">
       <div className="mb-10 text-base flex flex-col items-center justify-center">
-        <Image src="/icon/stripe.png" alt="Stripe" width={100} height={100} />
-        <div>Checkout powered by Stripe</div>
+        <Image
+          src="/icon/stripe.png"
+          alt="Stripe"
+          width={80}
+          height={80}
+          className="h-auto w-auto"
+        />
+        <div className="italic">Checkout powered by Stripe</div>
 
         <div className="flex items-center justify-center md:gap-x-2 mt-4 w-full">
           {icons.map((icon) => (
@@ -77,7 +83,7 @@ const HelpfulInformation = () => {
               alt={icon.name}
               height={30}
               width={30}
-              className="object-contain aspect-square"
+              className=" object-contain aspect-square"
             />
           ))}
         </div>

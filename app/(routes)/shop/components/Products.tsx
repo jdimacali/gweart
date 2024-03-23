@@ -45,6 +45,8 @@ const ProductList = ({ products, metadata }: Products) => {
   const name = searchParams.get("name");
   const pathname = usePathname();
 
+  console.log(products);
+
   const nextUrl = qs.stringifyUrl(
     {
       url: pathname,

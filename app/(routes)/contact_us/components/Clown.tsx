@@ -9,6 +9,7 @@ const Clown = ({ children }: { children: React.ReactNode }) => {
           fill
           alt="clown_top"
           className="absolute object-fill z-2"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
       <div className="flex justify-center items-center w-full">{children}</div>
@@ -16,8 +17,9 @@ const Clown = ({ children }: { children: React.ReactNode }) => {
         <Image
           src="/clown/bottom.png"
           fill
-          alt="clown_top"
+          alt="clown_bottom"
           className="absolute object-fill"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
     </div>

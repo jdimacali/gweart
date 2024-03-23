@@ -25,7 +25,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           duration: 1,
         }}
         className={clsx(
-          `xl:text-7xl md:text-5xl text-4xl tracking-[0.4rem] font-bold text-[#954bd1] antialiased drop-shadow-2xl underline-offset-[16px] underline decoration-from-font text-shadow-white`,
+          `xl:text-7xl lg:text-5xl md:text-4xl text-3xl tracking-[0.4rem] font-bold text-[#954bd1] antialiased drop-shadow-2xl underline-offset-[16px] underline decoration-from-font text-shadow-white`,
           title.Font.options && getFonts(title.Font.options)
         )}
       >
@@ -33,7 +33,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
       </motion.h2>
       <h2
         className={clsx(
-          `md:text-3xl text-xl tracking-[0.30rem] font-bold text-white antialiased mt-5 text-shadow-purple`,
+          ` xl:text-3xl md:text-2xl text-xl tracking-[0.30rem] font-bold text-white antialiased mt-5 text-shadow-purple`,
           subtitle.Font.options && getFonts(subtitle.Font.options)
         )}
       >

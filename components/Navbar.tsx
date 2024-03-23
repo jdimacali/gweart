@@ -56,7 +56,7 @@ const Navbar = () => {
           src="/icon/gwe.png"
           alt="gwe"
           quality="100"
-          sizes="100vh"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           fill
           className="object-contain pointer-events-none"
           priority

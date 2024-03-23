@@ -37,6 +37,7 @@ const CartItemInfo = ({ product, quantity }: CartItemInfoProps) => {
       <div className="relative h-12 w-12 rounded-md">
         <Image
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src={product.image}
           alt={product.name}
           className="object-cover object-center"

@@ -13,6 +13,7 @@ import {
 } from "@/lib/fonts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import Fonts from "@/components/Fonts";
 
 export const metadata: Metadata = {
   title: "Gweart",
@@ -34,6 +35,7 @@ export default function RootLayout({
         <Analytics />
         <Toaster />
         <Navbar />
+        <Fonts />
         {children}
         <Footer />
       </body>

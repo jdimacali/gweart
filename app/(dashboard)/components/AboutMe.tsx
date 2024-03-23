@@ -8,9 +8,9 @@ const AboutMe = () => {
           <Image
             src="/assets/karen.webp"
             alt="Picture of the author"
-            width={400}
-            height={400}
-            className="object-cover shadow-2xl drop-shadow-2xl "
+            width={300}
+            height={300}
+            className="w-auto h-auto object-cover shadow-2xl drop-shadow-2xl "
           />
         </div>
         <div className="h-full flex flex-col justify-center text-white gap-y-4 ">

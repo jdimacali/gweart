@@ -26,7 +26,7 @@ const SpooktacularGoodies = ({ dashboard }: SpooktacularGoodiesProps) => {
         alt="web"
       />
       {dashboard && (
-        <div className=" w-full h-full flex flex-col md:flex-row justify-center items-center text-center md:pl-20 xl:pl-0 md:py-[4rem] lg:py-[8rem] pt-4 gap-y-10 md:gap-x-4 lg:gap-x-10 xl:gap-x-40 pb-10">
+        <div className=" w-full h-full flex flex-col md:flex-row justify-center items-center text-center md:pl-10 lg:pl-20 xl:pl-0 md:py-[4rem] lg:py-[8rem] pt-4 gap-y-10 md:gap-x-4 lg:gap-x-10 xl:gap-x-40 pb-10">
           <Title
             title={dashboard.Title}
             subtitle={dashboard.Subtitle}
