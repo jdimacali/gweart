@@ -12,7 +12,7 @@ const getProducts = async ({ page = 1, categoryId, name }: getProductProps) => {
     name && `filters[name][$containsi]=${name}`
   }&${
     categoryId && `filters[categories][id][$eq]=${categoryId}`
-  }&pagination[page]=${page}&pagination[pageSize]=9&populate[image][fields][0]=url&populate[categories][fields][]=id&populate[categories][fields][]=name`;
+  }&pagination[page]=${page}&pagination[pageSize]=9&populate[image][fields][0]=url&populate[categories][fields][]=id&populate[categories][fields][]=name&populate[categories][populate][0]=parcel`;
 
   try {
     const response = await axios.get(URL);

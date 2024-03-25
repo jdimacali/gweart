@@ -97,7 +97,16 @@ export interface Category {
         point: string;
       }
     ];
+    parcel: Parcel;
   };
+}
+
+export interface Parcel {
+  id: number;
+  length: number;
+  width: number;
+  height: number;
+  weight: number;
 }
 
 export interface CartItemProduct {
@@ -105,7 +114,14 @@ export interface CartItemProduct {
   name: string;
   price: number;
   image: string;
-  categories: { data: { attributes: { name: string } }[] };
+  categories: {
+    data: {
+      attributes: {
+        name: string;
+        parcel: Parcel;
+      };
+    }[];
+  };
 }
 
 export interface Metadata {

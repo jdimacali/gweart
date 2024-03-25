@@ -28,6 +28,8 @@ const Page = () => {
     getProductInfo();
   }, [params.productId]);
 
+  console.log(product);
+
   return (
     <section className="h-full w-full text-black bg-white items-center justify-center md:px-10 xl:px-20 2xl:px-40 3xl:px-80">
       {loading && (

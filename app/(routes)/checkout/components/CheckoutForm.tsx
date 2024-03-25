@@ -16,10 +16,32 @@ import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { StripeAddressElementChangeEvent } from "@stripe/stripe-js";
 
-const CheckoutForm = () => {
+interface CheckoutFormProps {
+  handleShipping: (code: any) => void;
+  amount: number;
+  shippingCost: {
+    standard: number;
+    express: number;
+  };
+}
+
+const CheckoutForm = ({
+  handleShipping,
+  amount,
+  shippingCost,
+}: CheckoutFormProps) => {
+  const [loading, setLoading] = useState(false);
+  const [selectedShipping, setSelectedShipping] = useState<
+    "standard" | "express"
+  >("standard");
+  
   const stripe = useStripe();
   const elements = useElements();
-  const [loading, setLoading] = useState(false);
+
+  const handleShippingChange = (value: "standard" | "express") => {
+    setSelectedShipping(value);
+  };
+
   const router = useRouter();
 
   const handleError = (error: any) => {
@@ -31,12 +53,10 @@ const CheckoutForm = () => {
   };
 
   const handleSubmit = async (event: FormEvent) => {
-    // We don't want to let default form submission happen here,
-    // which would refresh the page.
     event.preventDefault();
 
-    if (!stripe) {
-      // Stripe.js hasn't yet loaded.
+    if (!stripe || !elements) {
+      // Stripe.js hasn't yet loaded or there are not elements.
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
@@ -76,7 +96,11 @@ const CheckoutForm = () => {
   };
 
   const handleAddressChange = (e: StripeAddressElementChangeEvent) => {
-    console.log("Address changed");
+    // pass the information to the page.tsx to handle shipping label calculations when form is completed
+    if (e.complete) {
+      console.log("Address complete", e);
+      handleShipping(e);
+    }
   };
 
   return (
@@ -98,10 +122,17 @@ const CheckoutForm = () => {
                 display: { name: "split" },
               }}
             />
-            <ShippingElement />
+            <ShippingElement
+              selectedShipping={selectedShipping}
+              handleShippingChange={handleShippingChange}
+            />
           </div>
           <div className="w-full xl:px-10 xl:pr-20">
-            <CheckoutSummary />
+            <CheckoutSummary
+              amount={amount}
+              shippingCost={shippingCost}
+              selectedShipping={selectedShipping}
+            />
           </div>
         </form>
       </div>
