@@ -34,7 +34,7 @@ const CheckoutForm = ({
   const [selectedShipping, setSelectedShipping] = useState<
     "standard" | "express"
   >("standard");
-  
+
   const stripe = useStripe();
   const elements = useElements();
 
@@ -98,7 +98,6 @@ const CheckoutForm = ({
   const handleAddressChange = (e: StripeAddressElementChangeEvent) => {
     // pass the information to the page.tsx to handle shipping label calculations when form is completed
     if (e.complete) {
-      console.log("Address complete", e);
       handleShipping(e);
     }
   };

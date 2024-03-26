@@ -30,6 +30,7 @@
     "clsx": "^2.0.0",
     "embla-carousel-react": "^8.0.0",
     "framer-motion": "^10.16.5",
+    "hexoid": "^1.0.0",
     "lucide-react": "^0.292.0",
     "next": "14.0.3",
     "query-string": "^8.2.0",

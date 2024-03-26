@@ -66,10 +66,10 @@ const CheckoutSummary = ({
       </div>
       <Button
         disabled={items.length === 0}
-        className="w-full mt-6 bg-black text-white hover:bg-black hover:opacity-[85%] transition"
+        className="w-full mt-6 bg-blue-500 text-white hover:bg-blue-600 hover:opacity-[85%] transition"
         type="submit"
       >
-        Checkout
+        Pay
       </Button>
     </div>
   );
