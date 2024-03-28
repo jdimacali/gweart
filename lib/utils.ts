@@ -7,6 +7,10 @@ export function cn(...inputs: ClassValue[]) {
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:1337";
 
+export const formatCents = (num: number) => {
+  return Math.round(num * 100);
+};
+
 export const getFonts = (font: string) => {
   switch (font.trim().toLowerCase()) {
     case "font-mania":

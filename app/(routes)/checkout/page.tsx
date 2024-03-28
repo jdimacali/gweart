@@ -1,32 +1,33 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe, StripeAddressElementChangeEvent } from "@stripe/stripe-js";
-import easyPost from "@easypost/api";
-
 import CheckoutForm from "./components/CheckoutForm";
 import useCart from "@/hooks/use-cart";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = loadStripe(
-  "pk_live_51OqS0fJ3V5zq7YYD0jL4wa93pg2HiBy9p28mZhPiAaku1W13e7tqVN88v0N3r60i158CyNss2q1SjT88m8umxT3g00g9kA1XU2"
-);
+import { useElements } from "@stripe/react-stripe-js";
+import { formatCents } from "@/lib/utils";
 
 const Checkout = () => {
+  const elements = useElements();
   // Amount is in cents
   const cart = useCart();
   const items = cart.items;
   const router = useRouter();
 
-  const cartAmount = items.reduce((total, item) => {
+  const cartAmount: number = items.reduce((total, item) => {
     return total + item.quantity * Number(item.product.price);
   }, 0);
 
   const [amount, setAmount] = useState(cartAmount);
+  const [tax, setTax] = useState(0);
+  const [selectedShipping, setSelectedShipping] = useState<
+    "standard" | "express"
+  >("standard");
+
+  const handleShippingChangeState = (value: "standard" | "express") => {
+    setSelectedShipping(value);
+  };
 
   const [shippingCost, setShippingCost] = useState({
     standard: 0,
@@ -36,51 +37,61 @@ const Checkout = () => {
   // Pass this to the checkout form to handle the calculations for easypost
   const handleShipping = useCallback(
     async (code: any) => {
-      const response = await axios.post("/api/rates", {
-        data: code.value,
-      });
+      if (!elements) {
+        return;
+      }
 
-      console.log(response.data);
+      const payload = {
+        values: code.value,
+        parcel: items,
+        selectedShipping: selectedShipping,
+      };
+
+      const response = await axios.post("/api/rates", payload);
 
       // !IMPORTANT: get the shipping type for express and standard; then display them to the user to choose from
       setShippingCost({
-        standard: 5,
-        express: 10,
+        standard: response.data.standard.rate,
+        express: response.data.express.rate,
       });
 
       // Get the lowest shipping label rate according to which shipping type the user chooses
-      const shippingCost = 10;
+      const selectedShippingCost =
+        selectedShipping == "standard"
+          ? response.data.standard.rate
+          : response.data.express.rate;
 
       // Trigger a state change that re-renders the Elements provider with the new amount
-      const newAmount = cartAmount + shippingCost;
+      const newAmount =
+        Number(cartAmount) +
+        Number(selectedShippingCost) +
+        Number(response.data.tax);
+
+      elements?.update({
+        amount: formatCents(newAmount),
+        currency: "usd",
+      });
+      setTax(response.data.tax);
       setAmount(newAmount);
     },
-    [cartAmount]
+    [cartAmount, items, selectedShipping, elements]
   );
 
   if (items.length === 0) {
-    return router.push("/cart");
+    router.push("/cart");
   }
 
   return (
-    <Elements
-      stripe={stripePromise}
-      options={{
-        mode: "payment",
-        // amount is in cents; hence the 00
-        amount: Number(`${amount}00`),
-        currency: "usd",
-        appearance: {
-          theme: "flat",
-        },
-      }}
-    >
-      <CheckoutForm
-        amount={amount}
-        handleShipping={handleShipping}
-        shippingCost={shippingCost}
-      />
-    </Elements>
+    <CheckoutForm
+      cartAmount={cartAmount}
+      amount={amount}
+      handleShipping={handleShipping}
+      shippingCost={shippingCost}
+      handleShippingChangeState={handleShippingChangeState}
+      selectedShipping={selectedShipping}
+      setAmount={setAmount}
+      tax={tax}
+    />
   );
 };
 

@@ -3,6 +3,7 @@
 import useCart from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Stripe } from "@stripe/stripe-js";
 
 interface CheckoutSummaryProps {
   amount: number;
@@ -11,12 +12,18 @@ interface CheckoutSummaryProps {
     express: number;
   };
   selectedShipping: "standard" | "express";
+  stripe: Stripe | null;
+  cartAmount: number;
+  tax: number;
 }
 
 const CheckoutSummary = ({
   amount,
   shippingCost,
   selectedShipping,
+  stripe,
+  cartAmount,
+  tax,
 }: CheckoutSummaryProps) => {
   const items = useCart((state) => state.items);
 
@@ -36,36 +43,48 @@ const CheckoutSummary = ({
               </div>
             </div>
           ))}
+          <div className="flex items-center justify-between pt-4">
+            <div className="text-sm font-[600] text-gray-900">Subtotal</div>
+            {formatPrice(cartAmount)}
+          </div>
+        </div>
+        <div>
+          <div className="flex justify-between">
+            <div className="flex text-neutral-500">Shipping</div>
+            <div className="flex gap-x-3">
+              <>
+                {shippingCost.standard > 0 ? (
+                  <div>
+                    {formatPrice(
+                      selectedShipping === "standard"
+                        ? shippingCost.standard
+                        : shippingCost.express
+                    )}
+                  </div>
+                ) : (
+                  "--"
+                )}
+
+                <div className="text-neutral-500">{selectedShipping}</div>
+              </>
+            </div>
+          </div>
+          <div className="flex items-center justify-between border-gray-200">
+            <div className="text-neutral-500">Tax</div>
+            {formatPrice(tax)}
+          </div>
         </div>
 
-        <div className="flex justify-between">
-          <div className="flex gap-x-2">Shipping</div>
-          <div className="flex gap-x-3">
-            <>
-              {shippingCost.standard > 0 ? (
-                <div>{formatPrice(shippingCost.standard)}</div>
-              ) : (
-                "--"
-              )}
-              <div className="text-neutral-500">{selectedShipping}</div>
-            </>
-          </div>
-        </div>
-        <div className="flex justify-between">
-          <div>Tax</div>
-          <div className="flex gap-x-3">
-            <div>{formatPrice(1)}</div>
-          </div>
-        </div>
+        <div className="flex justify-between"></div>
       </div>
-      <div className="mt-6 space-y-4">
-        <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <div className="text-base font-[600] text-gray-900">Order total</div>
+      <div className="mt-2 border-t border-gray-200 space-y-4">
+        <div className="flex items-center justify-between border-gray-200 pt-4">
+          <div className="text-base font-[600] text-gray-900">Total due</div>
           {formatPrice(amount)}
         </div>
       </div>
       <Button
-        disabled={items.length === 0}
+        disabled={items.length === 0 || !stripe}
         className="w-full mt-6 bg-blue-500 text-white hover:bg-blue-600 hover:opacity-[85%] transition"
         type="submit"
       >

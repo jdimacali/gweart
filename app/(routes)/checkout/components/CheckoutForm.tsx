@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import {
   useStripe,
   useElements,
@@ -23,23 +23,30 @@ interface CheckoutFormProps {
     standard: number;
     express: number;
   };
+  handleShippingChangeState: (value: "standard" | "express") => void;
+  selectedShipping: "standard" | "express";
+  cartAmount: number;
+  setAmount: Dispatch<SetStateAction<number>>;
+  tax: number;
 }
 
 const CheckoutForm = ({
   handleShipping,
   amount,
   shippingCost,
+  handleShippingChangeState,
+  selectedShipping,
+  cartAmount,
+  setAmount,
+  tax,
 }: CheckoutFormProps) => {
   const [loading, setLoading] = useState(false);
-  const [selectedShipping, setSelectedShipping] = useState<
-    "standard" | "express"
-  >("standard");
 
   const stripe = useStripe();
   const elements = useElements();
 
   const handleShippingChange = (value: "standard" | "express") => {
-    setSelectedShipping(value);
+    handleShippingChangeState(value);
   };
 
   const router = useRouter();
@@ -113,17 +120,24 @@ const CheckoutForm = ({
           <div className="w-full">
             <LinkAuthenticationElement />
             <PaymentElement options={{}} />
+            <ShippingElement
+              selectedShipping={selectedShipping}
+              handleShippingChange={handleShippingChange}
+              shippingCost={shippingCost}
+              setAmount={setAmount}
+              cartAmount={cartAmount}
+              tax={tax}
+            />
             <AddressElement
               onChange={handleAddressChange}
               options={{
                 mode: "shipping",
                 allowedCountries: ["US"],
                 display: { name: "split" },
+                fields: {
+                  phone: "always",
+                },
               }}
-            />
-            <ShippingElement
-              selectedShipping={selectedShipping}
-              handleShippingChange={handleShippingChange}
             />
           </div>
           <div className="w-full xl:px-10 xl:pr-20">
@@ -131,6 +145,9 @@ const CheckoutForm = ({
               amount={amount}
               shippingCost={shippingCost}
               selectedShipping={selectedShipping}
+              stripe={stripe}
+              cartAmount={cartAmount}
+              tax={tax}
             />
           </div>
         </form>

@@ -1,19 +1,29 @@
 import { formatPrice } from "@/lib/utils";
-import { ChangeEvent, useState } from "react";
-
+import { Dispatch, SetStateAction } from "react";
 interface ShippingElementProps {
   selectedShipping: string;
   handleShippingChange: (value: "standard" | "express") => void;
+  shippingCost: {
+    standard: number;
+    express: number;
+  };
+  setAmount: Dispatch<SetStateAction<number>>;
+  cartAmount: number;
+  tax: number;
 }
 const ShippingElement = ({
   handleShippingChange,
   selectedShipping,
+  shippingCost,
+  setAmount,
+  cartAmount,
+  tax,
 }: ShippingElementProps) => {
   // !IMPORTANT: get the prices after the user puts in their address from the main page
   return (
     <fieldset className="flex flex-col my-4 ">
       <h2 className="mb-2 text-sm text-neutral-700">Shipping Method</h2>
-      <div className="border border-neutral-200 p-2 flex flex-col rounded bg-yellow-100/10">
+      <div className="border border-neutral-100 p-2 flex flex-col rounded bg-yellow-100/10">
         <div className="flex justify-between border-b border-neutral-200 pb-2 pt-1">
           <div className="flex gap-x-2">
             <input
@@ -21,7 +31,10 @@ const ShippingElement = ({
               name="shipping"
               value="standard"
               checked={selectedShipping === "standard"}
-              onChange={() => handleShippingChange("standard")}
+              onChange={() => {
+                handleShippingChange("standard");
+                setAmount(cartAmount + tax + Number(shippingCost.standard));
+              }}
             />
 
             <div>
@@ -35,7 +48,11 @@ const ShippingElement = ({
             </div>
           </div>
           {/* calculate with easypost api using address and total weight and box type */}
-          <div className="text-sm"> -- {formatPrice(10)} </div>
+          <div className="text-sm place-self-center">
+            {shippingCost.standard > 0
+              ? formatPrice(shippingCost.standard)
+              : "--"}
+          </div>
         </div>
         <div className="flex justify-between pb-1 pt-2">
           <div className="flex gap-x-2">
@@ -43,7 +60,10 @@ const ShippingElement = ({
               type="radio"
               name="shipping"
               value="express"
-              onChange={() => handleShippingChange("express")}
+              onChange={() => {
+                handleShippingChange("express");
+                setAmount(cartAmount + tax + Number(shippingCost.express));
+              }}
             />
 
             <div>
@@ -56,7 +76,12 @@ const ShippingElement = ({
               </div>
             </div>
           </div>
-          <div className="text-sm"> -- {formatPrice(20)} </div>
+          <div className="text-sm place-self-center">
+            {" "}
+            {shippingCost.express > 0
+              ? formatPrice(shippingCost.express)
+              : "--"}
+          </div>
         </div>
       </div>
     </fieldset>
