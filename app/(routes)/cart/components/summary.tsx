@@ -7,8 +7,6 @@ import useCart from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import axios from "axios";
-import { API_URL } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 const Summary = () => {
@@ -18,7 +16,7 @@ const Summary = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (searchParams.get("success")) {
+    if (searchParams.get("redirect_status") == "succeeded") {
       toast({
         title: "Payment completed",
         description: "Your order is being processed",

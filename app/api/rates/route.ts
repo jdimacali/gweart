@@ -25,7 +25,9 @@ interface FormData {
       name: string;
       price: number;
       image: string;
-      categories: Category[];
+      categories: {
+        data: Category[];
+      };
     };
     quantity: number;
   }[];
@@ -49,11 +51,59 @@ export async function POST(req: RequestWithData) {
     const { name } = data.values;
     const { line1, city, state, postal_code, country } = data.values.address;
 
-    if (!process.env.NEXT_PUBLIC_EASYPOST_TEST) {
+    if (!process.env.NEXT_PUBLIC_EASYPOST_TEST || !stripe || !EasyPost) {
       return NextResponse.json("Server side error", { status: 500 });
     }
 
     const api = new EasyPost(process.env.NEXT_PUBLIC_EASYPOST_TEST);
+
+    // Add verification for the address
+    const to_address = await api.Address.create({
+      name: name,
+      street1: line1,
+      city: city,
+      state: state,
+      zip: postal_code,
+      country: country,
+      phone: data.values?.phone?.slice(1, -1),
+    });
+
+    // Calculate parcel weight and which package to use
+    const parcelWeight = parcel.reduce(
+      (accumulator, currentValue) =>
+        accumulator +
+        currentValue.product.categories.data[0].attributes.parcel.weight *
+          currentValue.quantity,
+      0
+    );
+
+    // Figure out what parcel package to use and give that to the easypost api
+    // !Important: This is a simplified version of the logic that would be used in a real-world application. Fix it to match the actual logic.
+    const parcelVolumes = parcel.map((item) => ({
+      id: item.product.id,
+      volume:
+        item.product.categories.data[0].attributes.parcel.height *
+        item.product.categories.data[0].attributes.parcel.width *
+        item.product.categories.data[0].attributes.parcel.length,
+      dimensions: {
+        length: item.product.categories.data[0].attributes.parcel.length,
+        width: item.product.categories.data[0].attributes.parcel.width,
+        height: item.product.categories.data[0].attributes.parcel.height,
+      },
+    }));
+
+    let chosenPackage = parcelVolumes.reduce((maxParcel, currentParcel) => {
+      return currentParcel.volume > maxParcel.volume
+        ? currentParcel
+        : maxParcel;
+    }, parcelVolumes[0]);
+
+    const calculatedParcel = {
+      length: chosenPackage.dimensions.length,
+      width: chosenPackage.dimensions.width,
+      height: chosenPackage.dimensions.height,
+      weight: parcelWeight,
+    };
 
     // Create shipping label using EasyPost API: fill in user details from the form and parcel data from cart
     const shipment = await api.Shipment.create({
@@ -68,21 +118,16 @@ export async function POST(req: RequestWithData) {
         phone: "323-371-5202",
       },
       to_address: {
-        name: name,
-        street1: line1,
-        city: city,
-        state: state,
-        zip: postal_code,
-        country: country,
-        phone: data.values?.phone?.slice(1, -1),
+        street1: to_address.street1,
+        city: to_address.city,
+        state: to_address.state,
+        zip: to_address.zip,
+        country: to_address.country,
+        name: to_address.name,
+        phone: to_address.phone,
       },
       // Pass the parcel information from the cart
-      parcel: {
-        length: 5,
-        width: 6,
-        height: 7,
-        weight: 8,
-      },
+      parcel: calculatedParcel,
     });
 
     // Get standard rates
@@ -117,7 +162,6 @@ export async function POST(req: RequestWithData) {
       expand: ["line_items"],
     });
 
-    console.log(tax);
     return NextResponse.json({
       standard,
       express,

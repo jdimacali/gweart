@@ -1,4 +1,5 @@
-import { formatPrice } from "@/lib/utils";
+import { formatCents, formatPrice } from "@/lib/utils";
+import { useElements } from "@stripe/react-stripe-js";
 import { Dispatch, SetStateAction } from "react";
 interface ShippingElementProps {
   selectedShipping: string;
@@ -19,7 +20,7 @@ const ShippingElement = ({
   cartAmount,
   tax,
 }: ShippingElementProps) => {
-  // !IMPORTANT: get the prices after the user puts in their address from the main page
+  const elements = useElements();
   return (
     <fieldset className="flex flex-col my-4 ">
       <h2 className="mb-2 text-sm text-neutral-700">Shipping Method</h2>
@@ -34,6 +35,12 @@ const ShippingElement = ({
               onChange={() => {
                 handleShippingChange("standard");
                 setAmount(cartAmount + tax + Number(shippingCost.standard));
+                elements?.update({
+                  amount: formatCents(
+                    cartAmount + tax + Number(shippingCost.express)
+                  ),
+                  currency: "usd",
+                });
               }}
             />
 
@@ -63,6 +70,12 @@ const ShippingElement = ({
               onChange={() => {
                 handleShippingChange("express");
                 setAmount(cartAmount + tax + Number(shippingCost.express));
+                elements?.update({
+                  amount: formatCents(
+                    cartAmount + tax + Number(shippingCost.express)
+                  ),
+                  currency: "usd",
+                });
               }}
             />
 

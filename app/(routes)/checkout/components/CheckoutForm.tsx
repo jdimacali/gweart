@@ -6,11 +6,10 @@ import {
   AddressElement,
   LinkAuthenticationElement,
 } from "@stripe/react-stripe-js";
-import { Button } from "@/components/ui/button";
 import CheckoutSummary from "./CheckoutSummary";
 import HelpfulInformation from "@/components/HelpfulInformation";
 import ShippingElement from "./ShippingElement";
-import { API_URL } from "@/lib/utils";
+import { API_URL, formatPrice } from "@/lib/utils";
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
@@ -56,6 +55,7 @@ const CheckoutForm = ({
     console.error("Error during checkout", error);
     toast({
       title: "Error during checkout",
+      description: `${error.message}`,
     });
   };
 
@@ -77,16 +77,20 @@ const CheckoutForm = ({
       return;
     }
 
+    const paymentAmount = Math.round(amount * 100) / 100;
     // Create the PaymentIntent and obtain clientSecret
-    const res = await axios.post(`${API_URL}/api/orders`);
-    const { client_secret: clientSecret } = await res.data();
+    const res = await axios.post(`${API_URL}/api/orders`, {
+      amount: paymentAmount,
+    });
+    const { client_secret: clientSecret } = await res.data;
 
     // Confirm the PaymentIntent using the details collected by the Payment Element
     const { error } = await stripe.confirmPayment({
       elements,
       clientSecret,
       confirmParams: {
-        return_url: "https://artbygwe.com/cart?success=true",
+        // !Important: Change the return url when in production
+        return_url: "http://localhost:3000/cart",
       },
     });
 
@@ -98,7 +102,7 @@ const CheckoutForm = ({
       // Your customer is redirected to your `return_url`. For some payment
       // methods like iDEAL, your customer is redirected to an intermediate
       // site first to authorize the payment, then redirected to the `return_url`.
-      router.push("/cart?success=true");
+      router.push("/cart");
     }
   };
 

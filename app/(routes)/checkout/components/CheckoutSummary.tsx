@@ -4,7 +4,6 @@ import useCart from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Stripe } from "@stripe/stripe-js";
-
 interface CheckoutSummaryProps {
   amount: number;
   shippingCost: {
@@ -52,21 +51,18 @@ const CheckoutSummary = ({
           <div className="flex justify-between">
             <div className="flex text-neutral-500">Shipping</div>
             <div className="flex gap-x-3">
-              <>
-                {shippingCost.standard > 0 ? (
-                  <div>
-                    {formatPrice(
-                      selectedShipping === "standard"
-                        ? shippingCost.standard
-                        : shippingCost.express
-                    )}
-                  </div>
-                ) : (
-                  "--"
-                )}
-
-                <div className="text-neutral-500">{selectedShipping}</div>
-              </>
+              <div className="text-neutral-500">{selectedShipping}</div>
+              {shippingCost.standard > 0 ? (
+                <div>
+                  {formatPrice(
+                    selectedShipping === "standard"
+                      ? shippingCost.standard
+                      : shippingCost.express
+                  )}
+                </div>
+              ) : (
+                "--"
+              )}
             </div>
           </div>
           <div className="flex items-center justify-between border-gray-200">

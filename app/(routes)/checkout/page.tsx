@@ -10,10 +10,9 @@ import { formatCents } from "@/lib/utils";
 
 const Checkout = () => {
   const elements = useElements();
-  // Amount is in cents
   const cart = useCart();
-  const items = cart.items;
   const router = useRouter();
+  const items = cart.items;
 
   const cartAmount: number = items.reduce((total, item) => {
     return total + item.quantity * Number(item.product.price);
@@ -54,7 +53,7 @@ const Checkout = () => {
         standard: response.data.standard.rate,
         express: response.data.express.rate,
       });
-
+      console.log(response.data.standard);
       // Get the lowest shipping label rate according to which shipping type the user chooses
       const selectedShippingCost =
         selectedShipping == "standard"
