@@ -18,7 +18,8 @@ import { StripeAddressElementChangeEvent } from "@stripe/stripe-js";
 interface CheckoutFormProps {
   handleShipping: (code: any) => void;
   amount: number;
-  shippingCost: {
+  shippingInfo: {
+    id: string;
     standard: number;
     express: number;
   };
@@ -27,17 +28,19 @@ interface CheckoutFormProps {
   cartAmount: number;
   setAmount: Dispatch<SetStateAction<number>>;
   tax: number;
+  shippingLoading: boolean;
 }
 
 const CheckoutForm = ({
   handleShipping,
   amount,
-  shippingCost,
+  shippingInfo,
   handleShippingChangeState,
   selectedShipping,
   cartAmount,
   setAmount,
   tax,
+  shippingLoading,
 }: CheckoutFormProps) => {
   const [loading, setLoading] = useState(false);
 
@@ -62,6 +65,14 @@ const CheckoutForm = ({
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
+    const payload = {
+      selectedShipping: selectedShipping,
+      shippingId: shippingInfo.id,
+    };
+
+    // const response = await axios.post("/api/label", payload);
+    // console.log(response.data.label.postage_label);
+
     if (!stripe || !elements) {
       // Stripe.js hasn't yet loaded or there are not elements.
       // Make sure to disable form submission until Stripe.js has loaded.
@@ -81,7 +92,9 @@ const CheckoutForm = ({
     // Create the PaymentIntent and obtain clientSecret
     const res = await axios.post(`${API_URL}/api/orders`, {
       amount: paymentAmount,
+      shipping: payload,
     });
+
     const { client_secret: clientSecret } = await res.data;
 
     // Confirm the PaymentIntent using the details collected by the Payment Element
@@ -127,7 +140,7 @@ const CheckoutForm = ({
             <ShippingElement
               selectedShipping={selectedShipping}
               handleShippingChange={handleShippingChange}
-              shippingCost={shippingCost}
+              shippingInfo={shippingInfo}
               setAmount={setAmount}
               cartAmount={cartAmount}
               tax={tax}
@@ -147,11 +160,13 @@ const CheckoutForm = ({
           <div className="w-full xl:px-10 xl:pr-20">
             <CheckoutSummary
               amount={amount}
-              shippingCost={shippingCost}
+              shippingInfo={shippingInfo}
               selectedShipping={selectedShipping}
               stripe={stripe}
               cartAmount={cartAmount}
               tax={tax}
+              shippingLoading={shippingLoading}
+              loading={loading}
             />
           </div>
         </form>

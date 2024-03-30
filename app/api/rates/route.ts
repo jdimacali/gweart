@@ -166,6 +166,7 @@ export async function POST(req: RequestWithData) {
       standard,
       express,
       tax: tax.tax_amount_exclusive / 100,
+      id: shipment.id,
     });
   } catch (error: any) {
     console.log("RATES:", error);

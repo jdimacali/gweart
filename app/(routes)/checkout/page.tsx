@@ -1,19 +1,18 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CheckoutForm from "./components/CheckoutForm";
 import useCart from "@/hooks/use-cart";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useElements } from "@stripe/react-stripe-js";
 import { formatCents } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const Checkout = () => {
   const elements = useElements();
   const cart = useCart();
   const router = useRouter();
   const items = cart.items;
-
   const cartAmount: number = items.reduce((total, item) => {
     return total + item.quantity * Number(item.product.price);
   }, 0);
@@ -23,15 +22,23 @@ const Checkout = () => {
   const [selectedShipping, setSelectedShipping] = useState<
     "standard" | "express"
   >("standard");
+  const [shippingLoading, setShippingLoading] = useState(false);
 
   const handleShippingChangeState = (value: "standard" | "express") => {
     setSelectedShipping(value);
   };
 
-  const [shippingCost, setShippingCost] = useState({
+  const [shippingInfo, setShippingInfo] = useState({
+    id: "",
     standard: 0,
     express: 0,
   });
+
+  useEffect(() => {
+    if (items.length === 0) {
+      return router.push("/cart");
+    }
+  }, [items, router]);
 
   // Pass this to the checkout form to handle the calculations for easypost
   const handleShipping = useCallback(
@@ -46,50 +53,54 @@ const Checkout = () => {
         selectedShipping: selectedShipping,
       };
 
-      const response = await axios.post("/api/rates", payload);
+      try {
+        setShippingLoading(true);
+        const response = await axios.post("/api/rates", payload);
 
-      // !IMPORTANT: get the shipping type for express and standard; then display them to the user to choose from
-      setShippingCost({
-        standard: response.data.standard.rate,
-        express: response.data.express.rate,
-      });
-      console.log(response.data.standard);
-      // Get the lowest shipping label rate according to which shipping type the user chooses
-      const selectedShippingCost =
-        selectedShipping == "standard"
-          ? response.data.standard.rate
-          : response.data.express.rate;
+        setShippingInfo({
+          id: response.data.id,
+          standard: response.data.standard.rate,
+          express: response.data.express.rate,
+        });
 
-      // Trigger a state change that re-renders the Elements provider with the new amount
-      const newAmount =
-        Number(cartAmount) +
-        Number(selectedShippingCost) +
-        Number(response.data.tax);
+        // Get the lowest shipping label rate according to which shipping type the user chooses
+        const selectedShippingCost =
+          selectedShipping == "standard"
+            ? response.data.standard.rate
+            : response.data.express.rate;
 
-      elements?.update({
-        amount: formatCents(newAmount),
-        currency: "usd",
-      });
-      setTax(response.data.tax);
-      setAmount(newAmount);
+        // Trigger a state change that re-renders the Elements provider with the new amount
+        const newAmount =
+          Number(cartAmount) +
+          Number(selectedShippingCost) +
+          Number(response.data.tax);
+
+        elements?.update({
+          amount: formatCents(newAmount),
+          currency: "usd",
+        });
+        setTax(response.data.tax);
+        setAmount(newAmount);
+      } catch (error) {
+        console.error("Error during checkout", error);
+      } finally {
+        setShippingLoading(false);
+      }
     },
     [cartAmount, items, selectedShipping, elements]
   );
-
-  if (items.length === 0) {
-    router.push("/cart");
-  }
 
   return (
     <CheckoutForm
       cartAmount={cartAmount}
       amount={amount}
       handleShipping={handleShipping}
-      shippingCost={shippingCost}
+      shippingInfo={shippingInfo}
       handleShippingChangeState={handleShippingChangeState}
       selectedShipping={selectedShipping}
       setAmount={setAmount}
       tax={tax}
+      shippingLoading={shippingLoading}
     />
   );
 };

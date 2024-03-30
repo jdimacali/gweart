@@ -4,7 +4,8 @@ import { Dispatch, SetStateAction } from "react";
 interface ShippingElementProps {
   selectedShipping: string;
   handleShippingChange: (value: "standard" | "express") => void;
-  shippingCost: {
+  shippingInfo: {
+    id: string;
     standard: number;
     express: number;
   };
@@ -15,7 +16,7 @@ interface ShippingElementProps {
 const ShippingElement = ({
   handleShippingChange,
   selectedShipping,
-  shippingCost,
+  shippingInfo,
   setAmount,
   cartAmount,
   tax,
@@ -34,10 +35,10 @@ const ShippingElement = ({
               checked={selectedShipping === "standard"}
               onChange={() => {
                 handleShippingChange("standard");
-                setAmount(cartAmount + tax + Number(shippingCost.standard));
+                setAmount(cartAmount + tax + Number(shippingInfo.standard));
                 elements?.update({
                   amount: formatCents(
-                    cartAmount + tax + Number(shippingCost.express)
+                    cartAmount + tax + Number(shippingInfo.express)
                   ),
                   currency: "usd",
                 });
@@ -56,8 +57,8 @@ const ShippingElement = ({
           </div>
           {/* calculate with easypost api using address and total weight and box type */}
           <div className="text-sm place-self-center">
-            {shippingCost.standard > 0
-              ? formatPrice(shippingCost.standard)
+            {shippingInfo.standard > 0
+              ? formatPrice(shippingInfo.standard)
               : "--"}
           </div>
         </div>
@@ -69,10 +70,10 @@ const ShippingElement = ({
               value="express"
               onChange={() => {
                 handleShippingChange("express");
-                setAmount(cartAmount + tax + Number(shippingCost.express));
+                setAmount(cartAmount + tax + Number(shippingInfo.express));
                 elements?.update({
                   amount: formatCents(
-                    cartAmount + tax + Number(shippingCost.express)
+                    cartAmount + tax + Number(shippingInfo.express)
                   ),
                   currency: "usd",
                 });
@@ -91,8 +92,8 @@ const ShippingElement = ({
           </div>
           <div className="text-sm place-self-center">
             {" "}
-            {shippingCost.express > 0
-              ? formatPrice(shippingCost.express)
+            {shippingInfo.express > 0
+              ? formatPrice(shippingInfo.express)
               : "--"}
           </div>
         </div>

@@ -4,9 +4,11 @@ import useCart from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Stripe } from "@stripe/stripe-js";
+import BouncingCircles from "@/components/BouncingCircles";
 interface CheckoutSummaryProps {
   amount: number;
-  shippingCost: {
+  shippingInfo: {
+    id: string;
     standard: number;
     express: number;
   };
@@ -14,15 +16,19 @@ interface CheckoutSummaryProps {
   stripe: Stripe | null;
   cartAmount: number;
   tax: number;
+  loading: boolean;
+  shippingLoading: boolean;
 }
 
 const CheckoutSummary = ({
   amount,
-  shippingCost,
+  shippingInfo,
   selectedShipping,
   stripe,
   cartAmount,
   tax,
+  loading,
+  shippingLoading,
 }: CheckoutSummaryProps) => {
   const items = useCart((state) => state.items);
 
@@ -52,12 +58,12 @@ const CheckoutSummary = ({
             <div className="flex text-neutral-500">Shipping</div>
             <div className="flex gap-x-3">
               <div className="text-neutral-500">{selectedShipping}</div>
-              {shippingCost.standard > 0 ? (
+              {shippingInfo.standard > 0 ? (
                 <div>
                   {formatPrice(
                     selectedShipping === "standard"
-                      ? shippingCost.standard
-                      : shippingCost.express
+                      ? shippingInfo.standard
+                      : shippingInfo.express
                   )}
                 </div>
               ) : (
@@ -80,11 +86,17 @@ const CheckoutSummary = ({
         </div>
       </div>
       <Button
-        disabled={items.length === 0 || !stripe}
+        disabled={items.length === 0 || !stripe || loading || shippingLoading}
         className="w-full mt-6 bg-blue-500 text-white hover:bg-blue-600 hover:opacity-[85%] transition"
         type="submit"
       >
-        Pay
+        {loading || shippingLoading ? (
+          <div className="h-8 w-8">
+            <BouncingCircles />
+          </div>
+        ) : (
+          <div> Pay </div>
+        )}
       </Button>
     </div>
   );
