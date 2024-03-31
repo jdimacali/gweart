@@ -34,11 +34,11 @@ export async function POST(req: Request) {
         text: "Hello world",
       });
 
-      return new NextResponse("Email update was sent to the customer!", {
+      return NextResponse.json("Email update was sent to the customer!", {
         status: 200,
       });
     } else {
-      return new NextResponse(
+      return NextResponse.json(
         "Not a Tracker event, so nothing to do here for now...",
         { status: 200 }
       );
