@@ -27,13 +27,13 @@ export async function POST(req: Request) {
       //     message += `There's an update on your package: ${tracker.carrier} says: ${td.message} in ${td.tracking_location.city}.`;
       //   }
 
-      const response = await resend.emails.send({
-        from: "Acme <onboarding@resend.dev>",
-        to: ["frostbitezebra421@gmail.com"],
-        subject: "Hello world",
-        react: EmailTemplate({ firstName: "James" }),
-        text: "Hello world",
-      });
+    //   const response = await resend.emails.send({
+    //     from: "Acme <onboarding@resend.dev>",
+    //     to: ["frostbitezebra421@gmail.com"],
+    //     subject: "Hello world",
+    //     react: EmailTemplate({ firstName: "James" }),
+    //     text: "Hello world",
+    //   });
 
       return NextResponse.json("Email update was sent to the customer!", {
         status: 200,
