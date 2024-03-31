@@ -13,7 +13,10 @@ import { API_URL, formatPrice } from "@/lib/utils";
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import { StripeAddressElementChangeEvent } from "@stripe/stripe-js";
+import {
+  StripeAddressElementChangeEvent,
+  StripeLinkAuthenticationElementChangeEvent,
+} from "@stripe/stripe-js";
 
 interface CheckoutFormProps {
   handleShipping: (code: any) => void;
@@ -43,6 +46,7 @@ const CheckoutForm = ({
   shippingLoading,
 }: CheckoutFormProps) => {
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
 
   const stripe = useStripe();
   const elements = useElements();
@@ -87,6 +91,7 @@ const CheckoutForm = ({
     // Create the PaymentIntent and obtain clientSecret
     const res = await axios.post(`${API_URL}/api/orders`, {
       amount: paymentAmount,
+      email,
       shipping: payload,
     });
 
@@ -123,6 +128,13 @@ const CheckoutForm = ({
     }
   };
 
+  const handleEmailChange = (e: StripeLinkAuthenticationElementChangeEvent) => {
+    // pass the information to the page.tsx to handle shipping label calculations when form is completed
+    if (e.complete) {
+      setEmail(e.value.email);
+    }
+  };
+
   return (
     <div className="h-full w-[full] bg-white justify-center lg:px-40 xl:px-60 2xl:px-72 py-12 px-8 pb-32">
       <div className="flex flex-col w-full ">
@@ -132,7 +144,7 @@ const CheckoutForm = ({
           onSubmit={handleSubmit}
         >
           <div className="w-full">
-            <LinkAuthenticationElement />
+            <LinkAuthenticationElement onChange={handleEmailChange} />
             <PaymentElement options={{}} />
             <ShippingElement
               selectedShipping={selectedShipping}
