@@ -77,6 +77,8 @@ export async function POST(req: RequestWithData) {
       0
     );
 
+    const parcelWeightOunces = parcelWeight * 16;
+
     // Figure out what parcel package to use and give that to the easypost api
     // !Important: This is a simplified version of the logic that would be used in a real-world application. Fix it to match the actual logic.
     const parcelVolumes = parcel.map((item) => ({
@@ -102,8 +104,16 @@ export async function POST(req: RequestWithData) {
       length: chosenPackage.dimensions.length,
       width: chosenPackage.dimensions.width,
       height: chosenPackage.dimensions.height,
-      weight: parcelWeight,
+      weight: parcelWeightOunces,
     };
+
+    const line_items = parcel.map((item) => ({
+      description: item.product.name,
+      quantity: item.quantity,
+      weight: item.product.categories.data[0].attributes.parcel.weight,
+      value: item.product.price,
+      origin_country: "US",
+    }));
 
     // Create shipping label using EasyPost API: fill in user details from the form and parcel data from cart
     const shipment = await api.Shipment.create({
@@ -126,8 +136,13 @@ export async function POST(req: RequestWithData) {
         name: to_address.name,
         phone: to_address.phone,
       },
-      // Pass the parcel information from the cart
+      // Pass the parcel information from the cart, weight in ounces
       parcel: calculatedParcel,
+      customs_info: {
+        contents_type: "merchandise",
+        restriction_type: "none",
+        customs_items: line_items,
+      },
     });
 
     // Get standard rates

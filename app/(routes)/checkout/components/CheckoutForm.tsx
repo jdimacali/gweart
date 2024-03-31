@@ -70,12 +70,7 @@ const CheckoutForm = ({
       shippingId: shippingInfo.id,
     };
 
-    // const response = await axios.post("/api/label", payload);
-    // console.log(response.data.label.postage_label);
-
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded or there are not elements.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
@@ -117,6 +112,8 @@ const CheckoutForm = ({
       // site first to authorize the payment, then redirected to the `return_url`.
       router.push("/cart");
     }
+
+    setLoading(false);
   };
 
   const handleAddressChange = (e: StripeAddressElementChangeEvent) => {
