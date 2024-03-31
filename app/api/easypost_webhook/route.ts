@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
       const data = await resend.emails.send({
         from: "Acme <onboarding@resend.dev>",
-        to: ["delivered@resend.dev"],
+        to: ["frostbitezebra421@gmail.com"],
         subject: "Hello world",
         react: EmailTemplate({ firstName: "James" }),
         text: "Hello world",
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       return new NextResponse("Email update was sent to the customer!", {
         status: 200,
       });
-      
+
     } else {
       return new NextResponse(
         "Not a Tracker event, so nothing to do here for now...",
