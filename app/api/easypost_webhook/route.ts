@@ -9,22 +9,23 @@ export async function POST(req: Request) {
   try {
     const data = await req.json();
 
-    // if (data.object === "Event" && data.description === "tracker.updated") {
-    //   const event = await EasyPost.Event.receive(req.body);
-    //   const tracker = event.result;
+    if (true) {
+      // if (data.object === "Event" && data.description === "tracker.updated") {
+      //   const event = await EasyPost.Event.receive(req.body);
+      //   const tracker = event.result;
 
-    //   let message = "Hey, this is GWEart. ";
+      //   let message = "Hey, this is GWEart. ";
 
-    //   if (tracker.status === "delivered") {
-    //     message += "Your package has arrived!";
-    //   } else {
-    //     const td = tracker.tracking_details
-    //       .reverse()
-    //       .find(
-    //         (trackingDetail: any) => trackingDetail.status === tracker.status
-    //       );
-    //     message += `There's an update on your package: ${tracker.carrier} says: ${td.message} in ${td.tracking_location.city}.`;
-    //   }
+      //   if (tracker.status === "delivered") {
+      //     message += "Your package has arrived!";
+      //   } else {
+      //     const td = tracker.tracking_details
+      //       .reverse()
+      //       .find(
+      //         (trackingDetail: any) => trackingDetail.status === tracker.status
+      //       );
+      //     message += `There's an update on your package: ${tracker.carrier} says: ${td.message} in ${td.tracking_location.city}.`;
+      //   }
 
       const response = await resend.emails.send({
         from: "Acme <onboarding@resend.dev>",
