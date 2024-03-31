@@ -37,17 +37,14 @@ export async function POST(req: Request) {
       return new NextResponse("Email update was sent to the customer!", {
         status: 200,
       });
-
     } else {
       return new NextResponse(
         "Not a Tracker event, so nothing to do here for now...",
         { status: 200 }
       );
     }
-
-    return NextResponse.json({});
   } catch (error: any) {
     console.log("RATES:", error);
-    return new NextResponse("Error getting rates", { status: 500 });
+    return new NextResponse("Error getting easypost webhook", { status: 500 });
   }
 }
