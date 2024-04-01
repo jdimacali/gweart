@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 // const EasyPost = require("@easypost/api");
-// import { EmailTemplate } from "@/components/emailTemplate";
+import { EmailTemplate } from "@/components/emailTemplate";
 // import { Resend } from "resend";
 
 export async function POST(req: Request) {
