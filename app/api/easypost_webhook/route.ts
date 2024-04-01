@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import EasyPost from "@easypost/api";
+const EasyPost = require("@easypost/api");
 import { EmailTemplate } from "@/components/emailTemplate";
 import { Resend } from "resend";
 
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
         to: ["frostbitezebra421@gmail.com"],
         subject: "Hello world",
         react: EmailTemplate({ firstName: "James" }),
-        text: "Hello world",
+        text: message,
       });
 
       return NextResponse.json("Email update was sent to the customer!", {
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
       );
     }
   } catch (error: any) {
-    console.log("RATES:", error);
+    console.log("EASYPOST_WEBHOOK:", error);
     return new NextResponse("Error getting easypost webhook", { status: 500 });
   }
 }
