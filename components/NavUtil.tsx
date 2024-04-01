@@ -14,7 +14,7 @@ const NavUtil = () => {
   const cart = useCart();
   const router = useRouter();
 
-  const totalPrice = cart.items.reduce((total, item) => {
+  const totalPrice = cart.items.reduce((total: number, item) => {
     return total + item.quantity * Number(item.product.price);
   }, 0);
 
