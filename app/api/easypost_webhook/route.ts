@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     const data = await req.json();
 
     if (data.object === "Event" && data.description === "tracker.updated") {
-      const event = await EasyPost.Event.receive(req.body);
+      const event = await api.Event.retrieve(data.id);
       const tracker = event.result;
 
       let message = "Hey, this is GWEart. ";
