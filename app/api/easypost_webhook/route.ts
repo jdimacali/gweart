@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 const EasyPost = require("@easypost/api");
 import { EmailTemplate } from "@/components/emailTemplate";
-import { Resend } from "resend";
+const { Resend } = require("./src/resend");
 
 export async function POST(req: Request) {
   const resend = new Resend(process.env.NEXT_PUBLIC_RESEND);
