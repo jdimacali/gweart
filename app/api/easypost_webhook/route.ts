@@ -1,3 +1,17 @@
+import { NextResponse } from "next/server";
+const EasyPost = require("@easypost/api");
+import { EmailTemplate } from "@/components/emailTemplate";
+import { Resend } from "resend";
+
+export async function POST(req: Request) {
+  try {
+    return NextResponse.json("Hello World", { status: 200 });
+  } catch (error: any) {
+    console.error("Dashboard", error);
+    return new NextResponse("Error fetching image data", { status: 500 });
+  }
+}
+
 // import { NextResponse } from "next/server";
 // const EasyPost = require("@easypost/api");
 // import { EmailTemplate } from "@/components/emailTemplate";
