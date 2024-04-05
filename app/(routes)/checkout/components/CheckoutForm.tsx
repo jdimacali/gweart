@@ -103,7 +103,7 @@ const CheckoutForm = ({
       clientSecret,
       confirmParams: {
         // !Important: Change the return url when in production
-        return_url: "http://artbygwe/cart",
+        return_url: "https://www.artbygwe.com/cart",
       },
     });
 
