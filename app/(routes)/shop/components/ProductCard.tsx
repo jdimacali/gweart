@@ -5,6 +5,7 @@ import { ShoppingBasketIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/use-cart";
 import { toast } from "@/components/ui/use-toast";
+import { Parcel } from "@/types";
 
 interface ProdcutCardProps {
   id: number;
@@ -18,6 +19,7 @@ interface ProdcutCardProps {
         id: number;
         attributes: {
           name: string;
+          parcel: Parcel;
         };
       }
     ];
