@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@easypost/api": "^6.8.2",
+    "@easypost/api": "^5.10.1",
     "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-avatar": "^1.0.4",
