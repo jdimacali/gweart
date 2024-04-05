@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import EasyPost from "@easypost/api";
+const EasyPost = require("@easypost/api");
 import EmailTemplate from "@/components/EmailTemplate";
 import { Resend } from "resend";
 
