@@ -1,5 +1,6 @@
 "use client";
 
+import { Parcel } from "@/types";
 import CategoryItem from "./CategoryItem";
 
 interface CategoriesProps {
@@ -7,6 +8,7 @@ interface CategoriesProps {
     id: number;
     attributes: {
       name: string;
+      parcel: Parcel;
     };
   }[];
 }

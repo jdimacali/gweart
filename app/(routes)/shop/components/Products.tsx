@@ -4,7 +4,7 @@ import qs from "query-string";
 import ProductCard from "./ProductCard";
 import { usePathname, useSearchParams } from "next/navigation";
 import PaginationBar from "./PaginationBar";
-import { Metadata } from "@/types";
+import { Metadata, Parcel } from "@/types";
 interface Products {
   products: {
     id: number;
@@ -29,6 +29,7 @@ interface Products {
             id: number;
             attributes: {
               name: string;
+              parcel: Parcel;
             };
           }
         ];

@@ -7,12 +7,14 @@ import queryString from "query-string";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import { Parcel } from "@/types";
 
 interface Categories {
   categories?: {
     id: number;
     attributes: {
       name: string;
+      parcel: Parcel;
     };
   }[];
 }
