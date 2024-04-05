@@ -1,7 +1,7 @@
 import { formatCents } from "@/lib/utils";
 import { Category } from "@/types";
 import { NextResponse } from "next/server";
-const EasyPost = require("@easypost/api");
+import EasyPost from "@easypost/api";
 const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET);
 interface Address {
   line1: string;
@@ -172,7 +172,7 @@ export async function POST(req: RequestWithData) {
       },
       line_items: lineItems,
       shipping_cost: {
-        amount: `${formatCents(chosenRate)}`,
+        amount: `${formatCents(Number(chosenRate))}`,
       },
       expand: ["line_items"],
     });
