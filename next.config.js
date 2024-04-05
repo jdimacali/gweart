@@ -1,3 +1,5 @@
+const { NormalModuleReplacementPlugin } = require("webpack");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -9,7 +11,19 @@ const nextConfig = {
       },
     ],
   },
-  webpack(config) {
+  webpack(config, { isServer }) {
+    if (!isServer) {
+      config.resolve.fallback.fs = false;
+      config.resolve.fallback.dns = false;
+      config.resolve.fallback.net = false;
+    }
+    config.plugins.push(
+      new NormalModuleReplacementPlugin(
+        /^hexoid$/,
+        require.resolve("hexoid/dist/index.js")
+      )
+    );
+
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.(".svg")
