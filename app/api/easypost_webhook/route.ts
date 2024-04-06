@@ -21,7 +21,7 @@ export async function POST(req: Request) {
         const td = tracker.tracking_details
           .reverse()
           .find(
-            (trackingDetail) => trackingDetail.status === tracker.status
+            (trackingDetail: any) => trackingDetail.status === tracker.status
           );
         message += `There's an update on your package: ${tracker.carrier} says: ${td.message} in ${td.tracking_location.city}.`;
       }
