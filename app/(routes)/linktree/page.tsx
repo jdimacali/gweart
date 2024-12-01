@@ -39,11 +39,11 @@ const Page = () => {
     <section className="min-h-screen w-full bg-gradient-to-b from-zinc-950 to-purple-950/30 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-[url('/background/bg3.png')] bg-cover bg-fixed opacity-30" />
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 to-purple-950/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 to-purple-950/30" />
 
       {/* Purple glow effects */}
-      <div className="absolute top-1/4 -left-1/2 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 -right-1/2 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/4 -left-1/2 w-[500px] h-[500px] bg-purple-800/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 -right-1/2 w-[500px] h-[500px] bg-purple-800/20 rounded-full blur-3xl animate-pulse delay-1000" />
 
       <div className="container max-w-2xl mx-auto px-4 py-20 relative">
         {/* Profile section */}
@@ -53,7 +53,7 @@ const Page = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <Avatar className="mx-auto h-24 w-24 border-4 border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+          <Avatar className="mx-auto h-24 w-24 border-4 border-purple-800/50 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
             <AvatarImage
               src="./icon/gwe.png"
               className="pointer-events-none"

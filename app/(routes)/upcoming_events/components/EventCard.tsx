@@ -51,7 +51,7 @@ const EventCard = ({ event }: { event: Events }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.05 }}
-      className="group relative h-[20rem] w-full rounded-lg overflow-hidden shadow-xl shadow-purple-900/50"
+      className="group relative h-[20rem] w-full rounded-lg overflow-hidden shadow-xl shadow-purple-900/20"
     >
       {eventStatus && <EventStatusBadge status={eventStatus} />}
       {!eventStatus && (

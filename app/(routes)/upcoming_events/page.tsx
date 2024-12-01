@@ -77,7 +77,7 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="min-h-screen w-full text-white bg-gradient-to-b from-zinc-900 via-purple-950 to-zinc-900 flex flex-col items-center justify-center pb-40 mt-0">
+    <section className="min-h-screen w-full text-white bg-gradient-to-b from-zinc-900 via-purple-950/20 to-zinc-900 flex flex-col items-center justify-center pb-40 mt-0">
       <Slime>
         <Header />
       </Slime>

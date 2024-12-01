@@ -42,7 +42,7 @@ const SpooktacularGoodies = () => {
   return (
     <section
       className={clsx(
-        "w-full relative bg-gradient-to-b from-violet-800/40 to-violet-800/60",
+        "w-full relative bg-gradient-to-b from-violet-950/30 to-violet-900/40",
         !loading && data ? "h-full" : "h-[800px]"
       )}
     >
