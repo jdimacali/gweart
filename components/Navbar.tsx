@@ -60,7 +60,7 @@ const Navbar = () => {
           quality="100"
           sizes="100vh"
           fill
-          className="object-contain pointer-events-none"
+          className="relative w-20 h-20 opacity-90 hover:opacity-100 transition-opacity"
           onContextMenu={(e) => {
             e.preventDefault();
           }}

@@ -3,12 +3,11 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -46,6 +45,8 @@ const formSchema = z.object({
 const Page = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,52 +56,72 @@ const Page = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsLoading(true);
-      axios.post("/api/contact", {
+      await axios.post("/api/contact", {
         name: values.name,
         email: values.email,
         message: values.message,
       });
-      toast({ title: "Message Sent!" });
+      setIsSubmitted(true);
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you soon!",
+      });
       form.reset();
     } catch (error: any) {
-      console.log(error);
+      toast({
+        title: "Oops!",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
   }
+
   return (
-    <section className="flex flex-col items-center justify-center h-full w-full bg-gray-800 pb-10">
-      <div className="p-4 mb-6 flex flex-col gap-y-5 text-white text-center mt-8">
-        <h1 className="text-3xl font-[600]">Contact Us</h1>
-        <h2 className="opacity-90 text-lg">
-          Reach out to us and let us know if there is anything we can do for you
+    <section className="flex flex-col items-center justify-center min-h-screen w-full bg-zinc-950">
+      <motion.div
+        className="p-4 mb-6 flex flex-col gap-y-5 text-center mt-8"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+      >
+        <h1 className="font-creep text-5xl md:text-6xl text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+          Contact Us
+        </h1>
+        <h2 className="text-gray-400 text-lg md:text-xl tracking-wide">
+          Step right up! Don&apos;t be shy, let us know what&apos;s on your mind
         </h2>
-      </div>{" "}
+      </motion.div>
+
       <Clown>
-        <div className="flex flex-col items-center text-center justify-center px-20 text-white pb-8 pt-8 sm:pb-10">
+        <motion.div
+          className="w-full max-w-md mx-auto px-6 py-8 rounded-2xl backdrop-blur-sm bg-zinc-900/80
+                     shadow-[0_0_15px_rgba(0,0,0,0.3)] relative z-10"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-6 space-x-1 max-w-[90vw] md:max-w-[60vw] xl:max-w-[40vw] text-black/60 font-semibold text-white"
-            >
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] ml-1 items-center">
-                      <FormControl>
-                        <Input
-                          className="py-6 text-sm focus:border-white hover:border-white border-[#adadad] bg-inherit rounded-[0.2rem] transition-colors"
-                          placeholder="Full name"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </div>
+                    <FormLabel className="text-gray-200">Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Your name"
+                        {...field}
+                        className="bg-zinc-800/50 border-zinc-700 text-gray-100
+                                 placeholder:text-gray-500 focus:border-gray-500"
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-400" />
                   </FormItem>
                 )}
               />
@@ -109,16 +130,16 @@ const Page = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] items-center ">
-                      <FormControl>
-                        <Input
-                          className="py-6 text-sm focus:border-white hover:border-white border-[#adadad] bg-inherit rounded-[0.2rem] transition-colors"
-                          placeholder="Email"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </div>
+                    <FormLabel className="text-gray-200">Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="your@email.com"
+                        {...field}
+                        className="bg-zinc-800/50 border-zinc-700 text-gray-100
+                                 placeholder:text-gray-500 focus:border-gray-500"
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-400" />
                   </FormItem>
                 )}
               />
@@ -127,37 +148,33 @@ const Page = () => {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex flex-col gap-6 max-w-[95vw] min-w-[32vw] items-center">
-                      <FormControl>
-                        <Textarea
-                          className="resize-none text-sm pb-8 focus:border-white hover:border-white border-[#adadad] bg-inherit  rounded-[0.2rem] transition-colors"
-                          placeholder="Message"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                      <FormDescription className="opacity-60 dark:opacity-30 text-xs md:text-sm">
-                        This form is protected by reCAPTCHA and the Google
-                        Privacy Policy and Terms of Service apply.
-                      </FormDescription>
-                    </div>
+                    <FormLabel className="text-gray-200">Message</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="What would you like to tell us?"
+                        {...field}
+                        className="bg-zinc-800/50 border-zinc-700 text-gray-100 min-h-[120px]
+                                 placeholder:text-gray-500 focus:border-gray-500"
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-400" />
                   </FormItem>
                 )}
               />
               <Button
-                disabled={!form.formState.isValid || isLoading}
                 type="submit"
-                className="bg-amber-700 p-6 rounded-xl max-sm:w-full transition-allhover:bg-amber-800 hover:opacity-90 mt-8 shadow-2xl"
+                disabled={isLoading}
+                className="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-semibold
+                         py-6 rounded-xl transition-all duration-300 hover:shadow-lg"
               >
-                <h3 className="m-2 font-semibold dark:text-black text-white drop-shadow-2xl">
-                  Submit
-                </h3>
+                {isLoading ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </Form>
-        </div>
+        </motion.div>
       </Clown>
     </section>
   );
 };
+
 export default Page;

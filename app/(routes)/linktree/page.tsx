@@ -3,6 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Spin from "@/components/Spin";
 import clsx from "clsx";
 import LinktreeLink from "./components/LinktreeLink";
@@ -15,11 +16,10 @@ interface SocialLink {
   Links: { id: number; name: string; url: string; icon?: string }[];
 }
 
-export const revalidate = 0;
-
 const Page = () => {
   const [socials, setSocialLinks] = useState<SocialLink>();
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const social = async () => {
       try {
@@ -35,60 +35,80 @@ const Page = () => {
     social();
   }, []);
 
-  console.log(socials);
   return (
-    <section className="h-full w-full flex flex-col items-center pb-">
-      <div
-        className={clsx(
-          "bg-[url('../public/background/bg3.png')] w-full h-full bg-cover bg-origin-content bg-clip-border max-sm:bg-contain max-sm:bg-top bg-inherit bg-fixed pb-[8rem]"
-        )}
-      >
-        <div className="flex flex-col justify-center items-center w-full">
-          <h1 className="hidden font-mania">Test </h1>
-          <h1 className="hidden font-butcherman">Test </h1>
-          <Avatar className="mt-10 h-[60px] w-[60px]">
+    <section className="min-h-screen w-full bg-gradient-to-b from-zinc-950 to-purple-950/30 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-[url('/background/bg3.png')] bg-cover bg-fixed opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 to-purple-950/50" />
+
+      {/* Purple glow effects */}
+      <div className="absolute top-1/4 -left-1/2 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 -right-1/2 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
+
+      <div className="container max-w-2xl mx-auto px-4 py-20 relative">
+        {/* Profile section */}
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <Avatar className="mx-auto h-24 w-24 border-4 border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
             <AvatarImage
               src="./icon/gwe.png"
-              onContextMenu={(e) => {
-                e.preventDefault();
-              }}
-              className={`pointer-events-none `}
+              className="pointer-events-none"
+              onContextMenu={(e) => e.preventDefault()}
             />
-            {socials?.Title?.text}
-            <AvatarFallback>GweArt</AvatarFallback>
+            <AvatarFallback>GWE</AvatarFallback>
           </Avatar>
-          <h1
+
+          <motion.h1
             className={clsx(
-              `text-white font-semibold text-2xl mt-4`,
+              "font-creep text-4xl text-purple-300 mt-6 drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]",
               socials?.Title.Font.options &&
                 getFonts(socials?.Title.Font.options)
             )}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
           >
             {socials?.Title.text}
-          </h1>
-          <h1
+          </motion.h1>
+
+          <motion.p
             className={clsx(
-              `text-white font-semibold text-md opacity-60 `,
+              "text-gray-400 mt-2 font-medium tracking-wide",
               socials?.Subtitle.Font.options &&
                 getFonts(socials?.Subtitle.Font.options)
             )}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
           >
             {socials?.Subtitle.text}
-          </h1>
-        </div>
-        <div className="flex flex-col items-center text-center justify-center text-black gap-y-10 mt-8">
+          </motion.p>
+        </motion.div>
+
+        {/* Links section */}
+        <div className="space-y-4 relative z-10">
           {loading ? (
             <Spin />
           ) : !socials ? (
-            <div> There are no links currently </div>
+            <div className="text-gray-400 text-center">No links available</div>
           ) : (
-            socials.Links.map((social) => (
-              <LinktreeLink
+            socials.Links.map((social, i) => (
+              <motion.div
                 key={social.id}
-                name={social.name}
-                url={social.url}
-                icon={social.icon}
-              />
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 + 0.5 }}
+              >
+                <LinktreeLink
+                  name={social.name}
+                  url={social.url}
+                  icon={social.icon}
+                />
+              </motion.div>
             ))
           )}
         </div>
@@ -96,4 +116,5 @@ const Page = () => {
     </section>
   );
 };
+
 export default Page;
