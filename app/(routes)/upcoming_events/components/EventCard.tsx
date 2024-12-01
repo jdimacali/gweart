@@ -68,35 +68,50 @@ const EventCard = ({ event }: { event: Events }) => {
           src={event.attributes.image.data.attributes.url}
           alt={event.attributes.name}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           quality={100}
           className="object-cover object-center transition-all duration-500 group-hover:scale-110"
         />
 
-        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-20">
-          <h1 className="text-2xl md:text-3xl font-creep text-purple-200 mb-3 group-hover:text-purple-300">
-            {event.attributes.name}
-          </h1>
+        <div className="flex-row absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-20">
+          <div className="flex flex-col h-full justify-end">
+            <h1 className="text-2xl md:text-3xl font-creep text-purple-200 mb-3 group-hover:text-purple-300">
+              {event.attributes.name}
+            </h1>
 
-          <div className="text-sm font-sans tracking-wide text-gray-300 group-hover:text-white transition-colors">
-            <span className="mr-2">
-              {formatDateFromString(event.attributes.start_date).formattedDate}
-            </span>
-            {event.attributes?.end_date && (
-              <span>
-                -{" "}
-                {formatDateFromString(event.attributes.end_date).formattedDate}
+            <div className="text-sm font-sans tracking-wide text-gray-300 group-hover:text-white transition-colors">
+              <span className="mr-2">
+                {
+                  formatDateFromString(event.attributes.start_date)
+                    .formattedDate
+                }
               </span>
-            )}
+              {event.attributes?.end_date && (
+                <span>
+                  -{" "}
+                  {
+                    formatDateFromString(event.attributes.end_date)
+                      .formattedDate
+                  }
+                </span>
+              )}
+            </div>
+
+            <div className="flex items-center justify-between mt-2">
+              <p className="text-sm font-sans text-gray-400 tracking-wide">
+                {event.attributes.address}
+              </p>
+              <div className="lg:flex flex-col hidden lg:flex-row items-center gap-2 lg:gap-x-2">
+                <CopyButton address={event.attributes.address} />
+                <CalendarButton event={event} />
+                <ShareButton event={event} />
+              </div>
+            </div>
           </div>
-
-          <p className="text-sm font-sans text-gray-400 mt-2 tracking-wide">
-            {event.attributes.address}
-          </p>
-
-          <ShareButton event={event} />
-          <CalendarButton event={event} />
-          <CopyButton address={event.attributes.address} />
+          <div className="lg:hidden items-center gap-2 lg:gap-x-2 mt-2">
+            <CopyButton address={event.attributes.address} />
+            <CalendarButton event={event} />
+            <ShareButton event={event} />
+          </div>
         </div>
       </a>
     </motion.div>

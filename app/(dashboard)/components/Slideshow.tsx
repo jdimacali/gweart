@@ -15,10 +15,10 @@ const SlideShow = () => {
         transition={{ ease: "easeOut", duration: 0.8 }}
         className="flex flex-col justify-center text-center items-center gap-y-4 mb-4"
       >
-        <h1 className="md:text-4xl text-2xl font-bold px-6 flex items-center gap-x-3">
+        <h1 className="md:text-4xl text-xl font-bold px-4 flex flex-wrap items-center justify-center gap-2 md:gap-x-3">
           <span>Check</span>
           <span>out</span>
-          <span>our</span>{" "}
+          <span>our</span>
           <motion.span
             className="font-nosifer text-red-700 inline-block"
             initial={{ scale: 1 }}
@@ -41,7 +41,7 @@ const SlideShow = () => {
             }}
           >
             spooky
-          </motion.span>{" "}
+          </motion.span>
           <span>originals</span>
         </h1>
         <p className="text-gray-400 md:text-lg text-base max-w-2xl px-4">

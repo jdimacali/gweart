@@ -21,7 +21,7 @@ const CopyButton = ({ address }: { address: string }) => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       onClick={handleCopy}
-      className="absolute bottom-4 right-[84px] z-30 p-1 hover:bg-purple-500/20 rounded-full transition-all duration-300"
+      className="p-1 hover:bg-purple-500/20 rounded-full transition-all duration-300"
     >
       {copied ? (
         <Check size={20} className="text-green-400" />

@@ -23,7 +23,7 @@ const CalendarButton = ({ event }: { event: Events }) => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       onClick={addToCalendar}
-      className="absolute bottom-4 right-[44px] z-30 p-1 hover:bg-purple-500/20 rounded-full transition-all duration-300"
+      className="p-1 hover:bg-purple-500/20 rounded-full transition-all duration-300"
     >
       <Calendar
         size={20}
