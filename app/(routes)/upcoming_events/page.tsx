@@ -77,11 +77,11 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="min-h-screen w-full text-white bg-gradient-to-b from-zinc-900 via-purple-950/20 to-zinc-900 flex flex-col items-center justify-center pb-40 mt-0">
+    <section className="min-h-screen w-full text-white bg-gradient-to-b from-zinc-900 via-purple-950/20 to-zinc-900 flex flex-col items-center justify-center pb-32 mt-0">
       <Slime>
         <Header />
       </Slime>
-      <div className="w-full h-full pb-20 mt-60 lg:mt-[20rem] relative px-4 md:px-8 lg:px-16">
+      <div className="w-full h-full mt-60 lg:mt-[20rem] relative px-4 md:px-8 lg:px-16">
         {loading ? (
           <div className="flex pt-80 items-center justify-center">
             <Spin />
