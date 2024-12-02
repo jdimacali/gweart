@@ -85,7 +85,7 @@ const HauntedHouse = () => {
         shadows
         camera={{ position: [-7.5, 10, 5], fov: 4 }}
         gl={{ antialias: true }}
-        className="overflow-hidden"
+        className="scroll-style"
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.6} color="#ffffff" />
