@@ -66,14 +66,17 @@ function Model({ onLoad }: any) {
 const HauntedHouse = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Create a loading handler
   const handleLoad = () => {
     setIsLoading(false);
   };
 
   return (
     <div className="h-[90vh] w-full absolute">
-      {isLoading && <Spin />}
+      {isLoading && (
+        <div className="absolute top-[30%] left-1/2 -translate-x-1/2 z-50">
+          <Spin />
+        </div>
+      )}
 
       <Canvas
         shadows

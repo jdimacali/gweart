@@ -72,20 +72,22 @@ const FeaturedEvent = () => {
 
   return (
     <section className="w-full bg-zinc-800/10 py-32 relative">
-      {/* Cobweb decoration */}
+      {/* Spider Web Decorations */}
       <Image
         src="/web.png"
-        width={400}
-        height={400}
-        alt="cobweb"
-        className="absolute top-0 -left-3 opacity-10 max-md:w-full max-md:object-contain max-md:left-0 lg:scale-110"
+        width={900}
+        height={900}
+        alt="web"
+        className="absolute top-0 max-md:w-[100%] max-md:object-contain max-md:left-0 md:-left-3 opacity-30 pointer-events-none"
+        priority
       />
       <Image
         src="/web.png"
-        width={400}
-        height={400}
-        alt="cobweb"
-        className="absolute bottom-0 right-5 overflow-hidden rotate-180  max-md:w-full opacity-10 transform lg:scale-110"
+        width={900}
+        height={900}
+        alt="web"
+        className="absolute top-0 right-0 max-md:w-[100%] max-md:object-contain opacity-30 rotate-90 pointer-events-none"
+        priority
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
