@@ -80,7 +80,7 @@ const Footer = () => {
 
       {/* Decorative Elements */}
       <motion.div
-        className="absolute bottom-0 md:block hidden left-20 opacity-30"
+        className="absolute bottom-0 md:block hidden left-20 opacity-20"
         animate={{
           y: [0, -20, 0],
         }}
@@ -99,8 +99,8 @@ const Footer = () => {
         />
       </motion.div>
 
-      <motion.div
-        className="absolute bottom-0 right-10 md:right-60 opacity-30 scale-x-100"
+      <motion.div 
+        className="absolute bottom-0 right-10 md:right-60 opacity-20 scale-x-100"
         animate={{
           y: [0, -15, 0],
         }}

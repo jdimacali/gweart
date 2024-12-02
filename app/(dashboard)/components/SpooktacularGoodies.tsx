@@ -10,6 +10,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import { DisplayText } from "@/types";
 import { motion } from "framer-motion";
+import HauntedHouse from "./HauntedHouse";
 
 interface Data {
   title: DisplayText;
@@ -42,65 +43,54 @@ const SpooktacularGoodies = () => {
   return (
     <section
       className={clsx(
-        "w-full relative bg-gradient-to-b from-violet-950/30 to-violet-900/40",
+        "w-full relative bg-gradient-to-b from-violet-950/30 to-violet-900/40 ",
         !loading && data ? "h-full" : "h-[800px]"
       )}
     >
-      <DashboardGhost />
-
-      {/* Spider Web Decoration */}
-      <Image
-        src="/web.png"
-        width={900}
-        height={900}
-        className="absolute top-0 -left-3 opacity-30"
-        priority
-        alt="web"
-      />
-
-      {/* Loading State */}
       {loading && !data && (
         <div className="flex justify-center w-full h-full items-center">
           <Spin />
         </div>
       )}
-
       {/* Content */}
       {!loading && data && (
-        <div className="flex max-md:flex-col justify-center text-center items-center lg:py-[8rem] pt-12 gap-x-20">
-          <div className="flex flex-col items-center">
-            {/* GWEART Header */}
-            <motion.div
-              className="mb-12 flex flex-col items-center gap-x-4"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              <div className="flex items-center gap-x-3">
+        <div className="h-[90vh] relative">
+          <HauntedHouse />
+          <motion.div
+            className="mb-12 flex flex-col items-center gap-x-4 z-10 pt-16 relative"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            {/* Add backdrop div */}
+            <div className="absolute inset-0 backdrop-blur-[8px] bg-black/30 rounded-b-lg" />
+
+            {/* Content with higher z-index */}
+            <div className="relative z-20 flex flex-col items-center px-8 pb-12">
+              <div className="flex gap-4">
                 <h1 className="font-creep text-6xl md:text-7xl text-purple-300 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
                   GWEART
                 </h1>
                 <Image
                   src="/icon/gwe.png"
-                  width={40}
-                  height={40}
+                  width={70}
+                  height={70}
                   alt="logo"
-                  className="object-contain brightness-0 opacity-70"
+                  className="object-contain brightness-100 opacity-100"
                   priority
                 />
               </div>
-              <p className="text-lg md:text-xl text-gray-300 tracking-[0.2em] mt-1 font-semibold">
+
+              <p className="text-lg md:text-xl text-gray-300 tracking-[0.2em] mt-1 font-mania">
                 Girl Wonder Extraordinaire
               </p>
-            </motion.div>
-
-            <Title
-              title={data?.title}
-              subtitle={data?.subtitle}
-              button={data?.button}
-            />
-          </div>
-          <DashboardImages images={data?.imageUrls} />
+              <Title
+                // title={data?.title}
+                // subtitle={data?.subtitle}
+                button={data?.button}
+              />
+            </div>
+          </motion.div>
         </div>
       )}
     </section>
@@ -108,3 +98,30 @@ const SpooktacularGoodies = () => {
 };
 
 export default SpooktacularGoodies;
+
+{
+  /* <div className="flex flex-col items-center">
+          //  <div className="flex max-md:flex-col justify-center text-center items-center lg:py-[8rem] pt-12 gap-x-20">
+
+
+            <Title
+              title={data?.title}
+              subtitle={data?.subtitle}
+              button={data?.button}
+            />
+            //   </div>
+
+          </div> */
+}
+
+{
+  /* Spider Web Decoration */
+}
+// <Image
+//   src="/web.png"
+//   width={900}
+//   height={900}
+//   className="absolute top-0 -left-3 opacity-30"
+//   priority
+//   alt="web"
+// />;

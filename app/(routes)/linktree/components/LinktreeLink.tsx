@@ -39,11 +39,14 @@ const LinktreeLink = ({ name, url, icon }: LinktreeLinkProps) => {
   return (
     <Link href={url} target="blank">
       <div
-        className="rounded-full text-white flex items-center bg-gray-600 border-gray-700 w-[20rem] max-w-[32rem] mx-auto
-        font-semibold border-b-[5px] border-r-[5px] p-4 hover:animate-bounce hover:opacity-90 transition shadow-lg shadow-gray-900/50 hover:delay-150"
+        className="rounded-lg text-black flex items-center bg-[#82a346] border-[#b8d87e] w-[95%] md:w-[80%] mx-auto
+        font-semibold border-2 p-4 hover:bg-[#82a346] transition-all duration-300 
+        shadow-lg shadow-green-900/30"
       >
-        <div className="w-5">{getIconByName(name)}</div>
-        <h1 className="text-sm flex-1 text-center">{name}</h1>
+        <div className="w-5 opacity-80">{getIconByName(name)}</div>
+        <h1 className="text-base flex-1 text-center font-bold tracking-wide">
+          {name}
+        </h1>
       </div>
     </Link>
   );

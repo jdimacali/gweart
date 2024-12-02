@@ -7,7 +7,7 @@ import CalendarButton from "./CalenderButton";
 import CountdownTimer from "./CountdownTimer";
 import CopyButton from "./CopyButton";
 
-const getEventStatus = (startDate: string, endDate?: string) => {
+export const getEventStatus = (startDate: string, endDate?: string) => {
   const now = new Date();
   const start = new Date(startDate);
   const end = endDate ? new Date(endDate) : start;
@@ -23,7 +23,7 @@ const getEventStatus = (startDate: string, endDate?: string) => {
   return null;
 };
 
-const EventStatusBadge = ({ status }: { status: string }) => {
+export const EventStatusBadge = ({ status }: { status: string }) => {
   return (
     <div className="absolute top-4 right-4 z-30 rotate-12">
       {status === "happening" ? (

@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <motion.div
-      className="flex flex-col text-center items-center justify-center relative sm:space-y-2 lg:-mt-60 space-y-8 z-1"
+      className="flex flex-col text-center items-center justify-center relative sm:space-y-2 space-y-8 z-1"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}

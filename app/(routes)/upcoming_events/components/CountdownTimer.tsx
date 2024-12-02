@@ -34,7 +34,7 @@ const CountdownTimer = ({ startDate }: { startDate: string }) => {
 
   return (
     <motion.div
-      className="absolute top-4 left-4 z-30 bg-black/60 px-3 py-1 rounded-lg text-sm font-mono"
+      className="absolute top-4 left-4 z-30 bg-black/60 px-3 py-1 rounded-lg text-sm font-mono text-white"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
