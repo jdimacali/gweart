@@ -3,6 +3,7 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 import { Suspense, useState, useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import Bats from "./Bats";
+import Spin from "@/components/Spin";
 
 function CameraController() {
   return (
@@ -18,21 +19,22 @@ function CameraController() {
   );
 }
 
-function Model() {
+function Model({ onLoad }: any) {
   const { scene } = useGLTF("/haunted house/scene.gltf");
   const [rotationDirection, setRotationDirection] = useState(1);
-  const maxRotation = Math.PI / 16; // Smaller rotation limit
-  const rotationSpeed = 0.0005; // Increased speed for smoother movement
-  const rotationRef = useRef(-Math.PI / 40); // Start slightly to the left
+  const maxRotation = Math.PI / 16;
+  const rotationSpeed = 0.0005;
+  const rotationRef = useRef(-Math.PI / 40);
   const isMovingRef = useRef(true);
 
   useEffect(() => {
     scene.traverse((child) => {
-      if (child.name.includes("Lune")) {
+      if (child.name?.includes("Lune")) {
         child.visible = false;
       }
     });
-  }, [scene]);
+    onLoad();
+  }, [scene, onLoad]);
 
   useFrame(() => {
     if (!isMovingRef.current) return;
@@ -62,8 +64,17 @@ function Model() {
 }
 
 const HauntedHouse = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Create a loading handler
+  const handleLoad = () => {
+    setIsLoading(false);
+  };
+
   return (
     <div className="h-[90vh] w-full absolute">
+      {isLoading && <Spin />}
+
       <Canvas
         shadows
         camera={{ position: [-7.5, 10, 5], fov: 4 }}
@@ -94,7 +105,7 @@ const HauntedHouse = () => {
             color="#ffffff"
           />
           <fog attach="fog" args={["#666666", 12, 22]} />
-          <Model />
+          <Model onLoad={handleLoad} />
           <Bats />
           <CameraController />
         </Suspense>

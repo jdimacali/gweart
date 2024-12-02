@@ -78,14 +78,14 @@ const FeaturedEvent = () => {
         width={400}
         height={400}
         alt="cobweb"
-        className="absolute top-3 left-0 opacity-5 transform scale-110"
+        className="absolute top-0 -left-3 opacity-10 max-md:w-full max-md:object-contain max-md:left-0 lg:scale-110"
       />
       <Image
         src="/web.png"
         width={400}
         height={400}
         alt="cobweb"
-        className="absolute bottom-0 right-5 overflow-hidden rotate-180 opacity-5 transform scale-110"
+        className="absolute bottom-0 right-5 overflow-hidden rotate-180  max-md:w-full opacity-10 transform lg:scale-110"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
