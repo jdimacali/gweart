@@ -28,7 +28,7 @@ function Model() {
 
   useEffect(() => {
     scene.traverse((child) => {
-      if (child.isMesh && child.name.includes("Lune")) {
+      if (child.name.includes("Lune")) {
         child.visible = false;
       }
     });
