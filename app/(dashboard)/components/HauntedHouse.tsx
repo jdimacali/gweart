@@ -73,7 +73,7 @@ const HauntedHouse = () => {
   return (
     <div className="h-[90vh] w-full absolute">
       {isLoading && (
-        <div className="absolute top-[30%] left-1/2 -translate-x-1/2 z-50">
+        <div className="absolute bottom-[70%] left-1/2 -translate-x-1/2 z-50">
           <Spin />
         </div>
       )}
