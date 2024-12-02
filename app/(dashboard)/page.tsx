@@ -12,7 +12,7 @@ const SlideShow = dynamic(() => import("./components/Slideshow"), {
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <SpooktacularGoodies />
       <Divider />
       <SlideShow />

@@ -42,10 +42,8 @@ const SpooktacularGoodies = () => {
 
   return (
     <section
-      className={clsx(
-        "w-full relative bg-gradient-to-b from-violet-950/30 to-violet-900/40 ",
-        !loading && data ? "h-full" : "h-[800px]"
-      )}
+      className="w-full text-white bg-zinc-950 flex flex-col items-center pt-32 pb-40 
+                      bg-[url('/background/pumpkin.png')] bg-cover bg-fixed bg-no-repeat overflow-hidden"
     >
       {loading && !data && (
         <div className="flex justify-center w-full h-full items-center">
@@ -63,7 +61,7 @@ const SpooktacularGoodies = () => {
             transition={{ duration: 0.7 }}
           >
             {/* Add backdrop div */}
-            <div className="absolute inset-0 backdrop-blur-[8px] bg-black/30 rounded-b-lg" />
+            <div className="absolute inset-0 backdrop-blur-[4px] bg-black/30 rounded-b-lg" />
 
             {/* Content with higher z-index */}
             <div className="relative z-20 flex flex-col items-center px-8 pb-12">

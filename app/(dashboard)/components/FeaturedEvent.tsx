@@ -78,7 +78,7 @@ const FeaturedEvent = () => {
         width={900}
         height={900}
         alt="web"
-        className="absolute top-0 max-md:w-[100%] max-md:object-contain max-md:left-0 md:-left-3 opacity-10 pointer-events-none"
+        className="absolute top-0 max-md:w-[100%] max-md:object-contain max-md:left-0 md:-left-3 opacity-10 pointer-events-none scale-[0.95]"
         priority
       />
       <Image
@@ -86,7 +86,7 @@ const FeaturedEvent = () => {
         width={900}
         height={900}
         alt="web"
-        className="absolute bottom-0 right-0 max-md:w-[100%] max-md:object-contain opacity-10 rotate-180 pointer-events-none"
+        className="absolute bottom-0 right-0 max-md:w-[100%] max-md:object-contain opacity-10 rotate-180 pointer-events-none scale-[0.95]"
         priority
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
