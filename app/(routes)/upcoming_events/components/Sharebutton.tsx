@@ -2,7 +2,12 @@ import { Share } from "lucide-react";
 import { motion } from "framer-motion";
 import { Events } from "../page";
 
-const ShareButton = ({ event }: { event: Events }) => {
+interface ShareButtonProps {
+  event: Events;
+  variant?: 'default' | 'orange';
+}
+
+const ShareButton = ({ event, variant = 'default' }: ShareButtonProps) => {
   const handleShare = async (e: React.MouseEvent) => {
     e.preventDefault();
     const shareData = {
@@ -25,6 +30,10 @@ const ShareButton = ({ event }: { event: Events }) => {
     }
   };
 
+  const iconColorClass = variant === 'orange' 
+    ? "text-orange-300 hover:text-orange-400" 
+    : "text-purple-300 hover:text-white";
+
   return (
     <motion.button
       whileHover={{ scale: 1.1 }}
@@ -34,7 +43,7 @@ const ShareButton = ({ event }: { event: Events }) => {
     >
       <Share
         size={20}
-        className="text-purple-300 hover:text-white transition-colors"
+        className={`${iconColorClass} transition-colors`}
       />
     </motion.button>
   );

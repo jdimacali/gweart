@@ -2,7 +2,12 @@ import { Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import { Events } from "../page";
 
-const CalendarButton = ({ event }: { event: Events }) => {
+interface CalendarButtonProps {
+  event: Events;
+  variant?: 'default' | 'orange';
+}
+
+const CalendarButton = ({ event, variant = 'default' }: CalendarButtonProps) => {
   const addToCalendar = (e: React.MouseEvent) => {
     e.preventDefault();
     const { name, address, start_date, end_date } = event.attributes;
@@ -18,6 +23,10 @@ const CalendarButton = ({ event }: { event: Events }) => {
     window.open(url, "_blank");
   };
 
+  const iconColorClass = variant === 'orange' 
+    ? "text-orange-300 hover:text-orange-400" 
+    : "text-purple-300 hover:text-white";
+
   return (
     <motion.button
       whileHover={{ scale: 1.1 }}
@@ -27,7 +36,7 @@ const CalendarButton = ({ event }: { event: Events }) => {
     >
       <Calendar
         size={20}
-        className="text-purple-300 hover:text-white transition-colors"
+        className={`${iconColorClass} transition-colors`}
       />
     </motion.button>
   );

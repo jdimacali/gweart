@@ -69,7 +69,7 @@ const SpooktacularGoodies = () => {
             <div className="relative z-20 flex flex-col items-center w-full">
               <div className="flex gap-4 justify-center">
                 <h1 className="font-creep text-6xl md:text-7xl text-purple-300 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
-                  GWEART
+                  GWE_ART
                 </h1>
                 <Image
                   src="/icon/gwe.png"

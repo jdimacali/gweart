@@ -172,9 +172,12 @@ const FeaturedEvent = () => {
                 </motion.a>
 
                 <div className="flex items-center gap-2 sm:gap-3">
-                  <CopyButton address={event.attributes.address} />
-                  <CalendarButton event={event} />
-                  <ShareButton event={event} />
+                  <CopyButton
+                    address={event.attributes.address}
+                    variant="orange"
+                  />
+                  <CalendarButton event={event} variant="orange" />
+                  <ShareButton event={event} variant="orange" />
                 </div>
               </div>
             </div>

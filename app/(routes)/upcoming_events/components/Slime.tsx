@@ -12,10 +12,20 @@ const Slime = ({ children }: { children: React.ReactNode }) => {
         src="/slime.svg"
         alt="slime"
         fill
-        className="object-cover opacity-80"
+        className="object-cover opacity-60 scale-x-[-1] pt-10"
         quality={100}
         priority
       />
+
+      <Image
+        src="/slime.svg"
+        alt="slime"
+        fill
+        className="object-cover opacity-100 z-4 pb-4"
+        quality={100}
+        priority
+      />
+
       <div className="relative z-10">{children}</div>
     </div>
   );

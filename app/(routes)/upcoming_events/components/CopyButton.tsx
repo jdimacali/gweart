@@ -2,7 +2,12 @@ import { Copy, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const CopyButton = ({ address }: { address: string }) => {
+interface CopyButtonProps {
+  address: string;
+  variant?: 'default' | 'orange';
+}
+
+const CopyButton = ({ address, variant = 'default' }: CopyButtonProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async (e: React.MouseEvent) => {
@@ -16,6 +21,10 @@ const CopyButton = ({ address }: { address: string }) => {
     }
   };
 
+  const iconColorClass = variant === 'orange' 
+    ? "text-orange-300 hover:text-orange-400" 
+    : "text-purple-300 hover:text-white";
+
   return (
     <motion.button
       whileHover={{ scale: 1.1 }}
@@ -28,7 +37,7 @@ const CopyButton = ({ address }: { address: string }) => {
       ) : (
         <Copy
           size={20}
-          className="text-purple-300 hover:text-white transition-colors"
+          className={`${iconColorClass} transition-colors`}
         />
       )}
     </motion.button>

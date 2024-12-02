@@ -81,7 +81,7 @@ const Page = () => {
       <Slime>
         <Header />
       </Slime>
-      <div className="w-full h-full pb-20 mt-40 md:mt-[15rem] relative px-4 md:px-8 lg:px-16">
+      <div className="w-full h-full pb-20 mt-60 lg:mt-[20rem] relative px-4 md:px-8 lg:px-16">
         {loading ? (
           <div className="flex pt-80 items-center justify-center">
             <Spin />
@@ -93,7 +93,7 @@ const Page = () => {
             ))}
           </div>
         ) : (
-          <div className="flex pt-80 items-center justify-center font-creep text-2xl text-red-500">
+          <div className="flex pt-80 items-center justify-center font-creep text-2xl text-red-500 text-center">
             No events lurking in the shadows... Check back soon!
           </div>
         )}
