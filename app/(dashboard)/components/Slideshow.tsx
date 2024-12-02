@@ -24,10 +24,10 @@ const SlideShow = () => {
                    border-4 border-dashed border-red-200"
       >
         <div className="text-center transform -rotate-12">
-          <span className="font-semibold text-sm lg:text-lg text-white block">
+          <span className="font-semibold text-xs lg:text-lg text-white block">
             100%
           </span>
-          <span className="font-semibold  text-sm lg:text-lg text-white block">
+          <span className="font-semibold text-xs lg:text-lg text-white block">
             Handmade
           </span>
         </div>
