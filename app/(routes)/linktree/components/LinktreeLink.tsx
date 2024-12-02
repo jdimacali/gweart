@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface LinktreeLinkProps {
   name: string;
@@ -12,6 +13,7 @@ import {
   Instagram,
   Linkedin,
   ShoppingCart,
+  ExternalLink,
 } from "lucide-react";
 
 const getIconByName = (name: string) => {
@@ -31,24 +33,48 @@ const getIconByName = (name: string) => {
     case "linkedin":
       return <Linkedin className="w-5 h-5" />;
     default:
-      return null; // Return null for no match
+      return <ExternalLink className="w-5 h-5" />; // Default icon for other links
   }
 };
 
 const LinktreeLink = ({ name, url, icon }: LinktreeLinkProps) => {
   return (
-    <Link href={url} target="blank">
-      <div
-        className="rounded-lg text-black flex items-center bg-[#82a346] border-[#b8d87e] w-[95%] md:w-[80%] mx-auto
-        font-semibold border-2 p-4 hover:bg-[#82a346] transition-all duration-300 
-        shadow-lg shadow-green-900/30"
+    <Link href={url} target="_blank" rel="noopener noreferrer">
+      <motion.div
+        whileHover={{
+          scale: 1.02,
+          y: -2,
+        }}
+        whileTap={{ scale: 0.98 }}
+        className="group relative rounded-xl overflow-hidden bg-gradient-to-r from-[#9DC808]/50 to-[#9bc253] 
+                   backdrop-blur-sm w-full mx-auto font-semibold p-4 
+                   border border-[#9DC808]/20 hover:border-[#9DC808]/40
+                   transition-all duration-300 shadow-lg hover:shadow-[#9DC808]/20"
       >
-        <div className="w-5 opacity-80">{getIconByName(name)}</div>
-        <h1 className="text-base flex-1 text-center font-bold tracking-wide">
-          {name}
-        </h1>
-      </div>
+        {/* Glow effect on hover */}
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-[#9DC808]/0 via-[#9DC808]/0 to-[#9DC808]/0 
+                      group-hover:from-[#9DC808]/10 group-hover:via-[#9DC808]/20 group-hover:to-[#9DC808]/10 
+                      transition-all duration-500"
+        />
+
+        <div className="relative flex items-center">
+          {/* Left icon container with fixed width */}
+          <div className="absolute left-0 w-5 text-[#b8d87e] group-hover:text-[#d4e4ab] transition-colors">
+            {getIconByName(name)}
+          </div>
+
+          {/* Centered text container */}
+          <h1
+            className="flex-1 text-base text-center font-bold tracking-wide text-white/90 
+                       group-hover:text-white transition-colors w-full"
+          >
+            {name}
+          </h1>
+        </div>
+      </motion.div>
     </Link>
   );
 };
+
 export default LinktreeLink;
