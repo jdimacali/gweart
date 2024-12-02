@@ -19,8 +19,8 @@ const SlideShow = () => {
           damping: 20,
           delay: 1,
         }}
-        className="absolute top-[30%] left-[5%] z-10 bg-red-800/90 rounded-full w-32 h-32 
-                   flex items-center justify-center transform rotate-12 shadow-lg
+        className="absolute top-[30%] left-[5%] z-10 bg-red-800/90 rounded-full lg:w-32 lg:h-32 w-24 h-24
+                   flex items-center justify-center transform rotate-12 shadow-lg 
                    border-4 border-dashed border-red-200"
       >
         <div className="text-center transform -rotate-12">
