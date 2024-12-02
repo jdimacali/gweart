@@ -7,8 +7,28 @@ const SlideShow = () => {
   return (
     <section
       className="w-full text-white bg-zinc-950 flex flex-col items-center pt-32 pb-40 
-                      bg-[url('/background/pumpkin.png')] bg-cover bg-fixed bg-no-repeat overflow-hidden"
+                      bg-[url('/background/pumpkin.png')] bg-cover bg-fixed bg-no-repeat overflow-hidden relative"
     >
+      {/* Handmade Sticker */}
+      <motion.div
+        initial={{ scale: 0, rotate: -20 }}
+        animate={{ scale: 1, rotate: -20 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+          delay: 1,
+        }}
+        className="absolute top-52 right-[5%] z-10 bg-orange-500/90 rounded-full w-32 h-32 
+                   flex items-center justify-center transform rotate-12 shadow-lg
+                   border-4 border-dashed border-orange-300"
+      >
+        <div className="text-center transform -rotate-12">
+          <span className="font-creep text-xl text-white block">100%</span>
+          <span className="font-creep text-2xl text-white block">Handmade</span>
+        </div>
+      </motion.div>
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
