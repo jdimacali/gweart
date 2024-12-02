@@ -71,9 +71,12 @@ const HauntedHouse = () => {
   };
 
   return (
-    <div className="h-[90vh] w-full absolute">
+    <div className="h-[90vh] w-full absolute touch-none">
       {isLoading && (
-        <div className="absolute bottom-[70%] left-1/2 -translate-x-1/2 z-50">
+        <div 
+          className="absolute w-full flex justify-center items-center"
+          style={{ top: 'calc(30vh + 180px)' }}
+        >
           <Spin />
         </div>
       )}
