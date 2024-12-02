@@ -71,11 +71,11 @@ const HauntedHouse = () => {
   };
 
   return (
-    <div className="h-[90vh] w-full absolute touch-none">
+    <div className="h-[90vh] w-full absolute">
       {isLoading && (
-        <div 
+        <div
           className="absolute w-full flex justify-center items-center"
-          style={{ top: 'calc(30vh + 180px)' }}
+          style={{ top: "calc(30vh + 180px)" }}
         >
           <Spin />
         </div>
@@ -85,6 +85,7 @@ const HauntedHouse = () => {
         shadows
         camera={{ position: [-7.5, 10, 5], fov: 4 }}
         gl={{ antialias: true }}
+        className="overflow-hidden"
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.6} color="#ffffff" />
