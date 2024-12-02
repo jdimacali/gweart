@@ -42,8 +42,10 @@ const SpooktacularGoodies = () => {
 
   return (
     <section
-      className="w-full text-white bg-zinc-950 flex flex-col items-center pt-32 pb-40 
-                      bg-[url('/background/pumpkin.png')] bg-cover bg-fixed bg-no-repeat overflow-hidden"
+      className={clsx(
+        "w-full relative bg-gradient-to-b from-violet-950/30 to-violet-900/40 ",
+        !loading && data ? "h-full" : "h-[800px]"
+      )}
     >
       {loading && !data && (
         <div className="flex justify-center w-full h-full items-center">

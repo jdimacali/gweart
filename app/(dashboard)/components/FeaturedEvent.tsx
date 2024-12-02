@@ -71,7 +71,7 @@ const FeaturedEvent = () => {
   );
 
   return (
-    <section className="w-full bg-zinc-800/10 py-32 relative">
+    <section className="w-full bg-zinc-800/10 py-16 md:py-32 relative overflow-hidden">
       {/* Spider Web Decorations */}
       <Image
         src="/web.png"
@@ -90,40 +90,37 @@ const FeaturedEvent = () => {
         priority
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Title section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <h2 className="font-mania text-5xl md:text-6xl text-orange-300 mb-4">
+          <h2 className="font-mania text-4xl sm:text-5xl md:text-6xl text-orange-300 mb-4">
             Featured Event
           </h2>
           <div className="h-1 w-24 bg-orange-500 mx-auto rounded-full" />
         </motion.div>
 
+        {/* Event Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative rounded-2xl overflow-hidden shadow-2xl group"
         >
-          {/* Theater screen effect */}
+          {/* Keep existing theater screen and stage light effects */}
           <div className="absolute inset-0 shadow-[0_0_100px_20px_rgba(255,255,255,0.15)] pointer-events-none z-20" />
           <div className="absolute -inset-[2px] bg-gradient-to-r from-white/5 via-white/10 to-white/5 z-10" />
-
-          {/* Stage light effects */}
-          <div
-            className="absolute -top-[150px] left-1/2 -translate-x-1/2 w-[600px] h-[300px] 
-            bg-gradient-radial from-white/10 via-white/5 to-transparent rotate-180 opacity-50 z-10"
-          />
+          <div className="absolute -top-[150px] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-radial from-white/10 via-white/5 to-transparent rotate-180 opacity-50 z-10" />
 
           {eventStatus && <EventStatusBadge status={eventStatus} />}
           {!eventStatus && (
             <CountdownTimer startDate={event.attributes.start_date} />
           )}
 
-          <div className="aspect-[21/9] relative">
+          <div className="aspect-[16/9] sm:aspect-[21/9] relative">
             <Image
               src={event.attributes.image.data.attributes.url}
               alt={event.attributes.name}
@@ -133,12 +130,13 @@ const FeaturedEvent = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-            <h3 className="text-4xl font-creep text-orange-200 mb-4 group-hover:text-orange-300 transition-colors">
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 text-white">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-creep text-orange-200 mb-2 sm:mb-4 group-hover:text-orange-300 transition-colors">
               {event.attributes.name}
             </h3>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2 sm:gap-4">
+              {/* Keep existing date and address content */}
               <div className="text-sm font-sans tracking-wide text-gray-300">
                 <span className="mr-2">
                   {
@@ -161,20 +159,19 @@ const FeaturedEvent = () => {
                 {event.attributes.address}
               </p>
 
-              <div className="flex items-center gap-4 mt-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-2 sm:mt-4">
                 <motion.a
                   href={event.attributes.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-3 bg-orange-600 hover:bg-orange-700 
-                    rounded-full font-semibold transition-colors duration-300"
+                  className="px-6 py-2 sm:px-8 sm:py-3 bg-orange-600 hover:bg-orange-700 rounded-full font-semibold transition-colors duration-300 text-sm sm:text-base"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Learn More
                 </motion.a>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <CopyButton address={event.attributes.address} />
                   <CalendarButton event={event} />
                   <ShareButton event={event} />

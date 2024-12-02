@@ -67,6 +67,5 @@ div.vector {
 }
 
 .scroll-style {
-  overflow: scroll !important;
   touch-action: auto !important;
 }
