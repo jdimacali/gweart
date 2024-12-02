@@ -19,13 +19,15 @@ const SlideShow = () => {
           damping: 20,
           delay: 1,
         }}
-        className="absolute top-52 right-[5%] z-10 bg-orange-500/90 rounded-full w-32 h-32 
+        className="absolute top-[30%] left-[5%] z-10 bg-red-800/90 rounded-full w-32 h-32 
                    flex items-center justify-center transform rotate-12 shadow-lg
-                   border-4 border-dashed border-orange-300"
+                   border-4 border-dashed border-red-200"
       >
         <div className="text-center transform -rotate-12">
-          <span className="font-creep text-xl text-white block">100%</span>
-          <span className="font-creep text-2xl text-white block">Handmade</span>
+          <span className="font-semibold text-lg text-white block">100%</span>
+          <span className="font-semibold text-lg text-white block">
+            Handmade
+          </span>
         </div>
       </motion.div>
 
