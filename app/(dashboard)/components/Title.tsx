@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { DisplayText } from "@/types";
 import clsx from "clsx";
 import { getFonts } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 interface TitleProps {
   title?: DisplayText;
@@ -50,7 +51,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
   ));
 
   return (
-    <div className="max-sm:mb-4 relative">
+    <div className="relative mb-10">
       {/* Background glow effect */}
       <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-purple-500/20 via-transparent to-purple-500/20 animate-pulse" />
 
@@ -87,19 +88,36 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
       {/* Animated button */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          y: [0, -10, 0],
+        }}
+        transition={{
+          delay: 1,
+          duration: 0.5,
+          y: {
+            duration: 1,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut",
+            repeatDelay: 4, // 4 seconds pause + 1 second animation = 5 second interval
+          },
+        }}
       >
         <Button
           onClick={() => router.push("https://gweart.square.site/")}
           className={clsx(
-            `relative bg-gray-950/80 p-6 rounded-xl max-sm:w-[90vw] mt-8
-             hover:bg-purple-900/80 hover:scale-105 transition-all duration-300
-             shadow-[0_0_15px_rgba(139,70,196,0.3)] hover:shadow-[0_0_25px_rgba(139,70,196,0.5)]`,
+            `flex justify-center items-center relative bg-black p-6 rounded-xl max-sm:w-[90vw] mt-8 md:px-20
+             hover:bg-purple-950 hover:scale-105 transition-all duration-300
+             shadow-[0_0_15px rgba(0,0,0,0.3)] hover:shadow-[0_0_25px rgba(0,0,0,0.5)]`,
             button.Font.options && getFonts(button.Font.options)
           )}
         >
-          <h3 className="text-lg font-bold text-white m-3">{button.text}</h3>
+          <h3 className="text-lg font-bold text-white m-3 flex items-center justify-center">
+            {button.text}
+            <ArrowRight className="ml-2 text-white" size={22} />
+          </h3>
         </Button>
       </motion.div>
     </div>

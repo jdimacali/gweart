@@ -57,7 +57,7 @@ const SpooktacularGoodies = () => {
         <div className="h-[90vh] relative">
           <HauntedHouse />
           <motion.div
-            className="mb-12 flex flex-col items-center gap-x-4 z-10 pt-16 relative"
+            className="flex flex-col items-center justify-center w-full z-10 pt-16 relative"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -66,8 +66,8 @@ const SpooktacularGoodies = () => {
             <div className="absolute inset-0 backdrop-blur-[4px] bg-black/30 rounded-b-lg" />
 
             {/* Content with higher z-index */}
-            <div className="relative z-20 flex flex-col items-center px-8 pb-12">
-              <div className="flex gap-4">
+            <div className="relative z-20 flex flex-col items-center w-full">
+              <div className="flex gap-4 justify-center">
                 <h1 className="font-creep text-6xl md:text-7xl text-purple-300 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
                   GWEART
                 </h1>
