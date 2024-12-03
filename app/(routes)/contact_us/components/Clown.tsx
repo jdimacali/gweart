@@ -1,15 +1,20 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const Clown = ({ children }: { children: React.ReactNode }) => {
+const Clown = ({
+  children,
+  hasError,
+}: {
+  children: React.ReactNode;
+  hasError?: boolean;
+}) => {
   return (
-    <div className="flex flex-col justify-center items-center lg:overflow-visible overflow-clip relative w-full my-10">
+    <div className="flex flex-col justify-center items-center lg:overflow-visible overflow-clip relative w-full py-4">
       <motion.div
-        className="relative h-[22rem]  w-[660px] sm:w-[600px] z-[20] -mb-24"
+        className="relative h-[22rem] w-[660px] sm:w-[600px] z-[20] -mb-28 pointer-events-none"
         initial={{ y: -20 }}
         animate={{
           y: [-20, -10, -20],
-          rotate: [0, -1, 1, 0],
         }}
         transition={{
           y: {
@@ -32,17 +37,44 @@ const Clown = ({ children }: { children: React.ReactNode }) => {
           priority
         />
       </motion.div>
+      <div className="flex w-full relative">
+        <div
+          className={`absolute ${
+            hasError ? "h-[36rem]" : "h-[31rem]"
+          } w-[180px] sm:w-[70px] left-1/2 transform -translate-x-[379%] pointer-events-none transition-all duration-300`}
+        >
+          <Image
+            src="/clown/left.png"
+            fill
+            alt="clown_bottom"
+            className="absolute"
+            priority
+          />
+        </div>
 
-      <div className="flex justify-center items-center w-full relative z-[2]">
-        {children}
+        <div className="flex justify-center items-center w-full relative z-[2]">
+          {children}
+        </div>
+
+        <div
+          className={`absolute ${
+            hasError ? "h-[36rem]" : "h-[31rem]"
+          } w-[160px] sm:w-[75px] left-1/2 transform translate-x-[255%] pointer-events-none transition-all duration-300`}
+        >
+          <Image
+            src="/clown/right.png"
+            fill
+            alt="clown_bottom"
+            className="absolute"
+            priority
+          />
+        </div>
       </div>
-
       <motion.div
-        className="relative h-60  w-[580px] sm:w-[550px] z-[20] -mt-24"
+        className="relative h-60 w-[580px] sm:w-[500px] z-[10] -mt-24 pointer-events-none"
         initial={{ y: 20 }}
         animate={{
           y: [20, 10, 20],
-          rotate: [0, 1, -1, 0],
         }}
         transition={{
           y: {

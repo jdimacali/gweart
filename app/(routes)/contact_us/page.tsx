@@ -97,7 +97,7 @@ const Page = () => {
         </h2>
       </motion.div>
 
-      <Clown>
+      <Clown hasError={Object.keys(form.formState.errors).length > 0}>
         <motion.div
           className="w-full max-w-md mx-auto px-6 py-8 rounded-2xl backdrop-blur-sm bg-zinc-900/80
                      shadow-[0_0_15px_rgba(0,0,0,0.3)] relative z-10"
