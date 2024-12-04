@@ -13,6 +13,7 @@ const routes = [
   { label: "Home", href: "/" },
   { label: "Upcoming Events", href: "/upcoming_events" },
   { label: "Gallery", href: "/art_gallery" },
+  { label: "Social", href: "/social" },
   { label: "Contact Us", href: "/contact_us" },
   {
     label: "Shop",

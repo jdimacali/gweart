@@ -62,7 +62,7 @@ const Slides = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 0.3 }}
-      className="w-[75%] sm:w-full max-w-[1600px] px-4 mt-4"
+      className="w-[85%] sm:w-full max-w-[1600px] px-4 mt-4"
     >
       <Swiper
         centeredSlides={true}
