@@ -116,7 +116,7 @@ const Gallery = () => {
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-b from-fuchsia-900/50 via-fuchsia-950/30 to-purple-950/10 relative 
+      className="min-h-screen bg-gradient-to-b from-fuchsia-900/40 via-fuchsia-950/40 to-purple-950/10 relative 
                      bg-repeat bg-opacity-50"
     >
       <Image

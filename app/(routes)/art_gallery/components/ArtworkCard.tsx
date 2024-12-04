@@ -40,7 +40,7 @@ const ArtworkCard = ({ artwork, onSelect }: ArtworkCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="mb-4"
+      className="mb-4 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl"
       onContextMenu={(e) => {
         e.preventDefault();
         toast.error("This artwork is protected by copyright");
@@ -70,7 +70,7 @@ const ArtworkCard = ({ artwork, onSelect }: ArtworkCardProps) => {
           />
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/50 via-black/10 to-transparent">
+        <div className="absolute inset-x-0 bottom-0 p-4 ">
           <div className="flex justify-between items-center opacity-80 group-hover:opacity-100 transition-opacity duration-300">
             <p className="text-white font-semibold text-lg">
               {capitalizeTitle(artwork.name)}
