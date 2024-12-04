@@ -20,7 +20,7 @@ const SlideShow = () => {
           delay: 1,
           ease: "easeOut", // Added ease for smoother transition
         }}
-        className="absolute top-[30%] left-[5%] z-10 bg-gradient-to-br from-red-800 to-red-900
+        className="absolute top-[35%] left-[5%] z-10 bg-gradient-to-br from-red-800 to-red-900
              rounded-full lg:w-32 lg:h-32 w-24 h-24 flex items-center justify-center 
              transform rotate-12 shadow-[0_0_15px_rgba(0,0,0,0.3)]
              border-4 border-red-200/20 backdrop-blur-sm"
