@@ -48,7 +48,8 @@ const ArtworkCard = ({ artwork, onSelect }: ArtworkCardProps) => {
     >
       <div
         className="relative group cursor-pointer overflow-hidden rounded-xl 
-                 bg-zinc-900/30 backdrop-blur-[2px] select-none"
+                 bg-white/[0.05] backdrop-blur-[2px] select-none
+                 hover:bg-white/[0.08] transition-all duration-500"
         onClick={() => onSelect(artwork)}
       >
         <div className="relative">
@@ -69,7 +70,7 @@ const ArtworkCard = ({ artwork, onSelect }: ArtworkCardProps) => {
           />
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+        <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/50 via-black/10 to-transparent">
           <div className="flex justify-between items-center opacity-80 group-hover:opacity-100 transition-opacity duration-300">
             <p className="text-white font-semibold text-lg">
               {capitalizeTitle(artwork.name)}
@@ -79,9 +80,9 @@ const ArtworkCard = ({ artwork, onSelect }: ArtworkCardProps) => {
         </div>
 
         <div
-          className="absolute inset-0 rounded-xl ring-1 ring-purple-500/10 
-                   group-hover:ring-purple-400/40 group-hover:shadow-[0_0_15px_rgba(147,51,234,0.2)]
-                   transition-all duration-300"
+          className="absolute inset-0 rounded-xl ring-1 ring-white/10 
+                   group-hover:ring-white/20 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]
+                   transition-all duration-500"
         />
       </div>
     </motion.div>

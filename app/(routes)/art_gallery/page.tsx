@@ -115,7 +115,10 @@ const Gallery = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-fuchsia-900/80 via-fuchsia-900/30 to-purple-900/10 relative">
+    <div
+      className="min-h-screen bg-gradient-to-b from-fuchsia-900/50 via-fuchsia-950/30 to-purple-950/10 relative 
+                     bg-repeat bg-opacity-50"
+    >
       <Image
         src="/web.png"
         width={900}
@@ -141,10 +144,14 @@ const Gallery = () => {
           className="max-w-[2000px] mx-auto"
         >
           <h1
-            className="text-4xl md:text-5xl font-mania text-center mb-12 
-                       drop-shadow-[0_0_15px_rgba(217,70,219,0.6)]"
+            className="text-4xl md:text-6xl font-mania text-center mb-16 
+             text-white
+              bg-clip-text
+             drop-shadow-[0_0_15px_rgba(0, 0, 0, 0.6)]"
           >
-            ART GALLERY
+            GWE_ART
+            <br />
+            GALLERY
           </h1>
 
           <Masonry
