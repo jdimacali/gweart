@@ -27,23 +27,24 @@ const MobileNavbar = ({ routes }: MobileNavbarProps) => {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="w-full sm:w-[300px] bg-black/95 backdrop-blur-lg border-l border-white/10"
+        className="w-full sm:w-[300px] bg-black/95 backdrop-blur-lg border-l border-white/10 overflow-y-auto"
       >
         {/* Close Button */}
         <button
           onClick={() => setOpen(false)}
           className={`
-            absolute right-4 top-4
+            fixed right-4 top-4 z-50
             p-2 rounded-full
             transition-all duration-300
             hover:bg-white/10
             active:scale-95
+            bg-black/50 backdrop-blur-sm
           `}
         >
           <X className="w-6 h-6 text-white" />
         </button>
 
-        <nav className="flex flex-col gap-y-6 pt-12">
+        <nav className="flex flex-col gap-y-6 pt-12 min-h-[calc(100vh-4rem)] pb-20">
           {routes.map((route, index) => (
             <Fragment key={route.label}>
               <Link
