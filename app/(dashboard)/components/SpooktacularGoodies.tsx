@@ -1,8 +1,6 @@
 "use client";
 
 import Title from "./Title";
-import DashboardImages from "./DashboardImages";
-import DashboardGhost from "./DashboardGhost";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spin from "@/components/Spin";
