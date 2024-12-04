@@ -51,7 +51,7 @@ const ShareButton = ({ title, url }: ShareButtonProps) => {
       >
         <Share2
           size={20}
-          className="text-purple-300 hover:text-white transition-colors"
+          className="text-fuchsia-200 hover:text-white transition-colors"
         />
       </motion.button>
       {tooltipVisible && (

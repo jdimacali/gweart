@@ -83,7 +83,7 @@ const Gallery = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-zinc-900 via-purple-950/20 to-zinc-900 px-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-zinc-900 via-purple-950/70 to-zinc-900 px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ const Gallery = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-900 via-fuchsia-900/30 to-purple-950 relative">
+    <div className="min-h-screen bg-gradient-to-b from-fuchsia-900/80 via-fuchsia-900/30 to-purple-900/10 relative">
       <Image
         src="/web.png"
         width={900}
@@ -141,7 +141,7 @@ const Gallery = () => {
           className="max-w-[2000px] mx-auto"
         >
           <h1
-            className="text-4xl md:text-5xl font-mania text-center text-fuchsia-300 mb-12 
+            className="text-4xl md:text-5xl font-mania text-center mb-12 
                        drop-shadow-[0_0_15px_rgba(217,70,219,0.6)]"
           >
             ART GALLERY
