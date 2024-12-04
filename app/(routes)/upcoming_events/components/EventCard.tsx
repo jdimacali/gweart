@@ -107,7 +107,7 @@ const EventCard = ({ event }: { event: Events }) => {
               </div>
             </div>
           </div>
-          <div className="lg:hidden items-center gap-2 lg:gap-x-2 mt-2">
+          <div className="lg:hidden flex flex-row items-center gap-2 lg:gap-x-2 mt-2">
             <CopyButton address={event.attributes.address} />
             <CalendarButton event={event} />
             <ShareButton event={event} />
