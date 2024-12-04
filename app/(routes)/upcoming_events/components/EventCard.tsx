@@ -2,10 +2,10 @@ import { formatDateFromString } from "@/lib/utils";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Events } from "../page";
-import ShareButton from "./Sharebutton";
-import CalendarButton from "./CalenderButton";
+import ShareButton from "@/components/ShareButton";
+import CalendarButton from "@/components/CalenderButton";
 import CountdownTimer from "./CountdownTimer";
-import CopyButton from "./CopyButton";
+import CopyButton from "../../../../components/CopyButton";
 
 export const getEventStatus = (startDate: string, endDate?: string) => {
   const now = new Date();

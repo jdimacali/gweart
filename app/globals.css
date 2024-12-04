@@ -43,3 +43,23 @@ body,
 .scroll-style {
   touch-action: auto !important;
 }
+
+/* Image Protection Styles */
+img {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+/* Optional: Disable right-click on images */
+img:not([draggable="true"]) {
+  pointer-events: none;
+}

@@ -12,6 +12,7 @@ import Spin from "./Spin";
 const routes = [
   { label: "Home", href: "/" },
   { label: "Upcoming Events", href: "/upcoming_events" },
+  { label: "Gallery", href: "/art_gallery" },
   { label: "Contact Us", href: "/contact_us" },
   {
     label: "Shop",

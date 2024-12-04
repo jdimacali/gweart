@@ -9,9 +9,9 @@ import Spin from "@/components/Spin";
 import { format } from "date-fns";
 import { formatDateFromString } from "@/lib/utils";
 import CountdownTimer from "@/app/(routes)/upcoming_events/components/CountdownTimer";
-import CopyButton from "@/app/(routes)/upcoming_events/components/CopyButton";
-import CalendarButton from "@/app/(routes)/upcoming_events/components/CalenderButton";
-import ShareButton from "@/app/(routes)/upcoming_events/components/Sharebutton";
+import CopyButton from "@/components/CopyButton";
+import CalendarButton from "@/components/CalenderButton";
+import ShareButton from "@/components/ShareButton";
 import {
   getEventStatus,
   EventStatusBadge,
@@ -164,7 +164,7 @@ const FeaturedEvent = () => {
                   href={event.attributes.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-2 sm:px-8 sm:py-3 bg-orange-600 hover:bg-orange-700 rounded-full font-semibold transition-colors duration-300 text-sm sm:text-base"
+                  className=" z-10 px-6 py-2 sm:px-8 sm:py-3 bg-orange-600 hover:bg-orange-700 rounded-full font-semibold transition-colors duration-300 text-sm sm:text-base"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
