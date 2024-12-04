@@ -124,7 +124,7 @@ const Gallery = () => {
         width={900}
         height={900}
         alt="web"
-        className="absolute -top-3 -left-5 max-md:w-[100%] max-md:object-contain opacity-10 pointer-events-none scale-[0.95]"
+        className="absolute -top-4 -left-7 max-md:w-[100%] max-md:object-contain opacity-10 pointer-events-none scale-[0.95]"
         priority
       />
       <Image
