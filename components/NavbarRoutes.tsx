@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface NavbarRoutesProps {
   routes: Array<{
@@ -20,16 +21,23 @@ const NavbarRoutes = ({ routes, pathname }: NavbarRoutesProps) => {
             "relative px-2 py-1 text-sm font-medium tracking-wide",
             "transition-all duration-300",
             "hover:text-purple-300",
-            "after:content-[''] after:absolute after:left-0 after:bottom-0",
-            "after:h-[2px] after:w-0 after:bg-purple-400",
-            "after:transition-all after:duration-300",
-            "hover:after:w-full",
-            pathname === route.href
-              ? "text-purple-300 after:w-full"
-              : "text-white/90"
+            "group",
+            pathname === route.href ? "text-purple-300" : "text-white/90"
           )}
         >
           {route.label}
+          <motion.div
+            className="absolute bottom-0 left-0 h-[2px] bg-purple-400"
+            initial={false}
+            animate={{
+              width: pathname === route.href ? "100%" : "0%"
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 30
+            }}
+          />
         </Link>
       ))}
     </div>

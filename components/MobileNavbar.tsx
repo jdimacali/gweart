@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MenuIcon, X } from "lucide-react";
 import { Fragment, useState } from "react";
+import { motion } from "framer-motion";
 
 interface MobileNavbarProps {
   routes: Array<{
@@ -46,7 +47,12 @@ const MobileNavbar = ({ routes }: MobileNavbarProps) => {
 
         <nav className="flex flex-col gap-y-6 pt-12 min-h-[calc(100vh-4rem)] pb-20">
           {routes.map((route, index) => (
-            <Fragment key={route.label}>
+            <motion.div
+              key={route.label}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
               <Link
                 href={route.href}
                 onClick={() => setOpen(false)}
@@ -68,7 +74,7 @@ const MobileNavbar = ({ routes }: MobileNavbarProps) => {
               {index < routes.length - 1 && (
                 <div className="h-px bg-white/10 mx-4" />
               )}
-            </Fragment>
+            </motion.div>
           ))}
         </nav>
       </SheetContent>
