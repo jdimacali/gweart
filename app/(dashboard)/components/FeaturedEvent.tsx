@@ -82,7 +82,7 @@ const FeaturedEvent = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-screen flex items-center justify-center py-4 md:py-8 relative overflow-hidden bg-gradient-to-b from-zinc-950/90 via-orange-900/10 to-zinc-950/90"
+      className="w-full min-h-screen flex items-center justify-center py-4 md:py-8 relative overflow-hidden bg-gradient-to-b from-zinc-950 via-orange-900/10 to-zinc-950"
     >
       {/* Animated Background Elements */}
       <motion.div
