@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Slides from "./Slides";
 const Originals = () => {
   return (
-    <section className="w-full text-white bg-gradient-to-b from-zinc-950/70 via-red-950/5 to-zinc-950/70 flex flex-col items-center pt-16 md:pt-24 pb-24 md:pb-32 relative overflow-hidden">
+    <section className="w-full text-white bg-gradient-to-b from-zinc-950/90 via-red-950/10 to-zinc-950/90 flex flex-col items-center pt-16 md:pt-24 pb-24 md:pb-32 relative overflow-hidden">
       {" "}
       {/* Background Pattern with reduced opacity and red tint */}{" "}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/70 via-red-950/10 to-zinc-950/70" />{" "}
