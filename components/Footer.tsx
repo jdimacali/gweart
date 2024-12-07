@@ -4,6 +4,28 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+// Navigation links data structure
+const navigationLinks = [
+  { href: "/", label: "Home" },
+  { href: "/upcoming_events", label: "Events" },
+  { href: "/contact_us", label: "Contact" },
+  { href: "/art_gallery", label: "Gallery" },
+  { href: "/about", label: "About" },
+  { href: "https://gweart.square.site/", label: "Shop", external: true },
+] as const;
+
+// Ghost animation variants
+const ghostAnimation = {
+  float: {
+    y: [0, -20, 0],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  },
+};
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -23,7 +45,6 @@ const Footer = () => {
 
       {/* Content Container */}
       <div className="relative z-20 container mx-auto px-4 py-12">
-        {/* Main Content */}
         <div className="flex flex-col items-center space-y-8">
           {/* Logo */}
           <Link
@@ -38,29 +59,17 @@ const Footer = () => {
             />
           </Link>
 
-          {/* Links */}
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-gray-400">
-            <Link href="/" className="hover:text-purple-400 transition-colors">
-              Home
-            </Link>
-            <Link
-              href="/upcoming_events"
-              className="hover:text-purple-400 transition-colors"
-            >
-              Events
-            </Link>
-            <Link
-              href="/contact_us"
-              className="hover:text-purple-400 transition-colors"
-            >
-              Contact
-            </Link>
-            <Link
-              href="https://gweart.square.site/"
-              className="hover:text-purple-400 transition-colors"
-            >
-              Shop
-            </Link>
+          {/* Navigation Links */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-gray-400">
+            {navigationLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="hover:text-purple-400 transition-colors"
+              >
+                {label}
+              </Link>
+            ))}
           </div>
 
           {/* Copyright Text */}
@@ -78,47 +87,32 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Decorative Elements */}
-      <motion.div
-        className="absolute bottom-0 md:block hidden left-20 opacity-20"
-        animate={{
-          y: [0, -20, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <Image
-          src="/ghost.png"
-          width={60}
-          height={60}
-          alt="ghost"
-          className="object-contain brightness-75 mb-10"
-        />
-      </motion.div>
-
-      <motion.div 
-        className="absolute bottom-0 right-10 md:right-60 opacity-20 scale-x-100"
-        animate={{
-          y: [0, -15, 0],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      >
-        <Image
-          src="/ghost.png"
-          width={60}
-          height={60}
-          alt="ghost"
-          className="object-contain brightness-75 mb-10 scale-x-[-1]"
-        />
-      </motion.div>
+      {/* Decorative Ghosts */}
+      {[
+        { position: "left-20", delay: 0 },
+        { position: "right-10 md:right-60", delay: 1, flip: true },
+      ].map((ghost, index) => (
+        <motion.div
+          key={index}
+          className={`absolute bottom-0 md:block hidden ${ghost.position} opacity-20`}
+          variants={ghostAnimation}
+          animate="float"
+          transition={{
+            ...ghostAnimation.float.transition,
+            delay: ghost.delay,
+          }}
+        >
+          <Image
+            src="/ghost.png"
+            width={60}
+            height={60}
+            alt="ghost"
+            className={`object-contain brightness-75 mb-10 ${
+              ghost.flip ? "scale-x-[-1]" : ""
+            }`}
+          />
+        </motion.div>
+      ))}
     </footer>
   );
 };

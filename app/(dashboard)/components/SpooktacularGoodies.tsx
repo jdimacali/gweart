@@ -41,7 +41,7 @@ const SpooktacularGoodies = () => {
   return (
     <section
       className={clsx(
-        "w-full relative bg-gradient-to-b from-violet-950/30 to-violet-900/40 ",
+        "w-full relative bg-gradient-to-b from-violet-900/90 via-violet-950/20 to-violet-950/60",
         !loading && data ? "h-full" : "h-[800px]"
       )}
     >
@@ -96,30 +96,3 @@ const SpooktacularGoodies = () => {
 };
 
 export default SpooktacularGoodies;
-
-{
-  /* <div className="flex flex-col items-center">
-          //  <div className="flex max-md:flex-col justify-center text-center items-center lg:py-[8rem] pt-12 gap-x-20">
-
-
-            <Title
-              title={data?.title}
-              subtitle={data?.subtitle}
-              button={data?.button}
-            />
-            //   </div>
-
-          </div> */
-}
-
-{
-  /* Spider Web Decoration */
-}
-// <Image
-//   src="/web.png"
-//   width={900}
-//   height={900}
-//   className="absolute top-0 -left-3 opacity-30"
-//   priority
-//   alt="web"
-// />;

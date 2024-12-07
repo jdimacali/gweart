@@ -10,6 +10,7 @@ import EventCard from "./components/EventCard";
 export interface Events {
   id: number;
   attributes: {
+    description?: string;
     url: string;
     name: string;
     address: string;

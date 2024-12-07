@@ -62,7 +62,7 @@ const Slides = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 0.3 }}
-      className="w-[85%] sm:w-full max-w-[1600px] px-4 mt-4"
+      className="w-full sm:w-full max-w-[1600px] px-4 mt-4"
     >
       <Swiper
         centeredSlides={true}
@@ -80,8 +80,6 @@ const Slides = () => {
         pagination={{
           clickable: true,
           dynamicBullets: true,
-          bulletActiveClass: "swiper-pagination-bullet-active",
-          bulletClass: "swiper-pagination-bullet",
         }}
         coverflowEffect={{
           rotate: 25,
@@ -92,10 +90,10 @@ const Slides = () => {
         }}
         modules={[Autoplay, Pagination, Navigation, EffectCoverflow]}
         effect="coverflow"
-        className="w-full [&_.swiper-pagination-bullet]:bg-purple-500 
-                  [&_.swiper-pagination-bullet-active]:bg-purple-300
-                  [&_.swiper-button-next]:text-purple-300 
-                  [&_.swiper-button-prev]:text-purple-300"
+        className="w-full [&_.swiper-pagination-bullet]:bg-red-500 
+                  [&_.swiper-pagination-bullet-active]:bg-red-300
+                  [&_.swiper-button-next]:text-red-300 
+                  [&_.swiper-button-prev]:text-red-300"
         breakpoints={{
           320: { slidesPerView: 1 },
           640: { slidesPerView: 2 },
@@ -105,7 +103,7 @@ const Slides = () => {
       >
         <AnimatePresence>
           {slides?.map((slide, index) => (
-            <SwiperSlide key={index} className="py-12">
+            <SwiperSlide key={index} className="lg:py-8">
               <Link
                 href={slide.url || "/"}
                 className="block relative group"
@@ -113,11 +111,11 @@ const Slides = () => {
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 <motion.div
-                  className="relative aspect-square overflow-hidden rounded-xl bg-gradient-to-br from-purple-900/30 to-black/40 p-2"
-                  whileHover={{ scale: 1.05 }}
+                  className="relative aspect-square p-3 w-[85%] md:w-[90%] lg:w-full lg:h-full mx-auto overflow-hidden rounded-xl bg-gradient-to-br from-red-900/30 to-black/40 "
+                  whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="relative w-full h-full overflow-hidden rounded-lg">
+                  <div className="relative w-full h-full overflow-hidden rounded-lg bg-zinc-900/80">
                     <Image
                       src={slide.image.data.attributes.formats.small.url}
                       alt={`Slide ${index + 1}`}
@@ -125,12 +123,12 @@ const Slides = () => {
                       priority
                       quality={100}
                       className="object-cover transition-all duration-500 
-                               group-hover:scale-110 group-hover:brightness-110"
+                               group-hover:scale-105 group-hover:brightness-110"
                       onContextMenu={(e) => e.preventDefault()}
-                      sizes="(max-width: 320px) 280px,
-                             (max-width: 640px) 400px,
-                             (max-width: 1024px) 300px,
-                             250px"
+                      sizes="(max-width: 320px) 240px,
+                             (max-width: 640px) 280px,
+                             (max-width: 1024px) 260px,
+                             260px"
                     />
                     {/* Spooky overlay effect on hover */}
                     <motion.div
@@ -138,7 +136,7 @@ const Slides = () => {
                       animate={{
                         opacity: hoveredIndex === index ? 1 : 0,
                         background:
-                          "linear-gradient(to top, rgba(88, 28, 135, 0.3), transparent)",
+                          "linear-gradient(to top, rgba(185, 28, 28, 0.3), transparent)",
                       }}
                       transition={{ duration: 0.3 }}
                       className="absolute inset-0 z-10"
@@ -146,9 +144,9 @@ const Slides = () => {
                   </div>
                   {/* Glowing border effect */}
                   <div
-                    className="absolute inset-0 rounded-xl ring-2 ring-purple-500/20 
-                                group-hover:ring-purple-400/60 group-hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]
-                                transition-all duration-300"
+                    className="absolute inset-0 rounded-xl ring-2 ring-red-500/20 
+                              group-hover:ring-red-400/60 group-hover:shadow-[0_0_15px_rgba(220,38,38,0.3)]
+                              transition-all duration-300"
                   />
                 </motion.div>
               </Link>
