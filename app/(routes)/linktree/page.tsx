@@ -17,17 +17,17 @@ interface SocialLink {
 }
 
 const Page = () => {
-  const [socials, setSocialLinks] = useState<SocialLink>();
-  const [loading, setLoading] = useState(false);
+  const [socials, setSocialLinks] = useState<SocialLink | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const social = async () => {
       try {
-        setLoading(true);
         const response = await axios.get("/api/linktree");
         setSocialLinks(response.data.attributes);
       } catch (error) {
         console.log(error);
+        setSocialLinks(undefined);
       } finally {
         setLoading(false);
       }
@@ -121,7 +121,7 @@ const Page = () => {
           </motion.p>
         </motion.div>
 
-        {/* Links section with staggered animation */}
+        {/* Links section with loading state */}
         <motion.div
           className="space-y-4 relative z-10"
           initial="hidden"
@@ -136,10 +136,10 @@ const Page = () => {
           }}
         >
           {loading ? (
-            <Spin />
-          ) : !socials ? (
-            <div className="text-gray-400 text-center">No links available</div>
-          ) : (
+            <div className="flex justify-center items-center pt-10">
+              <Spin />
+            </div>
+          ) : socials?.Links ? (
             socials.Links.map((social) => (
               <motion.div
                 key={social.id}
@@ -155,6 +155,8 @@ const Page = () => {
                 />
               </motion.div>
             ))
+          ) : (
+            <div className="text-gray-400 text-center">No links available</div>
           )}
         </motion.div>
       </div>

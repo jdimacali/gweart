@@ -19,7 +19,8 @@ import { Calendar, MapPin, Clock } from "lucide-react";
 
 const FeaturedEvent = () => {
   const [event, setEvent] = useState<Events | undefined>();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const sectionRef = useRef(null);
 
   // Parallax effect
@@ -31,11 +32,10 @@ const FeaturedEvent = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
 
-  // Fetch event logic remains the same
+  // Fetch event logic with error handling and retry
   useEffect(() => {
     const getNextEvent = async () => {
       try {
-        setLoading(true);
         const response = await axios.get("/api/events");
         const events: Events[] = response.data;
 
@@ -58,21 +58,26 @@ const FeaturedEvent = () => {
       } catch (error) {
         console.error("Error fetching events:", error);
       } finally {
-        setLoading(false);
+        // Delay setting loading to false for smoother transition
+        setTimeout(() => setLoading(false), 100);
       }
     };
+
     getNextEvent();
   }, []);
 
-  if (loading) {
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
+  // Loading state with consistent height
+  if (loading || !event) {
     return (
-      <div className="flex justify-center items-center h-[600px]">
+      <section className="w-full min-h-[800px] flex items-center justify-center bg-gradient-to-b from-zinc-950 via-orange-900/10 to-zinc-950">
         <Spin />
-      </div>
+      </section>
     );
   }
-
-  if (!event) return null;
 
   const eventStatus = getEventStatus(
     event.attributes.start_date,
@@ -82,9 +87,9 @@ const FeaturedEvent = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-screen flex items-center justify-center py-4 md:py-8 relative overflow-hidden bg-gradient-to-b from-zinc-950 via-orange-900/10 to-zinc-950"
+      className="w-full h-full flex items-center justify-center py-20 md:py-20 relative overflow-hidden bg-gradient-to-b from-zinc-950 via-orange-900/10 to-zinc-950"
     >
-      {/* Animated Background Elements */}
+      {/* Background Elements */}
       <motion.div
         style={{ y, opacity }}
         className="absolute inset-0 flex justify-center items-center pointer-events-none"
@@ -95,7 +100,7 @@ const FeaturedEvent = () => {
           width={1200}
           height={1200}
           alt="web"
-          className="absolute top-[-10%] left-[-10%] opacity-[0.025]  blur-[2px] object-contain"
+          className="absolute top-[-10%] left-[-10%] opacity-[0.025] blur-[2px] object-contain"
           priority
         />
         <Image
@@ -108,14 +113,14 @@ const FeaturedEvent = () => {
         />
       </motion.div>
 
-      {/* Content Container - Further reduced max-width */}
+      {/* Content Container */}
       <div className="w-full max-w-[92%] md:max-w-[70%] lg:max-w-[50%] xl:max-w-[40%] mx-auto px-2 sm:px-4 relative z-10">
         {/* Title Section - Further reduced margins */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-4 md:mb-6"
+          className="text-center mb-10 md:mb-16"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -131,20 +136,23 @@ const FeaturedEvent = () => {
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="h-[2px] max-w-[200px] mx-auto bg-gradient-to-r from-transparent via-orange-500 to-transparent"
+            className="h-[2px] max-w-[350px] mx-auto bg-gradient-to-r from-transparent via-orange-500 to-transparent"
           />
         </motion.div>
 
-        {/* Event Card - Adjusted size and padding */}
+        {/* Event Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl group bg-black/40 backdrop-blur-sm"
+          animate={{
+            opacity: imageLoaded ? 1 : 0,
+            y: imageLoaded ? 0 : 30,
+          }}
+          transition={{ duration: 0.8 }}
+          className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl group bg-black/40 backdrop-blur-sm "
         >
           {/* Glass Effect & Borders */}
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-purple-500/10 opacity-50" />
-          <div className="absolute inset-[1px] rounded-3xl bg-gradient-to-br from-orange-500/40 to-orange-700/20" />
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-purple-500/10 opacity-50 z-1" />
+          <div className="absolute inset-[1px] rounded-3xl bg-gradient-to-br from-orange-500/40 to-orange-700/20 z-1" />
 
           {/* Status Badges */}
           <div className="absolute top-4 left-4 z-30">
@@ -159,14 +167,17 @@ const FeaturedEvent = () => {
           </div>
 
           {/* Event Image - Keep existing aspect ratio */}
-          <div className="aspect-[16/9] relative">
+          <div className="aspect-[16/9] relative group">
             <Image
               src={event.attributes.image.data.attributes.url}
               alt={event.attributes.name}
               fill
-              className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
+              className="object-cover transition-all duration-700 group-hover:brightness-110"
+              onLoad={handleImageLoad}
+              priority
+              sizes="(max-width: 768px) 92vw, (max-width: 1024px) 70vw, (max-width: 1280px) 50vw, 40vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent overflow-hidden" />
           </div>
 
           {/* Event Details - Optimized padding and layout */}

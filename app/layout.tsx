@@ -18,7 +18,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata: Metadata = {
   title: "Gweart",
   description: "Art by G.W.E",
-}
+};
 
 export default function RootLayout({
   children,
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`bg-black ${butcherman.variable} ${creepster.variable} ${dokdo.variable} ${nosifer.variable} ${lato.variable} ${metalMania.variable} ${lato.className}`}
+        className={`bg-black ${lato.className} ${butcherman.variable} ${creepster.variable} ${dokdo.variable} ${nosifer.variable} ${metalMania.variable}`}
         suppressHydrationWarning
       >
         <AuthProvider>

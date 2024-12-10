@@ -3,16 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
-// Navigation links data structure
-const navigationLinks = [
-  { href: "/", label: "Home" },
-  { href: "/upcoming_events", label: "Events" },
-  { href: "/contact_us", label: "Contact" },
-  { href: "/art_gallery", label: "Gallery" },
-  { href: "/about", label: "About" },
-  { href: "https://gweart.square.site/", label: "Shop", external: true },
-] as const;
+import { routes } from "./Navbar"; // Import routes from Navbar
 
 // Ghost animation variants
 const ghostAnimation = {
@@ -61,11 +52,13 @@ const Footer = () => {
 
           {/* Navigation Links */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-gray-400">
-            {navigationLinks.map(({ href, label }) => (
+            {routes.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
                 className="hover:text-purple-400 transition-colors"
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
               >
                 {label}
               </Link>

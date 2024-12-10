@@ -63,16 +63,22 @@ function Model({ onLoad }: any) {
   return <primitive object={scene} position={[0.2, -0.175, 0]} />;
 }
 
-const HauntedHouse = () => {
+interface HauntedHouseProps {
+  onLoad?: () => void;
+  hideSpinner?: boolean;
+}
+
+const HauntedHouse = ({ onLoad, hideSpinner }: HauntedHouseProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLoad = () => {
     setIsLoading(false);
+    onLoad?.();
   };
 
   return (
     <div className="h-[90vh] w-full absolute">
-      {isLoading && (
+      {isLoading && !hideSpinner && (
         <div
           className="absolute w-full flex justify-center items-center"
           style={{ top: "calc(30vh + 180px)" }}

@@ -27,7 +27,7 @@ export interface Events {
   };
 }
 
-export const revalidate = 0;
+export const revalidate = 100;
 
 const sortEventsByProximity = (events: Events[]) => {
   const now = new Date();
@@ -59,17 +59,17 @@ const sortEventsByProximity = (events: Events[]) => {
 };
 
 const Page = () => {
-  const [events, setEvents] = useState<Events[] | undefined>([]);
-  const [loading, setLoading] = useState(false);
+  const [events, setEvents] = useState<Events[] | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
     const getDashboard = async () => {
       try {
-        setLoading(true);
         const response = await axios.get("/api/events");
         setEvents(response.data);
       } catch (error) {
         console.error("Error fetching dashboard:", error);
+        setEvents([]); // Set empty array on error
       } finally {
         setLoading(false);
       }
@@ -87,7 +87,7 @@ const Page = () => {
           <div className="flex pt-80 items-center justify-center">
             <Spin />
           </div>
-        ) : events && events.length > 0 ? (
+        ) : events?.length ? (
           <div className="mt-[5rem] md:mt-[7rem] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 max-w-[2000px] mx-auto">
             {sortEventsByProximity(events).map((event) => (
               <EventCard key={event.id} event={event} />

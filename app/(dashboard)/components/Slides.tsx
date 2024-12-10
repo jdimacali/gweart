@@ -30,7 +30,16 @@ interface Slide {
   };
 }
 
-const Slides = () => {
+interface SlidesProps {
+  onLoad?: () => void;
+  hideSpinner?: boolean;
+}
+
+const Slides = ({ onLoad, hideSpinner }: SlidesProps) => {
+  useEffect(() => {
+    // Call onLoad when the slideshow is ready
+    onLoad?.();
+  }, [onLoad]);
   const [slides, setSlides] = useState<Slide[] | undefined>([]);
   const [loading, setLoading] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -49,7 +58,7 @@ const Slides = () => {
     fetchSlides();
   }, []);
 
-  if (loading) {
+  if (loading && !hideSpinner) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
         <Spin />

@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import Spin from "./Spin";
 
-const routes = [
+export const routes = [
   { label: "Home", href: "/" },
   { label: "Upcoming Events", href: "/upcoming_events" },
   { label: "Gallery", href: "/art_gallery" },

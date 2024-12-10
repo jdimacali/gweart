@@ -7,14 +7,15 @@ import { useRef } from "react";
 
 const AboutMe = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
@@ -25,8 +26,8 @@ const AboutMe = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: "easeOut",
+        duration: 0.6,
+        ease: [0.215, 0.61, 0.355, 1.0],
       },
     },
   };
@@ -49,9 +50,15 @@ const AboutMe = () => {
         className="container mx-auto px-4 md:px-8 relative z-10"
       >
         <div className="flex flex-col md:flex-row gap-y-14 gap-x-20 items-center justify-center">
-          {/* Image Section */}
+          {/* Image Section with Loading State */}
           <motion.div variants={itemVariants} className="relative group">
             <div className="relative w-[300px] h-[300px]">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0 bg-purple-900/20 rounded-2xl"
+              />
               <Image
                 src="/karen.webp"
                 alt="Picture of the author"
@@ -61,23 +68,25 @@ const AboutMe = () => {
                          group-hover:scale-105 
                          group-hover:brightness-110"
                 priority
+                sizes="(max-width: 768px) 300px, 300px"
+                quality={90}
               />
-              {/* Decorative Border */}
-              <div
-                className="absolute inset-0 rounded-2xl ring-2 ring-purple-500/20
-                            group-hover:ring-purple-400/60 
-                            group-hover:shadow-[0_0_25px_rgba(147,51,234,0.3)]
-                            transition-all duration-500"
+              {/* Decorative Border with improved animation */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl ring-2 ring-purple-500/20"
+                whileHover={{
+                  boxShadow: "0 0 25px rgba(147,51,234,0.3)",
+                }}
+                transition={{ duration: 0.3 }}
               />
             </div>
-            {/* Floating Elements */}
+            {/* Floating Elements with optimized animation */}
             <motion.div
               className="absolute -top-4 -right-4 w-20 h-20"
               animate={{
                 y: [-5, 5, -5],
               }}
               transition={{
-                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
                 y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
               }}
             >
