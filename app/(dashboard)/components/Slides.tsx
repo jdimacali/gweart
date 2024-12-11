@@ -5,7 +5,6 @@ import {
   Autoplay,
   Pagination,
   Navigation,
-  EffectCoverflow,
 } from "swiper/modules";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -71,7 +70,7 @@ const Slides = ({ onLoad, hideSpinner }: SlidesProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 0.3 }}
-      className="w-full sm:w-full max-w-[1600px] px-4 mt-4"
+      className="w-full overflow-visible"
     >
       <Swiper
         centeredSlides={true}
@@ -85,29 +84,21 @@ const Slides = ({ onLoad, hideSpinner }: SlidesProps) => {
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
         }}
-        spaceBetween={40}
+        spaceBetween={20}
         pagination={{
           clickable: true,
           dynamicBullets: true,
         }}
-        coverflowEffect={{
-          rotate: 25,
-          stretch: 0,
-          depth: 250,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        modules={[Autoplay, Pagination, Navigation, EffectCoverflow]}
-        effect="coverflow"
-        className="w-full [&_.swiper-pagination-bullet]:bg-red-500 
+        modules={[Autoplay, Pagination, Navigation]}
+        className="w-[110vw] -ml-[5vw] [&_.swiper-pagination-bullet]:bg-red-500 
                   [&_.swiper-pagination-bullet-active]:bg-red-300
                   [&_.swiper-button-next]:text-red-300 
                   [&_.swiper-button-prev]:text-red-300"
         breakpoints={{
-          320: { slidesPerView: 1 },
-          640: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-          1280: { slidesPerView: 4 },
+          320: { slidesPerView: 1.5 },
+          640: { slidesPerView: 2.5 },
+          1024: { slidesPerView: 3.5 },
+          1280: { slidesPerView: 4.5 },
         }}
       >
         <AnimatePresence>
