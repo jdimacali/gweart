@@ -6,6 +6,7 @@ import ShareButton from "@/components/ShareButton";
 import CalendarButton from "@/components/CalenderButton";
 import CountdownTimer from "./CountdownTimer";
 import CopyButton from "../../../../components/CopyButton";
+import { Link } from "lucide-react"; // Importing the Lucide icon
 
 export const getEventStatus = (startDate: string, endDate?: string) => {
   const now = new Date();
@@ -44,79 +45,84 @@ const EventCard = ({ event }: { event: Events }) => {
     event.attributes.start_date,
     event.attributes.end_date
   );
-
+  // bg - black / 40;
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.05 }}
-      className="group relative h-[20rem] w-full rounded-lg overflow-hidden shadow-md shadow-amber-100/10"
+      className="group relative rounded-lg overflow-hidden shadow-sm shadow-amber-100/10 bg-black/40 backdrop-blur-sm rounded-t-xl"
     >
-      {eventStatus && <EventStatusBadge status={eventStatus} />}
-      {!eventStatus && (
-        <CountdownTimer startDate={event.attributes.start_date} />
-      )}
+      {/* Image Container with Status Badges */}
+      <div className="relative aspect-[16/9]">
+        {eventStatus && <EventStatusBadge status={eventStatus} />}
+        {!eventStatus && (
+          <CountdownTimer startDate={event.attributes.start_date} />
+        )}
 
-      <a href={event.attributes.url} target="_blank" rel="noopener noreferrer">
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/45 to-black/75 
-          group-hover:from-black/0 group-hover:via-black/20 group-hover:to-black/60 
-          transition-all duration-300 z-[8]"
-        />
         <Image
           src={event.attributes.image.data.attributes.url}
           alt={event.attributes.name}
           fill
           quality={100}
-          className="object-cover object-center transition-all duration-500 group-hover:scale-110"
+          className="object-cover object-center transition-all duration-500"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+      </div>
 
-        <div className="flex-row absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-20">
-          <div className="flex flex-col h-full justify-end">
-            <h1 className="text-2xl md:text-3xl font-creep text-amber-100 mb-3 group-hover:text-amber-200">
-              {event.attributes.name}
-            </h1>
+      {/* Content Section */}
+      <div className="p-6 space-y-4">
+        {/* Title */}
+        <h1 className="text-2xl md:text-3xl font-creep text-amber-100 group-hover:text-amber-200">
+          {event.attributes.name}
+        </h1>
 
-            <div className="text-sm font-sans tracking-wide text-gray-300 group-hover:text-white transition-colors">
-              <span className="mr-2">
-                {
-                  formatDateFromString(event.attributes.start_date)
-                    .formattedDate
-                }
+        {/* Date and Location */}
+        <div className="space-y-2">
+          <div className="text-sm font-sans tracking-wide text-gray-300">
+            <span className="mr-2">
+              {formatDateFromString(event.attributes.start_date).formattedDate}
+            </span>
+            {event.attributes?.end_date && (
+              <span>
+                -{" "}
+                {formatDateFromString(event.attributes.end_date).formattedDate}
               </span>
-              {event.attributes?.end_date && (
-                <span>
-                  -{" "}
-                  {
-                    formatDateFromString(event.attributes.end_date)
-                      .formattedDate
-                  }
-                </span>
-              )}
-            </div>
-
-            <div className="flex items-center justify-between mt-2">
-              <p className="text-sm font-sans text-gray-400 tracking-wide">
-                {event.attributes.address}
-              </p>
-              <div className="lg:flex flex-col hidden lg:flex-row items-center gap-2 lg:gap-x-2">
-                <CopyButton
-                  address={event.attributes.address}
-                  variant="amber"
-                />
-                <CalendarButton event={event} variant="amber" />
-                <ShareButton event={event} variant="amber" />
-              </div>
-            </div>
+            )}
           </div>
-          <div className="lg:hidden flex flex-row items-center gap-2 lg:gap-x-2 mt-2">
+          <p className="text-sm font-sans text-gray-400 tracking-wide">
+            {event.attributes.address}
+          </p>
+        </div>
+
+        {/* Description */}
+        <p className="text-sm text-gray-400 leading-relaxed">
+          {event.attributes.description || "More details coming soon..."}
+        </p>
+
+        {/* Actions */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+          <motion.a
+            href={event.attributes.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-amber-600/20 hover:bg-amber-600/40 
+                     rounded-full border border-amber-500/30 
+                     transition-all duration-300
+                     hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] text-white"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Learn More <Link className="inline-block ml-2" size="18" />{" "}
+            {/* Using Lucide icon */}
+          </motion.a>
+          <div className="flex items-center gap-2">
             <CopyButton address={event.attributes.address} variant="amber" />
             <CalendarButton event={event} variant="amber" />
             <ShareButton event={event} variant="amber" />
           </div>
         </div>
-      </a>
+      </div>
     </motion.div>
   );
 };
