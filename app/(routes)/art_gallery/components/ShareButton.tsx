@@ -47,11 +47,11 @@ const ShareButton = ({ title, url }: ShareButtonProps) => {
         onMouseLeave={() => setTooltipVisible(false)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="p-2 hover:bg-purple-500/20 rounded-full transition-all duration-300"
+        className="p-2  bg-fuchsia-500 hover:bg-indigo-500/20 rounded-full transition-all duration-300"
       >
         <Share2
           size={20}
-          className="text-fuchsia-200 hover:text-white transition-colors"
+          className="text-fuchsia-300 hover:text-white transition-colors"
         />
       </motion.button>
       {tooltipVisible && (
