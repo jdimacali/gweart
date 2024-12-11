@@ -3,7 +3,6 @@
 import Spin from "@/components/Spin";
 import axios from "axios";
 import { useLayoutEffect, useState } from "react";
-import Header from "./components/Header";
 import Slime from "./components/Slime";
 import EventCard from "./components/EventCard";
 
@@ -78,10 +77,8 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="min-h-screen w-full text-white bg-gradient-to-b from-zinc-900 via-purple-950/20 to-zinc-900 flex flex-col items-center justify-center pb-32 mt-0">
-      <Slime>
-        <Header />
-      </Slime>
+    <section className="min-h-screen w-full text-white bg-gradient-to-b from-zinc-950 via-amber-100/10 to-zinc-950 flex flex-col items-center justify-center pb-32 mt-0">
+      <Slime />
       <div className="w-full h-full mt-60 lg:mt-[20rem] relative px-4 md:px-8 lg:px-16">
         {loading ? (
           <div className="flex pt-80 items-center justify-center">

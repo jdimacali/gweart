@@ -14,7 +14,7 @@ const Originals = () => {
   };
 
   return (
-    <section className="w-full min-h-[95vh] max-h-screen text-white bg-gradient-to-b from-zinc-950 via-red-950/10 to-zinc-950 flex flex-col items-center pt-16 md:pt-24 pb-24 relative overflow-hidden">
+    <section className="w-full min-h-[95vh] max-h-screen text-white bg-gradient-to-t from-zinc-900 via-red-900/10 to-zinc-900 flex flex-col items-center pt-16 md:pt-24 pb-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-red-950/10 to-zinc-950" />
       {/* <div className="absolute inset-0 bg-[url('/background/pumpkin.png')] bg-cover bg-fixed opacity-10 pointer-events-none mix-blend-normal" /> */}
 

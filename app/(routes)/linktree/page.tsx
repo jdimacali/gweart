@@ -36,7 +36,7 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="min-h-screen w-full bg-gradient-to-b from-zinc-950 to-zinc-900 relative overflow-hidden">
+    <section className="min-h-screen w-full bg-gradient-to-b from-zinc-950 to-zinc-950 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-[url('/background/bg3.png')] bg-cover bg-fixed opacity-50 blur-[2px]" />
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/70 to-purple-950/20 brightness-200" />

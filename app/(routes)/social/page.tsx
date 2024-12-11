@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const SocialPage = () => {
   return (
-    <section className="min-h-screen bg-gradient-to-b from-zinc-900 via-purple-950/20 to-zinc-900 py-20">
+    <section className="min-h-screen bg-gradient-to-b from-zinc-950 via-purple-950/20 to-zinc-950 py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -40,7 +40,8 @@ const SocialPage = () => {
               Coming Soon!
             </h2>
             <p className="text-gray-400">
-              Our social feed is currently under construction. Check back soon to see our latest Instagram updates!
+              Our social feed is currently under construction. Check back soon
+              to see our latest Instagram updates!
             </p>
           </div>
         </motion.div>

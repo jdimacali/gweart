@@ -7,7 +7,7 @@ import { useState } from "react";
 
 interface CalendarButtonProps {
   event: Events;
-  variant?: "default" | "orange";
+  variant?: "default" | "orange" | "amber"; // Added amber as an option
 }
 
 const CalendarButton = ({
@@ -34,6 +34,8 @@ const CalendarButton = ({
   const iconColorClass =
     variant === "orange"
       ? "text-orange-300 hover:text-orange-400"
+      : variant === "amber" // Added condition for amber variant
+      ? "text-amber-100 hover:text-amber-200"
       : "text-purple-300 hover:text-white";
 
   return (
@@ -44,7 +46,9 @@ const CalendarButton = ({
         onClick={handleAddToCalendar}
         onMouseEnter={() => setTooltipVisible(true)}
         onMouseLeave={() => setTooltipVisible(false)}
-        className="p-1 hover:bg-purple-500/20 rounded-full transition-all duration-300"
+        className={`p-1 hover:bg-${
+          variant === "amber" ? "amber-500" : "purple-500"
+        }/20 rounded-full transition-all duration-300`}
       >
         <Calendar size={20} className={`${iconColorClass} transition-colors`} />
       </motion.button>

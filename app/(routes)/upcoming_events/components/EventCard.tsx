@@ -51,7 +51,7 @@ const EventCard = ({ event }: { event: Events }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.05 }}
-      className="group relative h-[20rem] w-full rounded-lg overflow-hidden shadow-xl shadow-purple-900/20"
+      className="group relative h-[20rem] w-full rounded-lg overflow-hidden shadow-md shadow-amber-100/10"
     >
       {eventStatus && <EventStatusBadge status={eventStatus} />}
       {!eventStatus && (
@@ -62,7 +62,7 @@ const EventCard = ({ event }: { event: Events }) => {
         <div
           className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/45 to-black/75 
           group-hover:from-black/0 group-hover:via-black/20 group-hover:to-black/60 
-          transition-all duration-300 z-10"
+          transition-all duration-300 z-[8]"
         />
         <Image
           src={event.attributes.image.data.attributes.url}
@@ -74,7 +74,7 @@ const EventCard = ({ event }: { event: Events }) => {
 
         <div className="flex-row absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-20">
           <div className="flex flex-col h-full justify-end">
-            <h1 className="text-2xl md:text-3xl font-creep text-purple-200 mb-3 group-hover:text-purple-300">
+            <h1 className="text-2xl md:text-3xl font-creep text-amber-100 mb-3 group-hover:text-amber-200">
               {event.attributes.name}
             </h1>
 
@@ -101,16 +101,19 @@ const EventCard = ({ event }: { event: Events }) => {
                 {event.attributes.address}
               </p>
               <div className="lg:flex flex-col hidden lg:flex-row items-center gap-2 lg:gap-x-2">
-                <CopyButton address={event.attributes.address} />
-                <CalendarButton event={event} />
-                <ShareButton event={event} />
+                <CopyButton
+                  address={event.attributes.address}
+                  variant="amber"
+                />
+                <CalendarButton event={event} variant="amber" />
+                <ShareButton event={event} variant="amber" />
               </div>
             </div>
           </div>
           <div className="lg:hidden flex flex-row items-center gap-2 lg:gap-x-2 mt-2">
-            <CopyButton address={event.attributes.address} />
-            <CalendarButton event={event} />
-            <ShareButton event={event} />
+            <CopyButton address={event.attributes.address} variant="amber" />
+            <CalendarButton event={event} variant="amber" />
+            <ShareButton event={event} variant="amber" />
           </div>
         </div>
       </a>

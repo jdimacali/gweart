@@ -82,7 +82,7 @@ const Page = () => {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen w-full bg-zinc-950 ">
+    <section className="flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-b from-zinc-950 via-white/[0.05] to-zinc-950">
       <motion.div
         className="p-4 mb-6 flex flex-col gap-y-5 text-center mt-8"
         initial={{ opacity: 0, y: -20 }}

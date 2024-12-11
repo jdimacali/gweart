@@ -6,7 +6,7 @@ import { useState } from "react";
 
 interface CopyButtonProps {
   address: string;
-  variant?: "default" | "orange";
+  variant?: "default" | "orange" | "amber"; // Added amber as an option
 }
 
 const CopyButton = ({ address, variant = "default" }: CopyButtonProps) => {
@@ -24,10 +24,17 @@ const CopyButton = ({ address, variant = "default" }: CopyButtonProps) => {
     }
   };
 
-  const iconColorClass =
-    variant === "orange"
-      ? "text-orange-300 hover:text-orange-400"
-      : "text-purple-300 hover:text-white";
+  let iconColorClass;
+  switch (variant) {
+    case "orange":
+      iconColorClass = "text-orange-300 hover:text-orange-400";
+      break;
+    case "amber":
+      iconColorClass = "text-amber-100 hover:text-amber-200";
+      break;
+    default:
+      iconColorClass = "text-purple-300 hover:text-white";
+  }
 
   return (
     <div className="relative z-10">
@@ -37,7 +44,9 @@ const CopyButton = ({ address, variant = "default" }: CopyButtonProps) => {
         onClick={handleCopy}
         onMouseEnter={() => setTooltipVisible(true)}
         onMouseLeave={() => setTooltipVisible(false)}
-        className="p-1 hover:bg-purple-500/20 rounded-full transition-all duration-300"
+        className={`p-1 hover:bg-${
+          variant === "amber" ? "amber-500" : "purple-500"
+        }/20 rounded-full transition-all duration-300`}
       >
         {copied ? (
           <Check size={20} className="text-green-400" />
