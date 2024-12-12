@@ -40,7 +40,7 @@ const ArtworkCard = ({ artwork, onSelect }: ArtworkCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="mb-4 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl"
+      className="mb-4 bg-gradient-to-t from-black/50 via-black/10 to-transparent rounded-xl backdrop-blur-sm"
       onContextMenu={(e) => {
         e.preventDefault();
         toast.error("This artwork is protected by copyright");

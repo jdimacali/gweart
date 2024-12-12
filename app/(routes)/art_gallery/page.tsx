@@ -61,21 +61,9 @@ const Gallery = () => {
     fetchArtworks();
   }, []);
 
-  const capitalizeTitle = (title: string) => {
-    return title
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(" ");
-  };
-
-  const handleContextMenu = (e: React.MouseEvent) => {
-    e.preventDefault();
-    toast.error("This artwork is protected by copyright");
-  };
-
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-zinc-900 via-purple-950/20 to-zinc-900">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-zinc-950 via-fuchsia-950/30 to-zinc-950">
         <Spin />
       </div>
     );
@@ -83,7 +71,7 @@ const Gallery = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-zinc-900 via-purple-950/70 to-zinc-900 px-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-zinc-950 via-fuchsia-950/30 to-zinc-950 px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -115,44 +103,64 @@ const Gallery = () => {
   }
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-b from-fuchsia-900/40 via-fuchsia-950/40 to-purple-950/10 relative 
-                     bg-repeat bg-opacity-50"
-    >
-      <Image
-        src="/web.png"
-        width={900}
-        height={900}
-        alt="web"
-        className="absolute -top-4 -left-7 max-md:w-[100%] max-md:object-contain opacity-10 pointer-events-none scale-[0.95]"
-        priority
-      />
-      <Image
-        src="/web.png"
-        width={900}
-        height={900}
-        alt="web"
-        className="absolute -bottom-2 -right-3 max-md:w-[100%] max-md:object-contain opacity-10 rotate-180 pointer-events-none scale-[0.95]"
-        priority
-      />
+    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-fuchsia-950/30 to-zinc-950 relative overflow-hidden">
+      <div className="absolute inset-x-0 top-0 h-[50vh] pointer-events-none">
+        <div className="absolute -left-3 top-0">
+          <Image
+            src="/web.png"
+            width={900}
+            height={900}
+            alt="web"
+            className="w-[45vw] h-auto opacity-70 lg:block hidden "
+            priority
+          />
+        </div>
+        <div className="absolute -right-3 top-0 scale-x-[-1] lg:block hidden">
+          <Image
+            src="/web.png"
+            width={900}
+            height={900}
+            alt="web"
+            className="w-[45vw] h-auto opacity-70 "
+            priority
+          />
+        </div>
+      </div>
 
       <div className="relative px-6 md:px-8 lg:px-12 py-20 z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
           className="max-w-[2000px] mx-auto"
         >
-          <h1
-            className="text-4xl md:text-6xl font-mania text-center mb-16 
-             text-white
-              bg-clip-text
-             drop-shadow-[0_0_15px_rgba(0, 0, 0, 0.6)]"
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 0.8,
+              ease: [0.2, 0.65, 0.3, 0.9],
+            }}
+            className="relative text-center mb-16"
           >
-            GWE_ART
-            <br />
-            GALLERY
-          </h1>
+            <h1 className="relative font-mania text-6xl md:text-7xl">
+              <span className="absolute inset-0  text-white/[0.08] translate-y-[3px] translate-x-[3px] text-7xl md:text-[5.25rem] opacity-30">
+                GWE_ART
+                <br />
+                GALLERY
+              </span>
+              <span
+                className="relative inline-block text-6xl md:text-7xl text-white
+                           [text-shadow:_1px_1px_0_rgb(255_255_255_/_20%),_2px_2px_0_rgb(255_255_255_/_15%),_3px_3px_0_rgb(255_255_255_/_10%),_4px_4px_0_rgb(255_255_255_/_5%),_5px_5px_15px_rgb(0_0_0_/_50%)]
+                           hover:[text-shadow:_1px_1px_0_rgb(255_255_255_/_25%),_2px_2px_0_rgb(255_255_255_/_20%),_3px_3px_0_rgb(255_255_255_/_15%),_4px_4px_0_rgb(255_255_255_/_10%),_6px_6px_20px_rgb(0_0_0_/_60%)]
+                           transition-all duration-300"
+              >
+                GWE_ART
+                <br />
+                GALLERY
+              </span>
+            </h1>
+          </motion.div>
 
           <Masonry
             breakpointCols={breakpointColumnsObj}
