@@ -48,7 +48,6 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 h-1 bg-purple-500/50 z-50 transition-all duration-300" />
       <section
         className={clsx(
           `flex max-sm:py-2 max-sm:px-6 p-4 gap-x-4 mr-auto justify-between text-center items-center sticky z-50 transition-all 

@@ -72,7 +72,7 @@ const ArtworkCard = ({ artwork, onSelect }: ArtworkCardProps) => {
 
         <div className="absolute inset-x-0 bottom-0 p-4 ">
           <div className="flex justify-between items-center opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-            <p className="text-white font-semibold text-lg">
+            <p className="text-white font-semibold text-lg ">
               {capitalizeTitle(artwork.name)}
             </p>
             <ShareButton title={artwork.name} url={window.location.href} />

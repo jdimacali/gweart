@@ -56,9 +56,11 @@ const Footer = () => {
               <Link
                 key={href}
                 href={href}
-                className="hover:text-purple-400 transition-colors"
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="hover:text-purple-300 transition-colors"
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  href.startsWith("http") ? "noopener noreferrer" : undefined
+                }
               >
                 {label}
               </Link>

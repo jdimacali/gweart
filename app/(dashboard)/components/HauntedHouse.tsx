@@ -119,7 +119,7 @@ const HauntedHouse = ({ onLoad, hideSpinner }: HauntedHouseProps) => {
           />
           <fog attach="fog" args={["#666666", 12, 22]} />
           <Model onLoad={handleLoad} />
-          <Bats />
+          {/* <Bats /> */}
           <CameraController />
         </Suspense>
       </Canvas>
