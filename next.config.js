@@ -1,6 +1,3 @@
-const { NormalModuleReplacementPlugin } = require("webpack");
-
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     domains: ["127.0.0.1", "localhost"],
@@ -13,16 +10,14 @@ const nextConfig = {
   },
   webpack(config, { isServer }) {
     if (!isServer) {
-      config.resolve.fallback.fs = false;
-      config.resolve.fallback.dns = false;
-      config.resolve.fallback.net = false;
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        dns: false,
+        net: false,
+        hexoid: false,
+      };
     }
-    config.plugins.push(
-      new NormalModuleReplacementPlugin(
-        /^hexoid$/,
-        require.resolve("hexoid/dist/index.js")
-      )
-    );
 
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
@@ -46,7 +41,7 @@ const nextConfig = {
     );
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
-    fileLoaderRule.exclude = /\.svg$/i
+    fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
   },
