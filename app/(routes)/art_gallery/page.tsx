@@ -104,29 +104,6 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-fuchsia-950/30 to-zinc-950 relative overflow-hidden">
-      <div className="absolute inset-x-0 top-0 h-[50vh] pointer-events-none">
-        <div className="absolute -left-3 top-0">
-          <Image
-            src="/web.png"
-            width={900}
-            height={900}
-            alt="web"
-            className="w-[45vw] h-auto opacity-70 lg:block hidden "
-            priority
-          />
-        </div>
-        <div className="absolute -right-3 top-0 scale-x-[-1] lg:block hidden">
-          <Image
-            src="/web.png"
-            width={900}
-            height={900}
-            alt="web"
-            className="w-[45vw] h-auto opacity-70 "
-            priority
-          />
-        </div>
-      </div>
-
       <div className="relative px-6 md:px-8 lg:px-12 py-20 z-10">
         <motion.div
           initial={{ opacity: 0 }}
