@@ -13,8 +13,8 @@ async function updateEnvFile(newToken: string) {
   try {
     const envContent = await fs.readFile(TOKEN_FILE_PATH, "utf-8");
     const updatedContent = envContent.replace(
-      /INSTAGRAM_ACCESS_TOKEN=.*/,
-      `INSTAGRAM_ACCESS_TOKEN="${newToken}"`
+      /NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN=.*/,
+      `NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN="${newToken}"`
     );
     await fs.writeFile(TOKEN_FILE_PATH, updatedContent);
   } catch (error) {
@@ -23,7 +23,7 @@ async function updateEnvFile(newToken: string) {
 }
 
 export async function refreshInstagramToken() {
-  const currentToken = process.env.INSTAGRAM_ACCESS_TOKEN;
+  const currentToken = process.env.NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN;
 
   if (!currentToken) {
     throw new Error(

@@ -6,7 +6,7 @@ const INSTAGRAM_FIELDS =
 
 export async function GET() {
   // Validate access token
-  const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
+  const accessToken = process.env.NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN;
   if (!accessToken) {
     return NextResponse.json(
       { error: "Instagram access token not configured" },
