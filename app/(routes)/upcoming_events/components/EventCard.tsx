@@ -6,37 +6,51 @@ import ShareButton from "@/components/ShareButton";
 import CalendarButton from "@/components/CalenderButton";
 import CountdownTimer from "./CountdownTimer";
 import CopyButton from "../../../../components/CopyButton";
-import { Link } from "lucide-react"; // Importing the Lucide icon
+import { Link, MapPin, Calendar } from "lucide-react"; // Added MapPin and Calendar icons
+import { isWithinInterval, parseISO, addDays } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
 
 export const getEventStatus = (startDate: string, endDate?: string) => {
-  const now = new Date();
-  const start = new Date(startDate);
-  const end = endDate ? new Date(endDate) : start;
-  end.setDate(end.getDate() + 1);
-  end.setHours(0, 0, 0, 0);
-  const oneWeek = 7 * 24 * 60 * 60 * 1000;
+  const timeZone = "America/Los_Angeles";
+  const now = toZonedTime(new Date(), timeZone);
+  const start = toZonedTime(parseISO(startDate), timeZone);
+  const end = endDate ? toZonedTime(parseISO(endDate), timeZone) : start;
+  const sevenDaysFromNow = addDays(now, 7);
 
-  if (now >= start && now <= end) {
+  // Check if event is happening now
+  if (isWithinInterval(now, { start, end })) {
     return "happening";
-  } else if (start.getTime() - now.getTime() <= oneWeek && now < start) {
+  }
+
+  // Check if event starts within the next 7 days
+  if (start > now && start <= sevenDaysFromNow) {
     return "upcoming";
   }
+
   return null;
 };
 
 export const EventStatusBadge = ({ status }: { status: string }) => {
   return (
-    <div className="absolute top-4 right-4 z-30 rotate-12">
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-black/80 backdrop-blur-sm px-4 py-2 rounded-xl text-base font-mono
+                 shadow-[0_0_15px_rgba(0,0,0,0.3)] border border-white/10"
+    >
       {status === "happening" ? (
-        <div className="bg-green-600/90 text-white px-4 py-1 rounded-full font-mania text-sm animate-pulse ">
-          <span className="font-bold">Live Now!</span>
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <span className="font-medium text-green-400">Live Now</span>
         </div>
       ) : (
-        <div className="bg-yellow-500/90 text-black px-4 py-1 rounded-full text-sm">
-          <span className="font-bold">Upcoming!</span>
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-yellow-500" />
+          <span className="font-medium text-yellow-400">Upcoming</span>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
@@ -45,7 +59,10 @@ const EventCard = ({ event }: { event: Events }) => {
     event.attributes.start_date,
     event.attributes.end_date
   );
-  // bg - black / 40;
+
+  // Determine if we have location information
+  const hasLocation = event.attributes.address || event.attributes.venue;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -55,10 +72,16 @@ const EventCard = ({ event }: { event: Events }) => {
     >
       {/* Image Container with Status Badges */}
       <div className="relative aspect-[16/9]">
-        {eventStatus && <EventStatusBadge status={eventStatus} />}
-        {!eventStatus && (
-          <CountdownTimer startDate={event.attributes.start_date} />
+        {/* Status badge in top right */}
+        {eventStatus && (
+          <div className="absolute top-4 right-4 z-30">
+            <EventStatusBadge status={eventStatus} />
+          </div>
         )}
+        {/* Countdown timer in top left */}
+        <div className="absolute top-4 left-4 z-30">
+          <CountdownTimer startDate={event.attributes.start_date} />
+        </div>
 
         <Image
           src={event.attributes.image.data.attributes.url}
@@ -78,27 +101,75 @@ const EventCard = ({ event }: { event: Events }) => {
         </h1>
 
         {/* Date and Location */}
-        <div className="space-y-2">
-          <div className="text-sm font-sans tracking-wide text-gray-300">
-            <span className="mr-2">
-              {formatDateFromString(event.attributes.start_date).formattedDate}
-            </span>
-            {event.attributes?.end_date && (
+        <div className="space-y-3">
+          {/* Date with icon */}
+          <div className="flex items-center gap-2 text-sm font-sans tracking-wide text-gray-300">
+            <Calendar className="w-4 h-4 text-amber-500/70" />
+            <div>
               <span>
-                -{" "}
-                {formatDateFromString(event.attributes.end_date).formattedDate}
+                {
+                  formatDateFromString(event.attributes.start_date)
+                    .formattedDate
+                }
               </span>
-            )}
+              {event.attributes?.end_date &&
+                event.attributes.end_date !== event.attributes.start_date && (
+                  <span>
+                    {" - "}
+                    {
+                      formatDateFromString(event.attributes.end_date)
+                        .formattedDate
+                    }
+                  </span>
+                )}
+              {event.attributes.start_time && (
+                <div className="text-sm text-gray-400 mt-0.5">
+                  Time: {event.attributes.start_time}
+                </div>
+              )}
+            </div>
           </div>
-          <p className="text-sm font-sans text-gray-400 tracking-wide">
-            {event.attributes.address}
-          </p>
+
+          {/* Location with icon */}
+          <div className="flex items-start gap-2 text-sm font-sans text-gray-400 tracking-wide">
+            <MapPin className="w-4 h-4 text-amber-500/70 mt-0.5" />
+            <div>
+              {event.attributes.venue && (
+                <div className="text-gray-300">{event.attributes.venue}</div>
+              )}
+              {event.attributes.address ? (
+                <div className="text-gray-400">{event.attributes.address}</div>
+              ) : (
+                <div className="text-gray-500 italic">Location TBA</div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Description */}
         <p className="text-sm text-gray-400 leading-relaxed">
           {event.attributes.description || "More details coming soon..."}
         </p>
+
+        {/* Price and Category */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-amber-900/20 rounded-lg p-3">
+            <p className="text-amber-300/90 text-sm font-medium mb-1">Price</p>
+            <p className="text-gray-300 text-sm">
+              {event.attributes.price
+                ? `$${event.attributes.price}`
+                : "Free Entry"}
+            </p>
+          </div>
+          <div className="bg-amber-900/20 rounded-lg p-3">
+            <p className="text-amber-300/90 text-sm font-medium mb-1">
+              Category
+            </p>
+            <p className="text-gray-300 text-sm">
+              {event.attributes.category || "Special Event"}
+            </p>
+          </div>
+        </div>
 
         {/* Actions */}
         <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
@@ -113,11 +184,17 @@ const EventCard = ({ event }: { event: Events }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Learn More <Link className="inline-block ml-2" size="18" />{" "}
-            {/* Using Lucide icon */}
+            Learn More <Link className="inline-block ml-2" size="18" />
           </motion.a>
           <div className="flex items-center gap-2">
-            <CopyButton address={event.attributes.address} variant="amber" />
+            {hasLocation && (
+              <CopyButton
+                address={
+                  event.attributes.address || event.attributes.venue || ""
+                }
+                variant="amber"
+              />
+            )}
             <CalendarButton event={event} variant="amber" />
             <ShareButton event={event} variant="amber" />
           </div>
