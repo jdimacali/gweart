@@ -14,7 +14,7 @@ const Originals = () => {
   };
 
   return (
-    <section className="flex items-center w-full h-full text-white bg-gradient-to-t from-zinc-950 via-red-900/20 to-zinc-950 flex-col relative overflow-hidden py-24 lg:py-32">
+    <section className="flex items-center w-full h-full text-white bg-gradient-to-t from-zinc-950 via-red-900/20 to-zinc-950 flex-col relative overflow-hidden py-20">
       {/* Title Section */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
@@ -32,7 +32,7 @@ const Originals = () => {
             damping: 20,
             delay: 0.5,
           }}
-          className="absolute top-[125%] left-10 z-30 bg-gradient-to-br from-red-800 to-red-900 rounded-full w-20 h-20 md:w-24 md:h-24 flex items-center justify-center shadow-[0_0_25px_rgba(185,28,28,0.15)] border border-red-900/5 backdrop-blur-sm"
+          className="absolute top-[125%] left-14 z-30 bg-gradient-to-br from-red-800 to-red-900 rounded-full w-20 h-20 md:w-24 md:h-24 flex items-center justify-center shadow-[0_0_25px_rgba(185,28,28,0.15)] border border-red-900/5 backdrop-blur-sm"
         >
           <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2),transparent)]" />
           <div className="absolute inset-0 rounded-full border-4 border-dashed border-red-200/30 animate-[spin_30s_linear_infinite]" />
