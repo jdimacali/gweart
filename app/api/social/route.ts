@@ -1,56 +1,44 @@
 import { NextResponse } from "next/server";
 
-const INSTAGRAM_API_URL = "https://graph.instagram.com/me/media";
-const INSTAGRAM_FIELDS =
-  "id,username,media_type,media_url,permalink,thumbnail_url,caption,timestamp";
-
 export async function GET() {
-  // Validate access token
-  const accessToken = process.env.NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN;
-  if (!accessToken) {
-    return NextResponse.json(
-      { error: "Instagram access token not configured" },
-      { status: 500 }
-    );
-  }
-
   try {
-    // Fetch user's media from Instagram Graph API
-    const response = await fetch(
-      `${INSTAGRAM_API_URL}?fields=${INSTAGRAM_FIELDS}&access_token=${accessToken}`,
-      {
-        next: { revalidate: 3600 }, // Cache for 1 hour
-      }
-    );
+    const accessToken = process.env.NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN;
 
-    if (!response.ok) {
-      const errorBody = await response.json();
-      throw new Error(
-        `Instagram API error: ${
-          errorBody.error?.message || response.statusText
-        }`
-      );
+    if (!accessToken) {
+      throw new Error("Instagram access token not found");
     }
 
-    const data = await response.json();
+    // First fetch user profile info
+    const profileResponse = await fetch(
+      `https://graph.instagram.com/me?fields=username,account_type,media_count,profile_picture_url&access_token=${accessToken}`
+    );
 
-    // Transform the data to match our needs
-    const transformedData = {
-      posts: data.data.map((post: any) => ({
-        id: post.id,
-        caption: post.caption,
-        mediaType: post.media_type,
-        mediaUrl: post.media_url,
-        permalink: post.permalink,
-        thumbnailUrl: post.thumbnail_url,
-        timestamp: post.timestamp,
-      })),
-      pagination: data.paging,
-    };
+    if (!profileResponse.ok) {
+      throw new Error("Failed to fetch Instagram profile");
+    }
 
-    return NextResponse.json(transformedData);
-  } catch (error: any) {
-    console.error("Instagram API Error:", error.message);
+    const profileData = await profileResponse.json();
+
+    // Then fetch media
+    const mediaResponse = await fetch(
+      `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username,children{media_url,media_type,thumbnail_url}&limit=4&access_token=${accessToken}`
+    );
+
+    if (!mediaResponse.ok) {
+      throw new Error("Failed to fetch Instagram posts");
+    }
+
+    const mediaData = await mediaResponse.json();
+
+    return NextResponse.json({
+      profile: {
+        ...profileData,
+        display_name: "Girl Wonder Extraordinaire" // Hardcoded since Instagram API doesn't provide this
+      },
+      posts: mediaData.data
+    });
+  } catch (error) {
+    console.error("Instagram fetch error:", error);
     return NextResponse.json(
       { error: "Failed to fetch Instagram data" },
       { status: 500 }
