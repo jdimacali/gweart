@@ -121,7 +121,7 @@ const Gallery = () => {
             className="relative text-center mb-16"
           >
             <h1 className="relative font-mania text-6xl md:text-7xl">
-              <span className="absolute inset-0  text-white/[0.08] translate-y-[3px] translate-x-[3px] text-7xl md:text-[5.25rem] opacity-30">
+              <span className="absolute inset-0  text-white/[0.08] text-[4.25rem] md:text-[5rem] opacity-30">
                 GWE_ART
                 <br />
                 GALLERY
