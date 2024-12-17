@@ -5,7 +5,8 @@ import NavbarRoutes from "./NavbarRoutes";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useScrollDirection } from 'react-use-scroll-direction'
 import clsx from "clsx";
 import Spin from "./Spin";
 
@@ -24,25 +25,16 @@ export const routes = [
 
 const Navbar = () => {
   const pathname = usePathname();
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const handleScroll = () => {
-    const currentScrollPos = window.scrollY;
-
-    if (currentScrollPos > prevScrollPos) {
-      setVisible(false);
-    } else {
-      setVisible(true);
-    }
-
-    setPrevScrollPos(currentScrollPos);
-  };
-
+  const [isVisible, setIsVisible] = useState(true);
+  const { isScrollingUp, isScrollingDown } = useScrollDirection()
+  
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  });
+    if (isScrollingDown) {
+      setIsVisible(false);
+    } else if (isScrollingUp) {
+      setIsVisible(true);
+    }
+  }, [isScrollingUp, isScrollingDown]);
 
   const imageLoader = <Spin />;
 
@@ -51,8 +43,8 @@ const Navbar = () => {
       <section
         className={clsx(
           `flex max-sm:py-2 max-sm:px-6 p-4 gap-x-4 mr-auto justify-between text-center items-center sticky z-50 transition-all 
-          delay-100 duration-1000 ease-in-out text-white bg-black border-opacity-10 md:px-10 max-sm:top-0 max-sm:translate-y-0 `,
-          visible ? "top-0 translate-y-0" : "-translate-y-full"
+          delay-100 duration-300 ease-in-out text-white bg-black border-opacity-10 md:px-10`,
+          isVisible ? "top-0 translate-y-0" : "-translate-y-full"
         )}
       >
         <Link href="/" className="relative sm:h-16 sm:w-16 w-14 h-14">
@@ -80,4 +72,5 @@ const Navbar = () => {
     </>
   );
 };
+
 export default Navbar;
