@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { InstagramPost } from "@/types/instagram";
 import { MediaRenderer } from "./MediaRenderer";

@@ -2,7 +2,15 @@ import { Play } from "lucide-react";
 import Image from "next/image";
 import { MediaItem } from "@/types/instagram";
 
-export const MediaRenderer = ({ mediaItem }: { mediaItem: MediaItem }) => {
+interface MediaRendererProps {
+  mediaItem: MediaItem;
+  onDoubleClick?: () => void;
+}
+
+export const MediaRenderer = ({
+  mediaItem,
+  onDoubleClick,
+}: MediaRendererProps) => {
   if (mediaItem.media_type === "VIDEO") {
     return (
       <div className="relative aspect-square">
@@ -22,12 +30,15 @@ export const MediaRenderer = ({ mediaItem }: { mediaItem: MediaItem }) => {
   }
 
   return (
-    <Image
-      src={mediaItem.media_url}
-      alt="Instagram post"
-      fill
-      className="object-cover"
-      sizes="(max-width: 768px) 100vw, 400px"
-    />
+    <div className="relative aspect-square" onDoubleClick={onDoubleClick}>
+      <Image
+        src={mediaItem.media_url}
+        alt="Instagram post"
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, 400px"
+        priority
+      />
+    </div>
   );
-}; 
+};
