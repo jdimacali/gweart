@@ -84,7 +84,7 @@ const Slides = ({ onLoad, hideSpinner }: SlidesProps) => {
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
         }}
-        spaceBetween={20}
+        spaceBetween={0}
         pagination={{
           clickable: true,
           dynamicBullets: true,
@@ -111,7 +111,7 @@ const Slides = ({ onLoad, hideSpinner }: SlidesProps) => {
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 <motion.div
-                  className="relative aspect-square p-3 w-[92%] md:w-[90%] lg:w-full lg:h-full mx-auto overflow-hidden rounded-xl bg-gradient-to-br from-red-900/30 to-black/40 "
+                  className="relative aspect-square p-3 w-[85%] md:w-[80%] lg:w-[90%] mx-auto overflow-hidden rounded-xl bg-gradient-to-br from-red-900/30 to-black/40 "
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
