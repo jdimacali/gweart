@@ -10,20 +10,23 @@ interface ProfileHeaderProps {
 export const ProfileHeader = ({ profile }: ProfileHeaderProps) => {
   return (
     <Link
-      href="https://www.instagram.com/gwe_art/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center justify-between mb-6 hover:opacity-90 transition-opacity"
+      href={`https://instagram.com/${profile?.username}`}
+      className="flex items-center justify-between p-4 rounded-xl
+                 bg-zinc-900/80 backdrop-blur-sm border border-zinc-800
+                 hover:border-purple-500/30 transition-all duration-300
+                 shadow-lg shadow-black/20 hover:shadow-purple-500/10
+                 group"
     >
-      <div className="flex items-center gap-2">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 p-[2px]">
+      <div className="flex items-center gap-3">
+        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500 p-[2px] 
+                       shadow-lg shadow-purple-500/20 group-hover:shadow-purple-500/30 transition-all">
           <div className="w-full h-full rounded-full bg-zinc-900 flex items-center justify-center overflow-hidden">
             {profile?.profile_picture_url ? (
               <Image
                 src={profile.profile_picture_url}
                 alt="Profile"
-                width={40}
-                height={40}
+                width={44}
+                height={44}
                 className="object-cover"
               />
             ) : (
@@ -32,11 +35,15 @@ export const ProfileHeader = ({ profile }: ProfileHeaderProps) => {
           </div>
         </div>
         <div>
-          <h2 className="font-semibold text-purple-100">@{profile?.username || 'gwe_art'}</h2>
-          <p className="text-xs text-gray-400">{profile?.display_name || 'Girl Wonder Extraordinaire'}</p>
+          <h2 className="font-semibold text-zinc-100">
+            @{profile?.username || "gwe_art"}
+          </h2>
+          <p className="text-sm text-zinc-400">
+            {profile?.display_name || "Girl Wonder Extraordinaire"}
+          </p>
         </div>
       </div>
-      <Instagram className="w-6 h-6 text-purple-300" />
+      <Instagram className="w-6 h-6 text-purple-400 group-hover:text-purple-300 transition-colors" />
     </Link>
   );
-}; 
+};

@@ -21,7 +21,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative w-full min-h-[400px] bg-black text-white overflow-hidden">
+    <footer className="relative w-full min-h-[400px] bg-black/95 text-white overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />

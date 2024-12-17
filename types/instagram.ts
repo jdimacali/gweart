@@ -15,13 +15,16 @@ export interface InstagramPost {
   permalink: string;
   caption?: string;
   timestamp: string;
-  username: string;
-  like_count?: number;
-  comments_count?: number;
+  like_count: number;
+  comments_count: number;
   media_count?: number;
   children?: {
     data: MediaItem[];
   };
+  engagement_rate?: number;
+  views?: number;
+  plays?: number;
+  shares?: number;
 }
 
 export interface InstagramProfile {

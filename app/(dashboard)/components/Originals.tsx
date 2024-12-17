@@ -83,7 +83,8 @@ const Originals = () => {
         >
           Each piece is meticulously crafted with love and attention to detail,
           bringing a unique blend of spooky charm and artistic excellence to
-          your collection. For custom orders, please email me through our contact us page.
+          your collection. For custom orders, please email me through our
+          contact us page.
         </motion.p>
         <motion.a
           href="/contact_us"

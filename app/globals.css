@@ -9,6 +9,7 @@ body,
 ::root {
   height: 100%;
   color: white;
+  scroll-behavior: smooth;
 }
 
 .link-underline {
@@ -92,4 +93,24 @@ img:not([draggable="true"]) {
 .animate-gradient {
   background-size: 200% auto;
   animation: gradient 3s linear infinite;
+}
+
+.high-quality-bg {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  perspective: 1000;
+  transform-style: preserve-3d;
+}
+
+/* Optional: Add a subtle animation to make the background more dynamic */
+@keyframes subtleFloat {
+  0%, 100% { transform: scale(1.01); }
+  50% { transform: scale(1); }
+}
+
+.animate-float {
+  animation: subtleFloat 20s ease-in-out infinite;
 }

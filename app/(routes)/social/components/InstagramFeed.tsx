@@ -70,7 +70,7 @@ const InstagramFeed = () => {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-8">
+    <div className="w-full max-w-md md:max-w-lg lg:max-w-xl mx-auto space-y-8">
       <ProfileHeader profile={profile} />
 
       <div className="space-y-8">
@@ -116,10 +116,11 @@ const InstagramFeed = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="absolute inset-x-0 bottom-24 mx-auto w-max px-6 py-3
-                bg-purple-500/80 hover:bg-purple-500 
+                bg-gradient-to-r from-[#405DE6] to-[#C13584] 
                 text-white font-medium rounded-full 
-                shadow-lg backdrop-blur-sm border border-purple-400/50
-                transition-all duration-300 hover:shadow-[0_4px_12px_rgba(168,85,247,0.4)] 
+                shadow-lg backdrop-blur-sm border border-white/10
+                transition-all duration-300 hover:shadow-[0_4px_12px_rgba(193,53,132,0.4)] 
+                hover:scale-[1.02]
                 flex items-center gap-2 z-10"
             >
               <span>See More on Instagram</span>

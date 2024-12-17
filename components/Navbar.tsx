@@ -6,9 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useScrollDirection } from 'react-use-scroll-direction'
+import { useScrollDirection } from "react-use-scroll-direction";
 import clsx from "clsx";
-import Spin from "./Spin";
 
 export const routes = [
   { label: "Home", href: "/" },
@@ -26,8 +25,8 @@ export const routes = [
 const Navbar = () => {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
-  const { isScrollingUp, isScrollingDown } = useScrollDirection()
-  
+  const { isScrollingUp, isScrollingDown } = useScrollDirection();
+
   useEffect(() => {
     if (isScrollingDown) {
       setIsVisible(false);
@@ -36,28 +35,32 @@ const Navbar = () => {
     }
   }, [isScrollingUp, isScrollingDown]);
 
-  const imageLoader = <Spin />;
-
   return (
     <>
       <section
         className={clsx(
-          `flex max-sm:py-2 max-sm:px-6 p-4 gap-x-4 mr-auto justify-between text-center items-center sticky z-50 transition-all 
-          delay-100 duration-300 ease-in-out text-white bg-black border-opacity-10 md:px-10`,
-          isVisible ? "top-0 translate-y-0" : "-translate-y-full"
+          `sticky top-0 flex w-full items-center justify-between
+           bg-black/95 backdrop-blur-sm border-b border-purple-100/[0.1]
+           px-6 md:px-10 py-4 z-50`,
+          isVisible
+            ? "translate-y-0 opacity-100 shadow-lg shadow-purple-100/[0.025]"
+            : "-translate-y-full opacity-0",
+          "transition-all duration-700 ease-in-out transform"
         )}
       >
-        <Link href="/" className="relative sm:h-16 sm:w-16 w-14 h-14">
+        <Link
+          href="/"
+          className="relative sm:h-16 sm:w-16 w-14 h-14 transform transition-transform duration-300 hover:scale-105"
+        >
           <Image
             src="/icon/gwe.png"
             alt="gwe"
-            quality="100"
+            quality={100}
             sizes="100vh"
             fill
-            className="relative w-20 h-20 opacity-90 hover:opacity-100 transition-opacity"
-            onContextMenu={(e) => {
-              e.preventDefault();
-            }}
+            className="relative w-20 h-20 opacity-95 hover:opacity-100 transition-all duration-300"
+            onContextMenu={(e) => e.preventDefault()}
+            priority
           />
         </Link>
         <div className="flex gap-x-8">
