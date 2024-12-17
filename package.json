@@ -39,7 +39,6 @@
     "react-use-scroll-direction": "^0.1.0",
     "resend": "^3.2.0",
     "sonner": "^1.7.0",
-    "superagent": "^8.1.2",
     "swiper": "^11.0.5",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
