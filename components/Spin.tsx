@@ -38,7 +38,7 @@ const Spin = () => {
             quality="100"
             sizes="100vh"
             fill
-            className="object-contain pointer-events-none brightness-0 opacity-70 drop-shadow-[0_0_2px_#8b46c4]"
+            className="object-contain pointer-events-none brightness-0"
           />
         </div>
       </div>

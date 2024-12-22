@@ -40,10 +40,10 @@ const Navbar = () => {
       <section
         className={clsx(
           `sticky top-0 flex w-full items-center justify-between
-           bg-black/95 backdrop-blur-sm border-b border-purple-100/[0.1]
+           bg-black/95 backdrop-blur-sm border-b 
            px-6 md:px-10 py-4 z-50`,
           isVisible
-            ? "translate-y-0 opacity-100 shadow-lg shadow-purple-100/[0.025]"
+            ? "translate-y-0 opacity-100 shadow-lg "
             : "-translate-y-full opacity-0",
           "transition-all duration-700 ease-in-out transform"
         )}

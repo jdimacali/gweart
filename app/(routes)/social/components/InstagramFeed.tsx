@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Instagram } from "lucide-react";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
-import { InstagramPost, InstagramProfile } from "@/types/instagram";
+import { InstagramPost, InstagramProfile } from "@/types";
 import { ProfileHeader } from "./ProfileHeader";
 import { PostCard } from "./PostCard";
 
@@ -13,7 +13,9 @@ const InstagramFeed = () => {
   const [profile, setProfile] = useState<InstagramProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState<Record<string, number>>({});
+  const [currentImageIndex, setCurrentImageIndex] = useState<
+    Record<string, number>
+  >({});
 
   useEffect(() => {
     const fetchInstagramPosts = async () => {
@@ -64,7 +66,9 @@ const InstagramFeed = () => {
     return (
       <div className="w-full max-w-md mx-auto bg-zinc-800/50 p-8 rounded-xl backdrop-blur-sm border border-purple-500/20 text-center">
         <Instagram className="w-12 h-12 mx-auto mb-4 text-purple-400 opacity-50" />
-        <p className="text-gray-400">{error || "No Instagram posts available"}</p>
+        <p className="text-gray-400">
+          {error || "No Instagram posts available"}
+        </p>
       </div>
     );
   }
@@ -75,37 +79,71 @@ const InstagramFeed = () => {
 
       <div className="space-y-8">
         {posts.slice(0, 3).map((post) => (
-          <Link
+          <div
             key={post.id}
-            href={post.permalink}
-            target="_blank"
-            rel="noopener noreferrer"
             className="block transition-transform hover:-translate-y-1 duration-300"
           >
-            <PostCard
-              post={post}
-              currentIndex={currentImageIndex[post.id]}
-              onPrevImage={() => {
-                setCurrentImageIndex(prev => ({
-                  ...prev,
-                  [post.id]: (prev[post.id] - 1 + post.children!.data.length) % post.children!.data.length
-                }));
-              }}
-              onNextImage={() => {
-                setCurrentImageIndex(prev => ({
-                  ...prev,
-                  [post.id]: (prev[post.id] + 1) % post.children!.data.length
-                }));
-              }}
-            />
-          </Link>
+            {post.media_type === "VIDEO" ? (
+              <PostCard
+                post={post}
+                currentIndex={currentImageIndex[post.id]}
+                onPrevImage={() => {
+                  setCurrentImageIndex((prev) => ({
+                    ...prev,
+                    [post.id]:
+                      (prev[post.id] - 1 + post.children!.data.length) %
+                      post.children!.data.length,
+                  }));
+                }}
+                onNextImage={() => {
+                  setCurrentImageIndex((prev) => ({
+                    ...prev,
+                    [post.id]: (prev[post.id] + 1) % post.children!.data.length,
+                  }));
+                }}
+              />
+            ) : (
+              <Link
+                href={post.permalink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <PostCard
+                  post={post}
+                  currentIndex={currentImageIndex[post.id]}
+                  onPrevImage={() => {
+                    setCurrentImageIndex((prev) => ({
+                      ...prev,
+                      [post.id]:
+                        (prev[post.id] - 1 + post.children!.data.length) %
+                        post.children!.data.length,
+                    }));
+                  }}
+                  onNextImage={() => {
+                    setCurrentImageIndex((prev) => ({
+                      ...prev,
+                      [post.id]:
+                        (prev[post.id] + 1) % post.children!.data.length,
+                    }));
+                  }}
+                />
+              </Link>
+            )}
+          </div>
         ))}
 
         {posts[3] && (
           <div className="relative mt-12">
             <PostCard
-              post={posts[3]}
-              currentIndex={currentImageIndex[posts[3].id]}
+              post={{
+                ...posts[3],
+                media_type: "IMAGE",
+                media_url:
+                  posts[3].media_type === "CAROUSEL_ALBUM"
+                    ? posts[3].children?.data[0]?.media_url || ""
+                    : posts[3].media_url || "",
+              }}
+              currentIndex={0}
               onPrevImage={() => {}}
               onNextImage={() => {}}
               preview
@@ -133,4 +171,4 @@ const InstagramFeed = () => {
   );
 };
 
-export default InstagramFeed; 
+export default InstagramFeed;

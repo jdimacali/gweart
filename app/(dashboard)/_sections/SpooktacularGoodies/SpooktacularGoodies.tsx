@@ -1,6 +1,6 @@
 "use client";
 
-import Title from "./Title";
+import Title from "./components/Title";
 import { useEffect, useState, Suspense } from "react";
 import axios from "axios";
 import Spin from "@/components/Spin";
@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 
 // Dynamically import HauntedHouse with no SSR to improve initial load
-const HauntedHouse = dynamic(() => import("./HauntedHouse"), {
+const HauntedHouse = dynamic(() => import("./components/HauntedHouse"), {
   ssr: false,
   loading: () => null,
 });

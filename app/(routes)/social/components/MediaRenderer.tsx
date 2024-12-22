@@ -1,6 +1,7 @@
 import { Play } from "lucide-react";
 import Image from "next/image";
-import { MediaItem } from "@/types/instagram";
+import { MediaItem } from "@/types";
+import { useState, useRef } from "react";
 
 interface MediaRendererProps {
   mediaItem: MediaItem;
@@ -11,20 +12,40 @@ export const MediaRenderer = ({
   mediaItem,
   onDoubleClick,
 }: MediaRendererProps) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   if (mediaItem.media_type === "VIDEO") {
     return (
-      <div className="relative aspect-square">
+      <div 
+        className="relative aspect-square"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setIsPlaying(!isPlaying);
+        }}
+      >
         <video
+          ref={videoRef}
           src={mediaItem.media_url}
-          controls
           className="absolute inset-0 w-full h-full object-cover"
+          controls={isPlaying}
           poster={mediaItem.thumbnail_url}
+          playsInline
+          onClick={(e) => e.stopPropagation()}
+          onLoadedMetadata={() => {
+            if (videoRef.current) {
+              videoRef.current.volume = 0.1;
+            }
+          }}
         />
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="bg-black/50 p-3 rounded-full">
-            <Play className="w-8 h-8 text-white" fill="white" />
+        {!isPlaying && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-black/50 p-3 rounded-full hover:bg-black/70 transition-all cursor-pointer">
+              <Play className="w-8 h-8 text-white" fill="white" />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }

@@ -21,7 +21,7 @@ export async function GET() {
 
     // Then fetch media
     const mediaResponse = await fetch(
-      `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username,children{media_url,media_type,thumbnail_url}&limit=4&access_token=${accessToken}`
+      `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username,children{id,media_type,media_url,thumbnail_url,permalink}&limit=4&access_token=${accessToken}`
     );
 
     if (!mediaResponse.ok) {
@@ -33,12 +33,11 @@ export async function GET() {
     return NextResponse.json({
       profile: {
         ...profileData,
-        display_name: "Girl Wonder Extraordinaire" // Hardcoded since Instagram API doesn't provide this
+        display_name: "Girl Wonder Extraordinaire",
       },
-      posts: mediaData.data
+      posts: mediaData.data,
     });
   } catch (error) {
-    console.error("Instagram fetch error:", error);
     return NextResponse.json(
       { error: "Failed to fetch Instagram data" },
       { status: 500 }

@@ -3,7 +3,9 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import { AuthProvider } from "@/context/AuthProvider";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import {
   butcherman,
   creepster,
@@ -12,8 +14,6 @@ import {
   metalMania,
   nosifer,
 } from "@/lib/fonts";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Gweart",
@@ -25,20 +25,24 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const fontClasses = [
+    lato.className,
+    butcherman.variable,
+    creepster.variable,
+    dokdo.variable,
+    nosifer.variable,
+    metalMania.variable,
+  ].join(" ");
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`bg-black ${lato.className} ${butcherman.variable} ${creepster.variable} ${dokdo.variable} ${nosifer.variable} ${metalMania.variable}`}
-        suppressHydrationWarning
-      >
-        <AuthProvider>
-          <Analytics />
-          <SpeedInsights />
-          <Toaster />
-          <Navbar />
-          {children}
-          <Footer />
-        </AuthProvider>
+      <body className={`bg-black ${fontClasses}`} suppressHydrationWarning>
+        <Analytics />
+        <SpeedInsights />
+        <Toaster />
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );

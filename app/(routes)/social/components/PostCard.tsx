@@ -1,6 +1,6 @@
 import { motion, useAnimation, PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { InstagramPost } from "@/types/instagram";
+import { InstagramPost } from "@/types";
 import { MediaRenderer } from "./MediaRenderer";
 import { useState } from "react";
 
@@ -22,7 +22,10 @@ export const PostCard = ({
   const [isDragging, setIsDragging] = useState(false);
   const controls = useAnimation();
 
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
     const threshold = 50; // minimum distance for swipe
     if (Math.abs(info.offset.x) > threshold) {
       if (info.offset.x > 0) {
@@ -52,10 +55,15 @@ export const PostCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className={`${baseClasses} group`}
-      style={preview ? {
-        WebkitMask: 'linear-gradient(to bottom, rgba(0,0,0, 1) 0, rgba(0,0,0, 1) 35%, rgba(0,0,0, 0) 95%, rgba(0,0,0, 0) 0) 100% 50% / 100% 100% repeat-x',
-        mask: 'linear-gradient(to bottom, rgba(0,0,0, 1) 0, rgba(0,0,0, 1) 35%, rgba(0,0,0, 0) 95%, rgba(0,0,0, 0) 0) 100% 50% / 100% 100% repeat-x'
-      } : undefined}
+      style={
+        preview
+          ? {
+              WebkitMask:
+                "linear-gradient(to bottom, rgba(0,0,0, 1) 0, rgba(0,0,0, 1) 35%, rgba(0,0,0, 0) 95%, rgba(0,0,0, 0) 0) 100% 50% / 100% 100% repeat-x",
+              mask: "linear-gradient(to bottom, rgba(0,0,0, 1) 0, rgba(0,0,0, 1) 35%, rgba(0,0,0, 0) 95%, rgba(0,0,0, 0) 0) 100% 50% / 100% 100% repeat-x",
+            }
+          : undefined
+      }
     >
       <div className="relative aspect-square">
         {post.media_type === "CAROUSEL_ALBUM" && post.children?.data ? (
@@ -95,10 +103,12 @@ export const PostCard = ({
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 
+                <div
+                  className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 
                                 bg-zinc-900/90 px-3 py-1.5 rounded-full 
                                 backdrop-blur-sm border border-zinc-800
-                                shadow-lg shadow-black/20">
+                                shadow-lg shadow-black/20"
+                >
                   {post.children.data.map((_, idx) => (
                     <div
                       key={idx}

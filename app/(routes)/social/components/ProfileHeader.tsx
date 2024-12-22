@@ -1,7 +1,7 @@
 import { Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { InstagramProfile } from "@/types/instagram";
+import { InstagramProfile } from "@/types";
 
 interface ProfileHeaderProps {
   profile: InstagramProfile | null;
@@ -11,6 +11,8 @@ export const ProfileHeader = ({ profile }: ProfileHeaderProps) => {
   return (
     <Link
       href={`https://instagram.com/${profile?.username}`}
+      target="_blank"
+      rel="noopener noreferrer"
       className="flex items-center justify-between p-4 rounded-xl
                  bg-zinc-900/80 backdrop-blur-sm border border-zinc-800
                  hover:border-purple-500/30 transition-all duration-300
@@ -18,8 +20,10 @@ export const ProfileHeader = ({ profile }: ProfileHeaderProps) => {
                  group"
     >
       <div className="flex items-center gap-3">
-        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500 p-[2px] 
-                       shadow-lg shadow-purple-500/20 group-hover:shadow-purple-500/30 transition-all">
+        <div
+          className="w-11 h-11 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500 p-[2px] 
+                       shadow-lg shadow-purple-500/20 group-hover:shadow-purple-500/30 transition-all"
+        >
           <div className="w-full h-full rounded-full bg-zinc-900 flex items-center justify-center overflow-hidden">
             {profile?.profile_picture_url ? (
               <Image

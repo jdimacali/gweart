@@ -1,13 +1,13 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import SpooktacularGoodies from "./components/SpooktacularGoodies";
-import FeaturedEvent from "./components/FeaturedEvent";
+import SpooktacularGoodies from "./_sections/SpooktacularGoodies/SpooktacularGoodies";
+import FeaturedEvent from "./_sections/FeaturedEvent/FeaturedEvent";
 import Divider from "./components/Divider";
-import AboutMe from "./components/AboutMe";
+import AboutMe from "./_sections/AboutMe/AboutMe";
 
 // Lazy load the SlideShow component
-const Originals = dynamic(() => import("./components/Originals"), {
+const Originals = dynamic(() => import("./_sections/Originals/Originals"), {
   ssr: false,
 });
 
