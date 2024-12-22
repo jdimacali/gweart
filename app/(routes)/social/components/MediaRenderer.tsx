@@ -15,6 +15,15 @@ export const MediaRenderer = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  const handlePlayClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
   if (mediaItem.media_type === "VIDEO") {
     return (
       <div 
@@ -22,7 +31,6 @@ export const MediaRenderer = ({
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          setIsPlaying(!isPlaying);
         }}
       >
         <video
@@ -38,9 +46,15 @@ export const MediaRenderer = ({
               videoRef.current.volume = 0.1;
             }
           }}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          onEnded={() => setIsPlaying(false)}
         />
         {!isPlaying && (
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div 
+            className="absolute inset-0 flex items-center justify-center"
+            onClick={handlePlayClick}
+          >
             <div className="bg-black/50 p-3 rounded-full hover:bg-black/70 transition-all cursor-pointer">
               <Play className="w-8 h-8 text-white" fill="white" />
             </div>
