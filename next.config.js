@@ -1,12 +1,58 @@
 const nextConfig = {
   images: {
-    domains: ["127.0.0.1", "localhost"],
+    domains: [
+      "127.0.0.1",
+      "localhost",
+      "scontent.cdninstagram.com",
+      "scontent-iad3-1.cdninstagram.com",
+      "scontent-iad3-2.cdninstagram.com",
+      "graph.instagram.com",
+      "instagram.com",
+      "instagram.fbom1-2.fna.fbcdn.net",
+      "instagram.fbom1-1.fna.fbcdn.net",
+      "scontent.cdninstagram.com",
+      "cdninstagram.com",
+      "scontent-ams2-1.cdninstagram.com",
+      "scontent-ams4-1.cdninstagram.com",
+      "scontent-lhr8-1.cdninstagram.com",
+      "scontent-lhr8-2.cdninstagram.com",
+      "scontent-fra3-1.cdninstagram.com",
+      "scontent-fra3-2.cdninstagram.com",
+      "scontent-fra5-1.cdninstagram.com",
+      "scontent-fra5-2.cdninstagram.com",
+      "scontent-lax3-1.cdninstagram.com",
+      "scontent-lax3-2.cdninstagram.com",
+      "video.cdninstagram.com",
+      "instagram.fhkg4-1.fna.fbcdn.net",
+      "instagram.fhkg4-2.fna.fbcdn.net",
+    ],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "**.cdninstagram.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.fbcdn.net",
+      },
+      {
+        protocol: "https",
+        hostname: "instagram.com",
       },
     ],
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Referrer-Policy",
+            value: "no-referrer-when-downgrade",
+          },
+        ],
+      },
+    ];
   },
   webpack(config, { isServer }) {
     if (!isServer) {

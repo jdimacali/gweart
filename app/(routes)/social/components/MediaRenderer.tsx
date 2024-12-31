@@ -1,4 +1,4 @@
-import { Play } from "lucide-react";
+import { Play, ImageOff, VideoOff } from "lucide-react";
 import Image from "next/image";
 import { MediaItem } from "@/types";
 import { useState, useRef } from "react";
@@ -13,6 +13,7 @@ export const MediaRenderer = ({
   onDoubleClick,
 }: MediaRendererProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlayClick = (e: React.MouseEvent) => {
@@ -24,9 +25,24 @@ export const MediaRenderer = ({
     }
   };
 
+  const handleError = () => {
+    setHasError(true);
+  };
+
   if (mediaItem.media_type === "VIDEO") {
+    if (hasError) {
+      return (
+        <div className="relative aspect-square bg-zinc-800 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-2 text-gray-500">
+            <VideoOff className="w-8 h-8" />
+            <p className="text-sm">Video failed to load</p>
+          </div>
+        </div>
+      );
+    }
+
     return (
-      <div 
+      <div
         className="relative aspect-square"
         onClick={(e) => {
           e.preventDefault();
@@ -49,9 +65,10 @@ export const MediaRenderer = ({
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           onEnded={() => setIsPlaying(false)}
+          onError={handleError}
         />
-        {!isPlaying && (
-          <div 
+        {!isPlaying && !hasError && (
+          <div
             className="absolute inset-0 flex items-center justify-center"
             onClick={handlePlayClick}
           >
@@ -60,6 +77,17 @@ export const MediaRenderer = ({
             </div>
           </div>
         )}
+      </div>
+    );
+  }
+
+  if (hasError) {
+    return (
+      <div className="relative aspect-square bg-zinc-800 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2 text-gray-500">
+          <ImageOff className="w-8 h-8" />
+          <p className="text-sm">Image failed to load</p>
+        </div>
       </div>
     );
   }
@@ -73,6 +101,7 @@ export const MediaRenderer = ({
         className="object-cover"
         sizes="(max-width: 768px) 100vw, 400px"
         priority
+        onError={handleError}
       />
     </div>
   );
