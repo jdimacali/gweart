@@ -10,37 +10,6 @@ import { Link, MapPin, Calendar } from "lucide-react";
 import { isWithinInterval, parseISO, addDays } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 
-// Helper function to format price
-const formatPrice = (price: number | null) => {
-  if (!price) return "Free Entry";
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(price);
-};
-
-// Helper function to convert to title case
-const toTitleCase = (str: string | number | null) => {
-  if (!str) return "";
-  return String(str)
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(" ");
-};
-
-// Helper function to convert military time to AM/PM
-const formatTime = (time: string | number | null) => {
-  if (!time) return "";
-  const timeStr = String(time);
-  const [hours, minutes] = timeStr.split(":");
-  const hour = parseInt(hours);
-  const ampm = hour >= 12 ? "PM" : "AM";
-  const formattedHour = hour % 12 || 12;
-  return `${formattedHour}:${minutes} ${ampm}`;
-};
-
 export const getEventStatus = (startDate: string, endDate?: string) => {
   const timeZone = "America/Los_Angeles";
   const now = toZonedTime(new Date(), timeZone);
@@ -85,6 +54,15 @@ export const EventStatusBadge = ({ status }: { status: string }) => {
   );
 };
 
+// Helper function to convert to title case
+const toTitleCase = (str: string | number | null) => {
+  if (!str) return "";
+  return String(str)
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+};
+
 const EventCard = ({ event }: { event: Events }) => {
   const eventStatus = getEventStatus(
     event.attributes.start_date,
@@ -92,10 +70,6 @@ const EventCard = ({ event }: { event: Events }) => {
   );
 
   const hasLocation = event.attributes.address || event.attributes.venue;
-
-  // Format times
-  const startTime = formatTime(event.attributes.start_time);
-  const endTime = formatTime(event.attributes.end_time);
 
   return (
     <motion.div
@@ -151,23 +125,12 @@ const EventCard = ({ event }: { event: Events }) => {
                     }
                   </span>
                 )}
-              {startTime && (
-                <div className="text-sm text-gray-400 mt-0.5">
-                  Time: {startTime}
-                  {endTime && ` - ${endTime}`}
-                </div>
-              )}
             </div>
           </div>
 
           <div className="flex items-start gap-2 text-sm font-sans text-gray-400 tracking-wide">
             <MapPin className="w-4 h-4 text-amber-500/70 mt-0.5" />
             <div>
-              {event.attributes.venue && (
-                <div className="text-gray-300">
-                  {toTitleCase(event.attributes.venue)}
-                </div>
-              )}
               {event.attributes.address ? (
                 <div className="text-gray-400">
                   {toTitleCase(event.attributes.address)}
@@ -179,32 +142,10 @@ const EventCard = ({ event }: { event: Events }) => {
           </div>
         </div>
 
-        {/* Description - Now using short_description if available */}
+        {/* Description */}
         <p className="text-sm text-gray-400 leading-relaxed">
-          {event.attributes.short_description ||
-            event.attributes.description ||
-            "More details coming soon..."}
+          {event.attributes.description}
         </p>
-
-        {/* Price and Category */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-amber-900/20 rounded-lg p-3">
-            <p className="text-amber-300/90 text-sm font-medium mb-1">Price</p>
-            <p className="text-gray-300 text-sm">
-              {formatPrice(event.attributes.price)}
-            </p>
-          </div>
-          <div className="bg-amber-900/20 rounded-lg p-3">
-            <p className="text-amber-300/90 text-sm font-medium mb-1">
-              Category
-            </p>
-            <p className="text-gray-300 text-sm">
-              {event.attributes.category
-                ? toTitleCase(event.attributes.category)
-                : "Special Event"}
-            </p>
-          </div>
-        </div>
 
         {/* Actions */}
         <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
@@ -224,9 +165,7 @@ const EventCard = ({ event }: { event: Events }) => {
           <div className="flex items-center gap-2">
             {hasLocation && (
               <CopyButton
-                address={
-                  event.attributes.address || event.attributes.venue || ""
-                }
+                address={event.attributes.address || ""}
                 variant="amber"
               />
             )}

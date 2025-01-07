@@ -17,17 +17,6 @@ import {
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import axios from "axios";
 
-// Helper function to format price
-const formatPrice = (price: number | null) => {
-  if (!price) return "Free Entry";
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(price);
-};
-
 // Helper function to convert to title case
 const toTitleCase = (str: string | number | null) => {
   if (!str) return "";
@@ -35,17 +24,6 @@ const toTitleCase = (str: string | number | null) => {
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ");
-};
-
-// Helper function to convert military time to AM/PM
-const formatTime = (time: string | number | null) => {
-  if (!time) return "";
-  const timeStr = String(time);
-  const [hours, minutes] = timeStr.split(":");
-  const hour = parseInt(hours);
-  const ampm = hour >= 12 ? "PM" : "AM";
-  const formattedHour = hour % 12 || 12;
-  return `${formattedHour}:${minutes} ${ampm}`;
 };
 
 const FeaturedEvent = () => {
@@ -143,14 +121,6 @@ const FeaturedEvent = () => {
     event.attributes.end_date
   );
 
-  // Format times
-  const startTime = event?.attributes?.start_time
-    ? formatTime(event.attributes.start_time)
-    : null;
-  const endTime = event?.attributes?.end_time
-    ? formatTime(event.attributes.end_time)
-    : null;
-
   return (
     <section
       ref={sectionRef}
@@ -159,7 +129,7 @@ const FeaturedEvent = () => {
     >
       {/* Content Container */}
       <div className="container mx-auto px-3 sm:px-4 relative z-10">
-        {/* Title Section - reduce spacing on mobile */}
+        {/* Title Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -171,7 +141,7 @@ const FeaturedEvent = () => {
               Don&apos;t miss out
             </span>
             <h2
-              className="font-creep text-3xl sm:text-4xl md:text-5xl  text-orange-300 
+              className="font-creep text-3xl sm:text-4xl md:text-5xl text-orange-300 
                            drop-shadow-[0_0_15px_rgba(251,146,60,0.3)]"
             >
               Featured Event
@@ -179,7 +149,7 @@ const FeaturedEvent = () => {
           </motion.div>
         </motion.div>
 
-        {/* Event Card - reduce padding and spacing on mobile */}
+        {/* Event Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: imageLoaded ? 1 : 0, y: imageLoaded ? 0 : 30 }}
@@ -204,12 +174,12 @@ const FeaturedEvent = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
 
-            {/* Status Badges - adjust positioning */}
+            {/* Status Badges */}
             <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-30">
               {eventStatus && <EventStatusBadge status={eventStatus} />}
             </div>
 
-            {/* Countdown Timer - adjust positioning */}
+            {/* Countdown Timer */}
             <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-30">
               <CountdownTimer startDate={event.attributes.start_date} />
             </div>
@@ -222,7 +192,7 @@ const FeaturedEvent = () => {
                 {event.attributes.name}
               </h3>
 
-              {/* Date & Time with enhanced styling */}
+              {/* Date and Location */}
               <div className="space-y-2 sm:space-y-3 md:space-y-4">
                 <div className="flex items-center gap-3 text-gray-300">
                   <Calendar className="w-5 h-5 text-orange-400" />
@@ -233,59 +203,25 @@ const FeaturedEvent = () => {
                           .formattedDate
                       }
                     </p>
-                    <p className="text-sm text-gray-400">
-                      {startTime
-                        ? `${startTime}${endTime ? ` - ${endTime}` : ""}`
-                        : "Time TBA"}
-                    </p>
                   </div>
                 </div>
 
-                {/* Location with map link */}
+                {/* Location */}
                 <div className="flex items-center gap-3 text-gray-300">
                   <MapPin className="w-5 h-5 text-orange-400" />
                   <div>
-                    <p className="font-medium text-base">
-                      {event.attributes.venue
-                        ? toTitleCase(event.attributes.venue)
-                        : "Venue TBA"}
-                    </p>
                     <p className="text-sm text-gray-400">
                       {event.attributes.address
                         ? toTitleCase(event.attributes.address)
-                        : "Address TBA"}
+                        : "Location TBA"}
                     </p>
                   </div>
                 </div>
 
                 {/* Description */}
                 <p className="text-gray-400 leading-relaxed text-sm sm:text-base line-clamp-3">
-                  {event.attributes?.short_description ||
-                    event.attributes?.description ||
-                    "More details coming soon..."}
+                  {event.attributes.description}
                 </p>
-              </div>
-
-              {/* Additional Info */}
-              <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
-                <div className="bg-orange-900/20 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4">
-                  <p className="text-orange-300 font-medium mb-0.5 sm:mb-1 text-sm sm:text-base">
-                    Price
-                  </p>
-                  <p className="text-gray-300 text-sm sm:text-base">
-                    {formatPrice(event.attributes.price)}
-                  </p>
-                </div>
-                <div className="bg-orange-900/20 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4">
-                  <p className="text-orange-300 font-medium mb-0.5 sm:mb-1 text-sm sm:text-base">
-                    Category
-                  </p>
-                  <p className="text-gray-300 text-sm sm:text-base">
-                    {event.attributes.category
-                      ? toTitleCase(event.attributes.category)
-                      : "Special Event"}
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -306,10 +242,12 @@ const FeaturedEvent = () => {
                 <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
               </motion.a>
               <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center">
-                <CopyButton
-                  address={event.attributes.address}
-                  variant="orange"
-                />
+                {event.attributes.address && (
+                  <CopyButton
+                    address={event.attributes.address}
+                    variant="orange"
+                  />
+                )}
                 <CalendarButton event={event} variant="orange" />
                 <ShareButton event={event} variant="orange" />
               </div>
