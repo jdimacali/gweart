@@ -14,11 +14,13 @@ export interface Events {
     name: string;
     address: string;
     start_date: string;
-    start_time: string; // Added start_time
+    start_time: number; // Added start_time
+    end_time: number;
     end_date?: string;
     price: number; // Added price
     venue: string; // Added venue
     category: string; // Added category
+    short_description: string;
     image: {
       data: {
         id: number;

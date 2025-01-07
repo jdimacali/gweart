@@ -6,9 +6,40 @@ import ShareButton from "@/components/ShareButton";
 import CalendarButton from "@/components/CalenderButton";
 import CountdownTimer from "./CountdownTimer";
 import CopyButton from "../../../../components/CopyButton";
-import { Link, MapPin, Calendar } from "lucide-react"; // Added MapPin and Calendar icons
+import { Link, MapPin, Calendar } from "lucide-react";
 import { isWithinInterval, parseISO, addDays } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
+
+// Helper function to format price
+const formatPrice = (price: number | null) => {
+  if (!price) return "Free Entry";
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price);
+};
+
+// Helper function to convert to title case
+const toTitleCase = (str: string | number | null) => {
+  if (!str) return "";
+  return String(str)
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+};
+
+// Helper function to convert military time to AM/PM
+const formatTime = (time: string | number | null) => {
+  if (!time) return "";
+  const timeStr = String(time);
+  const [hours, minutes] = timeStr.split(":");
+  const hour = parseInt(hours);
+  const ampm = hour >= 12 ? "PM" : "AM";
+  const formattedHour = hour % 12 || 12;
+  return `${formattedHour}:${minutes} ${ampm}`;
+};
 
 export const getEventStatus = (startDate: string, endDate?: string) => {
   const timeZone = "America/Los_Angeles";
@@ -60,8 +91,11 @@ const EventCard = ({ event }: { event: Events }) => {
     event.attributes.end_date
   );
 
-  // Determine if we have location information
   const hasLocation = event.attributes.address || event.attributes.venue;
+
+  // Format times
+  const startTime = formatTime(event.attributes.start_time);
+  const endTime = formatTime(event.attributes.end_time);
 
   return (
     <motion.div
@@ -72,13 +106,11 @@ const EventCard = ({ event }: { event: Events }) => {
     >
       {/* Image Container with Status Badges */}
       <div className="relative aspect-[16/9]">
-        {/* Status badge in top right */}
         {eventStatus && (
           <div className="absolute top-4 right-4 z-30">
             <EventStatusBadge status={eventStatus} />
           </div>
         )}
-        {/* Countdown timer in top left */}
         <div className="absolute top-4 left-4 z-30">
           <CountdownTimer startDate={event.attributes.start_date} />
         </div>
@@ -95,14 +127,11 @@ const EventCard = ({ event }: { event: Events }) => {
 
       {/* Content Section */}
       <div className="p-6 space-y-4">
-        {/* Title */}
         <h1 className="text-2xl md:text-3xl font-creep text-amber-100 group-hover:text-amber-200">
           {event.attributes.name}
         </h1>
 
-        {/* Date and Location */}
         <div className="space-y-3">
-          {/* Date with icon */}
           <div className="flex items-center gap-2 text-sm font-sans tracking-wide text-gray-300">
             <Calendar className="w-4 h-4 text-amber-500/70" />
             <div>
@@ -122,23 +151,27 @@ const EventCard = ({ event }: { event: Events }) => {
                     }
                   </span>
                 )}
-              {event.attributes.start_time && (
+              {startTime && (
                 <div className="text-sm text-gray-400 mt-0.5">
-                  Time: {event.attributes.start_time}
+                  Time: {startTime}
+                  {endTime && ` - ${endTime}`}
                 </div>
               )}
             </div>
           </div>
 
-          {/* Location with icon */}
           <div className="flex items-start gap-2 text-sm font-sans text-gray-400 tracking-wide">
             <MapPin className="w-4 h-4 text-amber-500/70 mt-0.5" />
             <div>
               {event.attributes.venue && (
-                <div className="text-gray-300">{event.attributes.venue}</div>
+                <div className="text-gray-300">
+                  {toTitleCase(event.attributes.venue)}
+                </div>
               )}
               {event.attributes.address ? (
-                <div className="text-gray-400">{event.attributes.address}</div>
+                <div className="text-gray-400">
+                  {toTitleCase(event.attributes.address)}
+                </div>
               ) : (
                 <div className="text-gray-500 italic">Location TBA</div>
               )}
@@ -146,9 +179,11 @@ const EventCard = ({ event }: { event: Events }) => {
           </div>
         </div>
 
-        {/* Description */}
+        {/* Description - Now using short_description if available */}
         <p className="text-sm text-gray-400 leading-relaxed">
-          {event.attributes.description || "More details coming soon..."}
+          {event.attributes.short_description ||
+            event.attributes.description ||
+            "More details coming soon..."}
         </p>
 
         {/* Price and Category */}
@@ -156,9 +191,7 @@ const EventCard = ({ event }: { event: Events }) => {
           <div className="bg-amber-900/20 rounded-lg p-3">
             <p className="text-amber-300/90 text-sm font-medium mb-1">Price</p>
             <p className="text-gray-300 text-sm">
-              {event.attributes.price
-                ? `$${event.attributes.price}`
-                : "Free Entry"}
+              {formatPrice(event.attributes.price)}
             </p>
           </div>
           <div className="bg-amber-900/20 rounded-lg p-3">
@@ -166,7 +199,9 @@ const EventCard = ({ event }: { event: Events }) => {
               Category
             </p>
             <p className="text-gray-300 text-sm">
-              {event.attributes.category || "Special Event"}
+              {event.attributes.category
+                ? toTitleCase(event.attributes.category)
+                : "Special Event"}
             </p>
           </div>
         </div>

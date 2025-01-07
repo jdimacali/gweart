@@ -17,6 +17,37 @@ import {
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import axios from "axios";
 
+// Helper function to format price
+const formatPrice = (price: number | null) => {
+  if (!price) return "Free Entry";
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price);
+};
+
+// Helper function to convert to title case
+const toTitleCase = (str: string | number | null) => {
+  if (!str) return "";
+  return String(str)
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+};
+
+// Helper function to convert military time to AM/PM
+const formatTime = (time: string | number | null) => {
+  if (!time) return "";
+  const timeStr = String(time);
+  const [hours, minutes] = timeStr.split(":");
+  const hour = parseInt(hours);
+  const ampm = hour >= 12 ? "PM" : "AM";
+  const formattedHour = hour % 12 || 12;
+  return `${formattedHour}:${minutes} ${ampm}`;
+};
+
 const FeaturedEvent = () => {
   const [event, setEvent] = useState<Events | undefined>(undefined);
   const [loading, setLoading] = useState(true);
@@ -112,6 +143,14 @@ const FeaturedEvent = () => {
     event.attributes.end_date
   );
 
+  // Format times
+  const startTime = event?.attributes?.start_time
+    ? formatTime(event.attributes.start_time)
+    : null;
+  const endTime = event?.attributes?.end_time
+    ? formatTime(event.attributes.end_time)
+    : null;
+
   return (
     <section
       ref={sectionRef}
@@ -195,7 +234,9 @@ const FeaturedEvent = () => {
                       }
                     </p>
                     <p className="text-sm text-gray-400">
-                      {event.attributes.start_time || "Time TBA"}
+                      {startTime
+                        ? `${startTime}${endTime ? ` - ${endTime}` : ""}`
+                        : "Time TBA"}
                     </p>
                   </div>
                 </div>
@@ -205,17 +246,22 @@ const FeaturedEvent = () => {
                   <MapPin className="w-5 h-5 text-orange-400" />
                   <div>
                     <p className="font-medium text-base">
-                      {event.attributes.venue || "Venue TBA"}
+                      {event.attributes.venue
+                        ? toTitleCase(event.attributes.venue)
+                        : "Venue TBA"}
                     </p>
                     <p className="text-sm text-gray-400">
-                      {event.attributes.address || "Address TBA"}
+                      {event.attributes.address
+                        ? toTitleCase(event.attributes.address)
+                        : "Address TBA"}
                     </p>
                   </div>
                 </div>
 
                 {/* Description */}
                 <p className="text-gray-400 leading-relaxed text-sm sm:text-base line-clamp-3">
-                  {event.attributes?.description ||
+                  {event.attributes?.short_description ||
+                    event.attributes?.description ||
                     "More details coming soon..."}
                 </p>
               </div>
@@ -227,7 +273,7 @@ const FeaturedEvent = () => {
                     Price
                   </p>
                   <p className="text-gray-300 text-sm sm:text-base">
-                    {event.attributes.price || "Free Entry"}
+                    {formatPrice(event.attributes.price)}
                   </p>
                 </div>
                 <div className="bg-orange-900/20 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4">
@@ -235,7 +281,9 @@ const FeaturedEvent = () => {
                     Category
                   </p>
                   <p className="text-gray-300 text-sm sm:text-base">
-                    {event.attributes.category || "Special Event"}
+                    {event.attributes.category
+                      ? toTitleCase(event.attributes.category)
+                      : "Special Event"}
                   </p>
                 </div>
               </div>
