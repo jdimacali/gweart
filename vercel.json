@@ -1,6 +1,0 @@
-{
-  "crons": [{
-    "path": "/api/refresh-instagram-token",
-    "schedule": "0 0 */30 * *"
-  }]
-} 
