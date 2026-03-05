@@ -16,8 +16,8 @@ export default function Home() {
     <main>
       <SpooktacularGoodies />
       <Divider />
-      <Originals />
-      <Divider />
+      {/* <Originals /> */}
+      {/* <Divider /> */}
       <AboutMe />
       <Divider />
       <FeaturedEvent />

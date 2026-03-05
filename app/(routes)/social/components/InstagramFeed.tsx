@@ -66,9 +66,27 @@ const InstagramFeed = () => {
     return (
       <div className="w-full max-w-md mx-auto bg-zinc-800/50 p-8 rounded-xl backdrop-blur-sm border border-purple-500/20 text-center">
         <Instagram className="w-12 h-12 mx-auto mb-4 text-purple-400 opacity-50" />
-        <p className="text-gray-400">
-          {error || "No Instagram posts available"}
+        <h3 className="text-lg font-medium text-purple-200 mb-2">
+          Instagram Feed Unavailable
+        </h3>
+        <p className="text-gray-400 mb-6">
+          Please visit our Instagram profile to see our latest posts and
+          updates.
         </p>
+        <Link
+          href="https://www.instagram.com/gwe_art/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-6 py-3
+            bg-gradient-to-r from-[#405DE6] to-[#C13584] 
+            text-white font-medium rounded-full 
+            shadow-lg backdrop-blur-sm border border-white/10
+            transition-all duration-300 hover:shadow-[0_4px_12px_rgba(193,53,132,0.4)] 
+            hover:scale-[1.02]"
+        >
+          <span>Visit Our Instagram</span>
+          <Instagram className="w-5 h-5" />
+        </Link>
       </div>
     );
   }

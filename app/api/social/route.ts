@@ -5,7 +5,11 @@ export async function GET() {
     const accessToken = process.env.NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN;
 
     if (!accessToken) {
-      throw new Error("Instagram access token not found");
+      console.error("Instagram access token not found");
+      return NextResponse.json(
+        { error: "Instagram access token not configured" },
+        { status: 401 }
+      );
     }
 
     // First fetch user profile info
@@ -14,7 +18,12 @@ export async function GET() {
     );
 
     if (!profileResponse.ok) {
-      throw new Error("Failed to fetch Instagram profile");
+      const profileError = await profileResponse.text();
+      console.error("Instagram profile fetch failed:", profileError);
+      return NextResponse.json(
+        { error: "Failed to fetch Instagram profile", details: profileError },
+        { status: profileResponse.status }
+      );
     }
 
     const profileData = await profileResponse.json();
@@ -25,7 +34,12 @@ export async function GET() {
     );
 
     if (!mediaResponse.ok) {
-      throw new Error("Failed to fetch Instagram posts");
+      const mediaError = await mediaResponse.text();
+      console.error("Instagram media fetch failed:", mediaError);
+      return NextResponse.json(
+        { error: "Failed to fetch Instagram posts", details: mediaError },
+        { status: mediaResponse.status }
+      );
     }
 
     const mediaData = await mediaResponse.json();
@@ -38,8 +52,12 @@ export async function GET() {
       posts: mediaData.data,
     });
   } catch (error) {
+    console.error("Instagram API error:", error);
     return NextResponse.json(
-      { error: "Failed to fetch Instagram data" },
+      {
+        error: "Failed to fetch Instagram data",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }

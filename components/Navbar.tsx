@@ -18,6 +18,7 @@ export const routes = [
   {
     label: "Shop",
     href: "https://gweart.square.site/",
+    highlight: true,
   },
   { label: "Linktree", href: "/linktree" },
 ];
