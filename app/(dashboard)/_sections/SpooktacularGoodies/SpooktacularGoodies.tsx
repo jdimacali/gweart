@@ -167,7 +167,7 @@ const SpooktacularGoodies = () => {
 
               <div className="relative z-20 flex flex-col items-center w-full px-4 max-w-4xl mx-auto">
                 <motion.div
-                  className="flex gap-4 justify-center"
+                  className="flex flex-wrap gap-4 justify-center items-center text-center"
                   variants={scaleIn}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
@@ -190,7 +190,7 @@ const SpooktacularGoodies = () => {
                       `,
                     }}
                   >
-                    GWE_ART
+                    delightfully decrepit
                   </motion.h1>
                   <motion.div
                     whileHover={{
@@ -200,16 +200,7 @@ const SpooktacularGoodies = () => {
                         "brightness(1.2) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))",
                     }}
                     transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Image
-                      src="/icon/gwe.png"
-                      width={70}
-                      height={70}
-                      alt="logo"
-                      className="object-contain transition-all duration-300"
-                      priority
-                    />
-                  </motion.div>
+                  ></motion.div>
                 </motion.div>
 
                 <motion.p
@@ -218,7 +209,7 @@ const SpooktacularGoodies = () => {
                   variants={fadeInUp}
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                  Girl Wonder Extraordinaire
+                  Halloween Now Halloween Later
                 </motion.p>
 
                 <motion.div

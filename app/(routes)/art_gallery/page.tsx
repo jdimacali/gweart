@@ -122,7 +122,7 @@ const Gallery = () => {
           >
             <h1 className="relative font-mania text-6xl md:text-7xl">
               <span className="absolute inset-0  text-white/[0.08] text-[4.25rem] md:text-[5rem] opacity-30">
-                GWE_ART
+                Delightfully Decrepit
                 <br />
                 GALLERY
               </span>
@@ -132,7 +132,7 @@ const Gallery = () => {
                            hover:[text-shadow:_1px_1px_0_rgb(255_255_255_/_25%),_2px_2px_0_rgb(255_255_255_/_20%),_3px_3px_0_rgb(255_255_255_/_15%),_4px_4px_0_rgb(255_255_255_/_10%),_6px_6px_20px_rgb(0_0_0_/_60%)]
                            transition-all duration-300"
               >
-                GWE_ART
+                Delightfully Decrepit
                 <br />
                 GALLERY
               </span>

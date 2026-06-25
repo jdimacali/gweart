@@ -106,7 +106,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
         }}
       >
         <Button
-          onClick={() => router.push("https://gweart.square.site/")}
+          onClick={() => router.push("https://delightfullydecrepit.square.site/")}
           className={clsx(
             `flex justify-center items-center relative bg-black p-6 rounded-xl max-sm:w-[90vw] mt-8 md:px-20
              hover:bg-purple-950 hover:scale-105 transition-all duration-300
@@ -115,7 +115,7 @@ const Title = ({ title, subtitle, button }: TitleProps) => {
           )}
         >
           <h3 className="text-lg font-bold text-white m-3 flex items-center justify-center">
-            {button.text}
+            {button.text} 
             <ArrowRight className="ml-2 text-white" size={22} />
           </h3>
         </Button>

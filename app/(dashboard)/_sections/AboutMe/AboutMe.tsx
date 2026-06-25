@@ -117,7 +117,7 @@ const AboutMe = () => {
               className="text-3xl md:text-4xl lg:text-5xl font-creep 
                        text-white drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"
             >
-              I am Girl Wonder Extraordinaire
+              I am Delightfully Decrepit
             </motion.h1>
 
             <motion.p

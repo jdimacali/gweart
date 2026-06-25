@@ -70,10 +70,10 @@ const Footer = () => {
           {/* Copyright Text */}
           <div className="text-center space-y-2 mt-8">
             <p className="text-sm text-gray-400">
-              © {currentYear} Gweart. All rights reserved.
+              © {currentYear} Delightfully Decrepit. All rights reserved.
             </p>
             <p className="text-xs text-gray-500">
-              Los Angeles, CA 90042 | Art by Girl Wonder Extraordinaire
+              Los Angeles, CA 90042 | Art by Delightfully Decrepit
             </p>
             <p className="text-xs text-gray-500">
               Specializing in the UnOrdinary | www.artbygwe.com

@@ -90,7 +90,7 @@ const Page = () => {
                 className="pointer-events-none"
                 onContextMenu={(e) => e.preventDefault()}
               />
-              <AvatarFallback>GWE_ART</AvatarFallback>
+              <AvatarFallback>Delightfully Decrepit</AvatarFallback>
             </Avatar>
           </motion.div>
 

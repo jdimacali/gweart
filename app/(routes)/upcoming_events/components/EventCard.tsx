@@ -89,13 +89,27 @@ const EventCard = ({ event }: { event: Events }) => {
           <CountdownTimer startDate={event.attributes.start_date} />
         </div>
 
-        <Image
-          src={event.attributes.image.data.attributes.url}
-          alt={event.attributes.name}
-          fill
-          quality={100}
-          className="object-cover object-center transition-all duration-500"
-        />
+        <div className="relative aspect-[16/9] overflow-hidden bg-black">
+          {/* Blurred background */}
+          <Image
+            src={event.attributes.image.data.attributes.url}
+            alt=""
+            fill
+            quality={50}
+            className="object-cover scale-110 blur-xl opacity-40"
+          />
+
+          {/* Main image */}
+          <Image
+            src={event.attributes.image.data.attributes.url}
+            alt={event.attributes.name}
+            fill
+            quality={100}
+            className="object-contain object-center relative z-10"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent z-20" />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
       </div>
 
