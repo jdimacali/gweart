@@ -17,7 +17,7 @@ export const routes = [
   { label: "Contact Us", href: "/contact_us" },
   {
     label: "Shop",
-    href: "https://gweart.square.site/",
+    href: "https://delightfullydecrepit.square.site/",
     highlight: true,
   },
   { label: "Linktree", href: "/linktree" },
